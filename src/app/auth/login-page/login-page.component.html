@@ -1,0 +1,18 @@
+<form class="mt-4" (ngSubmit)="loginUser()" #loginForm="ngForm">
+  <legend>WikiRol Login</legend>
+
+  <div class="mb-3">
+    <label for="correo">Name:</label>
+    <input type="text" class="form-control" name="email" id="email" placeholder="Name" required #emailModel="ngModel"
+     [(ngModel)]="newLogin.name" [ngClass]="validClasses(emailModel, 'is-valid', 'is-invalid')"/>
+  </div>
+  <div class="mb-3">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" name="password" id="password" placeholder="Password" #passwordModel="ngModel"
+    [(ngModel)]="newLogin.password" [ngClass]="validClasses(passwordModel, 'is-valid', 'is-invalid')" required minlength="4" />
+  </div>
+  <p class="text-danger" id="errorInfo"></p>
+  <!-- <a class="btn btn-secondary" role="button" [routerLink]="['/auth/register']" >Create account</a> -->
+  <!--[routerLink]="['/restaurants']"-->
+  <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" >Login</button>
+</form>

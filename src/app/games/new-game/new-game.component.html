@@ -1,0 +1,95 @@
+<form class="mt-4" (ngSubmit)="addGame()" #gameForm="ngForm">
+
+  <div class="mb-3">
+    <label for="car">Nº de Partida</label>
+    <input
+      type="number"
+      class="form-control"
+      id="num"
+      name="num"
+      min:0
+      [(ngModel)]="newGame.num"
+      placeholder="Número de la partida"
+      required
+      #numModel="ngModel"
+      [ngClass]="validClasses(numModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="numModel.errors?.['required']">
+      Introduce un número adecuado
+    </div>
+    <div class="invalid-feedback" *ngIf="numModel.errors?.['min']">
+      Introduce un número adecuado
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="name">Título de la Partida</label>
+    <input
+      type="text"
+      class="form-control"
+      name="titulo"
+      id="titulo"
+      [(ngModel)]="newGame.titulo"
+      placeholder="Introduce el titulo de la partida!"
+      required
+      #tituloModel="ngModel"
+      [ngClass]="validClasses(tituloModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="tituloModel.errors?.['required']">
+      Introduce un título correcto
+    </div>
+    <div class="invalid-feedback" *ngIf="tituloModel.errors?.['pattern']">
+      Introduce un título correcto.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="lore">Resumen de la partida</label>
+    <textarea
+      class="form-control"
+      id="lore"
+      name="lore"
+      rows="5"
+      [(ngModel)]="newGame.resumen"
+      placeholder="Introduce el resumen de la partida"
+      required
+      #resumenModel="ngModel"
+      [ngClass]="validClasses(resumenModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+    <div class="invalid-feedback">Introduce el resumen de la partida.</div>
+  </div>
+
+  <div class="mb-3">
+    Campaña <br>
+    <select class="form-control" [(ngModel)]="newGame.campanya" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="name">Fecha de la partida</label>
+    <input
+      type="date"
+      class="form-control"
+      name="nombre"
+      id="nombre"
+      [(ngModel)]="newGame.fechaJugada"
+      required
+      #fechaModel="ngModel"
+      [ngClass]="validClasses(fechaModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="fechaModel.errors?.['required']">
+      Introduce una fecha
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" class="btn btn-primary" *ngIf="!edit"[disabled]="gameForm.invalid">Crear</button>
+    <button *ngIf="edit"
+      type="submit"
+      class="btn btn-primary"
+      >
+      Editar
+    </button>
+  </div>
+</form>

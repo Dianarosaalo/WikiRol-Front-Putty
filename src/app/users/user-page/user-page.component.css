@@ -1,0 +1,13 @@
+h2{
+  text-align: center;
+}
+
+#placesContainer img{
+  width:400px !important;
+  height:400px !important;
+}
+
+.card-title a {
+  text-decoration: none;
+  color: rgb(63, 59, 59) !important
+}

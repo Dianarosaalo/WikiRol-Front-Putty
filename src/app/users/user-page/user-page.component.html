@@ -1,0 +1,40 @@
+<div class="row mt-4" *ngIf="user">
+  <div class="col-3">
+    <img class="w-100" id="avatar" [src]="user.avatar" alt="" />
+  </div>
+  <div class="col-9">
+    <h4>{{ user.name }}</h4>
+    <p *ngIf="me">
+      <a class="btn btn-danger" [routerLink]="['/users', 'edit']">Edit profile</a>
+    </p>
+  </div>
+</div>
+
+<h2>Personajes del Jugador</h2>
+
+<div
+  id="placesContainer"
+  class="mb-4 mt-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4"
+>
+
+  <div class="card h-100 shadow" *ngFor="let character of characters">
+    <a [routerLink]="['/characters', character._id]">
+      <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+    </a>
+  <div class="card-body">
+
+    <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+    <p class="card-text">{{ character.titulo }}</p>
+
+    <div class="card-text">
+      <small class="text-muted">
+        <strong>Campaña: </strong>{{ character.campanya }}
+      </small>
+    </div>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">{{ character.descripcion }}</small>
+  </div>
+</div>
+</div>
+

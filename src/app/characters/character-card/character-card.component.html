@@ -1,0 +1,20 @@
+<div class="card h-100 shadow">
+
+    <a [routerLink]="['/characters', character._id]">
+      <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+    </a>
+  <div class="card-body">
+
+    <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+    <p class="card-text">{{ character.descripcion }}</p>
+
+    <div class="card-text">
+      <small class="text-muted">
+        <strong>Campaña: </strong>{{ character.campanya }}
+      </small>
+    </div>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">{{ character.muerto }}</small>
+  </div>
+</div>

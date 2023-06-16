@@ -1,0 +1,78 @@
+<div *ngIf="character">
+  <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+
+  <div class="monster-sheet">
+    <h1 class="monster-name">{{character.nombre}}</h1>
+    <div class="monster-info">
+      <p><strong>Classes: / </strong><span>
+        <div *ngFor="let r of character.clases" style="display: inline-block;">
+          {{r.class}} - {{r.level }} / &nbsp; </div>
+
+      </span></p>
+      <p><strong>Hit Points:</strong> {{character.pv}}</p>
+      <p><strong>Armor Class:</strong> {{character.ca}}</p>
+      <p><strong>Speed:</strong> 30 ft.</p>
+    </div>
+    <hr>
+    <div class="monster-abilities">
+      <div class="ability">
+        <h4>STR</h4>
+        <p>{{character.fue}}</p>
+      </div>
+      <div class="ability">
+        <h4>DEX</h4>
+        <p>{{character.des}}</p>
+      </div>
+      <div class="ability">
+        <h4>CON</h4>
+        <p>{{character.con}}</p>
+      </div>
+      <div class="ability">
+        <h4>INT</h4>
+        <p>{{character.int}}</p>
+      </div>
+      <div class="ability">
+        <h4>WIS</h4>
+        <p>{{character.sab}}</p>
+      </div>
+      <div class="ability">
+        <h4>CHA</h4>
+        <p>{{character.car}}</p>
+      </div>
+    </div>
+    <hr>
+    <hr>
+    <div class="monster-traits">
+      <h3>Lore</h3>
+      <p>{{character.lore}}.</p>
+    </div>
+    <hr>
+    <div class="monster-actions">
+      <h3>Traits</h3>
+      <div *ngFor="let r of character.rasgos">
+        <p><strong>{{r.title}}</strong>: {{r.info}}</p>
+      </div>
+    </div>
+    <hr>
+    <h3>Gallery</h3>
+    <img class="card-img-top" *ngFor="let foto of character.galeria" src="{{ foto }}" />
+  </div>
+</div>
+
+<div class="card mt-4" id="cardCreator" (click)="navigateUserProfile()" *ngIf="charCreator">
+  <div class="card-header purpleNeon text-white">Character's creator</div>
+  <div class="card-body blackNeon d-flex flex-row">
+    <div>
+      <img id="creatorImg" class="rounded-circle me-3" style="width: 40px;" src={{charCreator.avatar}} alt="">
+    </div>
+    <div>
+      <div><strong id="nameCreator">{{charCreator.name}}</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-4 mb-4">
+  <button type="button" class="btn purpleButton" *ngIf="me" [routerLink]="['/characters', character._id, 'edit']">Edit</button>&nbsp;
+  <button class="btn btn-danger" *ngIf="me" (click)="deleteCharacter()">Delete</button>&nbsp;
+  <button class="btn btn-primary" (click)="goBack()">Go back</button>
+</div>

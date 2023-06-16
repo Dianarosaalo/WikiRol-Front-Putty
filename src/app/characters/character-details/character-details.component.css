@@ -1,0 +1,73 @@
+img{
+  width:50%;
+  height:50%;
+  margin-top: 3%;
+  margin-left: 25%;
+  margin-bottom: 1%;
+  max-width: 800px;
+  max-height: 800px;
+}
+
+.monster-sheet {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f3dfb4;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.monster-name {
+  font-size: 36px;
+  margin-top: 0;
+}
+
+.monster-info p {
+  margin: 0;
+}
+
+.monster-abilities {
+  display: flex;
+}
+
+.monster-abilities .ability {
+  flex: 1;
+  text-align: center;
+}
+
+.monster-abilities h4 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.monster-abilities p {
+  margin: 0;
+  font-size: 20px;
+}
+
+.monster-traits h3,
+.monster-actions h3 {
+  margin-top: 0;
+}
+
+.monster-traits p,
+.monster-actions p {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.monster-traits p strong,
+.monster-actions p strong {
+  font-weight: bold;
+}
+
+.purpleButton{
+  background-color:red;
+  color:white;
+}
+
+.purpleNeon{
+  background-color:red;
+  color:white;
+}

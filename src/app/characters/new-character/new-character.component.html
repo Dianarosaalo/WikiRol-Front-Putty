@@ -1,0 +1,552 @@
+<form class="mt-4" (ngSubmit)="addCharacter()" #characterForm="ngForm">
+
+  <div class="mb-3">
+    <label for="name">Nombre</label>
+    <input
+      type="text"
+      class="form-control"
+      name="nombre"
+      id="nombre"
+      [(ngModel)]="newCharacter.nombre"
+      placeholder="Introduce el nombre del personaje"
+      required
+      #nombreModel="ngModel"
+      [ngClass]="validClasses(nombreModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="nombreModel.errors?.['required']">
+      Introduce un nombre correcto
+    </div>
+    <div class="invalid-feedback" *ngIf="nombreModel.errors?.['pattern']">
+      Introduce un nombre correcto.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="titulo">Títulos</label>
+    <input
+      type="text"
+      class="form-control"
+      name="titulo"
+      id="titulo"
+      [(ngModel)]="newCharacter.titulo"
+      placeholder="Títulos del personaje"
+      required
+      #tituloModel="ngModel"
+      [ngClass]="validClasses(tituloModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback">Al menos un título es requerido</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="descripcion">Descripcion</label>
+    <textarea
+      class="form-control"
+      id="descripcion"
+      name="descripcion"
+      rows="3"
+      [(ngModel)]="newCharacter.descripcion"
+      placeholder="Descripción"
+      required
+      #descModel="ngModel"
+      [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+    <div class="invalid-feedback">La descripción es requerida.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="edad">Edad</label>
+    <input
+      type="number"
+      class="form-control"
+      id="edad"
+      name="edad"
+      min:0
+      [(ngModel)]="newCharacter.edad"
+      placeholder="Edad del personaje (introduce 0 si es desconocida)"
+      required
+      #edadModel="ngModel"
+      [ngClass]="validClasses(edadModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="edadModel.errors?.['required']">
+      Edad es requerida
+    </div>
+    <div class="invalid-feedback" *ngIf="edadModel.errors?.['pattern']">
+      Edad es requerida
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="rasgos">Niveles de Clases</label>
+    <textarea
+      class="form-control"
+      id="rasgos"
+      name="rasgos"
+      rows="1"
+      [(ngModel)]="className"
+      placeholder="Nombre de Clase"
+      #rasgosModel="ngModel"
+      [ngClass]="validClasses(rasgosModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+
+    <textarea
+      class="form-control"
+      id="rasgos"
+      name="rasgos"
+      rows="5"
+      [(ngModel)]="classLevel"
+      placeholder="Niveles de Clase"
+      #rasgosModel="ngModel"
+      [ngClass]="validClasses(rasgosModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+
+    <div class="invalid-feedback">Introduce los niveles del personaje.</div>
+  </div>
+
+  <a class="btn btn-danger" (click)="addClases()">Añadir Niveles de Clase</a>
+  <br>
+
+  <div class="mb-3">
+    Campaña <br>
+    <select class="form-control" [(ngModel)]="newCharacter.campanya" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="fotoPerfil">Foto de Perfil</label>
+    <input
+      type="file"
+      class="form-control"
+      id="fotoPerfil"
+      name="fotoPerfil"
+      #fileImage
+      (change)="changeImage(fileImage)"
+      ngModel
+      required
+      #imageModel="ngModel"
+      [ngClass]="validClasses(imageModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback">Una imagen es requerida</div>
+  </div>
+  <img
+    [src]="newCharacter.fotoPerfil"
+    [ngClass]="{ 'd-none': !newCharacter.fotoPerfil }"
+    class="img-thumbnail mb-3"
+  />
+
+  <div class="mb-3">
+    <label for="reliquia">Reliquias <strong>Opcional</strong></label>
+    <textarea
+      class="form-control"
+      id="reliquia"
+      name="reliquia"
+      rows="1"
+      [(ngModel)]="currentRelic"
+      placeholder="Introduce las reliquias del usuario (Separadas por comas ',')"
+
+      #relicModel="ngModel"
+      [ngClass]="validClasses(relicModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+    <div class="invalid-feedback">Introduce las reliquias correctamente.</div>
+  </div>
+
+  <a class="btn btn-danger" (click)="addReliquia()">Añadir Reliquia</a>
+  <br>
+
+  <div class="mb-3">
+    Intergaláctico <strong>Opcional</strong><br>
+    <select class="form-control" [(ngModel)]="newCharacter.intergalactico" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of intergalactic" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="singularidad">Singularidad <strong>Opcional</strong></label>
+    <textarea
+      class="form-control"
+      id="singularidad"
+      name="singularidad"
+      rows="1"
+      [(ngModel)]="singularidades"
+      placeholder="Introduce la o las singularidades del usuario, si es que tuviera"
+
+      #singularidadModel="ngModel"
+      [ngClass]="validClasses(singularidadModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+    <div class="invalid-feedback">Introduce las singularidades.</div>
+  </div>
+
+  <a class="btn btn-danger" (click)="addSingularidad()">Añadir Singularidad</a>
+  <br>
+
+  <div class="mb-3">
+    Facciones <br>
+    <select class="form-control" [(ngModel)]="newCharacter.facciones" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of factions" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="partidaAparicion">Partida de aparición</label>
+    <input
+      type="number"
+      class="form-control"
+      id="partidaAparicion"
+      name="partidaAparicion"
+      min:0
+      [(ngModel)]="newCharacter.partidaAparicion"
+      placeholder="Partida en la que el personaje apareció"
+      required
+      #partidaModel="ngModel"
+      [ngClass]="validClasses(partidaModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="partidaModel.errors?.['required']">
+      Niveles de clase son requeridos
+    </div>
+    <div class="invalid-feedback" *ngIf="partidaModel.errors?.['pattern']">
+      Niveles de clase son requeridos
+    </div>
+  </div>
+
+  <div class="mb-3">
+    Muerto <br>
+    <select class="form-control" [(ngModel)]="newCharacter.muerto" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of dead" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="galeria">Fotos de la Galería <strong>Opcional</strong></label>
+    <input
+      type="file"
+      class="form-control"
+      id="galeria"
+      name="galeria"
+      #fileImage2
+      (change)="addImage(fileImage2)"
+      ngModel
+
+      #galeriaImage1="ngModel"
+      [ngClass]="validClasses(galeriaImage1, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback">Una imagen es requerida</div>
+  </div>
+  <img
+    [src]="newCharacter.galeria"
+    [ngClass]="{ 'd-none': !newCharacter.galeria }"
+    class="img-thumbnail mb-3"
+  />
+
+  <a class="btn btn-danger" (click)="addImagenGaleria()">Añadir Foto de Galería</a>
+  <br>
+
+  <div class="mb-3">
+    <label for="lore">Lore</label>
+    <textarea
+      class="form-control"
+      id="lore"
+      name="lore"
+      rows="5"
+      [(ngModel)]="newCharacter.lore"
+      placeholder="Introduce el Lore del personaje"
+      required
+      #loreModel="ngModel"
+      [ngClass]="validClasses(loreModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+    <div class="invalid-feedback">Introduce el lore del personaje.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="rasgos">Rasgos</label>
+    <textarea
+      class="form-control"
+      id="rasgos"
+      name="rasgos"
+      rows="1"
+      [(ngModel)]="traitTitle"
+      placeholder="Título del Rasgo"
+      #rasgosModel="ngModel"
+      [ngClass]="validClasses(rasgosModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+
+    <textarea
+      class="form-control"
+      id="rasgos"
+      name="rasgos"
+      rows="5"
+      [(ngModel)]="traitInfo"
+      placeholder="Datos del Rasgo"
+      #rasgosModel="ngModel"
+      [ngClass]="validClasses(rasgosModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+
+    <div class="invalid-feedback">Introduce los rasgos del personaje.</div>
+  </div>
+
+  <div class="mb-3">
+    <select class="form-control" [(ngModel)]="traitPrivacy" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <a class="btn btn-danger" (click)="addRasgo()">Añadir Rasgo</a>
+  <br>
+
+  <div class="mb-3">
+    <label for="pv">Puntos de Vida</label>
+    <input
+      type="number"
+      class="form-control"
+      id="pv"
+      name="pv"
+      min:0
+      [(ngModel)]="newCharacter.pv"
+      placeholder="Puntos de Golpe"
+      required
+      #pvModel="ngModel"
+      [ngClass]="validClasses(pvModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="pvModel.errors?.['required']">
+      Puntos de golpe del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="ca">Armadura</label>
+    <input
+      type="number"
+      class="form-control"
+      id="ca"
+      name="ca"
+      min:0
+      [(ngModel)]="newCharacter.ca"
+      placeholder="CA"
+      required
+      #caModel="ngModel"
+      [ngClass]="validClasses(caModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="caModel.errors?.['required']">
+      Armadura del personaje
+    </div>
+    <div class="invalid-feedback" *ngIf="caModel.errors?.['pattern']">
+      Armadura del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="fue">Fuerza</label>
+    <input
+      type="number"
+      class="form-control"
+      id="fue"
+      name="fue"
+      min:0
+      [(ngModel)]="newCharacter.fue"
+      placeholder="Puntos de fuerza"
+      required
+      #fueModel="ngModel"
+      [ngClass]="validClasses(fueModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="fueModel.errors?.['required']">
+      Fuerza del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="des">Destreza</label>
+    <input
+      type="number"
+      class="form-control"
+      id="des"
+      name="des"
+      min:0
+      [(ngModel)]="newCharacter.des"
+      placeholder="Puntos de destreza"
+      required
+      #desModel="ngModel"
+      [ngClass]="validClasses(desModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="desModel.errors?.['required']">
+      Destreza del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="con">Constitución</label>
+    <input
+      type="number"
+      class="form-control"
+      id="con"
+      name="con"
+      min:0
+      [(ngModel)]="newCharacter.con"
+      placeholder="Puntos de constitución"
+      required
+      #conModel="ngModel"
+      [ngClass]="validClasses(conModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="conModel.errors?.['required']">
+      Constitución del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="int">Inteligencia</label>
+    <input
+      type="number"
+      class="form-control"
+      id="int"
+      name="int"
+      min:0
+      [(ngModel)]="newCharacter.int"
+      placeholder="Puntos de inteligencia"
+      required
+      #intModel="ngModel"
+      [ngClass]="validClasses(conModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="intModel.errors?.['required']">
+      Inteligencia del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="sab">Sabiduría</label>
+    <input
+      type="number"
+      class="form-control"
+      id="sab"
+      name="sab"
+      min:0
+      [(ngModel)]="newCharacter.sab"
+      placeholder="Puntos de sabiduría"
+      required
+      #sabModel="ngModel"
+      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
+      sabiduría del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="car">Carisma</label>
+    <input
+      type="number"
+      class="form-control"
+      id="car"
+      name="car"
+      min:0
+      [(ngModel)]="newCharacter.car"
+      placeholder="Puntos de carisma"
+      required
+      #carModel="ngModel"
+      [ngClass]="validClasses(carModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="carModel.errors?.['required']">
+      Carisma del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    Jugador <br>
+    <select class="form-control" [(ngModel)]="newCharacter.jugador" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of player" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    Tipo de Juego <br>
+    <select class="form-control" [(ngModel)]="newCharacter.tipoJuego" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of typeOfGame" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="car">Pies de Movimiento</label>
+    <input
+      type="number"
+      class="form-control"
+      id="movimiento"
+      name="movimiento"
+      min:0
+      [(ngModel)]="newCharacter.movimiento"
+      placeholder="Pies de movimiento"
+      required
+      #movModel="ngModel"
+      [ngClass]="validClasses(movModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="movModel.errors?.['required']">
+      Pies de Movimiento
+    </div>
+  </div>
+
+  <div class="mb-3">
+    Privacidad del Personaje<strong> Máster NPCs</strong> <br>
+    <select class="form-control" [(ngModel)]="newCharacter.private" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="rasgos">Temas del personaje</label>
+    <textarea
+      class="form-control"
+      id="rasgos"
+      name="rasgos"
+      rows="1"
+      [(ngModel)]="songTitle"
+      placeholder="Título del tema"
+      #songModel="ngModel"
+      [ngClass]="validClasses(songModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+
+    <textarea
+      class="form-control"
+      id="rasgos"
+      name="rasgos"
+      rows="5"
+      [(ngModel)]="songTheme"
+      placeholder="Link del tema"
+      #songModel="ngModel"
+      [ngClass]="validClasses(songModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+
+    <div class="mb-3">
+      <select class="form-control" [(ngModel)]="songPrivacy" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="invalid-feedback">Introduce los temas del personaje.</div>
+  </div>
+
+  <a class="btn btn-danger" (click)="addCanciones()">Añadir Canción</a>
+  <br>
+  <br>
+
+  <div class="mb-3">
+    Tier de Poder <br>
+    <select class="form-control" [(ngModel)]="newCharacter.tier" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of tiers" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div>
+    <button *ngIf="!edit"
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="characterForm.invalid">
+      Crear
+    </button>
+
+    <button *ngIf="edit"
+      type="submit"
+      class="btn btn-primary"
+      >
+      Editar
+    </button>
+
+  </div>
+  <br>
+
+</form>

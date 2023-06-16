@@ -1,0 +1,38 @@
+nav a{
+  font-family: Graphik-Semibold-Web,sans-serif;
+  cursor:pointer;
+}
+
+nav a:hover{
+  color:rgb(219, 31, 31);
+}
+
+nav a.nav-link.active{
+  color:rgb(219, 31, 31);
+}
+
+.small-nav{
+  display: none;
+}
+
+@media (max-width: 910px)
+{
+  .big-nav{
+    display: none;
+  }
+
+  .small-nav{
+    display: block;
+  }
+}
+
+a.dropdown-item.active{
+  background-color:rgb(219, 31, 31);
+  color:white;
+}
+
+nav{
+  position: fixed;
+  top: 0;z-index: 9999;
+  width: 100%;
+}
