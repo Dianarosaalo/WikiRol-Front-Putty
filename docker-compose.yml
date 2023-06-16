@@ -1,0 +1,10 @@
+version: "3"
+services:
+  frontend:
+    container_name: appFrontend
+    ports:
+      - "80:80"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
