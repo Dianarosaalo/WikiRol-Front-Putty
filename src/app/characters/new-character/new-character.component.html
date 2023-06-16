@@ -84,8 +84,8 @@
       rows="1"
       [(ngModel)]="className"
       placeholder="Nombre de Clase"
-      #rasgosModel="ngModel"
-      [ngClass]="validClasses(rasgosModel, 'is-valid', 'is-invalid')"
+      #clasesModel="ngModel"
+      [ngClass]="validClasses(clasesModel, 'is-valid', 'is-invalid')"
     ></textarea>
 
     <textarea
@@ -95,8 +95,8 @@
       rows="5"
       [(ngModel)]="classLevel"
       placeholder="Niveles de Clase"
-      #rasgosModel="ngModel"
-      [ngClass]="validClasses(rasgosModel, 'is-valid', 'is-invalid')"
+      #clasesModel="ngModel"
+      [ngClass]="validClasses(clasesModel, 'is-valid', 'is-invalid')"
     ></textarea>
 
     <div class="invalid-feedback">Introduce los niveles del personaje.</div>
