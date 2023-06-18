@@ -1,7 +1,7 @@
 version: "3"
 services:
-  frontend:
-    container_name: appFrontend
+  app:
+    container_name: WikiRolFront
     ports:
       - "4200:4200"
     build:
