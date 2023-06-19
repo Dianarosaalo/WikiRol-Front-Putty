@@ -31,4 +31,14 @@ export class IndexPageComponent implements OnInit {
       complete: () => console.log("")
     })
   }
+
+  transformDescription(description:string):string{
+    const myDate=String(description);
+    return myDate.substring(0,160);
+  }
+
+  transformTitle(description:string):string{
+    const myDate=String(description);
+    return myDate.substring(0,55);
+  }
 }

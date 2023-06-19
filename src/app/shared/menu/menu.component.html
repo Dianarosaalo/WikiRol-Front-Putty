@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+<nav class="navbar navbar-expand navbar-dark bg-dark big-nav">
   <div class="container-fluid big-nav">
     <a class="navbar-brand" [routerLink]="['/campaigns', 'home']"><img src="../../../favicon.ico" style="width: 10%;"> Wiki Rolera</a>
 
@@ -6,6 +6,25 @@
     </ul>
 
     <div class="navbar-nav mr-auto mr-lg-0">
+
+      <div class="navbar-nav mr-auto mr-lg-0">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" (click)="toggleDropdown4()" aria-expanded="false">
+                Sitios
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpen4}" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" [routerLink]="['/campaigns', 'home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/campaigns', 'tier']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Tier List</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,9 +36,7 @@
               Campañas
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpen}" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Todas</a></li>
               <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Egathea']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Egathea</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Spin-Offs']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Spin-Offs</a></li>
               <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Caminos de Sangre']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">C. Sangre</a></li>
               <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Aryma']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Aryma</a></li>
               <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Yggdrassil']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Yggdrassil</a></li>
@@ -69,5 +86,113 @@
       </div>
     </div>
 
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand navbar-dark bg-dark small-nav">
+  <div class="container-fluid small-nav">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" (click)="toggleDropdownSmall()" aria-expanded="false">
+            <img src="../../../favicon.ico" style="width: 10%;"> Wiki Rolera
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpenSmall}" aria-labelledby="navbarDarkDropdownMenuLink">
+
+            <!--Sitios-->
+            <li><a class="dropdown-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" (click)="toggleDropdown4()" aria-expanded="false">
+                      Sitios
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpen4}" aria-labelledby="navbarDarkDropdownMenuLink">
+                      <li><a class="dropdown-item" [routerLink]="['/campaigns', 'home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+                      <li><a class="dropdown-item" [routerLink]="['/campaigns', 'tier']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Tier List</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </a></li>
+
+            <!--Campañas-->
+            <li><a class="dropdown-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" (click)="toggleDropdown()" aria-expanded="false">
+                      Campañas
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpen}" aria-labelledby="navbarDarkDropdownMenuLink">
+                      <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Egathea']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Egathea</a></li>
+                      <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Caminos de Sangre']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">C. Sangre</a></li>
+                      <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Aryma']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Aryma</a></li>
+                      <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Yggdrassil']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Yggdrassil</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </a></li>
+
+            <!--Crear-->
+            <li><a class="dropdown-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <div class="navbar-nav mr-auto mr-lg-0">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                  <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" (click)="toggleDropdown3()" aria-expanded="false">
+                        Crear
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpen3}" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" [routerLink]="['/characters', 'add']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Nuevo Personaje</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/games', 'add']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Nueva Partida</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </a></li>
+
+            <!--Cuenta-->
+            <li><a class="dropdown-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <div class="navbar-nav mr-auto mr-lg-0">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                  <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" (click)="toggleDropdown2()" aria-expanded="false">
+                        Cuenta
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpen2}" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" [routerLink]="['/auth', 'login']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Login</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/auth', 'register']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Register</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/users', 'me']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Perfil</a></li>
+                        <li><a class="dropdown-item" (click)="logOut()">Log-out</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </a></li>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

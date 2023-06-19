@@ -1,3 +1,4 @@
+<div class="container">
 <form class="mt-4" (ngSubmit)="addCharacter()" #characterForm="ngForm">
 
   <div class="mb-3">
@@ -30,7 +31,6 @@
       id="titulo"
       [(ngModel)]="newCharacter.titulo"
       placeholder="Títulos del personaje"
-      required
       #tituloModel="ngModel"
       [ngClass]="validClasses(tituloModel, 'is-valid', 'is-invalid')"
     />
@@ -46,7 +46,6 @@
       rows="3"
       [(ngModel)]="newCharacter.descripcion"
       placeholder="Descripción"
-      required
       #descModel="ngModel"
       [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"
     ></textarea>
@@ -63,7 +62,6 @@
       min:0
       [(ngModel)]="newCharacter.edad"
       placeholder="Edad del personaje (introduce 0 si es desconocida)"
-      required
       #edadModel="ngModel"
       [ngClass]="validClasses(edadModel, 'is-valid', 'is-invalid')"
     />
@@ -196,7 +194,6 @@
       min:0
       [(ngModel)]="newCharacter.partidaAparicion"
       placeholder="Partida en la que el personaje apareció"
-      required
       #partidaModel="ngModel"
       [ngClass]="validClasses(partidaModel, 'is-valid', 'is-invalid')"
     />
@@ -249,7 +246,6 @@
       rows="5"
       [(ngModel)]="newCharacter.lore"
       placeholder="Introduce el Lore del personaje"
-      required
       #loreModel="ngModel"
       [ngClass]="validClasses(loreModel, 'is-valid', 'is-invalid')"
     ></textarea>
@@ -302,7 +298,6 @@
       min:0
       [(ngModel)]="newCharacter.pv"
       placeholder="Puntos de Golpe"
-      required
       #pvModel="ngModel"
       [ngClass]="validClasses(pvModel, 'is-valid', 'is-invalid')"
     />
@@ -321,7 +316,6 @@
       min:0
       [(ngModel)]="newCharacter.ca"
       placeholder="CA"
-      required
       #caModel="ngModel"
       [ngClass]="validClasses(caModel, 'is-valid', 'is-invalid')"
     />
@@ -447,12 +441,12 @@
     </div>
   </div>
 
-  <div class="mb-3">
+  <!--<div class="mb-3">
     Jugador <br>
     <select class="form-control" [(ngModel)]="newCharacter.jugador" [ngModelOptions]="{standalone:true}">
       <option *ngFor="let option of player" value={{option.value}}>{{option.label}}</option>
     </select>
-  </div>
+  </div>-->
 
   <div class="mb-3">
     Tipo de Juego <br>
@@ -550,3 +544,4 @@
   <br>
 
 </form>
+</div>

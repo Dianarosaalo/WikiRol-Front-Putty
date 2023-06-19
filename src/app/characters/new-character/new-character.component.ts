@@ -197,11 +197,10 @@ export class NewCharacterComponent implements OnInit {
   }
 
   campaigns=[
-    {value:'Aryma',label:"Aryma"},
     {value:'Egathea',label:"Egathea"},
     {value:'Caminos de Sangre',label:"Caminos de Sangre"},
-    {value:'Yggdrassil',label:"Yggdrassil"},
-    {value: "Spin-Offs", label: "Spin-Offs"}];
+    {value:'Aryma',label:"Aryma"},
+    {value:'Yggdrassil',label:"Yggdrassil"}];
 
   intergalactic=[
     {value:true,label:"Sí"},
@@ -229,6 +228,7 @@ export class NewCharacterComponent implements OnInit {
   {value:"8.- D", label:"D"},
   {value:"9.- E", label:"E"},
   {value:"9.5.- F", label:"F"},
+  {value:"9.9.- Desconocido", label:"Desconocido"},
   ];
 
   typeOfGame=[{value:"DnD",label:"DnD"}];

@@ -71,3 +71,30 @@ img{
   background-color:red;
   color:white;
 }
+
+.intergalactico{
+  font-size: 15px;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 20px;
+  color: #FF0000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+}
+
+/*img#creatorImg{
+  width: 2% !important;;
+}*/
+
+.song{
+  color:blue !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.container-fluid img{
+  width: 25% !important;
+  height: 25% !important;
+  margin-left: 0% !important;
+}

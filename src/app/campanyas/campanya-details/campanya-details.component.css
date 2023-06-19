@@ -1,6 +1,9 @@
 img{
-  width:400px !important;
-  height:400px !important;
+  max-width:1500px !important;
+  max-height:500px !important;
+  min-height: 500px;
+  height:90%;
+  width:100%;
 }
 
 .card-title a {
@@ -8,12 +11,41 @@ img{
   color: rgb(63, 59, 59) !important
 }
 
-div#partidas li a{
-  text-decoration: none;
-  color:black
+.card img,a{
+  justify-content: center;
+  text-align: center;
 }
 
-div#partidas li a:hover{
+.card{
+  margin:170%px;
+}
+
+#partidas li {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
+}
+
+#partidas li:before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #f33321;
+  margin-right: 10px;
+}
+
+#partidas a {
+  color: #0a0a0a;
+  font-size:120%;
+  font-weight: bold;
   text-decoration: none;
-  color:rgb(219, 7, 7)
+}
+
+#partidas a:hover {
+  text-decoration: underline;
 }

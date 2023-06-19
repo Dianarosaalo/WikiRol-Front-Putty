@@ -54,4 +54,14 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     this.id="";
   }
 
+  transformDescription(description:string):string{
+    const myDate=String(description);
+    return myDate.substring(0,160);
+  }
+
+  transformTitle(description:string):string{
+    const myDate=String(description);
+    return myDate.substring(0,55);
+  }
+
 }

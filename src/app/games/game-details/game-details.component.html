@@ -8,3 +8,29 @@
   <button type="button" class="btn btn-success" *ngIf="me" [routerLink]="['/games', partida._id, 'edit']">Edit</button>&nbsp;
   <button class="btn btn-danger" *ngIf="me" (click)="deleteGame()">Delete</button>&nbsp;
 </div>
+
+<div
+    id="placesContainer"
+    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+  >
+
+    <div class="card h-100 shadow" *ngFor="let character of characters">
+      <a [routerLink]="['/characters', character._id]">
+        <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+      </a>
+    <div class="card-body">
+
+      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+      <p class="card-text">{{ character.titulo }}</p>
+
+      <div class="card-text">
+        <small class="text-muted">
+          <strong>Campaña: </strong>{{ character.campanya }}
+        </small>
+      </div>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ character.descripcion }}</small>
+    </div>
+  </div>
+  </div>

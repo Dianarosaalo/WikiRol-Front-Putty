@@ -11,6 +11,14 @@ export const CAMPANYAS_ROUTES: Routes = [
       canActivate: [AuthGuard]
   },
   {
+    path: 'tier',
+    loadComponent: () =>
+      import('./campanya-tier/campanya-tier.component').then(
+        (m) => m.CampanyaTierComponent
+      ),
+      canActivate: [AuthGuard]
+  },
+  {
     path: ':id',
     loadComponent: () =>
       import('./campanya-details/campanya-details.component').then(

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Character } from '../interfaces/character';
+import { Character, Song, Trait } from '../interfaces/character';
 import { RouterLink,Router,/*NavigationEnd,*/ ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../services/character.service';
 import { User } from 'src/app/auth/interfaces/login';
@@ -54,6 +54,23 @@ export class CharacterDetailsComponent implements OnInit{
 
   goBack() {
     this.router.navigate(['/campaigns']);
+  }
+
+  movementRound(feet:number):number
+  {
+    return (Math.round(feet));
+  }
+
+  counts(relics:string[]|Song[]|Trait[]):boolean
+  {
+    let exists=false;
+    let counter=0;
+
+    relics.forEach((r)=>counter++)
+
+    if (counter>0) exists=true;
+
+    return exists
   }
 
 }

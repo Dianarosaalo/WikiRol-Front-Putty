@@ -5,6 +5,8 @@ import { RouterLink/*,Router*/,ActivatedRoute, Router } from '@angular/router';
 import { GameService } from '../services/game.service';
 import { UserService } from 'src/app/users/services/user.service';
 import { User } from 'src/app/auth/interfaces/login';
+import { Character } from 'src/app/characters/interfaces/character';
+import { CharacterService } from 'src/app/characters/services/character.service';
 
 @Component({
   selector: 'fs-game-details',
@@ -19,7 +21,10 @@ export class GameDetailsComponent implements OnInit{
   gameCreator!:User
   me=false;
 
+  characters!:Character[]; // show chars of the current game
+
   constructor(
+    private readonly characterService:CharacterService,
     private readonly route: ActivatedRoute,
     private readonly gameService:GameService,
     private readonly router:Router,
@@ -32,6 +37,13 @@ export class GameDetailsComponent implements OnInit{
       next: (partida) => {
         this.partida=partida
         this.dateOfTheGame = this.transformDate(partida.fechaJugada);
+
+        this.characterService.getAll().subscribe({
+          next: (characters) => this.characters=characters, //characters.forEach((c)=>this.characters.push(c)),
+          error: (error) => console.log("Ha habido un error" + error + this.characters),
+          complete: () => this.characters=this.characters.filter((c)=>c.campanya===partida.campanya && Number(c.partidaAparicion)===partida.num)
+        })
+
         this.userService.getUserId(String(this.partida.creator)).subscribe(
           u => this.gameCreator = u
         );

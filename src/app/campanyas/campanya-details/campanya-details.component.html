@@ -1,3 +1,20 @@
+<div id="partidas">
+  <h1 style="text-align: center;">Partidas Jugadas</h1>
+
+  <form class="container-fluid col">
+    <input
+      class="form-control"
+      type="text"
+      name="search2"
+      placeholder="Search"
+      aria-label="Search"
+      [(ngModel)]="searchGame"
+    />
+  </form><br>
+
+    <li *ngFor="let partida of partidas | gameFilter:searchGame"><a [routerLink]="['/games', partida._id]">{{partida.num}}.- {{partida.titulo}}</a></li>
+</div>
+
 <nav class="navbar navbar-light bg-light justify-content-between mt-3 row">
 
   <form class="container-fluid col">
@@ -14,7 +31,7 @@
 
 <div
   id="placesContainer"
-  class="mb-4 mt-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4"
+  class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
 >
 
   <div class="card h-100 shadow" *ngFor="let character of characters | characterFilter:search">
@@ -24,7 +41,7 @@
     <div class="card-body">
 
       <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
+      <p class="card-text">{{ transformTitle(character.titulo) }}</p>
 
       <div class="card-text">
         <small class="text-muted">
@@ -33,24 +50,7 @@
       </div>
     </div>
     <div class="card-footer">
-      <small class="text-muted">{{ character.descripcion }}</small>
+      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
     </div>
   </div>
-</div>
-
-<div id="partidas">
-  <h1 style="text-align: center;">Partidas Jugadas</h1>
-
-  <form class="container-fluid col">
-    <input
-      class="form-control"
-      type="text"
-      name="search2"
-      placeholder="Search"
-      aria-label="Search"
-      [(ngModel)]="searchGame"
-    />
-  </form><br>
-
-    <li *ngFor="let partida of partidas | gameFilter:searchGame"><a [routerLink]="['/games', partida._id]">{{partida.num}}.- {{partida.titulo}}</a></li>
 </div>

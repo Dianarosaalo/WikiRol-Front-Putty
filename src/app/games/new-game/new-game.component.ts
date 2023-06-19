@@ -56,11 +56,10 @@ export class NewGameComponent implements OnInit{
   }
 
   campaigns=[
-    {value:'Aryma',label:"Aryma"},
     {value:'Egathea',label:"Egathea"},
     {value:'Caminos de Sangre',label:"Caminos de Sangre"},
-    {value:'Yggdrassil',label:"Yggdrassil"},
-    {value: "Spin-Offs", label: "Spin-Offs"}];
+    {value:'Aryma',label:"Aryma"},
+    {value:'Yggdrassil',label:"Yggdrassil"},];
 
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {
     return {
