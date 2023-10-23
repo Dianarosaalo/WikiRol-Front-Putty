@@ -20,6 +20,7 @@ export class CampanyaTierComponent {
   search="";
 
   DeusChars!:Character[];
+  SSSSSChars!:Character[];
   SSSSChars!:Character[];
   SSSChars!:Character[];
   SSChars!:Character[];
@@ -43,6 +44,7 @@ export class CampanyaTierComponent {
       next: (characters) => {
         this.characters=characters
         this.DeusChars=characters.filter((c)=>c.tier==="0.- Deus Ex Machina")
+        this.SSSSSChars=characters.filter((c)=>c.tier==="0.5.- SSSSS")
         this.SSSSChars=characters.filter((c)=>c.tier==="1.- SSSS")
         this.SSSChars=characters.filter((c)=>c.tier==="2.- SSS")
         this.SSChars=characters.filter((c)=>c.tier==="3.- SS")
