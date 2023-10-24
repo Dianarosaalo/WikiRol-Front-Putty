@@ -1,4 +1,4 @@
-img{
+.normalMargin img{
   max-width:1500px !important;
   max-height:500px !important;
   min-height: 500px;
@@ -18,4 +18,33 @@ img{
 
 .card{
   margin:170%px;
+}
+
+.adriweboMargin{
+  margin-left:10%;
+  margin-right:10%;
+  padding-right:0%;
+}
+
+.adriweboMargin img{
+  max-width:1500px !important;
+  max-height:300px !important;
+  min-height: 300px;
+  height:65%;
+  width:100%;
+}
+
+div.adriweboMargin col{
+  margin-bottom: 10px !important;
+}
+
+.green{
+  margin-top:5px;
+  color: red;
+  background-color: white;
+}
+
+.red{
+  margin-top:5px;
+  color: blueviolet;
 }

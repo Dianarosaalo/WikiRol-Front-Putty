@@ -19,6 +19,7 @@ export class CharacterDetailsComponent implements OnInit{
   //id!:string;
   charCreator!:User
   me=false;
+  activeTab="General";
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -71,6 +72,11 @@ export class CharacterDetailsComponent implements OnInit{
     if (counter>0) exists=true;
 
     return exists
+  }
+
+  onTabClick(tab:string)
+  {
+    this.activeTab=tab;
   }
 
 }

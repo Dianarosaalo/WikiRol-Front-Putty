@@ -10,30 +10,106 @@
       [(ngModel)]="search"
     />
   </form>
+
+  <ul class="nav nav-pills col-auto ms-3">
+    <li class="nav-item">
+      <p (click)="changeDesign('old')" class="red">Webo Design</p>
+    </li>
+  </ul>
+
+  <ul class="nav nav-pills col-auto ms-3">
+    <li class="nav-item">
+      <p (click)="changeDesign('new')" class="green">Old Design</p>
+    </li>
+  </ul>
+
+  <ul class="nav nav-pills col-auto ms-3">
+    <li class="nav-item btn">
+      <select class="form-control" [(ngModel)]="faction" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of factions" value={{option.value}}>Facción: {{option.label}}</option>
+      </select>
+    </li>
+  </ul>
+
+  <ul class="nav nav-pills col-auto ms-3">
+    <li class="nav-item">
+      <select class="form-control" [(ngModel)]="order" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of typeOfOrders" value={{option.value}}>Orden: {{option.label}}</option>
+      </select>
+    </li>
+  </ul>
+
 </nav>
 
-<div
+<div *ngIf="design==='old'"
   id="placesContainer"
-  class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+  class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6 adriweboMargin"
 >
 
-  <div class="card h-100 shadow" *ngFor="let character of characters | characterFilter:search">
-    <a [routerLink]="['/characters', character._id]">
-      <img class="card-img-top" src="{{ character.fotoPerfil }}" />
-    </a>
-  <div class="card-body">
-
-    <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-    <p class="card-text">{{ transformTitle(character.titulo) }}</p>
-
-    <div class="card-text">
-      <small class="text-muted">
-        <strong>Campaña: </strong>{{ character.campanya }}
-      </small>
+  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order">
+    <div class="card h-100 shadow">
+      <a [routerLink]="['/characters', character._id]">
+        <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+      </a>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <!--<span class="badge ms-2 bg-success">Open_Text</span>  Replace 'Open_Text' with the actual open text
+            <span class="badge ms-2 bg-danger">Close_Text</span> Replace 'Close_Text' with the actual close text -->
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
     </div>
   </div>
-  <div class="card-footer">
-    <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-  </div>
+
 </div>
+
+<div *ngIf="design==='new'"
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
+>
+  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order">
+    <div class="card h-100 shadow">
+      <a [routerLink]="['/characters', character._id]">
+        <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+      </a>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <!--<span class="badge ms-2 bg-success">Open_Text</span>  Replace 'Open_Text' with the actual open text
+            <span class="badge ms-2 bg-danger">Close_Text</span> Replace 'Close_Text' with the actual close text -->
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
+    </div>
+  </div>
+
 </div>

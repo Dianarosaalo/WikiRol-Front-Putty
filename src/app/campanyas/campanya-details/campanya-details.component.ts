@@ -23,6 +23,20 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   search="";
   searchGame="";
   partidas!:Game[];
+  activeTab="Personajes";
+  faction="El Imperio de la Humanidad"
+  order="nombre"
+  design=localStorage.getItem('design');
+
+  factions=[
+    {value:"", label:"Todos"},
+    {value:'El Imperio de la Humanidad',label:"El Imperio de la Humanidad"}];
+
+  typeOfOrders=[
+    {value:"nombre", label:"Nombre"},
+    {value:"tier", label:"Tier"},
+    {value:"edad", label:"Edad"}
+  ];
 
   constructor(
     private readonly characterService:CharacterService,
@@ -44,10 +58,12 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       complete: () => this.characters=this.characters.filter((c)=>c.campanya===this.id)
     })
     this.gameService.getAll().subscribe({
-      next: (partidas) => this.partidas=partidas,
+      next: (partidas) => this.partidas=partidas.sort((a, b) => a.num - b.num),
       error: (error) => console.log("Ha habido un error" + error + this.partidas),
       complete: () => this.partidas=this.partidas.filter((p)=>p.campanya===this.id)
     })
+    if (!this.design)
+      this.design='new';
   }
 
   ngOnDestroy(): void{
@@ -62,6 +78,17 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   transformTitle(description:string):string{
     const myDate=String(description);
     return myDate.substring(0,55);
+  }
+
+  onTabClick(tab:string)
+  {
+    this.activeTab=tab;
+  }
+
+  changeDesign(type:string)
+  {
+    localStorage.setItem("design",type);
+    this.design=localStorage.getItem('design');
   }
 
 }

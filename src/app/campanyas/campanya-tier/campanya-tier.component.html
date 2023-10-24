@@ -5,7 +5,7 @@
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of DeusChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of DeusChars">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -33,7 +33,7 @@
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of SSSSSChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of SSSSSChars ">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -61,7 +61,7 @@
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of SSSSChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of SSSSChars ">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -89,7 +89,7 @@
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of SSSChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of SSSChars ">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -117,7 +117,7 @@ id="placesContainer"
 class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
 >
 
-<div class="card h-100 shadow" *ngFor="let character of SSChars | characterFilter:search">
+<div class="card h-100 shadow" *ngFor="let character of SSChars ">
   <a [routerLink]="['/characters', character._id]">
     <img class="card-img-top" src="{{ character.fotoPerfil }}" />
   </a>
@@ -145,7 +145,7 @@ class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of SChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of SChars ">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -173,7 +173,7 @@ class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of AChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of AChars ">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -201,7 +201,7 @@ class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of BChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of BChars ">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -229,7 +229,7 @@ class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of CChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of CChars ">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -257,7 +257,7 @@ class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of DChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of DChars ">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -285,7 +285,7 @@ class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of EChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of EChars ">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -313,7 +313,7 @@ class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
     class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-5 g-5"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of FChars | characterFilter:search">
+    <div class="card h-100 shadow" *ngFor="let character of FChars">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
@@ -341,7 +341,7 @@ class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
       class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-5 g-5"
     >
 
-      <div class="card h-100 shadow" *ngFor="let character of UnknownChars | characterFilter:search">
+      <div class="card h-100 shadow" *ngFor="let character of UnknownChars ">
         <a [routerLink]="['/characters', character._id]">
           <img class="card-img-top" src="{{ character.fotoPerfil }}" />
         </a>

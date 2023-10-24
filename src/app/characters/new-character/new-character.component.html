@@ -1,6 +1,8 @@
 <div class="container">
 <form class="mt-4" (ngSubmit)="addCharacter()" #characterForm="ngForm">
 
+  <h3>DATOS PRINCIPALES</h3>
+
   <div class="mb-3">
     <label for="name">Nombre</label>
     <input
@@ -36,6 +38,45 @@
     />
     <div class="invalid-feedback">Al menos un título es requerido</div>
   </div>
+
+  <div class="mb-3">
+    Campaña <br>
+    <select class="form-control" [(ngModel)]="newCharacter.campanya" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="fotoPerfil">Foto de Perfil</label>
+    <input
+      type="file"
+      class="form-control"
+      id="fotoPerfil"
+      name="fotoPerfil"
+      #fileImage
+      (change)="changeImage(fileImage)"
+      ngModel
+      required
+      #imageModel="ngModel"
+      [ngClass]="validClasses(imageModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback">Una imagen es requerida</div>
+  </div>
+  <img
+    [src]="newCharacter.fotoPerfil"
+    [ngClass]="{ 'd-none': !newCharacter.fotoPerfil }"
+    class="img-thumbnail mb-3"
+  />
+
+  <div class="mb-3">
+    Tier de Poder <br>
+    <select class="form-control" [(ngModel)]="newCharacter.tier" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of tiers" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <h3>Opcional</h3>
+  <br>
 
   <div class="mb-3">
     <label for="descripcion">Descripcion</label>
@@ -102,35 +143,6 @@
 
   <a class="btn btn-danger" (click)="addClases()">Añadir Niveles de Clase</a>
   <br>
-
-  <div class="mb-3">
-    Campaña <br>
-    <select class="form-control" [(ngModel)]="newCharacter.campanya" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    <label for="fotoPerfil">Foto de Perfil</label>
-    <input
-      type="file"
-      class="form-control"
-      id="fotoPerfil"
-      name="fotoPerfil"
-      #fileImage
-      (change)="changeImage(fileImage)"
-      ngModel
-      required
-      #imageModel="ngModel"
-      [ngClass]="validClasses(imageModel, 'is-valid', 'is-invalid')"
-    />
-    <div class="invalid-feedback">Una imagen es requerida</div>
-  </div>
-  <img
-    [src]="newCharacter.fotoPerfil"
-    [ngClass]="{ 'd-none': !newCharacter.fotoPerfil }"
-    class="img-thumbnail mb-3"
-  />
 
   <div class="mb-3">
     <label for="reliquia">Reliquias <strong>Opcional</strong></label>
@@ -517,13 +529,6 @@
   <a class="btn btn-danger" (click)="addCanciones()">Añadir Canción</a>
   <br>
   <br>
-
-  <div class="mb-3">
-    Tier de Poder <br>
-    <select class="form-control" [(ngModel)]="newCharacter.tier" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of tiers" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
 
   <div>
     <button *ngIf="!edit"

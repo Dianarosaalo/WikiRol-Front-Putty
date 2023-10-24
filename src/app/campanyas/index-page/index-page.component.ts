@@ -18,6 +18,19 @@ export class IndexPageComponent implements OnInit {
 
   characters!:Character[];
   search="";
+  design=localStorage.getItem('design');
+  faction=""
+  order="nombre"
+
+  factions=[
+    {value:"", label:"Todos"},
+    {value:'El Imperio de la Humanidad',label:"El Imperio de la Humanidad"}];
+
+  typeOfOrders=[
+    {value:"nombre", label:"Nombre"},
+    {value:"tier", label:"Tier"},
+    {value:"edad", label:"Edad"}
+  ];
 
   constructor(
     private readonly characterService:CharacterService,
@@ -30,6 +43,8 @@ export class IndexPageComponent implements OnInit {
       error: (error) => console.log("Ha habido un error" + error + this.characters),
       complete: () => console.log("")
     })
+    if (!this.design)
+      this.design='new';
   }
 
   transformDescription(description:string):string{
@@ -40,5 +55,11 @@ export class IndexPageComponent implements OnInit {
   transformTitle(description:string):string{
     const myDate=String(description);
     return myDate.substring(0,55);
+  }
+
+  changeDesign(type:string)
+  {
+    localStorage.setItem("design",type);
+    this.design=localStorage.getItem('design');
   }
 }

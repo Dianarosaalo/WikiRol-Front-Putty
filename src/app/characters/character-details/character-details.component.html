@@ -1,13 +1,41 @@
+<h2>{{character.nombre}}</h2>
+<ul class="tabs-container">
+  <li (click)="onTabClick('General')" class="tab-link">General</li>
+  <li (click)="onTabClick('Stats')" class="tab-link">Stats</li>
+  <li (click)="onTabClick('Lore')" class="tab-link">Lore</li>
+  <li (click)="onTabClick('Media')" class="tab-link">Media</li>
+</ul>
+
 <div class="container">
 <div *ngIf="character">
-  <img class="card-img-top" src="{{ character.fotoPerfil }}" />
 
+  <div *ngIf="activeTab ==='General'">
+    <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+  </div>
+
+  <br>
   <div class="monster-sheet">
-    <h1 class="monster-name">{{character.nombre}}</h1>
-    <div class="monster-info">
-      <p class="intergalactico" *ngIf="character.intergalactico"><span>Intergalático</span></p>
-      <p class="intergalactico" *ngIf="character.muerto"><span>Personaje Fallecido</span></p>
+
+    <div *ngIf="activeTab ==='General'">
+    <p class="intergalactico" *ngIf="character.intergalactico"><span>Intergalático</span></p>
+    <p class="intergalactico" *ngIf="character.muerto"><span>Personaje Fallecido</span></p>
+    <p><strong>Titulos:</strong> {{character.titulo}}</p>
+    <p><strong>Descripcion:</strong> {{character.descripcion}}</p>
+    <p><strong>Edad:</strong> {{character.edad}}</p>
+    <p><strong>Altura:</strong> </p>
+    <p><strong>Peso:</strong> </p>
+    <p><strong>Campaña:</strong> {{character.campanya}}</p>
+    </div>
+
+
+    <div *ngIf="activeTab ==='Stats'">
+
+      <h1 class="monster-name">{{character.nombre}}</h1>
+      <div class="monster-info">
+
       <p><strong>Tier List:</strong> {{character.tier}}</p>
+      </div>
+
       <p><strong>Niveles de Clase: / </strong><span>
         <div *ngFor="let r of character.clases" style="display: inline-block;">
           {{r.class}} - {{r.level }} / &nbsp; </div>
@@ -16,12 +44,13 @@
       <p><strong>Hit Points:</strong> {{character.pv}}</p>
       <p><strong>CA:</strong> {{character.ca}}</p>
       <p><strong>Movimiento:</strong> {{character.movimiento}}ft o {{movementRound(character.movimiento / 3.3)}}m</p>
-      <p><strong>Edad:</strong> {{character.edad}}</p>
+
       <hr>
-      <p><strong>Campaña:</strong> {{character.campanya}}</p>
-      <p><strong>Titulos:</strong> {{character.titulo}}</p>
-      <p><strong>Descripcion:</strong> {{character.descripcion}}</p>
-    </div>
+
+
+
+
+
     <hr>
     <div class="monster-abilities">
       <div class="ability">
@@ -50,10 +79,7 @@
       </div>
     </div>
     <hr>
-    <div class="monster-traits">
-      <h3>Lore</h3>
-      <p>{{character.lore}}.</p>
-    </div>
+
     <hr>
 
     <div class="monster-actions" *ngIf="counts(character.rasgos)">
@@ -74,31 +100,47 @@
       <h3>Singularidad</h3>
       <p *ngFor="let s of character.singularidad"><strong>- {{s}}</strong></p>
     </div>
-
-    <div *ngIf="counts(character.facciones)">
-      <hr>
-      <h3>Facciones</h3>
-      <p *ngFor="let f of character.facciones"><strong>- {{f}}</strong></p>
-      <hr>
     </div>
 
-    <div *ngIf="counts(character.canciones)">
-    <h3 >Temas de personaje</h3>
-      <div *ngFor="let t of character.canciones">
-        <p><strong>- {{t.title}}: </strong> <a class="song" href="{{t.link}}">{{t.link}}</a></p>
+    <div *ngIf="activeTab ==='Lore'">
+
+      <div *ngIf="counts(character.facciones)">
+        <hr>
+        <h3>Facciones</h3>
+        <p *ngFor="let f of character.facciones"><strong>- {{f}}</strong></p>
+        <hr>
+      </div>
+
+      <div class="monster-traits">
+        <h3>Lore</h3>
+        <p>{{character.lore}}.</p>
       </div>
     </div>
 
-    <div *ngIf="counts(character.galeria)">
-      <hr>
-      <h3>Gallery</h3>
+    <div *ngIf="activeTab ==='Media'">
+      <div *ngIf="counts(character.canciones)">
+        <h3 >Temas de personaje</h3>
+        <br>
+          <div *ngFor="let t of character.canciones">
+            <p><strong>- {{t.title}}: </strong> </p>
+            <a class="song" href="{{t.link}}">{{t.link}}</a>ç
+            <hr>
+          </div>
+        </div>
+
+        <div *ngIf="counts(character.galeria)">
+
+          <h3>Gallery</h3>
+        </div>
     </div>
+
 </div>
 
-<div *ngIf="counts(character.galeria)" class="container-fluid mb-4 mt-4 row row-cols-4 row-cols-md-4 row-cols-xl-4 g-4">
+<div *ngIf="activeTab ==='Media'">
+  <div *ngIf="counts(character.galeria)" class="container-fluid mb-4 mt-4 row row-cols-4 row-cols-md-4 row-cols-xl-4 g-4">
 
-  <img class="card-img-top" *ngFor="let foto of character.galeria" src="{{ foto }}" />
-</div>
+    <img class="card-img-top" *ngFor="let foto of character.galeria" src="{{ foto }}" />
+  </div>
 </div>
 
 <div class="card mt-4" id="cardCreator" (click)="navigateUserProfile()" *ngIf="charCreator">
@@ -113,9 +155,9 @@
   </div>
 </div>
 
-<div class="mt-4 mb-4">
-  <button type="button" class="btn purpleButton" *ngIf="me" [routerLink]="['/characters', character._id, 'edit']">Edit</button>&nbsp;
-  <button class="btn btn-danger" *ngIf="me" (click)="deleteCharacter()">Delete</button>&nbsp;
-  <button class="btn btn-primary" (click)="goBack()">Go back</button>
-</div>
+  <div class="mt-4 mb-4">
+    <button type="button" class="btn purpleButton" *ngIf="me" [routerLink]="['/characters', character._id, 'edit']">Edit</button>&nbsp;
+    <button class="btn btn-danger" *ngIf="me" (click)="deleteCharacter()">Delete</button>&nbsp;
+    <button class="btn btn-primary" (click)="goBack()">Go back</button>
+  </div>
 </div>
