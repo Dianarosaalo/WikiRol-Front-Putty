@@ -6,6 +6,10 @@ import { Character } from 'src/app/characters/interfaces/character';
 import { CharacterCardComponent } from 'src/app/characters/character-card/character-card.component';
 import { CharacterFilterPipe } from '../pipes/character.filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { CharactersResponse } from 'src/app/characters/interfaces/characterResponse';
+import { map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'fs-index-page',
@@ -21,6 +25,8 @@ export class IndexPageComponent implements OnInit {
   design=localStorage.getItem('design');
   faction=""
   order="nombre"
+  pageNumber = 1;       //
+  pageSize = 18;        //
 
   factions=[
     {value:"", label:"Todos"},
@@ -35,14 +41,17 @@ export class IndexPageComponent implements OnInit {
   constructor(
     private readonly characterService:CharacterService,
     private readonly router: Router,
+    private readonly http: HttpClient,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.characterService.getAll().subscribe({
+    this.loadCharacters();
+    /*this.characterService.getAll().subscribe({
       next: (characters) => this.characters=characters, //characters.forEach((c)=>this.characters.push(c)),
       error: (error) => console.log("Ha habido un error" + error + this.characters),
       complete: () => console.log("")
-    })
+    })*/
     if (!this.design)
       this.design='new';
   }
@@ -61,5 +70,39 @@ export class IndexPageComponent implements OnInit {
   {
     localStorage.setItem("design",type);
     this.design=localStorage.getItem('design');
+  }
+
+  onScroll(): void {
+    this.http.get<CharactersResponse>('personajes/scroll', {
+      params: {
+        pageNumber: this.pageNumber.toString(),
+        pageSize: this.pageSize.toString()
+      }
+    }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
+      console.log('Characters loaded:', characters);
+      //characters.forEach((c) => this.characters.push(c));
+      //this.characters=characters;
+      this.characters=[...this.characters, ...characters];
+
+      // Trigger change detection after appending characters
+      this.cdr.detectChanges();
+
+      this.pageNumber++;
+      console.log(this.characters);
+    });
+  }
+
+  //loadCharacters
+  loadCharacters(): void {
+    this.http.get<CharactersResponse>('personajes/scroll', {
+      params: {
+        pageNumber: this.pageNumber.toString(),
+        pageSize: this.pageSize.toString()
+      }
+    }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
+      console.log('Characters loaded:', characters);
+      this.characters= characters;
+      this.pageNumber++;
+    });
   }
 }
