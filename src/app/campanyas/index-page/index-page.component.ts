@@ -24,15 +24,17 @@ export class IndexPageComponent implements OnInit {
   search="";
   design=localStorage.getItem('design');
   faction=""
-  order="nombre"
+  order=""
   pageNumber = 1;       //
   pageSize = 18;        //
+  buttonShow=false;
 
   factions=[
     {value:"", label:"Todos"},
     {value:'El Imperio de la Humanidad',label:"El Imperio de la Humanidad"}];
 
   typeOfOrders=[
+    {value:"", label:"Ninguno"},
     {value:"nombre", label:"Nombre"},
     {value:"tier", label:"Tier"},
     {value:"edad", label:"Edad"}
@@ -103,6 +105,7 @@ export class IndexPageComponent implements OnInit {
       console.log('Characters loaded:', characters);
       this.characters= characters;
       this.pageNumber++;
+      this.buttonShow=true;
     });
   }
 }

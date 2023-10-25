@@ -25,7 +25,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   partidas!:Game[];
   activeTab="Personajes";
   faction="El Imperio de la Humanidad"
-  order="nombre"
+  order=""
   design=localStorage.getItem('design');
 
   factions=[
@@ -33,6 +33,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     {value:'El Imperio de la Humanidad',label:"El Imperio de la Humanidad"}];
 
   typeOfOrders=[
+    {value:"", label:"Ninguno"},
     {value:"nombre", label:"Nombre"},
     {value:"tier", label:"Tier"},
     {value:"edad", label:"Edad"}
