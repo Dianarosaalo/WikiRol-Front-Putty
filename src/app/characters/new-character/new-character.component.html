@@ -352,38 +352,35 @@
     </div>
   </div>
 
-  <h3>Opcional - Menús</h3> <!----------------------------------------------------------->
+  <h3>Datos Complejos</h3>
   <br>
 
-  <div class="mb-3">
-    <label for="rasgos">Niveles de Clases</label>
-    <textarea
-      class="form-control"
-      id="rasgos"
-      name="rasgos"
-      rows="1"
-      [(ngModel)]="className"
-      placeholder="Nombre de Clase"
-      #clasesModel="ngModel"
-      [ngClass]="validClasses(clasesModel, 'is-valid', 'is-invalid')"
-    ></textarea>
-
-    <textarea
-      class="form-control"
-      id="rasgos"
-      name="rasgos"
-      rows="5"
-      [(ngModel)]="classLevel"
-      placeholder="Niveles de Clase"
-      #clasesModel="ngModel"
-      [ngClass]="validClasses(clasesModel, 'is-valid', 'is-invalid')"
-    ></textarea>
-
-    <div class="invalid-feedback">Introduce los niveles del personaje.</div>
-  </div>
-
-  <a class="btn btn-danger" (click)="addClases()">Añadir Niveles de Clase</a>
   <br>
+    <div class="containermenu">
+      <h1>Manejador de Niveles de Clase</h1>
+      <p (click)="showNewClassForm()" class="btn btn-danger">Añadir Niveles</p>
+
+      <div *ngIf="showNewClass" class="new-trait-form">
+        <h2>Añadir Niveles</h2>
+        <input [(ngModel)]="newClass.level" name="level" placeholder="Nivel" type="number"/>
+        <textarea [(ngModel)]="newClass.class" name="class" placeholder="Nombre de Clase"></textarea>
+        <p (click)="addClass()" class="btn btn-danger">Añadir Clase</p>
+      </div>
+
+      <div class="trait-list">
+        <h2>Niveles de Clase</h2>
+        <ul>
+          <li *ngFor="let class of newCharacter.clases">
+            <span class="trait-title">{{ transformString(class.class) }}</span>
+            <span class="trait-text">{{ class.level }}</span>
+            <p (click)="editClass(class)" class="btn btn-danger">Editar</p>
+            <p (click)="deleteClass(class)" class="btn btn-danger">Eliminar</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <br>
+
 
   <div class="mb-3">
     <label for="reliquia">Reliquias <strong>Opcional</strong></label>
@@ -458,43 +455,33 @@
   <br>
 
 
-
-  <div class="mb-3">
-    <label for="rasgos">Rasgos</label>
-    <textarea
-      class="form-control"
-      id="rasgos"
-      name="rasgos"
-      rows="1"
-      [(ngModel)]="traitTitle"
-      placeholder="Título del Rasgo"
-      #rasgosModel="ngModel"
-      [ngClass]="validClasses(rasgosModel, 'is-valid', 'is-invalid')"
-    ></textarea>
-
-    <textarea
-      class="form-control"
-      id="rasgos"
-      name="rasgos"
-      rows="5"
-      [(ngModel)]="traitInfo"
-      placeholder="Datos del Rasgo"
-      #rasgosModel="ngModel"
-      [ngClass]="validClasses(rasgosModel, 'is-valid', 'is-invalid')"
-    ></textarea>
-
-    <div class="invalid-feedback">Introduce los rasgos del personaje.</div>
-  </div>
-  <div class="mb-3">
-    <select class="form-control" [(ngModel)]="traitPrivacy" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-
-  <a class="btn btn-danger" (click)="addRasgo()">Añadir Rasgo</a>
   <br>
+    <div class="containermenu">
+      <h1>Manejador de Rasgos</h1>
+      <p (click)="showNewTraitForm()" class="btn btn-danger">Añadir nuevo Rasgo</p>
 
+      <div *ngIf="showNewTrait" class="new-trait-form">
+        <h2>Añadir nuevo Rasgo</h2>
+        <input [(ngModel)]="newTrait.title" name="title" placeholder="Título" />
+        <textarea [(ngModel)]="newTrait.text" name="text" placeholder="Descripción del Rasgo"></textarea>
+        <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newTrait.isPrivate" name="isPrivate" id="privacy" /></label>
+        <p (click)="addTrait()" class="btn btn-danger">Añadir Rasgo</p>
+      </div>
+
+      <div class="trait-list">
+        <h2>Rasgos</h2>
+        <ul>
+          <li *ngFor="let trait of newCharacter.rasgos">
+            <span class="trait-title">{{ transformString(trait.title) }}</span>
+            <span class="trait-text">{{ transformString(trait.info) }}</span>
+            <span class="trait-privacy">Privado: {{ trait.privacy }}</span>
+            <p (click)="editTrait(trait)" class="btn btn-danger">Editar</p>
+            <p (click)="deleteTrait(trait)" class="btn btn-danger">Eliminar</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <br>
 
 
   <!--<div class="mb-3">
@@ -504,46 +491,35 @@
     </select>
   </div>-->
 
+  <br>
+    <div class="containermenu">
+      <h1>Manejador de Temas de Personaje</h1>
+      <p (click)="showNewSongForm()" class="btn btn-danger">Añadir nuevo tema de personaje</p>
 
+      <div *ngIf="showNewSong" class="new-trait-form">
+        <h2>Añadir nuevo Tema de Personaje</h2>
+        <input [(ngModel)]="newSong.title" name="title" placeholder="Título" />
+        <textarea [(ngModel)]="newSong.link" name="text" placeholder="Link de la canción"></textarea>
+        <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newTrait.isPrivate" name="isPrivate" id="privacy" /></label>
+        <p (click)="addSong()" class="btn btn-danger">Añadir Tema</p>
+      </div>
 
-
-
-
-
-  <div class="mb-3">
-    <label for="rasgos">Temas del personaje</label>
-    <textarea
-      class="form-control"
-      id="rasgos"
-      name="rasgos"
-      rows="1"
-      [(ngModel)]="songTitle"
-      placeholder="Título del tema"
-      #songModel="ngModel"
-      [ngClass]="validClasses(songModel, 'is-valid', 'is-invalid')"
-    ></textarea>
-
-    <textarea
-      class="form-control"
-      id="rasgos"
-      name="rasgos"
-      rows="5"
-      [(ngModel)]="songTheme"
-      placeholder="Link del tema"
-      #songModel="ngModel"
-      [ngClass]="validClasses(songModel, 'is-valid', 'is-invalid')"
-    ></textarea>
-
-    <div class="mb-3">
-      <select class="form-control" [(ngModel)]="songPrivacy" [ngModelOptions]="{standalone:true}">
-        <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
-      </select>
+      <div class="trait-list">
+        <h2>Temas de Personaje</h2>
+        <ul>
+          <li *ngFor="let song of newCharacter.canciones">
+            <span class="trait-title">{{ transformString(song.title) }}</span>
+            <span class="trait-text">{{ transformString(song.link) }}</span>
+            <span class="trait-privacy">Privado: {{ song.privacy }}</span>
+            <p (click)="editSong(song)" class="btn btn-danger">Editar</p>
+            <p (click)="deleteSong(song)" class="btn btn-danger">Eliminar</p>
+          </li>
+        </ul>
+      </div>
     </div>
+  <br>
 
-    <div class="invalid-feedback">Introduce los temas del personaje.</div>
-  </div>
-
-  <a class="btn btn-danger" (click)="addCanciones()">Añadir Canción</a>
+  <!--Edit button y Post button-->
   <br>
   <br>
 

@@ -24,15 +24,6 @@ export class NewCharacterComponent implements OnInit {
   imagenGaleria!:string
   currentRelic!:string
   singularidades!:string
-  traitTitle!:string
-  traitInfo!:string
-  className!:string
-  classLevel!:number
-  songTitle!:string
-  songTheme!:string
-
-  songPrivacy=false
-  traitPrivacy=false
 
   constructor(
     private readonly characterService:CharacterService,
@@ -137,32 +128,6 @@ export class NewCharacterComponent implements OnInit {
     this.singularidades="";
   }
 
-  addRasgo()
-  {
-    const trait:Trait = {"title":this.traitTitle,"info":this.traitInfo,"privacy":this.traitPrivacy}
-    this.newCharacter.rasgos.push(trait);
-    this.traitInfo="";
-    this.traitTitle="";
-    this.traitPrivacy=false;
-  }
-
-  addClases()
-  {
-    const myClass:Class = {"class":this.className,"level":this.classLevel}
-    this.newCharacter.clases.push(myClass);
-    this.className="";
-    this.classLevel=0;
-  }
-
-  addCanciones()
-  {
-    const mySong:Song = {"title":this.songTitle,"link":this.songTheme,"privacy":this.songPrivacy}
-    this.newCharacter.canciones.push(mySong);
-    this.songTitle="";
-    this.songTheme="";
-    this.songPrivacy=false
-  }
-
   addCharacter() {
     this.saved = true;
 
@@ -233,4 +198,117 @@ export class NewCharacterComponent implements OnInit {
   ];
 
   typeOfGame=[{value:"DnD",label:"DnD"}];
+
+  transformString(description:string):string{
+    const myDate=String(description);
+    return myDate.substring(0,20);
+  }
+
+  // Trait manager
+
+  showNewTrait = false;
+
+  newTrait = {
+    title: '',
+    text: '',
+    isPrivate: false,
+  };
+
+  showNewTraitForm() {
+    this.showNewTrait = true;
+  }
+
+  addTrait() {
+    if (this.newTrait.title && this.newTrait.text) {
+      const trait:Trait = {"title":this.newTrait.title,"info":this.newTrait.text,"privacy":this.newTrait.isPrivate}
+      this.newCharacter.rasgos.push({ ...trait });
+      this.newTrait = { title: '', text: '', isPrivate: false };
+      this.showNewTrait = false;
+      console.log(this.newCharacter.rasgos)
+
+    }
+  }
+
+  editTrait(trait: any) {
+    this.newTrait = { ...trait };
+    this.showNewTrait = true;
+  }
+
+  deleteTrait(trait: any) {
+    const index = this.newCharacter.rasgos.indexOf(trait);
+    if (index !== -1) {
+      this.newCharacter.rasgos.splice(index, 1);
+    }
+  }
+
+  // Class manager
+
+  showNewClass = false;
+
+  newClass = {
+    class: '',
+    level: 0,
+  };
+
+  showNewClassForm() {
+    this.showNewClass = true;
+  }
+
+  addClass() {
+    if (this.newClass.class && this.newClass.level) {
+      const clase:Class = {"class":this.newClass.class,"level":this.newClass.level}
+      this.newCharacter.clases.push({ ...clase });
+      this.newClass = { class: '', level: 0};
+      this.showNewClass = false;
+
+    }
+  }
+
+  editClass(clase: any) {
+    this.newClass = { ...clase };
+    this.showNewClass = true;
+  }
+
+  deleteClass(clase: any) {
+    const index = this.newCharacter.clases.indexOf(clase);
+    if (index !== -1) {
+      this.newCharacter.clases.splice(index, 1);
+    }
+  }
+
+  // Song manager
+
+  showNewSong = false;
+
+  newSong = {
+    title: '',
+    link: '',
+    isPrivate: false,
+  };
+
+  showNewSongForm() {
+    this.showNewSong = true;
+  }
+
+  addSong() {
+    if (this.newSong.title && this.newSong.link) {
+      const song:Song = {"title":this.newSong.title,"link":this.newSong.link,"privacy":this.newSong.isPrivate}
+      this.newCharacter.canciones.push({ ...song });
+      this.newSong = { title: '', link: '', isPrivate: false };
+      this.showNewSong = false;
+    }
+  }
+
+  editSong(song: any) {
+    this.newSong = { ...song };
+    this.showNewSong = true;
+  }
+
+  deleteSong(song: any) {
+    const index = this.newCharacter.canciones.indexOf(song);
+    if (index !== -1) {
+      this.newCharacter.canciones.splice(index, 1);
+    }
+  }
 }
+
