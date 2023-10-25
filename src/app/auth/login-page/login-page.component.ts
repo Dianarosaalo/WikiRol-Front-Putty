@@ -34,7 +34,8 @@ export class LoginPageComponent implements OnInit{
     };
   }
   ngOnInit(): void {
-    console.log("");
+    if(localStorage.getItem('token'))
+      this.router.navigate(['/campaigns'])
   }
 
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {

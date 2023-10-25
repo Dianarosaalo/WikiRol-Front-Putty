@@ -1,363 +1,454 @@
 <h3>DEUS EX MACHINA</h3>
 
   <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-
-    <div class="card h-100 shadow" *ngFor="let character of DeusChars">
+  <div class="col" *ngFor="let character of DeusChars">
+    <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ transformTitle(character.titulo) }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
-  </div>
   </div>
 
   <h3>SSSSS</h3>
 
   <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-
-    <div class="card h-100 shadow" *ngFor="let character of SSSSSChars ">
+  <div class="col" *ngFor="let character of SSSSSChars">
+    <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ transformTitle(character.titulo) }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
-  </div>
   </div>
 
 <h3>SSSS</h3>
 
-  <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
-  >
-
-    <div class="card h-100 shadow" *ngFor="let character of SSSSChars ">
-      <a [routerLink]="['/characters', character._id]">
-        <img class="card-img-top" src="{{ character.fotoPerfil }}" />
-      </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+<div
+id="placesContainer"
+class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
+>
+<div class="col" *ngFor="let character of SSSSChars">
+  <div class="card h-100 shadow">
+    <a [routerLink]="['/characters', character._id]">
+      <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+    </a>
+      <div class="card-body">
+        <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+        <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+          <div class="card-text">
+              <small class="text-muted">
+                <strong>Facciones:</strong> {{character.facciones}}
+              </small>
+          </div>
+          <div class="card-text">
+              <small class="text-muted">
+                  <strong>Tier List: </strong>{{ character.tier }}
+              </small>
+          </div>
+          <small class="text-muted">
+            <strong>Campaña: </strong>{{ character.campanya }}
+          </small>
+          <div class="card-footer">
+            <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+          </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
   </div>
-  </div>
+</div>
 
 <h3>SSS</h3>
 
-  <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
-  >
-
-    <div class="card h-100 shadow" *ngFor="let character of SSSChars ">
-      <a [routerLink]="['/characters', character._id]">
-        <img class="card-img-top" src="{{ character.fotoPerfil }}" />
-      </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+<div
+id="placesContainer"
+class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
+>
+<div class="col" *ngFor="let character of SSSChars">
+  <div class="card h-100 shadow">
+    <a [routerLink]="['/characters', character._id]">
+      <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+    </a>
+      <div class="card-body">
+        <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+        <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+          <div class="card-text">
+              <small class="text-muted">
+                <strong>Facciones:</strong> {{character.facciones}}
+              </small>
+          </div>
+          <div class="card-text">
+              <small class="text-muted">
+                  <strong>Tier List: </strong>{{ character.tier }}
+              </small>
+          </div>
+          <small class="text-muted">
+            <strong>Campaña: </strong>{{ character.campanya }}
+          </small>
+          <div class="card-footer">
+            <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+          </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
   </div>
-  </div>
+</div>
 
 <h3>SS</h3>
 
 <div
-id="placesContainer"
-class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
->
-
-<div class="card h-100 shadow" *ngFor="let character of SSChars ">
-  <a [routerLink]="['/characters', character._id]">
-    <img class="card-img-top" src="{{ character.fotoPerfil }}" />
-  </a>
-<div class="card-body">
-
-  <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-  <p class="card-text">{{ character.titulo }}</p>
-
-  <div class="card-text">
-    <small class="text-muted">
-      <strong>Campaña: </strong>{{ character.campanya }}
-    </small>
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
+  >
+  <div class="col" *ngFor="let character of SSChars">
+    <div class="card h-100 shadow">
+      <a [routerLink]="['/characters', character._id]">
+        <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+      </a>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<div class="card-footer">
-  <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-</div>
-</div>
-</div>
 
 <h3>S</h3>
 
 <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-
-    <div class="card h-100 shadow" *ngFor="let character of SChars ">
+  <div class="col" *ngFor="let character of SChars">
+    <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
-  </div>
   </div>
 
 <h3>A</h3>
 
 <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-
-    <div class="card h-100 shadow" *ngFor="let character of AChars ">
+  <div class="col" *ngFor="let character of AChars">
+    <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
-  </div>
   </div>
 
 <h3>B</h3>
 
 <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-
-    <div class="card h-100 shadow" *ngFor="let character of BChars ">
+  <div class="col" *ngFor="let character of BChars">
+    <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
-  </div>
   </div>
 
 <h3>C</h3>
 
 <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-
-    <div class="card h-100 shadow" *ngFor="let character of CChars ">
+  <div class="col" *ngFor="let character of CChars">
+    <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
-  </div>
   </div>
 
 <h3>D</h3>
 
 <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-
-    <div class="card h-100 shadow" *ngFor="let character of DChars ">
+  <div class="col" *ngFor="let character of DChars">
+    <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
-  </div>
   </div>
 
 <h3>E</h3>
 
 <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-
-    <div class="card h-100 shadow" *ngFor="let character of EChars ">
+  <div class="col" *ngFor="let character of EChars">
+    <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
-  </div>
   </div>
 
 <h3>F</h3>
 
 <div
-    id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-5 g-5"
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-
-    <div class="card h-100 shadow" *ngFor="let character of FChars">
+  <div class="col" *ngFor="let character of FChars">
+    <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-    <div class="card-body">
-
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
-
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-    </div>
-  </div>
   </div>
 
   <h3>Desconocido</h3>
 
   <div
-      id="placesContainer"
-      class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-5 g-5"
-    >
-
-      <div class="card h-100 shadow" *ngFor="let character of UnknownChars ">
-        <a [routerLink]="['/characters', character._id]">
-          <img class="card-img-top" src="{{ character.fotoPerfil }}" />
-        </a>
-      <div class="card-body">
-
-        <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-        <p class="card-text">{{ character.titulo }}</p>
-
-        <div class="card-text">
-          <small class="text-muted">
-            <strong>Campaña: </strong>{{ character.campanya }}
-          </small>
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
+  >
+  <div class="col" *ngFor="let character of UnknownChars">
+    <div class="card h-100 shadow">
+      <a [routerLink]="['/characters', character._id]">
+        <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+      </a>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
         </div>
       </div>
-      <div class="card-footer">
-        <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
-      </div>
     </div>
-    </div>
+  </div>

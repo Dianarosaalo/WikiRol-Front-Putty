@@ -2,12 +2,24 @@ h2{
   text-align: center;
 }
 
-#placesContainer img{
-  width:400px !important;
-  height:400px !important;
-}
-
 .card-title a {
   text-decoration: none;
   color: rgb(63, 59, 59) !important
+}
+
+.card img,a{
+  justify-content: center;
+  text-align: center;
+}
+
+.card{
+  margin:170%px;
+}
+
+.normalMargin img{
+  max-width:1500px !important;
+  max-height:500px !important;
+  min-height: 500px;
+  height:90%;
+  width:100%;
 }
