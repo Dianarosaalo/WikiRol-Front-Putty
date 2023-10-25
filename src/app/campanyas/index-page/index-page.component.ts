@@ -75,6 +75,7 @@ export class IndexPageComponent implements OnInit {
   }
 
   onScroll(): void {
+    this.buttonShow=false;
     this.http.get<CharactersResponse>('personajes/scroll', {
       params: {
         pageNumber: this.pageNumber.toString(),
@@ -91,6 +92,7 @@ export class IndexPageComponent implements OnInit {
 
       this.pageNumber++;
       console.log(this.characters);
+      this.buttonShow=true;
     });
   }
 
