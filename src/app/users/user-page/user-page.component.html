@@ -3,10 +3,11 @@
     <img class="w-100" id="avatar" [src]="user.avatar" alt="" />
   </div>
   <div class="col-9">
-    <h4>{{ user.name }}</h4>
+    <h3>{{ user.name }}</h3>
     <p *ngIf="me">
       <a class="btn btn-danger" [routerLink]="['/users', 'edit']">Edit profile</a>
     </p>
+    <h5>Número de personajes creados: {{characters.length}}</h5>
   </div>
 </div>
 
@@ -44,4 +45,6 @@
     </div>
   </div>
 </div>
+
+<button (click)="onScroll()" class="cargarMas" *ngIf="buttonShow===true"> Cargar Más</button>
 

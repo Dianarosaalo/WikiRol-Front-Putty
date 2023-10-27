@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/auth/interfaces/login';
 import { map, Observable } from 'rxjs';
-import { UserResponse } from 'src/app/auth/interfaces/responses';
+import { UserResponse, UsersResponse } from 'src/app/auth/interfaces/responses';
 
 
 @Injectable({
@@ -10,6 +10,12 @@ import { UserResponse } from 'src/app/auth/interfaces/responses';
 })
 export class UserService {
   constructor(private readonly http: HttpClient) {}
+
+  getAllUsers():Observable<User[]>{
+    return this.http
+      .get<UsersResponse>(`users`)
+      .pipe(map((u) => u.users));
+  }
 
   getUserId(_id:string):Observable<User>{
     return this.http

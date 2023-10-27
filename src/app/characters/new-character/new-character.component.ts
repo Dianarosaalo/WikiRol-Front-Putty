@@ -5,6 +5,8 @@ import { Router, /*ActivatedRoute*/ } from '@angular/router';
 import { Character,Trait,Class,Song } from '../interfaces/character';
 import { CharacterService } from '../services/character.service';
 import { HttpClientModule } from '@angular/common/http';
+import { User } from 'src/app/auth/interfaces/login';
+import { UserService } from 'src/app/users/services/user.service';
 
 @Component({
   selector: 'fs-new-character',
@@ -25,14 +27,22 @@ export class NewCharacterComponent implements OnInit {
   currentRelic!:string
   singularidades!:string
 
+  users!:User[];
+
   constructor(
     private readonly characterService:CharacterService,
     private readonly router: Router,
-    private readonly location: Location
+    private readonly location: Location,
+    private readonly userService:UserService
   ) {}
 
   ngOnInit(): void {
     this.newCharacter = this.resetCharacter();
+
+    this.userService.getAllUsers().subscribe({
+      next: (users) => this.users=users,
+      error: (error) => console.log("Ha habido un error" + error + this.users)
+    });
 
     const currentUrl = this.location.path(); // all of this means im editing
     currentUrl.split('/');

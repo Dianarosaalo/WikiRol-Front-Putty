@@ -172,7 +172,14 @@
   </div>
 
   <div class="mb-3">
-    Tipo de Juego <br>
+    Jugador <br>
+    <select class="form-control" [(ngModel)]="newCharacter.creator" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    Tipo de Juego (esto no sirve para nada aún) <br>
     <select class="form-control" [(ngModel)]="newCharacter.tipoJuego" [ngModelOptions]="{standalone:true}">
       <option *ngFor="let option of typeOfGame" value={{option.value}}>{{option.label}}</option>
     </select>
@@ -482,14 +489,6 @@
       </div>
     </div>
   <br>
-
-
-  <!--<div class="mb-3">
-    Jugador <br>
-    <select class="form-control" [(ngModel)]="newCharacter.jugador" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of player" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>-->
 
   <br>
     <div class="containermenu">

@@ -1,10 +1,11 @@
-<h2>{{character.nombre}}</h2>
+
 <ul class="tabs-container">
   <li (click)="onTabClick('General')" class="tab-link">General</li>
   <li (click)="onTabClick('Stats')" class="tab-link">Stats</li>
   <li (click)="onTabClick('Lore')" class="tab-link">Lore</li>
   <li (click)="onTabClick('Media')" class="tab-link">Media</li>
 </ul>
+<h2>{{character.nombre}}</h2>
 
 <div class="container">
 <div *ngIf="character">
@@ -144,10 +145,10 @@
 </div>
 
 <div class="card mt-4" id="cardCreator" (click)="navigateUserProfile()" *ngIf="charCreator">
-  <div class="card-header purpleNeon text-white">Character's creator</div>
-  <div class="card-body blackNeon d-flex flex-row">
+  <div class="card-header purpleNeon text-white"><h4>Jugador</h4></div>
+  <div class="card-body d-flex flex-row">
     <div>
-      <img id="creatorImg" class="rounded-circle me-3" style="width: 40px;" src={{charCreator.avatar}} alt="">
+      <img id="creatorImg" src={{charCreator.avatar}} alt="">
     </div>
     <div>
       <div><strong id="nameCreator">{{charCreator.name}}</strong></div>

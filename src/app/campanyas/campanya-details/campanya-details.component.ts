@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Character } from 'src/app/characters/interfaces/character';
 import { CharacterService } from 'src/app/characters/services/character.service';
@@ -8,6 +8,9 @@ import { CharacterFilterPipe } from '../pipes/character.filter.pipe';
 import { GameFilterPipe } from '../pipes/game.filter.pipe';
 import { Game } from 'src/app/games/interfaces/game';
 import { GameService } from 'src/app/games/services/game.service';
+import { HttpClient } from '@angular/common/http';
+import { CharactersResponse } from 'src/app/characters/interfaces/characterResponse';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'fs-campanya-details',
@@ -27,6 +30,9 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   faction="El Imperio de la Humanidad"
   order=""
   design=localStorage.getItem('design');
+  pageNumber = 1;       //
+  pageSize = 18;        //
+  buttonShow=false;
 
   factions=[
     {value:"", label:"Todos"},
@@ -44,6 +50,8 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     private readonly gameService:GameService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
+    private readonly http: HttpClient,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -53,11 +61,12 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       }
     });
     this.id=String((this.route.snapshot.paramMap.get('id'))) ;
-    this.characterService.getAll().subscribe({
+    this.loadCharacters();
+    /*this.characterService.getAll().subscribe({
       next: (characters) => this.characters=characters, //characters.forEach((c)=>this.characters.push(c)),
       error: (error) => console.log("Ha habido un error" + error + this.characters),
       complete: () => this.characters=this.characters.filter((c)=>c.campanya===this.id)
-    })
+    })*/
     this.gameService.getAll().subscribe({
       next: (partidas) => this.partidas=partidas.sort((a, b) => a.num - b.num),
       error: (error) => console.log("Ha habido un error" + error + this.partidas),
@@ -90,6 +99,47 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   {
     localStorage.setItem("design",type);
     this.design=localStorage.getItem('design');
+  }
+
+  onScroll(): void {
+    this.buttonShow=false;
+    this.http.get<CharactersResponse>('personajes/scroll', {
+      params: {
+        pageNumber: this.pageNumber.toString(),
+        pageSize: this.pageSize.toString(),
+        campanya: this.id
+      }
+    }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
+      console.log('Characters loaded:', characters);
+      //characters.forEach((c) => this.characters.push(c));
+      //this.characters=characters;
+      this.characters=[...this.characters, ...characters];
+      //this.characters=this.characters.filter((c)=>c.campanya===this.id);
+
+      // Trigger change detection after appending characters
+      this.cdr.detectChanges();
+
+      this.pageNumber++;
+      console.log(this.characters);
+      this.buttonShow=true;
+    });
+  }
+
+  //loadCharacters
+  loadCharacters(): void {
+    this.http.get<CharactersResponse>('personajes/scroll', {
+      params: {
+        pageNumber: this.pageNumber.toString(),
+        pageSize: this.pageSize.toString(),
+        campanya: this.id
+      }
+    }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
+      console.log('Characters loaded:', characters);
+      this.characters= characters;
+      //this.characters=this.characters.filter((c)=>c.campanya===this.id);
+      this.pageNumber++;
+      this.buttonShow=true;
+    });
   }
 
 }
