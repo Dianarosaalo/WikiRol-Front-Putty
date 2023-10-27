@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from '../auth/guards/auth.guard';
+import { leavePageGuard } from '../guards/leave-page.guard';
 
 export const CHARACTERS_ROUTES: Routes = [
   {
@@ -8,7 +9,8 @@ export const CHARACTERS_ROUTES: Routes = [
       import('./new-character/new-character.component').then(
         (m) => m.NewCharacterComponent
       ),
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard],
+      canDeactivate:[ leavePageGuard]
   },
   {
     path: ':id',
@@ -24,6 +26,7 @@ export const CHARACTERS_ROUTES: Routes = [
       import('./new-character/new-character.component').then(
         (m) => m.NewCharacterComponent
       ),
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard],
+      canDeactivate:[ leavePageGuard]
   },
 ];

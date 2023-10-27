@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CharacterService } from 'src/app/characters/services/character.service';
 import { Router,RouterLink } from '@angular/router';
@@ -6,6 +6,9 @@ import { Character } from 'src/app/characters/interfaces/character';
 import { CharacterCardComponent } from 'src/app/characters/character-card/character-card.component';
 import { CharacterFilterPipe } from '../pipes/character.filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { CharactersResponse } from 'src/app/characters/interfaces/characterResponse';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'fs-campanya-tier',
@@ -19,28 +22,43 @@ export class CampanyaTierComponent {
   characters!:Character[];
   search="";
 
-  DeusChars!:Character[];
-  SSSSSChars!:Character[];
-  SSSSChars!:Character[];
-  SSSChars!:Character[];
-  SSChars!:Character[];
-  SChars!:Character[];
-  AChars!:Character[];
-  BChars!:Character[];
-  CChars!:Character[];
-  DChars!:Character[];
-  EChars!:Character[];
-  FChars!:Character[];
-  UnknownChars!:Character[];
+  DeusChars:Character[]=[];
+  SSSSSChars:Character[]=[];
+  SSSSChars:Character[]=[];
+  SSSChars:Character[]=[];
+  SSChars:Character[]=[];
+  SChars:Character[]=[];
+  AChars:Character[]=[];
+  BChars:Character[]=[];
+  CChars:Character[]=[];
+  DChars:Character[]=[];
+  EChars:Character[]=[];
+  FChars:Character[]=[];
+  UnknownChars:Character[]=[];
 
 
   constructor(
     private readonly characterService:CharacterService,
     private readonly router: Router,
+    private readonly http: HttpClient,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.characterService.getAll().subscribe({
+    this.loadCharacters("0.- Deus Ex Machina",this.DeusChars);
+    this.loadCharacters("0.5.- SSSSS",this.SSSSSChars);
+    this.loadCharacters("1.- SSSS",this.SSSSChars);
+    this.loadCharacters("2.- SSS",this.SSSChars);
+    this.loadCharacters("3.- SS",this.SSChars);
+    this.loadCharacters("4.- S",this.SChars);
+    this.loadCharacters("5.- A",this.AChars);
+    this.loadCharacters("6.- B",this.BChars);
+    this.loadCharacters("7.- C",this.CChars);
+    this.loadCharacters("8.- D",this.DChars);
+    this.loadCharacters("9.- E",this.EChars);
+    this.loadCharacters("9.5.- F",this.FChars);
+    this.loadCharacters("9.9.- Desconocido",this.UnknownChars);
+    /*this.characterService.getAll().subscribe({
       next: (characters) => {
         this.characters=characters
         this.DeusChars=characters.filter((c)=>c.tier==="0.- Deus Ex Machina")
@@ -60,7 +78,7 @@ export class CampanyaTierComponent {
       }, //characters.forEach((c)=>this.characters.push(c)),
       error: (error) => console.log("Ha habido un error" + error + this.characters),
       complete: () => console.log("")
-    })
+    })*/
   }
 
   transformDescription(description:string):string{
@@ -71,6 +89,18 @@ export class CampanyaTierComponent {
   transformTitle(description:string):string{
     const myDate=String(description);
     return myDate.substring(0,55);
+  }
+
+  loadCharacters(currentTier:string, myChars:Character[]): void {
+    this.http.get<CharactersResponse>('personajes/tier', {
+      params: {
+        tier: currentTier
+      }
+    }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
+      console.log('Characters loaded:', characters);
+      myChars.push(...characters);
+    });
+    this.cdr.detectChanges();
   }
 
 }

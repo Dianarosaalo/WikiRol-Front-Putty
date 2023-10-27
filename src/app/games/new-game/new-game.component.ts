@@ -55,6 +55,10 @@ export class NewGameComponent implements OnInit{
     }
   }
 
+  canDeactivate() {
+    return this.saved || this.gameForm.pristine || confirm("Do you really want to leave?. Changes will be lost");
+  }
+
   campaigns=[
     {value:'Egathea',label:"Egathea"},
     {value:'Caminos de Sangre',label:"Caminos de Sangre"},
