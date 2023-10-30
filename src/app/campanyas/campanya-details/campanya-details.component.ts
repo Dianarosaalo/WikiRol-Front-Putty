@@ -114,6 +114,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       //characters.forEach((c) => this.characters.push(c));
       //this.characters=characters;
       this.characters=[...this.characters, ...characters];
+      characters.forEach((c)=>this.whichTier(c));
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
 
       // Trigger change detection after appending characters
@@ -136,10 +137,67 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
       console.log('Characters loaded:', characters);
       this.characters= characters;
+      this.characters.forEach((c)=>this.whichTier(c));
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
       this.pageNumber++;
       this.buttonShow=true;
     });
   }
+
+  whichTier(char:Character)
+  {
+    if(char.tier==="0.- Deus Ex Machina")
+      this.DeusChars.push(char);
+
+    if(char.tier==="0.5.- SSSSS")
+      this.SSSSSChars.push(char);
+
+    if(char.tier==="1.- SSSS")
+      this.SSSSChars.push(char);
+
+    if(char.tier==="2.- SSS")
+      this.SSSChars.push(char);
+
+    if(char.tier==="3.- SS")
+      this.SSChars.push(char);
+
+    if(char.tier==="4.- S")
+      this.SChars.push(char);
+
+    if(char.tier==="5.- A")
+      this.AChars.push(char);
+
+    if(char.tier==="6.- B")
+      this.BChars.push(char);
+
+    if(char.tier==="7.- C")
+      this.CChars.push(char);
+
+    if(char.tier==="8.- D")
+      this.DChars.push(char);
+
+    if(char.tier==="9.- E")
+      this.EChars.push(char);
+
+    if(char.tier==="9.5.- F")
+      this.FChars.push(char);
+
+    if(char.tier==="9.9.- Desconocido")
+      this.UnknownChars.push(char);
+  }
+
+  DeusChars:Character[]=[];
+  SSSSSChars:Character[]=[];
+  SSSSChars:Character[]=[];
+  SSSChars:Character[]=[];
+  SSChars:Character[]=[];
+  SChars:Character[]=[];
+  AChars:Character[]=[];
+  BChars:Character[]=[];
+  CChars:Character[]=[];
+  DChars:Character[]=[];
+  EChars:Character[]=[];
+  FChars:Character[]=[];
+  UnknownChars:Character[]=[];
 
 }
