@@ -43,9 +43,8 @@
 
 <div *ngIf="design==='old'"
   id="placesContainer"
-  class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6 adriweboMargin"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 adriweboMargin"
 >
-
   <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
@@ -56,7 +55,7 @@
           <p class="card-text">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
                 <small class="text-muted">
-                    <strong>Facciones:</strong> {{character.facciones}}
+                  <strong>Facciones:</strong> {{character.facciones}}
                 </small>
             </div>
             <!--<span class="badge ms-2 bg-success">Open_Text</span>  Replace 'Open_Text' with the actual open text
@@ -75,8 +74,9 @@
         </div>
     </div>
   </div>
-
 </div>
+
+
 
 <div *ngIf="design==='new'"
   id="placesContainer"

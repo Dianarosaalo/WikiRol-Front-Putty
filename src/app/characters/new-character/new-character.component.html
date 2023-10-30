@@ -75,6 +75,13 @@
     class="img-thumbnail mb-3"
   />
 
+  <div class="mb-3">
+    Jugador <br>
+    <select class="form-control" [(ngModel)]="newCharacter.creator" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
+    </select>
+  </div>
+
   <h3>Opcional</h3>
   <br>
 
@@ -168,13 +175,6 @@
     Privacidad del Personaje<strong> Máster NPCs</strong> <br>
     <select class="form-control" [(ngModel)]="newCharacter.private" [ngModelOptions]="{standalone:true}">
       <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    Jugador <br>
-    <select class="form-control" [(ngModel)]="newCharacter.creator" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
     </select>
   </div>
 
