@@ -19,7 +19,7 @@ export class CharacterDetailsComponent implements OnInit{
   //id!:string;
   charCreator!:User
   me=false;
-  activeTab="General";
+  activeTab="Stats";
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -34,6 +34,7 @@ export class CharacterDetailsComponent implements OnInit{
     this.characterService.getById(String(posibleId)).subscribe({
       next: (character) => {
         this.character=character
+        document.title="WR | "+this.character.nombre;
         this.userService.getUserId(String(this.character.creator)).subscribe(
           u => this.charCreator = u
         );
@@ -77,6 +78,25 @@ export class CharacterDetailsComponent implements OnInit{
   onTabClick(tab:string)
   {
     this.activeTab=tab;
+  }
+
+  calcularStats(stat:number){
+
+    if (stat>10)
+    {
+      stat-=10
+      stat=Math.trunc(stat/2);
+      return "+" + stat;
+    }
+
+    if (stat<10)
+    {
+      stat= stat/2;
+      return (stat-5);
+    }
+
+    else
+      return 0;
   }
 
 }

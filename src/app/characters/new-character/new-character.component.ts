@@ -240,7 +240,11 @@ export class NewCharacterComponent implements OnInit {
   }
 
   editTrait(trait: any) {
-    this.newTrait = { ...trait };
+    console.log('Received trait:', trait);
+    this.newTrait.title = trait.title;
+    this.newTrait.text = trait.info;
+    this.newTrait.isPrivate = trait.privacy;
+    console.log('Updated newTrait:', this.newTrait);
     this.showNewTrait = true;
   }
 
@@ -311,6 +315,7 @@ export class NewCharacterComponent implements OnInit {
 
   editSong(song: any) {
     this.newSong = { ...song };
+    this.newSong.isPrivate = song.privacy
     this.showNewSong = true;
   }
 

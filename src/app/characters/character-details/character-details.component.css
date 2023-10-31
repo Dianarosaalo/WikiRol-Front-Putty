@@ -9,7 +9,7 @@ img{
 }
 
 .monster-sheet {
-  max-width: 600px;
+  /*max-width: 600px;*/
   margin: 0 auto;
   font-family: Arial, sans-serif;
   background-color: #f3dfb4;
@@ -199,4 +199,35 @@ h4{
 
 p{
   white-space: pre-line;
+}
+
+.fotoDNI
+{
+  justify-content: right;
+  text-align: right;
+  width:20%;
+  height:20%;
+  margin-top: 0%;
+
+  max-width: 250px;
+  max-height: 350px;
+  min-height: 350px;
+  min-width: 250px;
+}
+
+.monster-name {
+  display: inline-block; /* Make the name and image appear on the same line */
+  margin-right: 10px; /* Adjust this margin as needed to separate the name and image */
+}
+
+.card-img-top.fotoDNI {
+  float: right; /* Float the image to the right */
+}
+
+.nivelines{
+  color:rgb(140, 65, 4)
+}
+
+hr{
+  color: black;
 }

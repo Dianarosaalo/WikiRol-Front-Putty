@@ -68,9 +68,8 @@
 
 <div *ngIf="design==='old'"
   id="placesContainer"
-  class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6 adriweboMargin"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 adriweboMargin"
 >
-
   <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
@@ -100,9 +99,6 @@
         </div>
     </div>
   </div>
-
-  <button (click)="onScroll()" class="cargarMas" *ngIf="buttonShow===true"> Cargar Más</button>
-
 </div>
 
 <div *ngIf="design==='new'"
