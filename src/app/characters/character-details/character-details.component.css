@@ -186,11 +186,21 @@ h2{
   margin-left: 20px;
 }
 
-h4{
+h5{
   justify-content: center;
   text-align: center;
   font-size: 28px;
   font-family: 'Comic Sans MS', cursive;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h4{
+  justify-content: center;
+  text-align: center;
+  font-size: 28px;
   font-size: 40px;
   text-transform: uppercase;
   letter-spacing: 2px;

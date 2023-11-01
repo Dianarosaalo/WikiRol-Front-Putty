@@ -38,13 +38,13 @@
 
   <ul class="nav nav-pills col-auto ms-3 designs">
     <li class="nav-item">
-      <p (click)="changeDesign('old')" class="red">Webo Design</p>
+      <p (click)="changeDesign('old')" class="red btn btn-primary">Webo Design</p>
     </li>
   </ul>
 
   <ul class="nav nav-pills col-auto ms-3 designs">
     <li class="nav-item">
-      <p (click)="changeDesign('new')" class="green">Old Design</p>
+      <p (click)="changeDesign('new')" class="green btn btn-danger">Old Design</p>
     </li>
   </ul>
 
@@ -99,6 +99,8 @@
         </div>
     </div>
   </div>
+
+  <button (click)="onScroll()" class="cargarMas" *ngIf="buttonShow===true"> Cargar Más</button>
 </div>
 
 <div *ngIf="design==='new'"
