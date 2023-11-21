@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule,Location } from '@angular/common';
 import { User } from 'src/app/auth/interfaces/login';
 import { UserService } from '../services/user.service';
@@ -7,9 +7,10 @@ import { ActivatedRoute,RouterLink } from '@angular/router';
 import { CharacterService } from 'src/app/characters/services/character.service';
 import { Character } from 'src/app/characters/interfaces/character';
 import { CharacterCardComponent } from 'src/app/characters/character-card/character-card.component';
-import { CharactersResponse } from 'src/app/characters/interfaces/characterResponse';
+import { CharactersResponse, TypeCounts } from 'src/app/characters/interfaces/characterResponse';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'fs-user-page',
@@ -29,6 +30,16 @@ export class UserPageComponent implements OnInit{
   buttonShow=false;     //
   id=""                 //
   currentUrl=""
+
+  @ViewChild('myChartCanvas') myChartCanvas!: ElementRef;
+  typeCounts!:TypeCounts;
+
+  data = {
+    labels: ['Egathea', 'Caminos de Sangre', 'Aryma', 'Yggdrassil'],
+    values: [0, 0, 0, 0]
+  };
+
+  private chart!: Chart<"pie", number[], string>;
 
   constructor(
     private readonly userService: UserService,
@@ -87,10 +98,55 @@ export class UserPageComponent implements OnInit{
       this.characters= characters;
       this.pageNumber++;
       this.buttonShow=true;
+
+      //graficas
+      this.characters.forEach(character => {
+        switch (character.campanya) {
+          case 'Egathea':
+            this.data.values[0]++;
+            break;
+          case 'Caminos de Sangre':
+            this.data.values[1]++;
+            break;
+          case 'Aryma':
+            this.data.values[2]++;
+            break;
+          case 'Yggdrassil':
+            this.data.values[3]++;
+            break;
+          default:
+            break;
+        }
+      });
+
+      setTimeout(() => { //this needs a timeout to charge properly
+        this.chart = new Chart(this.myChartCanvas.nativeElement, {
+          type: 'pie',
+          data: {
+            labels: this.data.labels,
+            datasets: [{
+              label: 'Personajes por campaña',
+              data: this.data.values,
+              backgroundColor: ['#52FF2C', '#443C3C', '#F50000', "#FFDF00"]
+            }]
+          },
+          options: {
+            responsive: true
+          }
+        });
+
+        this.chart.update();
+      }, 500);
+      //grafica
     });
   }
 
   onScroll(): void {
+
+    this.data = {
+      labels: ['Egathea', 'Caminos de Sangre', 'Aryma', 'Yggdrassil'],
+      values: [0, 0, 0, 0]
+    };
 
     let idWeUse="";
     idWeUse=this.id;
@@ -111,6 +167,49 @@ export class UserPageComponent implements OnInit{
       this.characters=[...this.characters, ...characters];
 
       // Trigger change detection after appending characters
+
+      //graficas
+      this.characters.forEach(character => {
+        switch (character.campanya) {
+          case 'Egathea':
+            this.data.values[0]++;
+            break;
+          case 'Caminos de Sangre':
+            this.data.values[1]++;
+            break;
+          case 'Aryma':
+            this.data.values[2]++;
+            break;
+          case 'Yggdrassil':
+            this.data.values[3]++;
+            break;
+          default:
+            break;
+        }
+      });
+
+      this.chart.destroy();
+
+      setTimeout(() => { //this needs a timeout to charge properly
+        this.chart = new Chart(this.myChartCanvas.nativeElement, {
+          type: 'pie',
+          data: {
+            labels: this.data.labels,
+            datasets: [{
+              label: 'Personajes por campaña',
+              data: this.data.values,
+              backgroundColor: ['#52FF2C', '#443C3C', '#F50000', "#FFDF00"]
+            }]
+          },
+          options: {
+            responsive: true
+          }
+        });
+
+        this.chart.update();
+      }, 500);
+      //graficas
+
       this.cdr.detectChanges();
 
       this.pageNumber++;

@@ -8,6 +8,8 @@
       <a class="btn btn-danger" [routerLink]="['/users', 'edit']">Edit profile</a>
     </p>
     <h5>Número de personajes creados: {{characters.length}}</h5>
+    <canvas *ngIf="!me"#myChartCanvas class="OtroPerfil"></canvas><!--canvas-->
+    <canvas *ngIf="me" #myChartCanvas class="MiPerfil"></canvas><!--canvas-->
   </div>
 </div>
 
@@ -45,6 +47,8 @@
     </div>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <button (click)="onScroll()" class="cargarMas" *ngIf="buttonShow===true"> Cargar Más</button>
 

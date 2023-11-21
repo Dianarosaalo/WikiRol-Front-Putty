@@ -7,3 +7,8 @@ export interface CharactersResponse{
 export interface CharacterResponse{
   personaje: Character
 }
+
+export interface TypeCounts {
+  [key: string]: number;
+}
+

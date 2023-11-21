@@ -47,3 +47,24 @@ h3{
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   color:red;
 }
+
+canvas.OtroPerfil{
+  height:600px !important;
+  width:600px !important;
+  margin-left: 40%;
+  margin-top: -5%;
+}
+
+canvas.MiPerfil{
+  height:600px !important;
+  width:600px !important;
+  margin-left: 40%;
+  margin-top: -10%;
+}
+
+#avatar{
+  max-height: 645px;
+  min-height: 645px;
+  max-width: 455px;
+  min-width: 455px;
+}

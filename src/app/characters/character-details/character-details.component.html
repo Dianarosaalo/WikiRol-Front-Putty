@@ -80,7 +80,7 @@
     <div class="monster-actions" *ngIf="counts(character.rasgos)">
       <h3>Rasgos</h3>
       <div *ngFor="let r of character.rasgos">
-        <p><strong>{{r.title}}</strong>: {{r.info}}</p>
+        <p *ngIf="(r.privacy === false || (r.privacy === true && me))"><strong>{{r.title}}</strong>: {{r.info}}</p>
       </div>
     </div>
 
@@ -117,8 +117,10 @@
         <h3 >Temas de personaje</h3>
         <br>
           <div *ngFor="let t of character.canciones">
-            <p><strong>- {{t.title}}: </strong> </p>
-            <a class="song" href="{{t.link}}">{{t.link}}</a>
+            <div *ngIf="(t.privacy === false || (t.privacy === true && me))">
+              <p ><strong>- {{t.title}}: </strong> </p>
+              <a class="song" href="{{t.link}}">{{t.link}}</a>
+            </div>
             <hr>
           </div>
         </div>

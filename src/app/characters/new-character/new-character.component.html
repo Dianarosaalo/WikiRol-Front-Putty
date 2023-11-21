@@ -499,7 +499,7 @@
         <h2>Añadir nuevo Tema de Personaje</h2>
         <input [(ngModel)]="newSong.title" name="title" placeholder="Título" />
         <textarea [(ngModel)]="newSong.link" name="text" placeholder="Link de la canción"></textarea>
-        <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newTrait.isPrivate" name="isPrivate" id="privacy" /></label>
+        <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newSong.isPrivate" name="isPrivate" id="privacy" /></label>
         <p (click)="addSong()" class="btn btn-danger">Añadir Tema</p>
       </div>
 
