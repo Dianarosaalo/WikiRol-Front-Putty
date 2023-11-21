@@ -79,6 +79,8 @@ export class CampanyaTierComponent {
       error: (error) => console.log("Ha habido un error" + error + this.characters),
       complete: () => console.log("")
     })*/
+
+    document.title = "WikiRol | TierList"
   }
 
   transformDescription(description:string):string{

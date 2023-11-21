@@ -56,6 +56,8 @@ export class IndexPageComponent implements OnInit {
     })*/
     if (!this.design)
       this.design='new';
+
+    document.title = "WikiRol"
   }
 
   transformDescription(description:string):string{

@@ -74,6 +74,8 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     })
     if (!this.design)
       this.design='new';
+
+    document.title = "WikiRol | " + this.id;
   }
 
   ngOnDestroy(): void{
