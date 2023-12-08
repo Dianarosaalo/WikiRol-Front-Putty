@@ -175,7 +175,12 @@ export class NewCharacterComponent implements OnInit {
     {value:'Egathea',label:"Egathea"},
     {value:'Caminos de Sangre',label:"Caminos de Sangre"},
     {value:'Aryma',label:"Aryma"},
-    {value:'Yggdrassil',label:"Yggdrassil"}];
+    {value:'Yggdrassil',label:"Yggdrassil"},
+
+    {value:'Djuna',label:"(Aventura) Djuna & Co"},
+    {value:'Mario',label:"(Aventura) Cruzados Mario"},
+    {value:'Reinos Olvidados',label:"(Aventura) Reinos Olvidados"}
+    ];
 
   intergalactic=[
     {value:true,label:"Sí"},
@@ -193,6 +198,7 @@ export class NewCharacterComponent implements OnInit {
   {value:true,label:"Privado"}]
 
   tiers=[{value:"0.- Deus Ex Machina", label:"Deus Ex Machina"},
+  {value:"0.25.- Supremo", label:"Supremo"},
   {value:"0.5.- SSSSS", label:"SSSSS"},
   {value:"1.- SSSS", label:"SSSS"},
   {value:"2.- SSS", label:"SSS"},

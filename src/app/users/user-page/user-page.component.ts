@@ -96,6 +96,8 @@ export class UserPageComponent implements OnInit{
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
       console.log('Characters loaded:', characters);
       this.characters= characters;
+      if (!this.me)
+        this.characters=this.characters.filter(c=>!c.private);
       this.pageNumber++;
       this.buttonShow=true;
 
@@ -165,6 +167,8 @@ export class UserPageComponent implements OnInit{
       //characters.forEach((c) => this.characters.push(c));
       //this.characters=characters;
       this.characters=[...this.characters, ...characters];
+      if (!this.me)
+        this.characters=this.characters.filter(c=>!c.private);
 
       // Trigger change detection after appending characters
 

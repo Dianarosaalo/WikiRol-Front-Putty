@@ -93,6 +93,12 @@
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -130,6 +136,12 @@
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -144,7 +156,7 @@
 
 <div *ngIf="activeTab ==='Tierlist'" class="tierList">
   <h1 style="text-align: center;">Tier List</h1>
-  <h3>DEUS EX MACHINA</h3>
+  <h3 *ngIf="DeusChars.length > 0">DEUS EX MACHINA</h3>
 
   <div
   id="placesContainer"
@@ -171,6 +183,12 @@
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -179,7 +197,48 @@
     </div>
   </div>
 
-  <h3>SSSSS</h3>
+  <h3 *ngIf="SupremeChars.length > 0">SUPREMOS</h3>
+
+  <div
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
+  >
+  <div class="col" *ngFor="let character of SupremeChars">
+    <div class="card h-100 shadow">
+      <a [routerLink]="['/characters', character._id]">
+        <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+      </a>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+                <small class="text-muted">
+                  <strong>Facciones:</strong> {{character.facciones}}
+                </small>
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 *ngIf="SSSSSChars.length > 0">SSSSS</h3>
 
   <div
   id="placesContainer"
@@ -206,6 +265,12 @@
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -214,7 +279,7 @@
     </div>
   </div>
 
-<h3>SSSS</h3>
+<h3 *ngIf="SSSSChars.length > 0">SSSS</h3>
 
 <div
 id="placesContainer"
@@ -241,6 +306,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
           <small class="text-muted">
             <strong>Campaña: </strong>{{ character.campanya }}
           </small>
+          <div *ngIf="character.muerto">
+            <small class="text-muted">
+              <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+            </small>
+            <br>
+          </div>
           <div class="card-footer">
             <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
           </div>
@@ -249,7 +320,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   </div>
 </div>
 
-<h3>SSS</h3>
+<h3 *ngIf="SSSChars.length > 0">SSS</h3>
 
 <div
 id="placesContainer"
@@ -276,6 +347,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
           <small class="text-muted">
             <strong>Campaña: </strong>{{ character.campanya }}
           </small>
+          <div *ngIf="character.muerto">
+            <small class="text-muted">
+              <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+            </small>
+            <br>
+          </div>
           <div class="card-footer">
             <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
           </div>
@@ -284,7 +361,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   </div>
 </div>
 
-<h3>SS</h3>
+<h3 *ngIf="SSChars.length > 0">SS</h3>
 
 <div
   id="placesContainer"
@@ -311,6 +388,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -319,7 +402,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
     </div>
   </div>
 
-<h3>S</h3>
+<h3 *ngIf="SChars.length > 0">S</h3>
 
 <div
   id="placesContainer"
@@ -346,6 +429,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -354,7 +443,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
     </div>
   </div>
 
-<h3>A</h3>
+<h3 *ngIf="AChars.length > 0">A</h3>
 
 <div
   id="placesContainer"
@@ -381,6 +470,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -389,7 +484,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
     </div>
   </div>
 
-<h3>B</h3>
+<h3 *ngIf="BChars.length > 0">B</h3>
 
 <div
   id="placesContainer"
@@ -416,6 +511,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -424,7 +525,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
     </div>
   </div>
 
-<h3>C</h3>
+<h3 *ngIf="CChars.length > 0">C</h3>
 
 <div
   id="placesContainer"
@@ -451,6 +552,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -459,7 +566,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
     </div>
   </div>
 
-<h3>D</h3>
+<h3 *ngIf="DChars.length > 0">D</h3>
 
 <div
   id="placesContainer"
@@ -486,6 +593,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -494,7 +607,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
     </div>
   </div>
 
-<h3>E</h3>
+<h3 *ngIf="EChars.length > 0">E</h3>
 
 <div
   id="placesContainer"
@@ -521,6 +634,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -529,7 +648,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
     </div>
   </div>
 
-<h3>F</h3>
+<h3 *ngIf="FChars.length > 0">F</h3>
 
 <div
   id="placesContainer"
@@ -556,6 +675,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
@@ -564,7 +689,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
     </div>
   </div>
 
-  <h3>Desconocido</h3>
+  <h3 *ngIf="UnknownChars.length > 0">Desconocido</h3>
 
   <div
   id="placesContainer"
@@ -591,6 +716,12 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>

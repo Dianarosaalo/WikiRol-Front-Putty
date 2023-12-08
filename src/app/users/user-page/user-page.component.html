@@ -40,6 +40,12 @@
             <small class="text-muted">
               <strong>Campaña: </strong>{{ character.campanya }}
             </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
             <div class="card-footer">
               <small class="text-muted">{{ character.descripcion }}</small>
             </div>

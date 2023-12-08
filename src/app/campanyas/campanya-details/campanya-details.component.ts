@@ -112,11 +112,13 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
         campanya: this.id
       }
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
-      console.log('Characters loaded:', characters);
+
       //characters.forEach((c) => this.characters.push(c));
       //this.characters=characters;
       this.characters=[...this.characters, ...characters];
+      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))));
       characters.forEach((c)=>this.whichTier(c));
+      console.log('Characters loaded:', characters);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
 
       // Trigger change detection after appending characters
@@ -137,9 +139,11 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
         campanya: this.id
       }
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
-      console.log('Characters loaded:', characters);
+
       this.characters= characters;
+      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))));
       this.characters.forEach((c)=>this.whichTier(c));
+      console.log('Characters loaded:', characters);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
       this.pageNumber++;
       this.buttonShow=true;
@@ -150,6 +154,9 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   {
     if(char.tier==="0.- Deus Ex Machina")
       this.DeusChars.push(char);
+
+    if(char.tier==="0.25.- Supremo")
+      this.SupremeChars.push(char);
 
     if(char.tier==="0.5.- SSSSS")
       this.SSSSSChars.push(char);
@@ -189,6 +196,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   }
 
   DeusChars:Character[]=[];
+  SupremeChars:Character[]=[];
   SSSSSChars:Character[]=[];
   SSSSChars:Character[]=[];
   SSSChars:Character[]=[];

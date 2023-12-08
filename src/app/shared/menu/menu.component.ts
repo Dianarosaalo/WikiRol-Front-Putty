@@ -15,6 +15,7 @@ export class MenuComponent {
   isDropDownOpen2=false;
   isDropDownOpen3=false;
   isDropDownOpen4=false;
+  isDropDownOpen5=false;
   isDropDownOpenSmall=false;
 
   constructor(private readonly router: Router) {}
@@ -30,6 +31,7 @@ export class MenuComponent {
     this.isDropDownOpen2=false;
     this.isDropDownOpen3=false;
     this.isDropDownOpen4=false;
+    this.isDropDownOpen5=false;
 
     if(this.isDropDownOpen)
     {
@@ -44,6 +46,7 @@ export class MenuComponent {
     this.isDropDownOpen=false;
     this.isDropDownOpen3=false;
     this.isDropDownOpen4=false;
+    this.isDropDownOpen5=false;
 
     if(this.isDropDownOpen2)
     {
@@ -53,11 +56,27 @@ export class MenuComponent {
     }
   }
 
+  toggleDropdown5() {
+    this.isDropDownOpen5 = !this.isDropDownOpen2;
+    this.isDropDownOpen=false;
+    this.isDropDownOpen3=false;
+    this.isDropDownOpen4=false;
+    this.isDropDownOpen2=false;
+
+    if(this.isDropDownOpen5)
+    {
+      setTimeout(() => {
+        this.isDropDownOpen5=false;
+      },3050);
+    }
+  }
+
   toggleDropdown3() {
     this.isDropDownOpen3 = !this.isDropDownOpen3;
     this.isDropDownOpen=false;
     this.isDropDownOpen2=false;
     this.isDropDownOpen4=false;
+    this.isDropDownOpen5=false;
 
     if(this.isDropDownOpen3)
     {
@@ -72,6 +91,7 @@ export class MenuComponent {
     this.isDropDownOpen=false;
     this.isDropDownOpen2=false;
     this.isDropDownOpen3=false;
+    this.isDropDownOpen5=false;
 
     if(this.isDropDownOpen4)
     {
@@ -86,6 +106,8 @@ export class MenuComponent {
     this.isDropDownOpen=false;
     this.isDropDownOpen2=false;
     this.isDropDownOpen3=false;
+    this.isDropDownOpen5=false;
+    this.isDropDownOpen4=false;
 
     if(this.isDropDownOpenSmall)
     {

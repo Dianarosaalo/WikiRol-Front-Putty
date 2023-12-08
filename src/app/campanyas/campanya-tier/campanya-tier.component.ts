@@ -8,7 +8,7 @@ import { CharacterFilterPipe } from '../pipes/character.filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { CharactersResponse } from 'src/app/characters/interfaces/characterResponse';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'fs-campanya-tier',
@@ -23,6 +23,7 @@ export class CampanyaTierComponent {
   search="";
 
   DeusChars:Character[]=[];
+  SupremeChars:Character[]=[];
   SSSSSChars:Character[]=[];
   SSSSChars:Character[]=[];
   SSSChars:Character[]=[];
@@ -46,6 +47,7 @@ export class CampanyaTierComponent {
 
   ngOnInit(): void {
     this.loadCharacters("0.- Deus Ex Machina",this.DeusChars);
+    this.loadCharacters("0.25.- Supremo",this.SupremeChars);
     this.loadCharacters("0.5.- SSSSS",this.SSSSSChars);
     this.loadCharacters("1.- SSSS",this.SSSSChars);
     this.loadCharacters("2.- SSS",this.SSSChars);
@@ -98,11 +100,18 @@ export class CampanyaTierComponent {
       params: {
         tier: currentTier
       }
-    }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
-      console.log('Characters loaded:', characters);
-      myChars.push(...characters);
-    });
+    }).pipe(
+    map((c) => c.personajes),
+    tap((characters: Character[]) => {
+      // Filter characters based on privacy before pushing into myChars
+      const filteredCharacters = characters.filter(c => !c.private || (c.private && c.creator === JSON.parse(String(localStorage.getItem("user")))));
+      myChars.push(...filteredCharacters);
+      console.log('Characters loaded:', filteredCharacters);
+    })
+  ).subscribe(() => {
+    // Trigger change detection after characters are loaded and filtered
     this.cdr.detectChanges();
-  }
+  });
+}
 
 }
