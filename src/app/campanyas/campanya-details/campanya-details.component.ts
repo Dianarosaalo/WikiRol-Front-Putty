@@ -27,7 +27,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   searchGame="";
   partidas!:Game[];
   activeTab="Personajes";
-  faction="El Imperio de la Humanidad"
+  faction=""
   order=""
   design=localStorage.getItem('design');
   pageNumber = 1;       //
@@ -116,7 +116,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       //characters.forEach((c) => this.characters.push(c));
       //this.characters=characters;
       this.characters=[...this.characters, ...characters];
-      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))));
+      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
       characters.forEach((c)=>this.whichTier(c));
       console.log('Characters loaded:', characters);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
@@ -141,7 +141,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
 
       this.characters= characters;
-      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))));
+      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
       this.characters.forEach((c)=>this.whichTier(c));
       console.log('Characters loaded:', characters);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);

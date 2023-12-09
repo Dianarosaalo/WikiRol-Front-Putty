@@ -97,7 +97,7 @@ export class UserPageComponent implements OnInit{
       console.log('Characters loaded:', characters);
       this.characters= characters;
       if (!this.me)
-        this.characters=this.characters.filter(c=>!c.private);
+        this.characters=this.characters.filter(c=>!c.private || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))));
       this.pageNumber++;
       this.buttonShow=true;
 
@@ -168,7 +168,7 @@ export class UserPageComponent implements OnInit{
       //this.characters=characters;
       this.characters=[...this.characters, ...characters];
       if (!this.me)
-        this.characters=this.characters.filter(c=>!c.private);
+        this.characters=this.characters.filter(c=>!c.private || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))));
 
       // Trigger change detection after appending characters
 

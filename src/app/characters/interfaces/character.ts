@@ -30,7 +30,9 @@ export interface Character {
   movimiento:number,
   private:boolean,
   tier:string,
-  canciones:Song[]
+  canciones:Song[],
+  reader?:string,
+  campanyasSecundarias?:string[]
 }
 
 export interface Trait{

@@ -129,6 +129,15 @@
   </div>
 
   <div class="mb-3">
+    Campañas en las que tambien Influye <strong>Opcional</strong><br>
+    <select class="form-control" [(ngModel)]="campanyaExtra" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <a class="btn btn-danger" (click)="addCampanya()">Añadir Campaña Secundaria</a>
+
+  <div class="mb-3">
     <label for="partidaAparicion">Partida de aparición</label>
     <input
       type="number"
@@ -175,6 +184,13 @@
     Privacidad del Personaje<strong> Máster NPCs</strong> <br>
     <select class="form-control" [(ngModel)]="newCharacter.private" [ngModelOptions]="{standalone:true}">
       <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    Permisos de Lectura para otro Jugador  <strong> Solo para PJs ocultos</strong><br>
+    <select class="form-control" [(ngModel)]="newCharacter.reader" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
     </select>
   </div>
 

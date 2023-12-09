@@ -104,7 +104,7 @@ export class CampanyaTierComponent {
     map((c) => c.personajes),
     tap((characters: Character[]) => {
       // Filter characters based on privacy before pushing into myChars
-      const filteredCharacters = characters.filter(c => !c.private || (c.private && c.creator === JSON.parse(String(localStorage.getItem("user")))));
+      const filteredCharacters = characters.filter(c => !c.private || (c.private && c.creator === JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
       myChars.push(...filteredCharacters);
       console.log('Characters loaded:', filteredCharacters);
     })

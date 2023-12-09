@@ -26,6 +26,7 @@ export class NewCharacterComponent implements OnInit {
   imagenGaleria!:string
   currentRelic!:string
   singularidades!:string
+  campanyaExtra!:string;
 
   users!:User[];
 
@@ -94,7 +95,9 @@ export class NewCharacterComponent implements OnInit {
       movimiento:0,
       private:false,
       tier:'',
-      canciones:[]
+      canciones:[],
+      reader:JSON.parse(String(localStorage.getItem("user")))!,
+      campanyasSecundarias:[]
     }
   }
 
@@ -124,6 +127,12 @@ export class NewCharacterComponent implements OnInit {
   {
     this.newCharacter.galeria.push(this.imagenGaleria);
     this.imagenGaleria="";
+  }
+
+  addCampanya()
+  {
+    this.newCharacter.campanyasSecundarias?.push(this.campanyaExtra);
+    this.campanyaExtra="";
   }
 
   addReliquia()
@@ -211,6 +220,7 @@ export class NewCharacterComponent implements OnInit {
   {value:"9.- E", label:"E"},
   {value:"9.5.- F", label:"F"},
   {value:"9.9.- Desconocido", label:"Desconocido"},
+  {value:"9.99.- No Existe Aún", label: "No Existe"}
   ];
 
   typeOfGame=[{value:"DnD",label:"DnD"}];

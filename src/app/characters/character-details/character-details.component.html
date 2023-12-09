@@ -26,6 +26,11 @@
     <p><strong>Altura:</strong> </p>
     <p><strong>Peso:</strong> </p>
     <p><strong>Campaña:</strong> {{character.campanya}}</p>
+
+    <div *ngIf="character.campanyasSecundarias">
+        <p *ngFor="let c of character.campanyasSecundarias"><strong>Campaña:</strong> {{c}}</p>
+    </div>
+
     </div>
 
 

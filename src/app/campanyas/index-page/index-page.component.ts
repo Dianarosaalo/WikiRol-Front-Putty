@@ -88,7 +88,7 @@ export class IndexPageComponent implements OnInit {
       //characters.forEach((c) => this.characters.push(c));
       //this.characters=characters;
       this.characters=[...this.characters, ...characters];
-      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))));
+      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))));
       console.log('Characters loaded:', characters);
       // Trigger change detection after appending characters
       this.cdr.detectChanges();
@@ -108,7 +108,7 @@ export class IndexPageComponent implements OnInit {
       }
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
       this.characters= characters;
-      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))));
+      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
       console.log('Characters loaded:', characters);
       this.pageNumber++;
       this.buttonShow=true;
