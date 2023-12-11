@@ -214,7 +214,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
 
   loadFactions(): void {
     this.http.get<FactionsResponse>('facciones/').pipe(
-      map((f) => f.facciones.filter((f)=>f.campanya===""||f.campanya===this.id).map((faction: Faction) => ({ value: faction.titulo, label: faction.titulo })))
+      map((f) => f.facciones.filter((f)=>f.campanya==="t"||f.campanya===this.id).map((faction: Faction) => ({ value: faction.titulo, label: faction.titulo })))
     ).subscribe((factions: { value: string; label: string }[]) => {
       this.factions = [...this.factions, ...factions];
     });

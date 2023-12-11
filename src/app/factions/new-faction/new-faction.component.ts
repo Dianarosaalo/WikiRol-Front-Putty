@@ -57,7 +57,7 @@ export class NewFactionComponent {
   }
 
   campaigns=[
-    {value:'',label:"Cualquier Campaña"},
+    {value:'t',label:"Cualquier Campaña"},
 
     {value:'Egathea',label:"Egathea"},
     {value:'Caminos de Sangre',label:"Caminos de Sangre"},

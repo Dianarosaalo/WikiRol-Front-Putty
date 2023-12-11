@@ -34,8 +34,7 @@ export class NewCharacterComponent implements OnInit {
 
   users!:User[];
 
-  factions=[
-    {value:"", label:"Todos"}];
+  factions!:{ value: string; label: string; }[];
 
   constructor(
     private readonly characterService:CharacterService,
@@ -377,7 +376,7 @@ export class NewCharacterComponent implements OnInit {
     this.http.get<FactionsResponse>('http://vps-5eb41e5a.vps.ovh.net:8080/facciones/').pipe(
       map((f) => f.facciones.map((faction: Faction) => ({ value: faction.titulo, label: faction.titulo })))
     ).subscribe((factions: { value: string; label: string }[]) => {
-      this.factions = [...this.factions, ...factions];
+      this.factions = factions;
     });
   }
 }
