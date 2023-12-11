@@ -4,9 +4,12 @@ import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Router, /*ActivatedRoute*/ } from '@angular/router';
 import { Character,Trait,Class,Song } from '../interfaces/character';
 import { CharacterService } from '../services/character.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { User } from 'src/app/auth/interfaces/login';
 import { UserService } from 'src/app/users/services/user.service';
+import { FactionsResponse } from 'src/app/factions/interfaces/factionResponse';
+import { Faction } from 'src/app/factions/interfaces/faction';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'fs-new-character',
@@ -34,11 +37,14 @@ export class NewCharacterComponent implements OnInit {
     private readonly characterService:CharacterService,
     private readonly router: Router,
     private readonly location: Location,
-    private readonly userService:UserService
+    private readonly userService:UserService,
+    private readonly http: HttpClient,
   ) {}
 
   ngOnInit(): void {
     this.newCharacter = this.resetCharacter();
+
+    this.loadFactions();
 
     this.userService.getAllUsers().subscribe({
       next: (users) => this.users=users,
@@ -196,7 +202,8 @@ export class NewCharacterComponent implements OnInit {
     {value:true,label:"Sí"},
     {value:false,label:"No"}];
 
-  factions=[{value:"El Imperio de la Humanidad", label:"El Imperio de la Humanidad"}];
+  factions=[
+      {value:"", label:"Todos"}];
 
   dead=[
     {value:true,label:"Sí"},
@@ -341,6 +348,14 @@ export class NewCharacterComponent implements OnInit {
     if (index !== -1) {
       this.newCharacter.canciones.splice(index, 1);
     }
+  }
+
+  loadFactions(): void {
+    this.http.get<FactionsResponse>('facciones/').pipe(
+      map((f) => f.facciones.map((faction: Faction) => ({ value: faction.titulo, label: faction.titulo })))
+    ).subscribe((factions: { value: string; label: string }[]) => {
+      this.factions = [...this.factions, ...factions];
+    });
   }
 }
 
