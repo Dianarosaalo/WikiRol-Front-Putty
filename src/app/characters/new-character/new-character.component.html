@@ -445,12 +445,31 @@
   <a class="btn btn-danger" (click)="addSingularidad()">Añadir Singularidad</a>
   <br>
 
-  <div class="mb-3">
-    Facciones <br>
-    <select class="form-control" [(ngModel)]="newCharacter.facciones" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of factions" value={{option.value}}>{{option.label}}</option>
-    </select>
+  <br>
+  <div class="containermenu">
+    <h1>Manejador de Facciones</h1>
+    <p (click)="showNewFactionForm()" class="btn btn-danger">Añadir Facción</p>
+
+    <div *ngIf="showNewFaction" class="new-trait-form">
+      <h2>Añadir Facción</h2>
+      <select class="form-control" [(ngModel)]="currentFaction" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of factions" value={{option.value}}>{{option.label}}</option>
+      </select>
+      <p (click)="addFaction()" class="btn btn-danger">Añadir Facción</p>
+    </div>
+
+    <div class="trait-list">
+      <h2>Facciones</h2>
+      <ul>
+        <li *ngFor="let f of newCharacter.facciones">
+          <span class="trait-title">{{ f }}</span>
+          <p (click)="deleteFaction(f)" class="btn btn-danger">Eliminar</p>
+        </li>
+      </ul>
+    </div>
   </div>
+
+  <br>
 
   <div class="mb-3">
     <label for="galeria">Fotos de la Galería <strong>Opcional</strong></label>

@@ -30,8 +30,12 @@ export class NewCharacterComponent implements OnInit {
   currentRelic!:string
   singularidades!:string
   campanyaExtra!:string;
+  currentFaction!:string;
 
   users!:User[];
+
+  factions=[
+    {value:"", label:"Todos"}];
 
   constructor(
     private readonly characterService:CharacterService,
@@ -202,9 +206,6 @@ export class NewCharacterComponent implements OnInit {
     {value:true,label:"Sí"},
     {value:false,label:"No"}];
 
-  factions=[
-      {value:"", label:"Todos"}];
-
   dead=[
     {value:true,label:"Sí"},
     {value:false,label:"No"}];
@@ -350,8 +351,30 @@ export class NewCharacterComponent implements OnInit {
     }
   }
 
+  // factions
+  showNewFaction = false;
+
+  showNewFactionForm() {
+    this.showNewFaction = true;
+  }
+
+  addFaction() {
+    if (this.currentFaction) {
+      this.newCharacter.facciones.push(this.currentFaction);
+      this.currentFaction="";
+      this.showNewClass = false;
+    }
+  }
+
+  deleteFaction(faccion: any) {
+    const index = this.newCharacter.facciones.indexOf(faccion);
+    if (index !== -1) {
+      this.newCharacter.facciones.splice(index, 1);
+    }
+  }
+
   loadFactions(): void {
-    this.http.get<FactionsResponse>('facciones/').pipe(
+    this.http.get<FactionsResponse>('http://vps-5eb41e5a.vps.ovh.net:8080/facciones/').pipe(
       map((f) => f.facciones.map((faction: Faction) => ({ value: faction.titulo, label: faction.titulo })))
     ).subscribe((factions: { value: string; label: string }[]) => {
       this.factions = [...this.factions, ...factions];
