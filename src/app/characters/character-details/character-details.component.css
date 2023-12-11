@@ -63,7 +63,7 @@ img{
 }
 
 .purpleButton{
-  background-color:red;
+  background-color:rgb(36, 155, 0);
   color:white;
 }
 
@@ -240,4 +240,8 @@ p{
 
 hr{
   color: black;
+}
+
+.deleteButton{
+  margin-left: 82%;
 }

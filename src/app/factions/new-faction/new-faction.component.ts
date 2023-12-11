@@ -1,33 +1,33 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { CommonModule,Location } from '@angular/common';
-import { Game } from '../interfaces/game';
+import { Faction } from '../interfaces/faction';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GameService } from '../services/game.service';
+import { FactionService } from '../../factions/services/faction.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'fs-new-game',
+  selector: 'fs-new-faction',
   standalone: true,
   imports: [CommonModule,FormsModule,HttpClientModule],
-  templateUrl: './new-game.component.html',
-  styleUrls: ['./new-game.component.css']
+  templateUrl: './new-faction.component.html',
+  styleUrls: ['./new-faction.component.css']
 })
-export class NewGameComponent implements OnInit{
-  newGame!:Game
-  @ViewChild('gameForm') gameForm!:NgForm
+export class NewFactionComponent {
+  newFaction!:Faction
+  @ViewChild('factionForm') factionForm!:NgForm
 
   saved = false;
   edit = false;
 
   constructor(
-    private readonly gameService:GameService,
+    private readonly factionService:FactionService,
     private readonly router: Router,
     private readonly location: Location
   ){}
 
   ngOnInit(): void {
-    this.newGame = this.resetGame();
+    this.newFaction = this.resetFaction();
 
     const currentUrl = this.location.path(); // all of this means im editing
     currentUrl.split('/');
@@ -36,30 +36,29 @@ export class NewGameComponent implements OnInit{
     {
       this.edit = true;
       console.log(id);
-      this.gameService.getById(String(id)).subscribe(
-        g => {
-          this.newGame = g
+      this.factionService.getById(String(id)).subscribe(
+        f => {
+          this.newFaction = f
         });
     }
   }
 
-  resetGame():Game{
+  resetFaction():Faction{
     return{
-      num:0,
       titulo:"",
       campanya:"",
-      fechaJugada:new Date('19/06/2019'),
-      resumen:"",
       creator:JSON.parse(localStorage.getItem("user")!)
       //personajesPresentes:[]
     }
   }
 
   canDeactivate() {
-    return this.saved || this.gameForm.pristine || confirm("Do you really want to leave?. Changes will be lost");
+    return this.saved || this.factionForm.pristine || confirm("Do you really want to leave?. Changes will be lost");
   }
 
   campaigns=[
+    {value:'',label:"Cualquier Campaña"},
+
     {value:'Egathea',label:"Egathea"},
     {value:'Caminos de Sangre',label:"Caminos de Sangre"},
     {value:'Aryma',label:"Aryma"},
@@ -78,12 +77,12 @@ export class NewGameComponent implements OnInit{
     };
   }
 
-  addGame() {
+  addFaction() {
     this.saved = true;
 
     if (!this.edit)
     {
-      this.gameService.post(this.newGame).subscribe({
+      this.factionService.post(this.newFaction).subscribe({
         next: () => {
           console.log("Correcto");
         }
@@ -91,7 +90,7 @@ export class NewGameComponent implements OnInit{
       this.router.navigate(['/campaigns','home']);
     }
     else{
-      this.gameService.edit(this.newGame).subscribe({
+      this.factionService.edit(this.newFaction).subscribe({
         next: () => {console.log("correcto")},
 
         error: (error) => console.error(error),

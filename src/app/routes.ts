@@ -27,6 +27,11 @@ export const APP_ROUTES: Routes = [
       import('./users/routes').then((m) => m.USER_ROUTES),
   },
   {
+    path: 'factions',
+    loadChildren: () =>
+      import('./factions/routes').then((m) => m.FACTION_ROUTES),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/auth/login',

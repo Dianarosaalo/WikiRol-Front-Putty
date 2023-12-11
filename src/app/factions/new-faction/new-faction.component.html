@@ -1,0 +1,42 @@
+<div class="container">
+  <form class="mt-4" (ngSubmit)="addFaction()" #factionForm="ngForm">
+
+    <div class="mb-3">
+      <label for="name">Nombre de la Facción</label>
+      <input
+        type="text"
+        class="form-control"
+        name="titulo"
+        id="titulo"
+        [(ngModel)]="newFaction.titulo"
+        placeholder="Introduce el titulo de la facción a crear!"
+        required
+        #tituloModel="ngModel"
+        [ngClass]="validClasses(tituloModel, 'is-valid', 'is-invalid')"
+      />
+      <div class="invalid-feedback" *ngIf="tituloModel.errors?.['required']">
+        Introduce un título correcto
+      </div>
+      <div class="invalid-feedback" *ngIf="tituloModel.errors?.['pattern']">
+        Introduce un título correcto.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      Campaña <br>
+      <select class="form-control" [(ngModel)]="newFaction.campanya" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
+    <div>
+      <button type="submit" class="btn btn-primary" *ngIf="!edit"[disabled]="factionForm.invalid">Crear</button>
+      <button *ngIf="edit"
+        type="submit"
+        class="btn btn-primary"
+        >
+        Editar
+      </button>
+    </div>
+  </form>
+  </div>

@@ -11,6 +11,8 @@ import { GameService } from 'src/app/games/services/game.service';
 import { HttpClient } from '@angular/common/http';
 import { CharactersResponse } from 'src/app/characters/interfaces/characterResponse';
 import { map } from 'rxjs';
+import { FactionsResponse } from 'src/app/factions/interfaces/factionResponse';
+import { Faction } from 'src/app/factions/interfaces/faction';
 
 @Component({
   selector: 'fs-campanya-details',
@@ -35,8 +37,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   buttonShow=false;
 
   factions=[
-    {value:"", label:"Todos"},
-    {value:'El Imperio de la Humanidad',label:"El Imperio de la Humanidad"}];
+    {value:"", label:"Todos"}];
 
   typeOfOrders=[
     {value:"", label:"Ninguno"},
@@ -62,6 +63,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     });
     this.id=String((this.route.snapshot.paramMap.get('id'))) ;
     this.loadCharacters();
+    this.loadFactions();
     /*this.characterService.getAll().subscribe({
       next: (characters) => this.characters=characters, //characters.forEach((c)=>this.characters.push(c)),
       error: (error) => console.log("Ha habido un error" + error + this.characters),
@@ -209,5 +211,13 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   EChars:Character[]=[];
   FChars:Character[]=[];
   UnknownChars:Character[]=[];
+
+  loadFactions(): void {
+    this.http.get<FactionsResponse>('facciones/').pipe(
+      map((f) => f.facciones.filter((f)=>f.campanya===""||f.campanya===this.id).map((faction: Faction) => ({ value: faction.titulo, label: faction.titulo })))
+    ).subscribe((factions: { value: string; label: string }[]) => {
+      this.factions = [...this.factions, ...factions];
+    });
+  }
 
 }
