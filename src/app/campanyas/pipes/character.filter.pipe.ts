@@ -13,10 +13,15 @@ export class CharacterFilterPipe implements PipeTransform {
     faction: string,
     order: string,
   ): Character[] {
+    const filteredByFaction = faction
+      ? characters.filter((c) => c.facciones.some(f => f.toLocaleLowerCase().includes(faction.toLocaleLowerCase())))
+      : characters;
+
     return search
-      ? characters.filter((c) =>
-          c.nombre.toLocaleLowerCase().includes(search.toLocaleLowerCase()) /*&& c.facciones.some(f => f.toLocaleLowerCase().includes(faction.toLocaleLowerCase()))*/)
-      : this.OrderBy(order,characters);
+      ? filteredByFaction.filter((c) =>
+          c.nombre.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+        )
+      : this.OrderBy(order, filteredByFaction);
   }
 
   OrderBy(order:string, characters:Character[]){
