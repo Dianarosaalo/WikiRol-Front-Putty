@@ -25,12 +25,18 @@
   <h1 style="text-align: center;">Personajes</h1>
 <nav class="navbar navbar-light bg-light justify-content-between mt-3 row">
 
+  <ul class="nav nav-pills col-auto ms-3 designs">
+    <li class="nav-item">
+      <p (click)="queryBuscar()" class="blue btn btn-success">Filtrar!</p>
+    </li>
+  </ul>
+
   <form class="container-fluid col">
     <input
       class="form-control"
       type="text"
       name="search"
-      placeholder="Search"
+      placeholder="Busca personajes aquí!"
       aria-label="Search"
       [(ngModel)]="search"
     />
