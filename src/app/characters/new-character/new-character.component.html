@@ -468,12 +468,18 @@
       </ul>
     </div>
   </div>
-
   <br>
 
-  <div class="mb-3">
-    <label for="galeria">Fotos de la Galería <strong>Opcional</strong></label>
-    <input
+  <!--aqui va el nuevo-->
+
+  <br>
+  <div class="containermenu">
+    <h1>Manejador de Imágenes de la Galería</h1>
+    <p (click)="showNewImageForm()" class="btn btn-danger">Añadir Imagen de Galería</p>
+
+    <div *ngIf="showNewImage" class="new-trait-form">
+      <h2>Añadir Imagen de Galería</h2>
+      <input
       type="file"
       class="form-control"
       id="galeria"
@@ -485,16 +491,26 @@
       #galeriaImage1="ngModel"
       [ngClass]="validClasses(galeriaImage1, 'is-valid', 'is-invalid')"
     />
-    <div class="invalid-feedback">Una imagen es requerida</div>
-  </div>
-  <img
-    [src]="newCharacter.galeria"
-    [ngClass]="{ 'd-none': !newCharacter.galeria }"
-    class="img-thumbnail mb-3"
-  />
+      <p (click)="addImagenGaleria()" class="btn btn-danger">Añadir Imagen a la Galería</p>
+    </div>
 
-  <a class="btn btn-danger" (click)="addImagenGaleria()">Añadir Foto de Galería</a>
+    <div class="trait-list">
+      <h2>Imagenes en galería</h2>
+      <ul>
+        <li *ngFor="let i of newCharacter.galeria">
+          <img
+            [src]="i"
+            [ngClass]="{ 'd-none': !newCharacter.galeria }"
+            class="img-thumbnail mb-3"
+          style="width:10%;height:10%;"/>
+          <p (click)="deleteImagen(i)" class="btn btn-danger">Eliminar</p>
+        </li>
+      </ul>
+    </div>
+  </div>
   <br>
+
+  <!--aqui va el nuevo-->
 
 
   <br>

@@ -132,12 +132,6 @@ export class NewCharacterComponent implements OnInit {
     });
   }
 
-  addImagenGaleria()
-  {
-    this.newCharacter.galeria.push(this.imagenGaleria);
-    this.imagenGaleria="";
-  }
-
   addCampanya()
   {
     this.newCharacter.campanyasSecundarias?.push(this.campanyaExtra);
@@ -378,6 +372,27 @@ export class NewCharacterComponent implements OnInit {
     ).subscribe((factions: { value: string; label: string }[]) => {
       this.factions = factions;
     });
+  }
+
+  // imagesGallery
+
+  showNewImage = false;
+
+  showNewImageForm() {
+    this.showNewImage = true;
+  }
+
+  addImagenGaleria()
+  {
+    this.newCharacter.galeria.push(this.imagenGaleria);
+    this.imagenGaleria="";
+  }
+
+  deleteImagen(imagen: any) {
+    const index = this.newCharacter.galeria.indexOf(imagen);
+    if (index !== -1) {
+      this.newCharacter.galeria.splice(index, 1);
+    }
   }
 }
 
