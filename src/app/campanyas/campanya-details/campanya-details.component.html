@@ -112,6 +112,8 @@
   </div>
 
   <button (click)="onScroll()" class="cargarMas" *ngIf="buttonShow===true"> Cargar Más</button>
+  <button (click)="cargarDesdeCero()" class="volverAtras" *ngIf="volverButtonShow===true"> Volver Atrás</button>
+
 </div>
 
 <div *ngIf="design==='new'"
@@ -153,6 +155,8 @@
   </div>
 
   <button (click)="onScroll()" class="cargarMas" *ngIf="buttonShow===true"> Cargar Más</button>
+  <button (click)="cargarDesdeCero()" class="volverAtras" *ngIf="volverButtonShow===true"> Volver Atrás</button>
+
 
 </div>
 </div>
@@ -708,4 +712,6 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
     </div>
   </div>
   <button (click)="onScroll()" class="cargarMas" *ngIf="buttonShow===true"> Cargar Más</button>
+  <button (click)="cargarDesdeCero()" class="volverAtras" *ngIf="volverButtonShow===true"> Volver Atrás</button>
+
 </div>

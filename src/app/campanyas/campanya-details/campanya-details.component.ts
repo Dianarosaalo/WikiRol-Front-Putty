@@ -35,6 +35,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   pageNumber = 1;       //
   pageSize = 18;        //
   buttonShow=false;
+  volverButtonShow=false;
 
   factions=[
     {value:"", label:"Todos"}];
@@ -117,6 +118,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
 
       //characters.forEach((c) => this.characters.push(c));
       //this.characters=characters;
+      //const characterNumber=this.characters.length;
       this.characters=[...this.characters, ...characters];
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
       characters.forEach((c)=>this.whichTier(c));
@@ -128,7 +130,14 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
 
       this.pageNumber++;
       console.log(this.characters);
+
       this.buttonShow=true;
+      /*if (characterNumber===this.characters.length)
+        this.buttonShow=false;
+      else{
+        this.buttonShow=true;
+      }*/
+
     });
   }
 
@@ -235,9 +244,14 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       this.characters = (this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user"))))) )
       .filter((c)=>c.campanya === this.id || c.campanyasSecundarias?.includes(this.id));
       this.cdr.detectChanges();
-      this.buttonShow=true;
+      this.volverButtonShow=true;
       console.log('Characters loaded:', characters)});
 
+  }
+
+  cargarDesdeCero()
+  {
+    window.location.reload();
   }
 
 }

@@ -31,6 +31,7 @@ export class IndexPageComponent implements OnInit {
   pageNumber = 1;       //
   pageSize = 18;        //
   buttonShow=false;
+  volverButtonShow=false;
 
   factions=[
     {value:"", label:"Todos"}];
@@ -93,6 +94,7 @@ export class IndexPageComponent implements OnInit {
 
       //characters.forEach((c) => this.characters.push(c));
       //this.characters=characters;
+      //const characterNumber=this.characters.length;
       this.characters=[...this.characters, ...characters];
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))));
       console.log('Characters loaded:', characters);
@@ -101,7 +103,14 @@ export class IndexPageComponent implements OnInit {
 
       this.pageNumber++;
       console.log(this.characters);
+
       this.buttonShow=true;
+      /*if (characterNumber===this.characters.length)
+        this.buttonShow=false;
+      else{
+        this.buttonShow=true;
+      }*/
+
     });
   }
 
@@ -143,8 +152,15 @@ export class IndexPageComponent implements OnInit {
       this.characters= characters;
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
       this.cdr.detectChanges();
-      this.buttonShow=true;
+      //this.buttonShow=true;
+      this.volverButtonShow=true;
+      console.log(this.volverButtonShow);
       console.log('Characters loaded:', characters)});
 
+  }
+
+  cargarDesdeCero()
+  {
+    window.location.reload();
   }
 }
