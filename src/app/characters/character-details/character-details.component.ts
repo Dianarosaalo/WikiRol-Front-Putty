@@ -91,12 +91,21 @@ export class CharacterDetailsComponent implements OnInit{
 
     if (stat<10)
     {
-      stat= stat/2;
+      stat= Math.trunc(stat/2);
       return (stat-5);
     }
 
     else
       return 0;
+  }
+
+  Check(rasgos:Trait[],key:string):boolean
+  {
+    if (rasgos.filter(r=>r.type===key && (r.privacy === false || (r.privacy === true && this.me))).length>0)
+      return true;
+    else{
+      return false;
+    }
   }
 
 }

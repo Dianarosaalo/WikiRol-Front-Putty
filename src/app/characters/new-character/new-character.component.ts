@@ -240,6 +240,7 @@ export class NewCharacterComponent implements OnInit {
     title: '',
     text: '',
     isPrivate: false,
+    type:'',
   };
 
   showNewTraitForm() {
@@ -247,10 +248,10 @@ export class NewCharacterComponent implements OnInit {
   }
 
   addTrait() {
-    if (this.newTrait.title && this.newTrait.text) {
-      const trait:Trait = {"title":this.newTrait.title,"info":this.newTrait.text,"privacy":this.newTrait.isPrivate}
+    if (this.newTrait.title && this.newTrait.text && this.newTrait.type) {
+      const trait:Trait = {"title":this.newTrait.title,"info":this.newTrait.text,"privacy":this.newTrait.isPrivate, "type":this.newTrait.type}
       this.newCharacter.rasgos.push({ ...trait });
-      this.newTrait = { title: '', text: '', isPrivate: false };
+      this.newTrait = { title: '', text: '', isPrivate: false, type:'' };
       this.showNewTrait = false;
       console.log(this.newCharacter.rasgos)
 
@@ -262,6 +263,7 @@ export class NewCharacterComponent implements OnInit {
     this.newTrait.title = trait.title;
     this.newTrait.text = trait.info;
     this.newTrait.isPrivate = trait.privacy;
+    this.newTrait.type = trait.type;
     console.log('Updated newTrait:', this.newTrait);
     this.showNewTrait = true;
   }
@@ -394,5 +396,21 @@ export class NewCharacterComponent implements OnInit {
       this.newCharacter.galeria.splice(index, 1);
     }
   }
+
+  tiposRasgo=[
+    {value:'Accion',label:"Acción"},
+    {value:'Accion Adicional',label:"Acción Adicional"},
+    {value:'Accion Legendaria',label:"Acción Legendaria"},
+    {value:'Accion Gratuita',label:"Acción Gratuita"},
+    {value:'Reaccion',label:"Reacción"},
+    {value:'Pasiva',label:"Pasiva"},
+    {value:'Resistencia',label:"Resistencia"},
+    {value:'Aura',label:"Aura"},
+    {value:'Transformacion',label:"Transformación"},
+    {value:'Dote',label:"Dote"},
+    {value:'Voluntad',label:"Voluntad"},
+    {value:'Singularidad',label:"Singularidad"},
+    {value:'Reliquia',label:"Reliquia"},
+  ];
 }
 

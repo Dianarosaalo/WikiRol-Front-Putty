@@ -405,7 +405,7 @@
   <br>
 
 
-  <div class="mb-3">
+  <!--<div class="mb-3">
     <label for="reliquia">Reliquias <strong>Opcional</strong></label>
     <textarea
       class="form-control"
@@ -443,7 +443,7 @@
   </div>
 
   <a class="btn btn-danger" (click)="addSingularidad()">Añadir Singularidad</a>
-  <br>
+  <br>-->
 
   <br>
   <div class="containermenu">
@@ -522,6 +522,9 @@
         <h2>Añadir nuevo Rasgo</h2>
         <input [(ngModel)]="newTrait.title" name="title" placeholder="Título" />
         <textarea [(ngModel)]="newTrait.text" name="text" placeholder="Descripción del Rasgo"></textarea>
+        <select class="form-control" [(ngModel)]="newTrait.type" name="type" [ngModelOptions]="{standalone:true}">
+          <option *ngFor="let option of tiposRasgo" value={{option.value}}>{{option.label}}</option>
+        </select>
         <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newTrait.isPrivate" name="isPrivate" id="privacy" /></label>
         <p (click)="addTrait()" class="btn btn-danger">Añadir Rasgo</p>
       </div>
@@ -532,6 +535,7 @@
           <li *ngFor="let trait of newCharacter.rasgos">
             <span class="trait-title">{{ transformString(trait.title) }}</span>
             <span class="trait-text">{{ transformString(trait.info) }}</span>
+            <span class="trait-text">{{trait.type}}</span>
             <span class="trait-privacy">Privado: {{ trait.privacy }}</span>
             <p (click)="editTrait(trait)" class="btn btn-danger">Editar</p>
             <p (click)="deleteTrait(trait)" class="btn btn-danger">Eliminar</p>

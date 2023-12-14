@@ -51,7 +51,7 @@
       </span></p>
       <p><strong>Hit Points:</strong> {{character.pv}}</p>
       <p><strong>CA:</strong> {{character.ca}}</p>
-      <p><strong>Movimiento:</strong> {{character.movimiento}}ft o {{movementRound(character.movimiento / 3.3)}}m</p>
+      <p><strong>Movimiento:</strong> {{character.movimiento}}ft | {{movementRound(character.movimiento / 3.3)}}m | {{movementRound(character.movimiento / 19.8)}}m/s</p>
 
     <hr>
     <div class="monster-abilities">
@@ -83,13 +83,135 @@
     <hr>
 
     <div class="monster-actions" *ngIf="counts(character.rasgos)">
-      <h3>Rasgos</h3>
-      <div *ngFor="let r of character.rasgos">
-        <p *ngIf="(r.privacy === false || (r.privacy === true && me))"><strong>{{r.title}}</strong>: {{r.info}}</p>
+      <br>
+      <h4>Rasgos</h4>
+      <hr>
+
+
+        <div *ngIf="Check(character.rasgos,'Accion')">
+          <h3>Acciones</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Accion'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Accion Adicional')">
+          <h3>Acciones Adicionales</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Accion Adicional'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+
+        <div *ngIf="Check(character.rasgos,'Accion Legendaria')">
+          <h3>Acciones Legendarias</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Accion Legendaria'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Accion Gratuita')">
+          <h3>Acciones Gratuitas</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Accion Gratuita'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+
+        <div *ngIf="Check(character.rasgos,'Reaccion')">
+          <h3>Reacciones</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Reaccion'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Pasiva')">
+          <h3>Pasivas</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Pasiva'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+
+        <div *ngIf="Check(character.rasgos,'Resistencia')">
+          <h3>Resistencias</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Resistencia'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Aura')">
+          <h3>Auras</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Aura'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Transformacion')">
+          <h3>Transformaciones</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Transformacion'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Dote')">
+          <h3>Dotes</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Dote'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Voluntad')">
+          <h3>Voluntad</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Voluntad'))">-<strong strong style="color:rgb(0, 123, 0);">{{ r.title }}</strong> : {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Singularidad')">
+          <h3>Singularidad</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Singularidad'))">-<strong strong style="color:white;text-shadow: 2px 2px 4px black;">{{ r.title }}</strong> : {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Reliquia')">
+          <h3>Reliquia</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Reliquia'))">-<strong style="color:rgb(255, 255, 0);text-shadow: 2px 2px 4px black;">{{ r.title }}</strong> : {{ r.info }}</p>
+            </div>
+          <hr>
+        </div>
+
       </div>
     </div>
 
-    <div *ngIf="counts(character.reliquia)">
+    <!--<div *ngIf="counts(character.reliquia)">
       <hr>
       <h3>Reliquias</h3>
       <p *ngFor="let r of character.reliquia"><strong>- {{r}}</strong></p>
@@ -99,7 +221,8 @@
       <hr>
       <h3>Singularidad</h3>
       <p *ngFor="let s of character.singularidad"><strong>- {{s}}</strong></p>
-    </div>
+    </div>-->
+
     </div>
 
     <div *ngIf="activeTab ==='Lore'">

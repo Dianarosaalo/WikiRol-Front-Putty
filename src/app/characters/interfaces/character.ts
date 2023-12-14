@@ -38,7 +38,8 @@ export interface Character {
 export interface Trait{
   title:string,
   info:string,
-  privacy:boolean
+  privacy:boolean,
+  type:string
 }
 
 export interface Class{
