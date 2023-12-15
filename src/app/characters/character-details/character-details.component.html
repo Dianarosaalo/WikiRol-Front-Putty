@@ -83,11 +83,12 @@
     <hr>
 
     <div class="monster-actions" *ngIf="counts(character.rasgos)">
+      <div> <!--este faltaba y pegaba petada-->
       <br>
       <h4>Rasgos</h4>
       <hr>
 
-
+      <div class="rasgos">
         <div *ngIf="Check(character.rasgos,'Accion')">
           <h3>Acciones</h3>
             <br>
@@ -117,6 +118,7 @@
         </div>
 
         <div *ngIf="Check(character.rasgos,'Accion Gratuita')">
+          <br>
           <h3>Acciones Gratuitas</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
@@ -135,7 +137,9 @@
           <hr>
         </div>
 
+
         <div *ngIf="Check(character.rasgos,'Pasiva')">
+          <br>
           <h3>Pasivas</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
@@ -207,6 +211,7 @@
             </div>
           <hr>
         </div>
+      </div>
 
       </div>
     </div>

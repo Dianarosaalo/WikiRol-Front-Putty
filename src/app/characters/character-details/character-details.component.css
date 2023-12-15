@@ -245,3 +245,22 @@ hr{
 .deleteButton{
   margin-left: 82%;
 }
+
+.contenedor{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+@media screen and (min-width: 501px)
+{
+  .rasgos{
+    column-count: 2;
+    column-gap: 60px;
+    column-rule: 1px solid rgb(81, 81, 81);
+  }
+}
+
+
+.rasgos h3{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}

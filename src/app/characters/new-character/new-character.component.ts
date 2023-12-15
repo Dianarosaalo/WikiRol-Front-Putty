@@ -266,6 +266,32 @@ export class NewCharacterComponent implements OnInit {
     this.newTrait.type = trait.type;
     console.log('Updated newTrait:', this.newTrait);
     this.showNewTrait = true;
+    this.editing=true;
+
+    this.position=this.newCharacter.rasgos.findIndex(
+      (trait) =>
+        trait.title === this.newTrait.title &&
+        trait.info === this.newTrait.text &&
+        trait.privacy === this.newTrait.isPrivate &&
+        trait.type === this.newTrait.type
+    );
+    console.log(this.position);
+  }
+
+  editing=false;
+  position=0;
+
+  editCurrentTrait()
+  {
+    if (this.newTrait.title && this.newTrait.text && this.newTrait.type)
+    {
+      const myTrait:Trait = {"title":this.newTrait.title,"info":this.newTrait.text,"privacy":this.newTrait.isPrivate, "type":this.newTrait.type}
+      this.newCharacter.rasgos[this.position] = myTrait;
+      this.position=0;
+      this.newTrait = { title: '', text: '', isPrivate: false, type: '' };
+      this.showNewTrait = false;
+      this.editing=false;
+    }
   }
 
   deleteTrait(trait: any) {

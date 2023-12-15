@@ -526,7 +526,8 @@
           <option *ngFor="let option of tiposRasgo" value={{option.value}}>{{option.label}}</option>
         </select>
         <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newTrait.isPrivate" name="isPrivate" id="privacy" /></label>
-        <p (click)="addTrait()" class="btn btn-danger">Añadir Rasgo</p>
+        <p *ngIf="!editing" (click)="addTrait()" class="btn btn-danger">Añadir Rasgo</p>
+        <p *ngIf="editing" (click)="editCurrentTrait()" class="btn btn-danger">Editar Rasgo</p>
       </div>
 
       <div class="trait-list">
