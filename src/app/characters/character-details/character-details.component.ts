@@ -45,8 +45,17 @@ export class CharacterDetailsComponent implements OnInit{
   }
 
   deleteCharacter(){
-    this.characterService.delete(String(this.character._id)).subscribe(r=>{console.log("Removed: "+r)});
-    this.router.navigate(['/campaigns']);
+
+    const isConfirmed = window.confirm("Seguro que quieres borrar este personaje?");
+
+    if (isConfirmed) {
+      this.characterService.delete(String(this.character._id)).subscribe(r=>{console.log("Removed: "+r)});
+      this.router.navigate(['/campaigns']);
+    }
+    else{
+      console.log("El Personaje no ha sido eliminado.");
+    }
+
   }
 
   navigateUserProfile()
