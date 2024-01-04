@@ -20,6 +20,7 @@ export class CharacterDetailsComponent implements OnInit{
   charCreator!:User
   me=false;
   activeTab="Stats";
+  reader=false
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -35,6 +36,9 @@ export class CharacterDetailsComponent implements OnInit{
       next: (character) => {
         this.character=character
         document.title="WR | "+this.character.nombre;
+        if ((character.reader===JSON.parse(String(localStorage.getItem("user")))))
+          this.reader=true;
+        console.log(this.reader);
         this.userService.getUserId(String(this.character.creator)).subscribe(
           u => this.charCreator = u
         );
@@ -110,7 +114,7 @@ export class CharacterDetailsComponent implements OnInit{
 
   Check(rasgos:Trait[],key:string):boolean
   {
-    if (rasgos.filter(r=>r.type===key && (r.privacy === false || (r.privacy === true && this.me))).length>0)
+    if (rasgos.filter(r=>r.type===key && (r.privacy === false || (r.privacy === true && this.me) || (r.privacy===true && this.reader))).length>0)
       return true;
     else{
       return false;

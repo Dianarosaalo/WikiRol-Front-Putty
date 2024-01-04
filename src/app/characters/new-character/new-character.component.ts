@@ -240,7 +240,7 @@ export class NewCharacterComponent implements OnInit {
     title: '',
     text: '',
     isPrivate: false,
-    type:'',
+    type:'Pasiva',
   };
 
   showNewTraitForm() {
@@ -251,7 +251,7 @@ export class NewCharacterComponent implements OnInit {
     if (this.newTrait.title && this.newTrait.text && this.newTrait.type) {
       const trait:Trait = {"title":this.newTrait.title,"info":this.newTrait.text,"privacy":this.newTrait.isPrivate, "type":this.newTrait.type}
       this.newCharacter.rasgos.push({ ...trait });
-      this.newTrait = { title: '', text: '', isPrivate: false, type:'' };
+      this.newTrait = { title: '', text: '', isPrivate: false, type:'Pasiva' };
       this.showNewTrait = false;
       console.log(this.newCharacter.rasgos)
 
@@ -428,12 +428,17 @@ export class NewCharacterComponent implements OnInit {
     {value:'Accion Adicional',label:"Acción Adicional"},
     {value:'Accion Legendaria',label:"Acción Legendaria"},
     {value:'Accion Gratuita',label:"Acción Gratuita"},
+    {value:'Accion de Movimiento',label:"Acción de Movimiento"},
+    {value:'Accion de Guarida',label:"Acción de Guarida"},
     {value:'Reaccion',label:"Reacción"},
     {value:'Pasiva',label:"Pasiva"},
     {value:'Resistencia',label:"Resistencia"},
     {value:'Aura',label:"Aura"},
     {value:'Transformacion',label:"Transformación"},
     {value:'Dote',label:"Dote"},
+    {value:'Objeto',label:"Objeto"},
+    {value:'Competencia',label:"Competencia"},
+    {value:'Hechizos',label:"Hechizos"},
     {value:'Voluntad',label:"Voluntad"},
     {value:'Singularidad',label:"Singularidad"},
     {value:'Reliquia',label:"Reliquia"},

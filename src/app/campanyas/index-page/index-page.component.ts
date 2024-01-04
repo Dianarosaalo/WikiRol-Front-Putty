@@ -36,12 +36,21 @@ export class IndexPageComponent implements OnInit {
   factions=[
     {value:"", label:"Todos"}];
 
-  typeOfOrders=[
-    {value:"", label:"Ninguno"},
-    {value:"nombre", label:"Nombre"},
-    {value:"tier", label:"Tier"},
-    {value:"edad", label:"Edad"}
-  ];
+    typeOfOrders=[
+      {value:"", label:"Ninguno"},
+      {value:"nombre", label:"Nombre"},
+      {value:"tier", label:"Tier"},
+      {value:"edad", label:"Edad"},
+      {value:"fuerza", label:"Fuerza"},
+      {value:"destreza", label:"Destreza"},
+      {value:"constitucion", label:"Constitución"},
+      {value:"inteligencia", label:"Inteligencia"},
+      {value:"sabiduria", label:"Sabiduría"},
+      {value:"carisma", label:"Carisma"},
+      {value:"armadura", label:"Armadura"},
+      {value:"vida", label:"Vida"},
+      {value:"movimiento", label:"Movimiento"}
+    ];
 
   constructor(
     private readonly characterService:CharacterService,

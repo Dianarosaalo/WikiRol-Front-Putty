@@ -93,8 +93,9 @@
           <h3>Acciones</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Accion'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Accion'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
+            <br>
           <hr>
         </div>
 
@@ -102,8 +103,19 @@
           <h3>Acciones Adicionales</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Accion Adicional'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Accion Adicional'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
+            <br>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Accion de Movimiento')">
+          <h3>Acciones de Movimiento</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Accion de Movimiento'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+            <br>
           <hr>
         </div>
 
@@ -112,8 +124,19 @@
           <h3>Acciones Legendarias</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Accion Legendaria'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Accion Legendaria'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
+            <br>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Accion de Guarida')">
+          <h3>Acciones de Guarida</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Accion de Guarida'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+            <br>
           <hr>
         </div>
 
@@ -122,8 +145,9 @@
           <h3>Acciones Gratuitas</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Accion Gratuita'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Accion Gratuita'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
+            <br>
           <hr>
         </div>
 
@@ -132,8 +156,9 @@
           <h3>Reacciones</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Reaccion'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Reaccion'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
+            <br>
           <hr>
         </div>
 
@@ -143,8 +168,9 @@
           <h3>Pasivas</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Pasiva'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Pasiva'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
+            <br>
           <hr>
         </div>
 
@@ -153,8 +179,9 @@
           <h3>Resistencias</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Resistencia'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Resistencia'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
+            <br>
           <hr>
         </div>
 
@@ -162,8 +189,19 @@
           <h3>Auras</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Aura'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me || r.privacy===true && reader)) && (r.type==='Aura'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
+            <br>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Hechizos')">
+          <h3>Hechizos</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me)|| (r.privacy===true && reader)) && (r.type==='Hechizos'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+            <br>
           <hr>
         </div>
 
@@ -171,8 +209,19 @@
           <h3>Transformaciones</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Transformacion'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me ) || (r.privacy===true && reader)) && (r.type==='Transformacion'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
+            <br>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Competencia')">
+          <h3>Competencias</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Competencia'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+            <br>
           <hr>
         </div>
 
@@ -180,8 +229,19 @@
           <h3>Dotes</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Dote'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Dote'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
+            <br>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Objeto')">
+          <h3>Objetos</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Objeto'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+            <br>
           <hr>
         </div>
 
@@ -189,8 +249,9 @@
           <h3>Voluntad</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Voluntad'))">-<strong strong style="color:rgb(0, 123, 0);">{{ r.title }}</strong> : {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Voluntad'))">-<strong strong style="color:rgb(0, 123, 0);">{{ r.title }}</strong> : {{ r.info }}</p>
             </div>
+            <br>
           <hr>
         </div>
 
@@ -198,8 +259,9 @@
           <h3>Singularidad</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Singularidad'))">-<strong strong style="color:white;text-shadow: 2px 2px 4px black;">{{ r.title }}</strong> : {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Singularidad'))">-<strong strong style="color:white;text-shadow: 2px 2px 4px black;">{{ r.title }}</strong> : {{ r.info }}</p>
             </div>
+            <br>
           <hr>
         </div>
 
@@ -207,8 +269,9 @@
           <h3>Reliquia</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me)) && (r.type==='Reliquia'))">-<strong style="color:rgb(255, 255, 0);text-shadow: 2px 2px 4px black;">{{ r.title }}</strong> : {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Reliquia'))">-<strong style="color:rgb(255, 255, 0);text-shadow: 2px 2px 4px black;">{{ r.title }}</strong> : {{ r.info }}</p>
             </div>
+            <br>
           <hr>
         </div>
       </div>
