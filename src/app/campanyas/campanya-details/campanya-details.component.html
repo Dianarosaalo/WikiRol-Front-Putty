@@ -5,7 +5,7 @@
 </ul>
 
 <div id="partidas" *ngIf="activeTab ==='Partidas'">
-  <h1 style="text-align: center;">Partidas Jugadas</h1>
+  <h1 style="text-align: center;">Partidas Jugadas ({{partidas.length}})</h1>
 
   <form class="container-fluid col">
     <input
@@ -22,7 +22,7 @@
 </div>
 
 <div *ngIf="activeTab ==='Personajes'">
-  <h1 style="text-align: center;">Personajes</h1>
+  <h1 style="text-align: center;">Personajes ({{characters.length}})</h1>
 <nav class="navbar navbar-light bg-light justify-content-between mt-3 row">
 
   <ul class="nav nav-pills col-auto ms-3 designs">

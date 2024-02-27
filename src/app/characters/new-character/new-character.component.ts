@@ -192,7 +192,9 @@ export class NewCharacterComponent implements OnInit {
     {value:'Djuna',label:"(Aventura) Djuna & Co"},
     {value:'Mario',label:"(Aventura) Cruzados Mario"},
     {value:'Reinos Olvidados',label:"(Aventura) Reinos Olvidados"},
-    {value:'Miscelanea',label:"(Conjunto de cosas Miscelaneas)"}
+    {value:'Miscelanea',label:"(Conjunto de cosas Miscelaneas)"},
+    {value:'Guardianes del Cosmos',label:"Guardianes del Cosmos"},
+    {value:'Pruebas',label:"Pruebas DM"}
     ];
 
   intergalactic=[
