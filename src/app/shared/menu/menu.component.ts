@@ -17,6 +17,12 @@ export class MenuComponent {
   isDropDownOpen4=false;
   isDropDownOpen5=false;
   isDropDownOpenSmall=false;
+  isLogged=false;
+
+  ngOnInit(): void {
+    if (localStorage.getItem('user'))
+      this.isLogged=true;
+  }
 
   constructor(private readonly router: Router) {}
 
@@ -24,6 +30,7 @@ export class MenuComponent {
     this.router.navigate(['/reviews']);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    this.isLogged=false;
   }
 
   toggleDropdown() {

@@ -56,6 +56,8 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     {value:"movimiento", label:"Movimiento"}
   ];
 
+  itsYggdrassil=true
+
   constructor(
     private readonly characterService:CharacterService,
     private readonly gameService:GameService,
@@ -86,6 +88,11 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     })
     if (!this.design)
       this.design='new';
+
+    if (String(this.id)==="Yggdrassil")
+      this.itsYggdrassil=true;
+    else
+      this.itsYggdrassil=false;
 
     document.title = "WikiRol | " + this.id;
   }

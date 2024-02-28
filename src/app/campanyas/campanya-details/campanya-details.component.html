@@ -1,5 +1,6 @@
 <ul class="tabs-container">
   <li (click)="onTabClick('Personajes')" class="tab-link">Personajes</li>
+  <li *ngIf="itsYggdrassil" (click)="onTabClick('Deidades')" class="tab-link">Deidades</li>
   <li (click)="onTabClick('Partidas')" class="tab-link">Partidas</li>
   <li (click)="onTabClick('Tierlist')" class="tab-link">Tier List</li>
 </ul>

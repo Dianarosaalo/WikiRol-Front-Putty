@@ -100,8 +100,8 @@
               Cuenta
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpen2}" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" [routerLink]="['/auth', 'login']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Login</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/auth', 'register']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Registro</a></li>
+              <li *ngIf="!isLogged"><a class="dropdown-item" [routerLink]="['/auth', 'login']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Login</a></li>
+              <li *ngIf="!isLogged"><a class="dropdown-item" [routerLink]="['/auth', 'register']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Registro</a></li>
               <li><a class="dropdown-item" [routerLink]="['/users', 'me']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Perfil</a></li>
               <li><a class="dropdown-item" (click)="logOut()">Log-out</a></li>
             </ul>
