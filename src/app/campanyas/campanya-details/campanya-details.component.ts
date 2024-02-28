@@ -9,7 +9,7 @@ import { GameFilterPipe } from '../pipes/game.filter.pipe';
 import { Game } from 'src/app/games/interfaces/game';
 import { GameService } from 'src/app/games/services/game.service';
 import { HttpClient } from '@angular/common/http';
-import { CharactersResponse } from 'src/app/characters/interfaces/characterResponse';
+import { CharactersResponse,DeidadGroup } from 'src/app/characters/interfaces/characterResponse';
 import { map } from 'rxjs';
 import { FactionsResponse } from 'src/app/factions/interfaces/factionResponse';
 import { Faction } from 'src/app/factions/interfaces/faction';
@@ -24,6 +24,7 @@ import { Faction } from 'src/app/factions/interfaces/faction';
 export class CampanyaDetailsComponent implements OnInit,OnDestroy{
 
   characters!:Character[];
+  deidades!:Character[];
   id!:string;
   search="";
   searchGame="";
@@ -74,6 +75,12 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       }
     });
     this.id=String((this.route.snapshot.paramMap.get('id'))) ;
+
+    if (String(this.id)==="Yggdrassil")
+      this.itsYggdrassil=true;
+    else
+      this.itsYggdrassil=false;
+
     this.loadCharacters();
     this.loadFactions();
     /*this.characterService.getAll().subscribe({
@@ -88,11 +95,6 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     })
     if (!this.design)
       this.design='new';
-
-    if (String(this.id)==="Yggdrassil")
-      this.itsYggdrassil=true;
-    else
-      this.itsYggdrassil=false;
 
     document.title = "WikiRol | " + this.id;
   }
@@ -137,6 +139,14 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       //const characterNumber=this.characters.length;
       this.characters=[...this.characters, ...characters];
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
+
+      if (this.itsYggdrassil){
+        const newDeidades = this.characters.filter((c) => c.deidad);
+        this.characters = this.characters.filter((c) => !c.deidad);
+        this.deidades = this.deidades.concat(newDeidades);
+        this.groupDeidadesByType();
+      }
+
       characters.forEach((c)=>this.whichTier(c));
       console.log('Characters loaded:', characters);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
@@ -169,6 +179,13 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
 
       this.characters= characters;
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
+
+      if (this.itsYggdrassil){
+        this.deidades = this.characters.filter((c)=>c.deidad);      //son deidades
+        this.characters = this.characters.filter((c)=>!c.deidad);
+        this.groupDeidadesByType();
+      }
+
       this.characters.forEach((c)=>this.whichTier(c));
       console.log('Characters loaded:', characters);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
@@ -268,6 +285,25 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   cargarDesdeCero()
   {
     window.location.reload();
+  }
+
+  //gestion de deidades
+
+  groupedDeidades: DeidadGroup[] = [];
+
+  groupDeidadesByType(): void{
+    const deidadMap = new Map<string, Character[]>();
+
+    this.deidades.forEach((deidad) => {
+      const deidadName = deidad.deidad;
+      if (deidadMap.has(deidadName)) {
+        deidadMap.get(deidadName)!.push(deidad);
+      } else {
+        deidadMap.set(deidadName, [deidad]);
+      }
+    });
+
+    this.groupedDeidades = Array.from(deidadMap, ([deidad, deidades]) => ({ deidad, deidades }));
   }
 
 }

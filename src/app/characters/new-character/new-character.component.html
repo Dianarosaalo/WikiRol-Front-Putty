@@ -201,6 +201,21 @@
     </select>
   </div>
 
+  <div class="mb-3">
+    <label for="titulo">Deidad</label>
+    <input
+      type="text"
+      class="form-control"
+      name="deidad"
+      id="deidad"
+      [(ngModel)]="newCharacter.deidad"
+      placeholder="En caso de serlo, de dónde es esta deidad?"
+      #tituloModel="ngModel"
+    />
+  </div>
+
+
+
   <h3>Estadísticas</h3>
 
   <div class="mb-3">

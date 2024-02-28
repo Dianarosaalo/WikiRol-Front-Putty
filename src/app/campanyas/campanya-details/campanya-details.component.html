@@ -162,6 +162,48 @@
 </div>
 </div>
 
+<div *ngIf="activeTab === 'Deidades'">
+  <h1 style="text-align: center;">Deidades ({{ deidades.length }})</h1>
+  <div *ngIf="design === 'old'" id="placesContainer" class="mb-1 mt-1 adriweboMargin">
+    <ng-container *ngFor="let group of groupedDeidades">
+      <div class="group-container">
+        <h3 class="big">{{ group.deidad }}</h3>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3">
+          <div class="col" *ngFor="let character of group.deidades">
+            <div class="card h-100 shadow">
+              <a [routerLink]="['/characters', character._id]">
+                <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+              </a>
+              <div class="card-body">
+                <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+                <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+                <div class="card-text">
+                  <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                  </small>
+                </div>
+                <small class="text-muted">
+                  <strong>Campaña: </strong>{{ character.campanya }}
+                </small>
+                <div *ngIf="character.muerto">
+                  <small class="text-muted">
+                    <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+                  </small>
+                  <br>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <button (click)="onScroll()" class="cargarMas" *ngIf="buttonShow === true">Cargar Más</button>
+</div>
+
 <div *ngIf="activeTab ==='Tierlist'" class="tierList">
   <h1 style="text-align: center;">Tier List</h1>
   <h3 *ngIf="DeusChars.length > 0">DEUS EX MACHINA</h3>

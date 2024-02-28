@@ -12,3 +12,8 @@ export interface TypeCounts {
   [key: string]: number;
 }
 
+export interface DeidadGroup {
+  deidad: string; // Name of the group
+  deidades: Character[]; // Characters belonging to this group
+}
+

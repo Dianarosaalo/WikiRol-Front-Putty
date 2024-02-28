@@ -106,7 +106,8 @@ export class NewCharacterComponent implements OnInit {
       tier:'',
       canciones:[],
       reader:JSON.parse(String(localStorage.getItem("user")))!,
-      campanyasSecundarias:[]
+      campanyasSecundarias:[],
+      deidad:''
     }
   }
 

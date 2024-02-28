@@ -32,7 +32,8 @@ export interface Character {
   tier:string,
   canciones:Song[],
   reader?:string,
-  campanyasSecundarias?:string[]
+  campanyasSecundarias?:string[],
+  deidad:string
 }
 
 export interface Trait{
