@@ -299,6 +299,28 @@
           <hr>
         </div>
 
+        <div *ngIf="Check(character.rasgos,'Accion Combinada')">
+          <h3>Acciones Combinadas</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Accion Combinada'))">-<strong style="color:rgb(255, 0, 0);text-shadow: 2px 2px 4px black;">{{ r.title }}</strong> : {{ r.info }}</p>
+            </div>
+            <br>
+          <hr>
+        </div>
+
+
+        <div *ngIf="Check(character.rasgos,'Esfera de Realidad')">
+          <h3>Esfera de Realidad</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Esfera de Realidad'))">-<strong style="color:rgb(0, 157, 255);text-shadow: 2px 2px 4px black;">{{ r.title }}</strong> : {{ r.info }}</p>
+            </div>
+            <br>
+          <hr>
+        </div>
+
+
         <div *ngIf="Check(character.rasgos,'Singularidad')">
           <h3>Singularidad</h3>
             <br>
@@ -318,6 +340,7 @@
             <br>
           <hr>
         </div>
+
       </div>
 
       </div>

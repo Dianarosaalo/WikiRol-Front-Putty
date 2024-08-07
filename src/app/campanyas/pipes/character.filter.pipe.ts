@@ -46,6 +46,12 @@ export class CharacterFilterPipe implements PipeTransform {
         return a.tier > b.tier ? 1 : -1
       });
     }
+    else if (order==="partidaAparicion"){
+      myCharacters.sort((a,b)=>{
+        if (a.partidaAparicion===b.partidaAparicion) return 0;
+        return a.edad > b.edad ? 1 : -1
+      });
+    }
 
     //stats
 
@@ -163,6 +169,34 @@ export class CharacterFilterPipe implements PipeTransform {
 
         if (a.movimiento===b.movimiento) return 0;
         return a.movimiento < b.movimiento ? 1 : -1
+      });
+    }
+
+    else if (order==="nivel"){
+      myCharacters.sort((a,b)=>{
+
+        const sumLevels = (character:Character) => {
+          let sum = 0;
+          if (character.clases) {
+            character.clases.forEach((clase) => {
+              sum += clase.level;
+            });
+          }
+          return sum;
+        };
+
+        // Calculate sum of levels for each character
+        let sumA = sumLevels(a);
+        let sumB = sumLevels(b);
+
+        if (a.privateStats==true && a.creator!==JSON.parse(String(localStorage.getItem("user"))))
+          sumA=0;
+        if (b.privateStats==true && b.creator!==JSON.parse(String(localStorage.getItem("user"))))
+          sumB=0;
+
+        // Compare based on the sum of levels
+        if (sumA === sumB) return 0;
+        return sumA < sumB ? 1 : -1;
       });
     }
 

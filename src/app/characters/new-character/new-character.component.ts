@@ -444,6 +444,8 @@ export class NewCharacterComponent implements OnInit {
     {value:'Competencia',label:"Competencia"},
     {value:'Hechizos',label:"Hechizos"},
     {value:'Voluntad',label:"Voluntad"},
+    {value:'Esfera de Realidad',label:"Esfera de Realidad"},
+    {value:'Accion Combinada',label:"Accion Combinada"},
     {value:'Singularidad',label:"Singularidad"},
     {value:'Reliquia',label:"Reliquia"},
   ];
