@@ -11,32 +11,42 @@
 
 <div
     id="placesContainer"
-    class="mb-4 mt-4 row row-cols-2 row-cols-md-2 row-cols-xl-6 g-6"
+    class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
 
-    <div class="card h-100 shadow" *ngFor="let character of characters">
+  <div class="col" *ngFor="let character of characters">
+    <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-    <div class="card-body">
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ (character.titulo) }}</p>
+            <div class="card-text">
 
-      <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-      <p class="card-text">{{ character.titulo }}</p>
+            </div>
+            <!--<span class="badge ms-2 bg-success">Open_Text</span>  Replace 'Open_Text' with the actual open text
+            <span class="badge ms-2 bg-danger">Close_Text</span> Replace 'Close_Text' with the actual close text -->
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
 
-      <div class="card-text">
-        <small class="text-muted">
-          <strong>Campaña: </strong>{{ character.campanya }}
-        </small>
-      </div>
-      <div *ngIf="character.muerto">
-        <small class="text-muted">
-          <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
-        </small>
-        <br>
-      </div>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ character.descripcion }}</small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">{{ (character.descripcion) }}</small>
+            </div>
+        </div>
     </div>
   </div>
+
   </div>
