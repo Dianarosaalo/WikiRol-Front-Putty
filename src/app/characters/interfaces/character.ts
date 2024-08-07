@@ -34,7 +34,10 @@ export interface Character {
   reader?:string,
   campanyasSecundarias?:string[],
   deidad:string,
-  privateStats: boolean
+  privateStats: boolean,
+  altura:number,
+  peso:number,
+  competencia:number
 }
 
 export interface Trait{

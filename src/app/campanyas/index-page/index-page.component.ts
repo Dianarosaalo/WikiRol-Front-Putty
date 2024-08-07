@@ -42,6 +42,8 @@ export class IndexPageComponent implements OnInit {
       {value:"tier", label:"Tier"},
       {value:"nivel", label:"Nivel"},
       {value:"edad", label:"Edad"},
+      {value:"altura", label:"Altura"},
+      {value:"peso", label:"Peso"},
       {value:"fuerza", label:"Fuerza"},
       {value:"destreza", label:"Destreza"},
       {value:"constitucion", label:"Constitución"},
@@ -51,7 +53,6 @@ export class IndexPageComponent implements OnInit {
       {value:"armadura", label:"Armadura"},
       {value:"vida", label:"Vida"},
       {value:"movimiento", label:"Movimiento"},
-      {value:"partidaAparicion", label:"Aparición"}
     ];
 
   constructor(

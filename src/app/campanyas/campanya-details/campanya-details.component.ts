@@ -47,6 +47,8 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     {value:"tier", label:"Tier"},
     {value:"nivel", label:"Nivel"},
     {value:"edad", label:"Edad"},
+    {value:"altura", label:"Altura"},
+      {value:"peso", label:"Peso"},
     {value:"fuerza", label:"Fuerza"},
     {value:"destreza", label:"Destreza"},
     {value:"constitucion", label:"Constitución"},

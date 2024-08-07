@@ -209,6 +209,44 @@
   </div>
 
   <div class="mb-3">
+    <label for="sab">Altura</label>
+    <input
+      type="number"
+      class="form-control"
+      id="altura"
+      name="altura"
+      min:0
+      [(ngModel)]="newCharacter.altura"
+      placeholder="Altura del personaje en centímetros"
+      required
+      #altModel="ngModel"
+      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
+      Altura del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="peso">Peso</label>
+    <input
+      type="number"
+      class="form-control"
+      id="peso"
+      name="peso"
+      min:0
+      [(ngModel)]="newCharacter.peso"
+      placeholder="Peso del personaje en kilogramos"
+      required
+      #pesModel="ngModel"
+      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
+      Peso del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
     <label for="titulo">Deidad</label>
     <input
       type="text"
@@ -394,6 +432,25 @@
     />
     <div class="invalid-feedback" *ngIf="movModel.errors?.['required']">
       Pies de Movimiento
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="competencia">Competencia</label>
+    <input
+      type="number"
+      class="form-control"
+      id="competencia"
+      name="competencia"
+      min:0
+      [(ngModel)]="newCharacter.competencia"
+      placeholder="Competencia del personaje"
+      required
+      #compModel="ngModel"
+      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
+      Competencia del personaje
     </div>
   </div>
 

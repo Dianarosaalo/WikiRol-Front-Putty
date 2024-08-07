@@ -108,7 +108,10 @@ export class NewCharacterComponent implements OnInit {
       reader:JSON.parse(String(localStorage.getItem("user")))!,
       campanyasSecundarias:[],
       deidad:'',
-      privateStats: false
+      privateStats: false,
+      altura:0,
+      peso:0,
+      competencia:0
     }
   }
 

@@ -49,7 +49,7 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="partidaAparicion"){
       myCharacters.sort((a,b)=>{
         if (a.partidaAparicion===b.partidaAparicion) return 0;
-        return a.edad > b.edad ? 1 : -1
+        return a.partidaAparicion > b.partidaAparicion ? 1 : -1
       });
     }
 
@@ -169,6 +169,22 @@ export class CharacterFilterPipe implements PipeTransform {
 
         if (a.movimiento===b.movimiento) return 0;
         return a.movimiento < b.movimiento ? 1 : -1
+      });
+    }
+
+    else if (order==="altura"){
+      myCharacters.sort((a,b)=>{
+
+        if (a.altura===b.altura) return 0;
+        return a.altura < b.altura ? 1 : -1
+      });
+    }
+
+    else if (order==="peso"){
+      myCharacters.sort((a,b)=>{
+
+        if (a.peso===b.peso) return 0;
+        return a.peso < b.peso ? 1 : -1
       });
     }
 
