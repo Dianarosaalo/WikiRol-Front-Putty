@@ -175,6 +175,9 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="altura"){
       myCharacters.sort((a,b)=>{
 
+        if (!a.altura)
+          a.altura=0;
+
         if (a.altura===b.altura) return 0;
         return a.altura < b.altura ? 1 : -1
       });
@@ -182,6 +185,9 @@ export class CharacterFilterPipe implements PipeTransform {
 
     else if (order==="peso"){
       myCharacters.sort((a,b)=>{
+
+        if (!a.peso)
+          a.peso=0;
 
         if (a.peso===b.peso) return 0;
         return a.peso < b.peso ? 1 : -1
