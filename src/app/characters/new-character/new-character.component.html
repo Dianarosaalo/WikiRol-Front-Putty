@@ -188,6 +188,13 @@
   </div>
 
   <div class="mb-3">
+    Rasgos Ocultos<strong> Máster NPCs</strong> <br>
+    <select class="form-control" [(ngModel)]="newCharacter.privateStats" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
     Permisos de Lectura para otro Jugador  <strong> Solo para PJs ocultos</strong><br>
     <select class="form-control" [(ngModel)]="newCharacter.reader" [ngModelOptions]="{standalone:true}">
       <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>

@@ -106,12 +106,12 @@ export class IndexPageComponent implements OnInit {
       //const characterNumber=this.characters.length;
       this.characters=[...this.characters, ...characters];
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))));
-      console.log('Characters loaded:', characters);
+      console.log('Characters loaded:', characters.length);
       // Trigger change detection after appending characters
       this.cdr.detectChanges();
 
       this.pageNumber++;
-      console.log(this.characters);
+      console.log(this.characters.length);
 
       this.buttonShow=true;
       /*if (characterNumber===this.characters.length)
@@ -133,7 +133,7 @@ export class IndexPageComponent implements OnInit {
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
       this.characters= characters;
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
-      console.log('Characters loaded:', characters);
+      console.log('Characters loaded:', characters.length);
       this.pageNumber++;
       this.buttonShow=true;
     });
@@ -164,7 +164,7 @@ export class IndexPageComponent implements OnInit {
       //this.buttonShow=true;
       this.volverButtonShow=true;
       console.log(this.volverButtonShow);
-      console.log('Characters loaded:', characters)});
+      console.log('Characters loaded:', characters.length)});
 
   }
 

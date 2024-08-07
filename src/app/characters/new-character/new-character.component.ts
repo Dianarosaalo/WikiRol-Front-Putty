@@ -107,7 +107,8 @@ export class NewCharacterComponent implements OnInit {
       canciones:[],
       reader:JSON.parse(String(localStorage.getItem("user")))!,
       campanyasSecundarias:[],
-      deidad:''
+      deidad:'',
+      privateStats: false
     }
   }
 

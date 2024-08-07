@@ -33,7 +33,8 @@ export interface Character {
   canciones:Song[],
   reader?:string,
   campanyasSecundarias?:string[],
-  deidad:string
+  deidad:string,
+  privateStats: boolean
 }
 
 export interface Trait{

@@ -21,6 +21,7 @@ export class CharacterDetailsComponent implements OnInit{
   me=false;
   activeTab="Stats";
   reader=false
+  hidden=true
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -44,6 +45,8 @@ export class CharacterDetailsComponent implements OnInit{
         );
         if (this.character.creator===JSON.parse(localStorage.getItem("user")!)) //to see if the user is yourself, so you can edit.
           this.me=true;
+        if (this.me || !this.character.privateStats===true)
+          this.hidden=false;
       }
     })
   }

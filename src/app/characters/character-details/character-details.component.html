@@ -33,8 +33,52 @@
 
     </div>
 
+    <div *ngIf="activeTab ==='Stats' && hidden">
+      <h1 class="monster-name">{{character.nombre}}</h1><img class="card-img-top fotoDNI" src="{{ character.fotoPerfil }}" />
+      <div class="monster-info">
 
-    <div *ngIf="activeTab ==='Stats'">
+      <p><strong>Tier List:</strong> {{character.tier}}</p>
+      </div>
+
+      <p><strong>Niveles de Clase: </strong><span>
+      <hr>
+      </span></p>
+      <p><strong>Hit Points:</strong> 0</p>
+      <p><strong>CA:</strong> 0</p>
+      <p><strong>Movimiento:</strong> 0ft | {{movementRound(0)}}m | {{movementRound(0)}}m/s</p>
+
+      <hr>
+    <div class="monster-abilities">
+      <div class="ability">
+        <h4>STR</h4>
+        <p>{{0}} ({{calcularStats(0)}})</p>
+      </div>
+      <div class="ability">
+        <h4>DEX</h4>
+        <p>{{0}} ({{calcularStats(0)}})</p>
+      </div>
+      <div class="ability">
+        <h4>CON</h4>
+        <p>{{0}} ({{calcularStats(0)}})</p>
+      </div>
+      <div class="ability">
+        <h4>INT</h4>
+        <p>{{0}} ({{calcularStats(0)}})</p>
+      </div>
+      <div class="ability">
+        <h4>WIS</h4>
+        <p>{{0}} ({{calcularStats(0)}})</p>
+      </div>
+      <div class="ability">
+        <h4>CHA</h4>
+        <p>{{0}} ({{calcularStats(0)}})</p>
+      </div>
+    </div>
+    <hr>
+
+    </div>
+
+    <div *ngIf="activeTab ==='Stats' && !hidden">
 
       <h1 class="monster-name">{{character.nombre}}</h1><img class="card-img-top fotoDNI" src="{{ character.fotoPerfil }}" />
       <div class="monster-info">

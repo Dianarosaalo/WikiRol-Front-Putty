@@ -148,14 +148,14 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       }
 
       characters.forEach((c)=>this.whichTier(c));
-      console.log('Characters loaded:', characters);
+      console.log('Characters loaded:', characters.length);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
 
       // Trigger change detection after appending characters
       this.cdr.detectChanges();
 
       this.pageNumber++;
-      console.log(this.characters);
+      console.log(this.characters.length);
 
       this.buttonShow=true;
       /*if (characterNumber===this.characters.length)
@@ -187,7 +187,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       }
 
       this.characters.forEach((c)=>this.whichTier(c));
-      console.log('Characters loaded:', characters);
+      console.log('Characters loaded:', characters.length);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
       this.pageNumber++;
       this.buttonShow=true;
@@ -278,7 +278,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       .filter((c)=>c.campanya === this.id || c.campanyasSecundarias?.includes(this.id));
       this.cdr.detectChanges();
       this.volverButtonShow=true;
-      console.log('Characters loaded:', characters)});
+      console.log('Characters loaded:', characters.length)});
 
   }
 

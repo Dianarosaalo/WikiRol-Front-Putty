@@ -51,6 +51,12 @@ export class CharacterFilterPipe implements PipeTransform {
 
     else if (order==="fuerza"){
       myCharacters.sort((a,b)=>{
+
+        if (a.privateStats==true)
+          a.fue=0;
+        if (b.privateStats==true)
+          b.fue=0;
+
         if (a.fue===b.fue) return 0;
         return a.fue < b.fue ? 1 : -1
       });
@@ -58,6 +64,12 @@ export class CharacterFilterPipe implements PipeTransform {
 
     else if (order==="destreza"){
       myCharacters.sort((a,b)=>{
+
+        if (a.privateStats==true)
+          a.des=0;
+        if (b.privateStats==true)
+          b.des=0;
+
         if (a.des===b.des) return 0;
         return a.des < b.des ? 1 : -1
       });
@@ -65,6 +77,12 @@ export class CharacterFilterPipe implements PipeTransform {
 
     else if (order==="constitucion"){
       myCharacters.sort((a,b)=>{
+
+        if (a.privateStats==true)
+          a.con=0;
+        if (b.privateStats==true)
+          b.con=0;
+
         if (a.con===b.con) return 0;
         return a.con < b.con ? 1 : -1
       });
@@ -72,6 +90,12 @@ export class CharacterFilterPipe implements PipeTransform {
 
     else if (order==="inteligencia"){
       myCharacters.sort((a,b)=>{
+
+        if (a.privateStats==true)
+          a.int=0;
+        if (b.privateStats==true)
+          b.int=0;
+
         if (a.int===b.int) return 0;
         return a.int < b.int ? 1 : -1
       });
@@ -79,6 +103,12 @@ export class CharacterFilterPipe implements PipeTransform {
 
     else if (order==="sabiduria"){
       myCharacters.sort((a,b)=>{
+
+        if (a.privateStats==true)
+          a.sab=0;
+        if (b.privateStats==true)
+          b.sab=0;
+
         if (a.sab===b.sab) return 0;
         return a.sab < b.sab ? 1 : -1
       });
@@ -86,6 +116,12 @@ export class CharacterFilterPipe implements PipeTransform {
 
     else if (order==="carisma"){
       myCharacters.sort((a,b)=>{
+
+        if (a.privateStats==true)
+          a.car=0;
+        if (b.privateStats==true)
+          b.car=0;
+
         if (a.car===b.car) return 0;
         return a.car < b.car ? 1 : -1
       });
@@ -93,6 +129,12 @@ export class CharacterFilterPipe implements PipeTransform {
 
     else if (order==="armadura"){
       myCharacters.sort((a,b)=>{
+
+        if (a.privateStats==true)
+          a.ca=0;
+        if (b.privateStats==true)
+          b.ca=0;
+
         if (a.ca===b.ca) return 0;
         return a.ca < b.ca ? 1 : -1
       });
@@ -100,6 +142,12 @@ export class CharacterFilterPipe implements PipeTransform {
 
     else if (order==="vida"){
       myCharacters.sort((a,b)=>{
+
+        if (a.privateStats==true)
+          a.pv=0;
+        if (b.privateStats==true)
+          b.pv=0;
+
         if (a.pv===b.pv) return 0;
         return a.pv < b.pv ? 1 : -1
       });
@@ -107,6 +155,12 @@ export class CharacterFilterPipe implements PipeTransform {
 
     else if (order==="movimiento"){
       myCharacters.sort((a,b)=>{
+
+        if (a.privateStats==true)
+          a.movimiento=0;
+        if (b.privateStats==true)
+          b.movimiento=0;
+
         if (a.movimiento===b.movimiento) return 0;
         return a.movimiento < b.movimiento ? 1 : -1
       });
