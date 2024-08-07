@@ -52,9 +52,9 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="fuerza"){
       myCharacters.sort((a,b)=>{
 
-        if (a.privateStats==true)
+        if (a.privateStats==true && a.creator!==JSON.parse(String(localStorage.getItem("user"))))
           a.fue=0;
-        if (b.privateStats==true)
+        if (b.privateStats==true && b.creator!==JSON.parse(String(localStorage.getItem("user"))))
           b.fue=0;
 
         if (a.fue===b.fue) return 0;
@@ -65,9 +65,9 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="destreza"){
       myCharacters.sort((a,b)=>{
 
-        if (a.privateStats==true)
+        if (a.privateStats==true && a.creator!==JSON.parse(String(localStorage.getItem("user"))))
           a.des=0;
-        if (b.privateStats==true)
+        if (b.privateStats==true && b.creator!==JSON.parse(String(localStorage.getItem("user"))))
           b.des=0;
 
         if (a.des===b.des) return 0;
@@ -78,9 +78,9 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="constitucion"){
       myCharacters.sort((a,b)=>{
 
-        if (a.privateStats==true)
+        if (a.privateStats==true && a.creator!==JSON.parse(String(localStorage.getItem("user"))))
           a.con=0;
-        if (b.privateStats==true)
+        if (b.privateStats==true && b.creator!==JSON.parse(String(localStorage.getItem("user"))))
           b.con=0;
 
         if (a.con===b.con) return 0;
@@ -91,9 +91,9 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="inteligencia"){
       myCharacters.sort((a,b)=>{
 
-        if (a.privateStats==true)
+        if (a.privateStats==true && a.creator!==JSON.parse(String(localStorage.getItem("user"))))
           a.int=0;
-        if (b.privateStats==true)
+        if (b.privateStats==true && b.creator!==JSON.parse(String(localStorage.getItem("user"))))
           b.int=0;
 
         if (a.int===b.int) return 0;
@@ -104,9 +104,9 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="sabiduria"){
       myCharacters.sort((a,b)=>{
 
-        if (a.privateStats==true)
+        if (a.privateStats==true && a.creator!==JSON.parse(String(localStorage.getItem("user"))))
           a.sab=0;
-        if (b.privateStats==true)
+        if (b.privateStats==true && b.creator!==JSON.parse(String(localStorage.getItem("user"))))
           b.sab=0;
 
         if (a.sab===b.sab) return 0;
@@ -117,9 +117,9 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="carisma"){
       myCharacters.sort((a,b)=>{
 
-        if (a.privateStats==true)
+        if (a.privateStats==true && a.creator!==JSON.parse(String(localStorage.getItem("user"))))
           a.car=0;
-        if (b.privateStats==true)
+        if (b.privateStats==true && b.creator!==JSON.parse(String(localStorage.getItem("user"))))
           b.car=0;
 
         if (a.car===b.car) return 0;
@@ -130,9 +130,9 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="armadura"){
       myCharacters.sort((a,b)=>{
 
-        if (a.privateStats==true)
+        if (a.privateStats==true && a.creator!==JSON.parse(String(localStorage.getItem("user"))))
           a.ca=0;
-        if (b.privateStats==true)
+        if (b.privateStats==true && b.creator!==JSON.parse(String(localStorage.getItem("user"))))
           b.ca=0;
 
         if (a.ca===b.ca) return 0;
@@ -143,9 +143,9 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="vida"){
       myCharacters.sort((a,b)=>{
 
-        if (a.privateStats==true)
+        if (a.privateStats==true && a.creator!==JSON.parse(String(localStorage.getItem("user"))))
           a.pv=0;
-        if (b.privateStats==true)
+        if (b.privateStats==true && b.creator!==JSON.parse(String(localStorage.getItem("user"))))
           b.pv=0;
 
         if (a.pv===b.pv) return 0;
@@ -156,9 +156,9 @@ export class CharacterFilterPipe implements PipeTransform {
     else if (order==="movimiento"){
       myCharacters.sort((a,b)=>{
 
-        if (a.privateStats==true)
+        if (a.privateStats==true && a.creator!==JSON.parse(String(localStorage.getItem("user"))))
           a.movimiento=0;
-        if (b.privateStats==true)
+        if (b.privateStats==true && b.creator!==JSON.parse(String(localStorage.getItem("user"))))
           b.movimiento=0;
 
         if (a.movimiento===b.movimiento) return 0;
