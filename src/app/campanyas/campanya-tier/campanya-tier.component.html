@@ -1,10 +1,41 @@
+<nav class="navbar navbar-light bg-light justify-content-between mt-3 row">
+
+  <form class="container-fluid col">
+    <input
+      class="form-control"
+      type="text"
+      name="search"
+      placeholder="Busca personajes aquí!"
+      aria-label="Search"
+      [(ngModel)]="search"
+    />
+  </form>
+
+  <ul class="nav nav-pills col-auto ms-3">
+    <li class="nav-item btn">
+      <select class="form-control" [(ngModel)]="faction" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of factions" value={{option.value}}>Facción: {{option.label}}</option>
+      </select>
+    </li>
+  </ul>
+
+  <ul class="nav nav-pills col-auto ms-3">
+    <li class="nav-item">
+      <select class="form-control" [(ngModel)]="order" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of typeOfOrders" value={{option.value}}>Orden: {{option.label}}</option>
+      </select>
+    </li>
+  </ul>
+
+</nav>
+
 <h3>DEUS EX MACHINA</h3>
 
   <div
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of DeusChars">
+  <div class="col" *ngFor="let character of DeusChars | characterFilter:search:faction:order ">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -44,7 +75,7 @@
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of SupremeChars">
+  <div class="col" *ngFor="let character of SupremeChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -83,7 +114,7 @@
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of SSSSSChars">
+  <div class="col" *ngFor="let character of SSSSSChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -122,7 +153,7 @@
 id="placesContainer"
 class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
 >
-<div class="col" *ngFor="let character of SSSSChars">
+<div class="col" *ngFor="let character of SSSSChars | characterFilter:search:faction:order">
   <div class="card h-100 shadow">
     <a [routerLink]="['/characters', character._id]">
       <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -161,7 +192,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
 id="placesContainer"
 class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
 >
-<div class="col" *ngFor="let character of SSSChars">
+<div class="col" *ngFor="let character of SSSChars | characterFilter:search:faction:order">
   <div class="card h-100 shadow">
     <a [routerLink]="['/characters', character._id]">
       <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -200,7 +231,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of SSChars">
+  <div class="col" *ngFor="let character of SSChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -239,7 +270,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of SChars">
+  <div class="col" *ngFor="let character of SChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -278,7 +309,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of AChars">
+  <div class="col" *ngFor="let character of AChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -317,7 +348,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of BChars">
+  <div class="col" *ngFor="let character of BChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -356,7 +387,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of CChars">
+  <div class="col" *ngFor="let character of CChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -395,7 +426,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of DChars">
+  <div class="col" *ngFor="let character of DChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -434,7 +465,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of EChars">
+  <div class="col" *ngFor="let character of EChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -473,7 +504,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of FChars">
+  <div class="col" *ngFor="let character of FChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -512,7 +543,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
-  <div class="col" *ngFor="let character of UnknownChars">
+  <div class="col" *ngFor="let character of UnknownChars | characterFilter:search:faction:order">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />

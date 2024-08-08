@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { CharactersResponse } from 'src/app/characters/interfaces/characterResponse';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs';
+import { FactionsResponse } from 'src/app/factions/interfaces/factionResponse';
+import { Faction } from 'src/app/factions/interfaces/faction';
 
 @Component({
   selector: 'fs-campanya-tier',
@@ -21,6 +23,31 @@ export class CampanyaTierComponent {
 
   characters!:Character[];
   search="";
+
+  faction=""
+  order=""
+
+  factions=[
+    {value:"", label:"Todos"}];
+
+    typeOfOrders=[
+      {value:"", label:"Ninguno"},
+      {value:"nombre", label:"Nombre"},
+      {value:"tier", label:"Tier"},
+      {value:"nivel", label:"Nivel"},
+      {value:"edad", label:"Edad"},
+      {value:"altura", label:"Altura"},
+      {value:"peso", label:"Peso"},
+      {value:"fuerza", label:"Fuerza"},
+      {value:"destreza", label:"Destreza"},
+      {value:"constitucion", label:"Constitución"},
+      {value:"inteligencia", label:"Inteligencia"},
+      {value:"sabiduria", label:"Sabiduría"},
+      {value:"carisma", label:"Carisma"},
+      {value:"armadura", label:"Armadura"},
+      {value:"vida", label:"Vida"},
+      {value:"movimiento", label:"Movimiento"},
+    ];
 
   DeusChars:Character[]=[];
   SupremeChars:Character[]=[];
@@ -60,6 +87,8 @@ export class CampanyaTierComponent {
     this.loadCharacters("9.- E",this.EChars);
     this.loadCharacters("9.5.- F",this.FChars);
     this.loadCharacters("9.9.- Desconocido",this.UnknownChars);
+
+    this.loadFactions();
     /*this.characterService.getAll().subscribe({
       next: (characters) => {
         this.characters=characters
@@ -111,6 +140,18 @@ export class CampanyaTierComponent {
   ).subscribe(() => {
     // Trigger change detection after characters are loaded and filtered
     this.cdr.detectChanges();
+  });
+}
+
+loadFactions(): void {
+  this.http.get<FactionsResponse>('facciones/').pipe(
+    map((f) => f.facciones.map((faction: Faction) => ({ value: faction.titulo, label: faction.titulo })))
+  ).subscribe((factions: { value: string; label: string }[]) => {
+    this.factions = [...this.factions, ...factions];
+
+    this.search = "";
+    this.faction = "Dioses Supremos";
+    this.order = "";
   });
 }
 
