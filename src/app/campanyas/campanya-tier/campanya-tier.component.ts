@@ -24,7 +24,7 @@ export class CampanyaTierComponent {
   characters!:Character[];
   search="";
 
-  faction=""
+  faction=`""`;
   order=""
 
   factions=[
@@ -135,7 +135,7 @@ export class CampanyaTierComponent {
       // Filter characters based on privacy before pushing into myChars
       const filteredCharacters = characters.filter(c => !c.private || (c.private && c.creator === JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
       myChars.push(...filteredCharacters);
-      console.log('Characters loaded:', filteredCharacters);
+      console.log('Characters loaded:', filteredCharacters.length);
     })
   ).subscribe(() => {
     // Trigger change detection after characters are loaded and filtered
@@ -150,8 +150,21 @@ loadFactions(): void {
     this.factions = [...this.factions, ...factions];
 
     this.search = "";
-    this.faction = "Dioses Supremos";
     this.order = "";
+    this.cdr.detectChanges();
+    this.faction="";
+    this.cdr.detectChanges();
+
+    setTimeout(() => {
+      this.faction = "Dioses Supremos";
+      this.cdr.detectChanges();
+    }, 500);
+
+    setTimeout(() => {
+      this.faction = "";
+      this.cdr.detectChanges();
+    }, 500);
+
   });
 }
 
