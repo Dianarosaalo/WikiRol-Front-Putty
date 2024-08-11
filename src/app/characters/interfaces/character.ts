@@ -37,7 +37,8 @@ export interface Character {
   privateStats: boolean,
   altura:number,
   peso:number,
-  competencia:number
+  competencia:number,
+  salvaciones:number[],
 }
 
 export interface Trait{

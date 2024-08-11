@@ -111,7 +111,8 @@ export class NewCharacterComponent implements OnInit {
       privateStats: false,
       altura:0,
       peso:0,
-      competencia:0
+      competencia:0,
+      salvaciones:[]
     }
   }
 

@@ -129,6 +129,29 @@
     </div>
     <hr>
 
+    <div class="monster-abilities" style="width:55%" *ngif="character.salvaciones">
+      <div class="ability">
+        <p *ngif="character.salvaciones[0]">{{calcularSalvaciones(character.fue, character.salvaciones[0])}}</p>
+      </div>
+      <div class="ability">
+        <p *ngif="character.salvaciones[1]">{{calcularSalvaciones(character.des, character.salvaciones[1])}}</p>
+      </div>
+      <div class="ability">
+        <p *ngif="character.salvaciones[2]">{{calcularSalvaciones(character.con, character.salvaciones[2])}}</p>
+      </div>
+      <div class="ability">
+        <p *ngif="character.salvaciones[3]">{{calcularSalvaciones(character.int, character.salvaciones[3])}}</p>
+      </div>
+      <div class="ability">
+        <p *ngif="character.salvaciones[4]">{{calcularSalvaciones(character.sab, character.salvaciones[4])}}</p>
+      </div>
+      <div class="ability">
+        <p *ngif="character.salvaciones[5]">{{calcularSalvaciones(character.car, character.salvaciones[5])}}</p>
+      </div>
+      <hr>
+    </div>
+
+
     <div class="monster-actions" *ngIf="counts(character.rasgos)">
       <div> <!--este faltaba y pegaba petada-->
       <br>

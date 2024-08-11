@@ -82,7 +82,8 @@
     </select>
   </div>
 
-  <h3>Opcional</h3>
+  <h3>Lore</h3>
+
   <br>
 
   <div class="mb-3">
@@ -98,6 +99,21 @@
       [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"
     ></textarea>
     <div class="invalid-feedback">La descripción es requerida.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="lore">Lore</label>
+    <textarea
+      class="form-control"
+      id="lore"
+      name="lore"
+      rows="5"
+      [(ngModel)]="newCharacter.lore"
+      placeholder="Introduce el Lore del personaje"
+      #loreModel="ngModel"
+      [ngClass]="validClasses(loreModel, 'is-valid', 'is-invalid')"
+    ></textarea>
+    <div class="invalid-feedback">Introduce el lore del personaje.</div>
   </div>
 
   <div class="mb-3">
@@ -122,22 +138,6 @@
   </div>
 
   <div class="mb-3">
-    Intergaláctico <strong>Opcional</strong><br>
-    <select class="form-control" [(ngModel)]="newCharacter.intergalactico" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of intergalactic" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    Campañas en las que tambien Influye <strong>Opcional</strong><br>
-    <select class="form-control" [(ngModel)]="campanyaExtra" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <a class="btn btn-danger" (click)="addCampanya()">Añadir Campaña Secundaria</a>
-
-  <div class="mb-3">
     <label for="partidaAparicion">Partida de aparición</label>
     <input
       type="number"
@@ -156,56 +156,6 @@
     <div class="invalid-feedback" *ngIf="partidaModel.errors?.['pattern']">
       Niveles de clase son requeridos
     </div>
-  </div>
-
-  <div class="mb-3">
-    Muerto <br>
-    <select class="form-control" [(ngModel)]="newCharacter.muerto" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of dead" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    <label for="lore">Lore</label>
-    <textarea
-      class="form-control"
-      id="lore"
-      name="lore"
-      rows="5"
-      [(ngModel)]="newCharacter.lore"
-      placeholder="Introduce el Lore del personaje"
-      #loreModel="ngModel"
-      [ngClass]="validClasses(loreModel, 'is-valid', 'is-invalid')"
-    ></textarea>
-    <div class="invalid-feedback">Introduce el lore del personaje.</div>
-  </div>
-
-  <div class="mb-3">
-    Privacidad del Personaje<strong> Máster NPCs</strong> <br>
-    <select class="form-control" [(ngModel)]="newCharacter.private" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    Rasgos Ocultos<strong> Máster NPCs</strong> <br>
-    <select class="form-control" [(ngModel)]="newCharacter.privateStats" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    Permisos de Lectura para otro Jugador  <strong> Solo para PJs ocultos</strong><br>
-    <select class="form-control" [(ngModel)]="newCharacter.reader" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    Tipo de Juego (esto no sirve para nada aún) <br>
-    <select class="form-control" [(ngModel)]="newCharacter.tipoJuego" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of typeOfGame" value={{option.value}}>{{option.label}}</option>
-    </select>
   </div>
 
   <div class="mb-3">
@@ -247,6 +197,39 @@
   </div>
 
   <div class="mb-3">
+    El personaje está muerto? <br>
+    <select class="form-control" [(ngModel)]="newCharacter.muerto" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of dead" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <h3>Opcional</h3>
+  <br>
+
+  <div class="mb-3">
+    Intergaláctico <strong>Opcional</strong><br>
+    <select class="form-control" [(ngModel)]="newCharacter.intergalactico" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of intergalactic" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    Campañas en las que tambien Influye <strong>Opcional</strong><br>
+    <select class="form-control" [(ngModel)]="campanyaExtra" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <a class="btn btn-danger" (click)="addCampanya()">Añadir Campaña Secundaria</a>
+
+  <div class="mb-3">
+    Tipo de Juego (esto no sirve para nada aún) <br>
+    <select class="form-control" [(ngModel)]="newCharacter.tipoJuego" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of typeOfGame" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
     <label for="titulo">Deidad</label>
     <input
       type="text"
@@ -259,6 +242,28 @@
     />
   </div>
 
+  <h3>Privacidad</h3>
+
+  <div class="mb-3">
+    Privacidad del Personaje<strong> Máster NPCs</strong> <br>
+    <select class="form-control" [(ngModel)]="newCharacter.private" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    Rasgos Ocultos<strong> Máster NPCs</strong> <br>
+    <select class="form-control" [(ngModel)]="newCharacter.privateStats" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    Permisos de Lectura para otro Jugador  <strong> Solo para PJs ocultos</strong><br>
+    <select class="form-control" [(ngModel)]="newCharacter.reader" [ngModelOptions]="{standalone:true}">
+      <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
+    </select>
+  </div>
 
 
   <h3>Estadísticas</h3>
@@ -451,6 +456,116 @@
     />
     <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
       Competencia del personaje
+    </div>
+  </div>
+
+  <h3>Tiradas de Salvación</h3>
+
+  <div class="mb-3">
+    <label for="sf">Salvación de Fuerza</label>
+    <input
+      type="number"
+      class="form-control"
+      id="sf"
+      name="sf"
+      min:0
+      [(ngModel)]="newCharacter.salvaciones[0]"
+      placeholder="Salvación de Fuerza"
+      #sfModel="ngModel"
+      [ngClass]="validClasses(sfModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="sfModel.errors?.['required']">
+      Salvación de Fuerza del Personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="sd">Salvación de Destreza</label>
+    <input
+      type="number"
+      class="form-control"
+      id="sd"
+      name="sd"
+      min:0
+      [(ngModel)]="newCharacter.salvaciones[1]"
+      placeholder="Salvación de Destreza"
+      #sdModel="ngModel"
+      [ngClass]="validClasses(sdModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="sdModel.errors?.['required']">
+      Salvación de Destreza del Personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="sco">Salvación de Constitución</label>
+    <input
+      type="number"
+      class="form-control"
+      id="sco"
+      name="sco"
+      min:0
+      [(ngModel)]="newCharacter.salvaciones[2]"
+      placeholder="Salvación de Constitución"
+      #scoModel="ngModel"
+      [ngClass]="validClasses(scoModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="scoModel.errors?.['required']">
+      Salvación de Constitución del Personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="si">Salvación de Inteligencia</label>
+    <input
+      type="number"
+      class="form-control"
+      id="si"
+      name="si"
+      min:0
+      [(ngModel)]="newCharacter.salvaciones[3]"
+      placeholder="Salvación de Inteligencia"
+      #siModel="ngModel"
+      [ngClass]="validClasses(siModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="siModel.errors?.['required']">
+      Salvación de Inteligencia del Personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="ss">Salvación de Sabiduría</label>
+    <input
+      type="number"
+      class="form-control"
+      id="sb"
+      name="sb"
+      min:0
+      [(ngModel)]="newCharacter.salvaciones[4]"
+      placeholder="Salvación de Sabiduría"
+      #ssModel="ngModel"
+      [ngClass]="validClasses(ssModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="ssModel.errors?.['required']">
+      Salvación de Sabiduría del Personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="sc">Salvación de Carisma</label>
+    <input
+      type="number"
+      class="form-control"
+      id="sc"
+      name="sc"
+      min:0
+      [(ngModel)]="newCharacter.salvaciones[5]"
+      placeholder="Salvación de Carisma"
+      #scModel="ngModel"
+      [ngClass]="validClasses(scModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="scModel.errors?.['required']">
+      Salvación de Carisma del Personaje
     </div>
   </div>
 
