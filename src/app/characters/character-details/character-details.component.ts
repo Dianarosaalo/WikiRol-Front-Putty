@@ -124,16 +124,28 @@ export class CharacterDetailsComponent implements OnInit{
     }
   }
 
-  calcularSalvaciones(stat:number, saving:number|null){
+  calcularSalvaciones(stat:number, saving:number|undefined){
+    console.log(stat, saving);
     stat=Number(this.calcularStats(stat));
 
-    if (saving===null)
+    if (saving===undefined)
     {
-      return stat;
+      if (stat>0)
+        return "+"+(stat);
+      else{
+        return stat;
+      }
     }
-    else{
-      return stat+saving;
+
+    else
+    {
+      if (stat+saving>0)
+        return "+"+(stat+saving);
+      else{
+        return stat+saving;
+      }
     }
+
   }
 
 }

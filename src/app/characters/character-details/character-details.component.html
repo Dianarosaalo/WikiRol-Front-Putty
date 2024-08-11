@@ -78,6 +78,29 @@
     </div>
     <hr>
 
+    <div class="monster-abilities" style="width:55%" *ngIf="character.salvaciones">
+      <div class="ability">
+        <p *ngIf="character.salvaciones[0]!==null">-5</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[1]!==null">-5</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[2]!==null">-5</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[3]!==null">-5</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[4]!==null">-5</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[5]!==null">-5</p>
+      </div>
+    </div>
+
+    <hr *ngIf="character.salvaciones">
+
     </div>
 
     <div *ngIf="activeTab ==='Stats' && !hidden">
@@ -129,27 +152,28 @@
     </div>
     <hr>
 
-    <div class="monster-abilities" style="width:55%" *ngif="character.salvaciones">
+    <div class="monster-abilities" style="width:55%" *ngIf="character.salvaciones">
       <div class="ability">
-        <p *ngif="character.salvaciones[0]">{{calcularSalvaciones(character.fue, character.salvaciones[0])}}</p>
+        <p *ngIf="character.salvaciones[0]!==null">{{calcularSalvaciones(character.fue, character.salvaciones[0])}}</p>
       </div>
       <div class="ability">
-        <p *ngif="character.salvaciones[1]">{{calcularSalvaciones(character.des, character.salvaciones[1])}}</p>
+        <p *ngIf="character.salvaciones[1]!==null">{{calcularSalvaciones(character.des, character.salvaciones[1])}}</p>
       </div>
       <div class="ability">
-        <p *ngif="character.salvaciones[2]">{{calcularSalvaciones(character.con, character.salvaciones[2])}}</p>
+        <p *ngIf="character.salvaciones[2]!==null">{{calcularSalvaciones(character.con, character.salvaciones[2])}}</p>
       </div>
       <div class="ability">
-        <p *ngif="character.salvaciones[3]">{{calcularSalvaciones(character.int, character.salvaciones[3])}}</p>
+        <p *ngIf="character.salvaciones[3]!==null">{{calcularSalvaciones(character.int, character.salvaciones[3])}}</p>
       </div>
       <div class="ability">
-        <p *ngif="character.salvaciones[4]">{{calcularSalvaciones(character.sab, character.salvaciones[4])}}</p>
+        <p *ngIf="character.salvaciones[4]!==null">{{calcularSalvaciones(character.sab, character.salvaciones[4])}}</p>
       </div>
       <div class="ability">
-        <p *ngif="character.salvaciones[5]">{{calcularSalvaciones(character.car, character.salvaciones[5])}}</p>
+        <p *ngIf="character.salvaciones[5]!==null">{{calcularSalvaciones(character.car, character.salvaciones[5])}}</p>
       </div>
-      <hr>
     </div>
+
+    <hr *ngIf="character.salvaciones">
 
 
     <div class="monster-actions" *ngIf="counts(character.rasgos)">
