@@ -452,7 +452,7 @@ export class NewCharacterComponent implements OnInit {
     {value:'Voluntad',label:"Voluntad"},
     {value:'Esfera de Realidad',label:"Esfera de Realidad"},
     {value:'Accion Combinada',label:"Accion Combinada"},
-    {value:'Razon',label:"Razon"},
+    {value:'Razon',label:"Razón"},
     {value:'Singularidad',label:"Singularidad"},
     {value:'Reliquia',label:"Reliquia"},
   ];

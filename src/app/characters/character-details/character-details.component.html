@@ -374,7 +374,7 @@
           <h3>Razón</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Razon'))">-<strong strong style="color:rgb(184, 5, 142);text-shadow: 2px 2px 4px black;">{{ r.title }}</strong> : {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Razon'))">-<strong strong style="color:rgb(184, 5, 142);text-shadow: 1px 1px 0.5px black;">{{ r.title }}</strong> : {{ r.info }}</p>
             </div>
             <br>
           <hr>
