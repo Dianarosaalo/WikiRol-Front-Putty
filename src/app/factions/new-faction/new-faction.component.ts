@@ -68,7 +68,8 @@ export class NewFactionComponent {
     {value:'Mario',label:"(Aventura) Cruzados Mario"},
     {value:'Reinos Olvidados',label:"(Aventura) Reinos Olvidados"},
     {value:'Miscelanea',label:"(Conjunto de cosas Miscelaneas)"},
-    {value:'Guardianes del Cosmos',label:"Guardianes del Cosmos"},
+    {value:'Guerreros de la Luz',label:"(Aventura) Guerreros de la Luz"},
+    {value:'Guardianes del Cosmos',label:"(Aventura) Guardianes del Cosmos"},
     {value:'Pruebas',label:"Pruebas DM"}
   ];
 

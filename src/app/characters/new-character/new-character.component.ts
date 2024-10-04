@@ -199,7 +199,8 @@ export class NewCharacterComponent implements OnInit {
     {value:'Mario',label:"(Aventura) Cruzados Mario"},
     {value:'Reinos Olvidados',label:"(Aventura) Reinos Olvidados"},
     {value:'Miscelanea',label:"(Conjunto de cosas Miscelaneas)"},
-    {value:'Guardianes del Cosmos',label:"Guardianes del Cosmos"},
+    {value:'Guerreros de la Luz',label:"(Aventura) Guerreros de la Luz"},
+    {value:'Guardianes del Cosmos',label:"(Aventura) Guardianes del Cosmos"},
     {value:'Pruebas',label:"Pruebas DM"}
     ];
 
@@ -446,10 +447,12 @@ export class NewCharacterComponent implements OnInit {
     {value:'Dote',label:"Dote"},
     {value:'Objeto',label:"Objeto"},
     {value:'Competencia',label:"Competencia"},
+    {value:'Sentidos',label:"Sentidos"},
     {value:'Hechizos',label:"Hechizos"},
     {value:'Voluntad',label:"Voluntad"},
     {value:'Esfera de Realidad',label:"Esfera de Realidad"},
     {value:'Accion Combinada',label:"Accion Combinada"},
+    {value:'Razon',label:"Razon"},
     {value:'Singularidad',label:"Singularidad"},
     {value:'Reliquia',label:"Reliquia"},
   ];

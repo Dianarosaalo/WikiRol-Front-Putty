@@ -45,7 +45,7 @@ export class CharacterDetailsComponent implements OnInit{
         );
         if (this.character.creator===JSON.parse(localStorage.getItem("user")!)) //to see if the user is yourself, so you can edit.
           this.me=true;
-        if (this.me || !this.character.privateStats===true)
+        if (this.me || !this.character.privateStats===true || this.character.reader===JSON.parse(String(localStorage.getItem("user"))))
           this.hidden=false;
       }
     })
@@ -77,6 +77,14 @@ export class CharacterDetailsComponent implements OnInit{
   movementRound(feet:number):number
   {
     return (Math.round(feet));
+  }
+
+  calculateWeight(weight:number, divisor:number)
+  {
+    if (weight>=500)
+      return "| " +weight/divisor + " Toneladas"
+    else
+      return "";
   }
 
   counts(relics:string[]|Song[]|Trait[]):boolean

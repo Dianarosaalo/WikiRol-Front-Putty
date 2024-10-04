@@ -23,8 +23,8 @@
     <p><strong>Titulos:</strong> {{character.titulo}}</p>
     <p><strong>Descripcion:</strong> {{character.descripcion}}</p>
     <p><strong>Edad:</strong> {{character.edad}}</p>
-    <p><strong>Altura:</strong> {{character.altura}} cm </p>
-    <p><strong>Peso:</strong> {{character.peso}} Kg</p>
+    <p><strong>Altura:</strong> {{character.altura}} cm | {{(character.altura / 100)}} m</p>
+    <p><strong>Peso:</strong> {{character.peso}} Kg {{calculateWeight(character.peso, 1000)}}</p>
     <p><strong>Campaña:</strong> {{character.campanya}}</p>
     <p><strong>Aparición en la Campaña:</strong> Partida nº {{character.partidaAparicion}}</p>
 
@@ -319,6 +319,17 @@
           <hr>
         </div>
 
+        <div *ngIf="Check(character.rasgos,'Sentidos')">
+          <h3>Sentidos</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Sentidos'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+            <br>
+          <hr>
+        </div>
+
+
         <div *ngIf="Check(character.rasgos,'Dote')">
           <h3>Dotes</h3>
             <br>
@@ -354,6 +365,16 @@
             <br>
             <div *ngFor="let r of character.rasgos">
               <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Accion Combinada'))">-<strong style="color:rgb(255, 0, 0);text-shadow: 1px 1px 2px black;">{{ r.title }}</strong> : {{ r.info }}</p>
+            </div>
+            <br>
+          <hr>
+        </div>
+
+        <div *ngIf="Check(character.rasgos,'Razon')"></div>
+          <h3>Razón</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Razon'))">-<strong strong style="color:rgb(184, 5, 142);text-shadow: 2px 2px 4px black;">{{ r.title }}</strong> : {{ r.info }}</p>
             </div>
             <br>
           <hr>
