@@ -381,6 +381,31 @@ export class NewCharacterComponent implements OnInit {
     }
   }
 
+  // Campanyas Manager
+
+  showNewCampaign = false;
+
+  showMyNewCampaign(){
+    this.showNewCampaign = true;
+  }
+
+  newCampaign = '';
+
+  addCampaign() {
+    if (this.newCampaign) {
+      this.newCharacter.campanyasSecundarias!.push(this.newCampaign);
+      this.newCampaign = "";
+      this.showNewCampaign = false;
+    }
+  }
+
+  deleteCampaign(campaign: any) {
+    const index = this.newCharacter.campanyasSecundarias!.indexOf(campaign);
+    if (index !== -1) {
+      this.newCharacter.campanyasSecundarias!.splice(index, 1);
+    }
+  }
+
   // factions
   showNewFaction = false;
 

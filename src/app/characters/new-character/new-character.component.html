@@ -213,14 +213,39 @@
     </select>
   </div>
 
-  <div class="mb-3">
+  <br>
+    <div class="containermenu">
+      <h1>Manejador de Campañas</h1>
+      <p (click)="showMyNewCampaign()" class="btn btn-danger">Añadir campaña adicional</p>
+
+      <div *ngIf="showNewCampaign" class="new-trait-form">
+        <h2>Añadir campaña adicional</h2>
+        <select class="form-control" [(ngModel)]="newCampaign" [ngModelOptions]="{standalone:true}">
+          <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+        </select>
+        <p (click)="addCampaign()" class="btn btn-danger">Añadir Campaña Adicional</p>
+      </div>
+
+      <div class="trait-list">
+        <h2>Campañas Secundarias</h2>
+        <ul>
+          <li *ngFor="let campaign of newCharacter.campanyasSecundarias">
+            <span class="trait-title">{{ transformString(campaign) }}</span>
+            <p (click)="deleteCampaign(campaign)" class="btn btn-danger">Eliminar</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <br>
+
+  <!--<div class="mb-3">
     Campañas en las que tambien Influye <strong>Opcional</strong><br>
     <select class="form-control" [(ngModel)]="campanyaExtra" [ngModelOptions]="{standalone:true}">
       <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
     </select>
   </div>
 
-  <a class="btn btn-danger" (click)="addCampanya()">Añadir Campaña Secundaria</a>
+  <a class="btn btn-danger" (click)="addCampanya()">Añadir Campaña Secundaria</a>-->
 
   <div class="mb-3">
     Tipo de Juego (esto no sirve para nada aún) <br>
