@@ -81,7 +81,10 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     this.id=String((this.route.snapshot.paramMap.get('id'))) ;
 
     if (String(this.id)==="Yggdrassil")
+    {
       this.itsYggdrassil=true;
+      this.order="partidaAparicion";
+    }
     else
       this.itsYggdrassil=false;
 
