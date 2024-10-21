@@ -339,9 +339,6 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
         <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
         <p class="card-text">{{ transformTitle(character.titulo) }}</p>
           <div class="card-text">
-              <small class="text-muted">
-                <strong>Facciones:</strong> {{character.facciones}}
-              </small>
           </div>
           <div class="card-text">
               <small class="text-muted">
@@ -380,9 +377,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
         <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
         <p class="card-text">{{ transformTitle(character.titulo) }}</p>
           <div class="card-text">
-              <small class="text-muted">
-                <strong>Facciones:</strong> {{character.facciones}}
-              </small>
+
           </div>
           <div class="card-text">
               <small class="text-muted">
