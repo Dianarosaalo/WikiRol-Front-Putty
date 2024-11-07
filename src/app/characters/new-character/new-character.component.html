@@ -484,6 +484,84 @@
     </div>
   </div>
 
+  <h3>Datos Extra</h3>
+
+  <div class="mb-3">
+    <label for="iniciativa">Iniciativa</label>
+    <input
+      type="number"
+      class="form-control"
+      id="iniciativa"
+      name="iniciativa"
+      min:0
+      [(ngModel)]="newCharacter.iniciativa"
+      placeholder="iniciativa del personaje"
+      required
+      #iniModel="ngModel"
+      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
+      Iniciativa del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="percepcion">Percepción Pasiva</label>
+    <input
+      type="number"
+      class="form-control"
+      id="percepcion"
+      name="percepcion"
+      min:0
+      [(ngModel)]="newCharacter.percepcion"
+      placeholder="percepcion del personaje"
+      required
+      #perModel="ngModel"
+      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
+      Percepcion del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="investigacion">Investigación Pasiva</label>
+    <input
+      type="number"
+      class="form-control"
+      id="investigacion"
+      name="investigacion"
+      min:0
+      [(ngModel)]="newCharacter.investigacion"
+      placeholder="investigacion del personaje"
+      required
+      #invModel="ngModel"
+      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
+      investigacion del personaje
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="experiencia">Experiencia</label>
+    <input
+      type="number"
+      class="form-control"
+      id="experiencia"
+      name="experiencia"
+      min:0
+      [(ngModel)]="newCharacter.experiencia"
+      placeholder="experiencia del personaje"
+      required
+      #expModel="ngModel"
+      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+    />
+    <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
+      Experiencia del personaje
+    </div>
+  </div>
+
   <h3>Tiradas de Salvación</h3>
 
   <div class="mb-3">

@@ -39,6 +39,10 @@ export interface Character {
   peso:number,
   competencia:number,
   salvaciones:number[],
+  percepcion:number,
+  investigacion:number,
+  experiencia:number,
+  iniciativa:number,
 }
 
 export interface Trait{

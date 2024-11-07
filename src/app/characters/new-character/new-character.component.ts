@@ -112,7 +112,11 @@ export class NewCharacterComponent implements OnInit {
       altura:0,
       peso:0,
       competencia:0,
-      salvaciones:[]
+      salvaciones:[],
+      percepcion: 0,
+      investigacion:0,
+      experiencia:0,
+      iniciativa:0,
     }
   }
 
