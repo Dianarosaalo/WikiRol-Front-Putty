@@ -12,16 +12,30 @@ export class CharacterFilterPipe implements PipeTransform {
     search: string,
     faction: string,
     order: string,
+    selectedCampaigns?: string[]
   ): Character[] {
+    // First, filter by faction if provided
     const filteredByFaction = faction
-      ? characters.filter((c) => c.facciones.some(f => f.toLocaleLowerCase().includes(faction.toLocaleLowerCase())))
+      ? characters.filter((c) =>
+          c.facciones.some((f) => f.toLocaleLowerCase().includes(faction.toLocaleLowerCase()))
+        )
       : characters;
 
-    return search
+    // If selectedCampaigns are provided, filter characters based on their campaigns
+    const filteredByCampaigns = selectedCampaigns
       ? filteredByFaction.filter((c) =>
+          selectedCampaigns.some((campaign) =>
+            c.campanya === campaign || c.campanyasSecundarias!.includes(campaign)
+          )
+        )
+      : filteredByFaction;
+
+    // Now, filter by search term if provided
+    return search
+      ? filteredByCampaigns.filter((c) =>
           c.nombre.toLocaleLowerCase().includes(search.toLocaleLowerCase())
         )
-      : this.OrderBy(order, filteredByFaction);
+      : this.OrderBy(order, filteredByCampaigns);
   }
 
   OrderBy(order:string, characters:Character[]){

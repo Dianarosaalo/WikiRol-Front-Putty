@@ -33,3 +33,11 @@ h3{
 .card{
   margin:170%px;
 }
+
+.dropdown-menu {
+  display: block;
+  position: absolute;
+}
+.dropdown-menu.show {
+  display: block;
+}

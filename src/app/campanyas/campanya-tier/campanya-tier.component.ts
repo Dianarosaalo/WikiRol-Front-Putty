@@ -168,4 +168,40 @@ loadFactions(): void {
   });
 }
 
+campaigns = [
+  {value:'Egathea',label:"Egathea"},
+    {value:'Caminos de Sangre',label:"Caminos de Sangre"},
+    {value:'Aryma',label:"Aryma"},
+    {value:'Yggdrassil',label:"Yggdrassil"},
+
+    {value:'Djuna',label:"Djuna & Co"},
+    {value:'Mario',label:"Cruzados Mario"},
+    {value:'Reinos Olvidados',label:"Reinos Olvidados"},
+    {value:'Miscelanea',label:"Miscelanea"},
+    {value:'Guerreros de la Luz',label:"Guerreros de la Luz"},
+    {value:'Guardianes del Cosmos',label:"Guardianes del Cosmos"},
+    {value:'Pruebas',label:"Pruebas DM"}
+];
+
+  selectedCampaigns: string[] = this.campaigns.map(campaign => campaign.value);
+
+  onCampaignChange(event: any, value: string): void {
+    console.log('Checkbox changed:', value, event.target.checked);
+    if (event.target.checked) {
+      if (!this.selectedCampaigns.includes(value)) {
+        this.selectedCampaigns = [...this.selectedCampaigns, value]; // create a new reference
+      }
+    } else {
+      this.selectedCampaigns = this.selectedCampaigns.filter(c => c !== value);
+    }
+
+    console.log('Updated selectedCampaigns:', this.selectedCampaigns);
+  }
+
+  isDropdownOpen = false;
+
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
 }
