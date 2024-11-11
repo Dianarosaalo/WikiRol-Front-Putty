@@ -264,3 +264,35 @@ hr{
 .rasgos h3{
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+.character-versions-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style for each character version item to make it look like a button */
+.character-version-item {
+  background-color: #f3dfb4; /* Soft pink background */
+  color: #333; /* Dark text color for contrast */
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 15px; /* Rounded edges for a soft look */
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: all 0.3s ease; /* Smooth transition effect */
+}
+
+/* Hover effect for a playful pop */
+.character-version-item:hover {
+  background-color: #f3dfb4; /* Slightly darker pink */
+  transform: scale(1.05); /* Grow slightly on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: active effect for a button-like feel */
+.character-version-item:active {
+  transform: scale(0.98); /* Slight press-down effect */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}

@@ -1,4 +1,4 @@
-import { Component,OnInit,ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component,OnInit,ViewChild } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Router, /*ActivatedRoute*/ } from '@angular/router';
@@ -10,6 +10,7 @@ import { UserService } from 'src/app/users/services/user.service';
 import { FactionsResponse } from 'src/app/factions/interfaces/factionResponse';
 import { Faction } from 'src/app/factions/interfaces/faction';
 import { map } from 'rxjs';
+import { CharactersResponse } from '../interfaces/characterResponse';
 
 @Component({
   selector: 'fs-new-character',
@@ -34,6 +35,9 @@ export class NewCharacterComponent implements OnInit {
 
   users!:User[];
 
+  characters!:Character[];
+  searchChar= '';
+
   factions!:{ value: string; label: string; }[];
 
   constructor(
@@ -42,6 +46,7 @@ export class NewCharacterComponent implements OnInit {
     private readonly location: Location,
     private readonly userService:UserService,
     private readonly http: HttpClient,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -117,6 +122,8 @@ export class NewCharacterComponent implements OnInit {
       investigacion:0,
       experiencia:0,
       iniciativa:0,
+      version:'',
+      hiddenInTierList: false
     }
   }
 
@@ -220,6 +227,9 @@ export class NewCharacterComponent implements OnInit {
 
   privacy=[{value:false,label:"Público"},
   {value:true,label:"Privado"}]
+
+  isInTierList=[{value:true,label:"Este Personaje está oculto en la Tier List"},
+    {value:false,label:"Este Personaje SÍ aparece en la Tier List"}]
 
   tiers=[{value:"0.- Deus Ex Machina", label:"Deus Ex Machina"},
   {value:"0.25.- Supremo", label:"Supremo"},
@@ -485,5 +495,22 @@ export class NewCharacterComponent implements OnInit {
     {value:'Singularidad',label:"Singularidad"},
     {value:'Reliquia',label:"Reliquia"},
   ];
+
+  queryBuscar():void{
+    this.characters=[];
+
+    this.http.get<CharactersResponse>('http://vps-5eb41e5a.vps.ovh.net:8080/personajes/busqueda', {
+      params: {
+        nombre: this.searchChar,
+        faccion: ""
+      }
+    }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
+      this.characters= characters;
+      console.log(characters);
+      this.characters = (this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user"))))) );
+      this.cdr.detectChanges();
+      console.log('Characters loaded:', characters.length)});
+
+  }
 }
 

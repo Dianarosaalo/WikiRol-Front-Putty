@@ -97,3 +97,14 @@ textarea {
   padding: 5px 10px;
   margin: 0 5px;
 }
+
+.justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-button {
+  width: 200px; /* Adjust width as needed */
+  text-align: center;
+  padding: 0.5rem 1rem; /* Increase padding for additional width if desired */
+}

@@ -145,6 +145,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       //this.characters=characters;
       //const characterNumber=this.characters.length;
       this.characters=[...this.characters, ...characters];
+      this.characters = this.characters.filter((c)=>!c.version)
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
 
       if (this.itsYggdrassil){
@@ -185,6 +186,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
 
       this.characters= characters;
+      this.characters = this.characters.filter((c)=>!c.version)
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
 
       if (this.itsYggdrassil){

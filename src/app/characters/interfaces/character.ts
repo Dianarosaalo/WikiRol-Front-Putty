@@ -43,6 +43,8 @@ export interface Character {
   investigacion:number,
   experiencia:number,
   iniciativa:number,
+  version?: string,
+  hiddenInTierList: boolean
 }
 
 export interface Trait{

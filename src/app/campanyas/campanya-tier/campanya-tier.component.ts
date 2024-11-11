@@ -133,7 +133,8 @@ export class CampanyaTierComponent {
     map((c) => c.personajes),
     tap((characters: Character[]) => {
       // Filter characters based on privacy before pushing into myChars
-      const filteredCharacters = characters.filter(c => !c.private || (c.private && c.creator === JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
+      let filteredCharacters = characters.filter(c => !c.private || (c.private && c.creator === JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
+      filteredCharacters = filteredCharacters.filter((c)=>!c.hiddenInTierList)
       myChars.push(...filteredCharacters);
       console.log('Characters loaded:', filteredCharacters.length);
     })
@@ -179,7 +180,7 @@ campaigns = [
     {value:'Reinos Olvidados',label:"Reinos Olvidados"},
     {value:'Miscelanea',label:"Miscelanea"},
     {value:'Guerreros de la Luz',label:"Guerreros de la Luz"},
-    {value:'Guardianes del Cosmos',label:"Guardianes del Cosmos"},
+    {value:'Guardianes del Cosmos',label:"Guardianes Cosmos"},
     {value:'Pruebas',label:"Pruebas DM"}
 ];
 
