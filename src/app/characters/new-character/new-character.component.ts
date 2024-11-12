@@ -122,7 +122,6 @@ export class NewCharacterComponent implements OnInit {
       investigacion:0,
       experiencia:0,
       iniciativa:0,
-      version:'',
       hiddenInTierList: false
     }
   }

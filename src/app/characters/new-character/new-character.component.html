@@ -270,6 +270,7 @@
   <h3>Versiones</h3>
 
   <div class="mb-3">
+    <label for="titulo">Busca a tu personaje a versionar:</label>
     <input
       class="form-control"
       type="text"
@@ -278,10 +279,10 @@
       aria-label="searchChar"
       [(ngModel)]="searchChar"
     />
-
+    <br>
     <ul class="nav nav-pills col-auto ms-3 designs justify-content-center">
       <li class="nav-item">
-          <p (click)="queryBuscar()" class="blue btn btn-danger custom-button">Filtrar!</p>
+          <p (click)="queryBuscar()" class="blue btn btn-danger custom-button">Buscar!</p>
       </li>
   </ul>
 
@@ -289,7 +290,7 @@
 
 
   <div class="mb-3">
-    Es este personaje una versión de otro? <br>
+    Resultados de la Búsqueda <strong> Clica en el Formulario</strong><br>
     <select class="form-control" [(ngModel)]="newCharacter.version" [ngModelOptions]="{standalone:true}">
       <option *ngFor="let char of characters" value={{char._id}}>{{char.nombre}}</option>
     </select>
