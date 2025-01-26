@@ -51,6 +51,7 @@ export class CampanyaTierComponent {
 
   DeusChars:Character[]=[];
   SupremeChars:Character[]=[];
+  SemiSupremeChars:Character[]=[];
   SSSSSChars:Character[]=[];
   SSSSChars:Character[]=[];
   SSSChars:Character[]=[];
@@ -62,6 +63,7 @@ export class CampanyaTierComponent {
   DChars:Character[]=[];
   EChars:Character[]=[];
   FChars:Character[]=[];
+  NoPeleadoresChars:Character[]=[];
   UnknownChars:Character[]=[];
 
 
@@ -75,6 +77,7 @@ export class CampanyaTierComponent {
   ngOnInit(): void {
     this.loadCharacters("0.- Deus Ex Machina",this.DeusChars);
     this.loadCharacters("0.25.- Supremo",this.SupremeChars);
+    this.loadCharacters("0.33.- Semi-Supremo",this.SemiSupremeChars);
     this.loadCharacters("0.5.- SSSSS",this.SSSSSChars);
     this.loadCharacters("1.- SSSS",this.SSSSChars);
     this.loadCharacters("2.- SSS",this.SSSChars);
@@ -86,6 +89,7 @@ export class CampanyaTierComponent {
     this.loadCharacters("8.- D",this.DChars);
     this.loadCharacters("9.- E",this.EChars);
     this.loadCharacters("9.5.- F",this.FChars);
+    this.loadCharacters("9.75.- No Peleadores",this.NoPeleadoresChars);
     this.loadCharacters("9.9.- Desconocido",this.UnknownChars);
 
     this.loadFactions();

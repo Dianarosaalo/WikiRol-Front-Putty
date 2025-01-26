@@ -134,6 +134,45 @@
     </div>
   </div>
 
+  <h3>SEMI-SUPREMOS</h3>
+
+  <div
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
+  >
+  <div class="col" *ngFor="let character of SemiSupremeChars | characterFilter:search:faction:order:selectedCampaigns">
+    <div class="card h-100 shadow">
+      <a [routerLink]="['/characters', character._id]">
+        <img class="card-img-top" loading="lazy" src="{{ character.fotoPerfil }}" />
+      </a>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <h3>SSSSS</h3>
 
   <div
@@ -531,6 +570,45 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of FChars | characterFilter:search:faction:order:selectedCampaigns">
+    <div class="card h-100 shadow">
+      <a [routerLink]="['/characters', character._id]">
+        <img class="card-img-top" loading="lazy" src="{{ character.fotoPerfil }}" />
+      </a>
+        <div class="card-body">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
+          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>No Peleadores</h3>
+
+  <div
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
+  >
+  <div class="col" *ngFor="let character of NoPeleadoresChars | characterFilter:search:faction:order:selectedCampaigns">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" loading="lazy" src="{{ character.fotoPerfil }}" />

@@ -211,6 +211,9 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     if(char.tier==="0.25.- Supremo")
       this.SupremeChars.push(char);
 
+    if(char.tier==="0.33.- Semi-Supremo")
+      this.SemiSupremeChars.push(char);
+
     if(char.tier==="0.5.- SSSSS")
       this.SSSSSChars.push(char);
 
@@ -244,12 +247,16 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     if(char.tier==="9.5.- F")
       this.FChars.push(char);
 
+    if(char.tier==="9.75.- No Peleadores")
+      this.NoPeleadoresChars.push(char);
+
     if(char.tier==="9.9.- Desconocido")
       this.UnknownChars.push(char);
   }
 
   DeusChars:Character[]=[];
   SupremeChars:Character[]=[];
+  SemiSupremeChars:Character[]=[];
   SSSSSChars:Character[]=[];
   SSSSChars:Character[]=[];
   SSSChars:Character[]=[];
@@ -261,6 +268,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   DChars:Character[]=[];
   EChars:Character[]=[];
   FChars:Character[]=[];
+  NoPeleadoresChars:Character[]=[];
   UnknownChars:Character[]=[];
 
   loadFactions(): void {
