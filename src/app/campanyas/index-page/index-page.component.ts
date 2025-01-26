@@ -86,7 +86,7 @@ export class IndexPageComponent implements OnInit {
 
   transformTitle(description:string):string{
     const myDate=String(description);
-    return myDate.substring(0,55);
+    return myDate.substring(0,280);
   }
 
   changeDesign(type:string)

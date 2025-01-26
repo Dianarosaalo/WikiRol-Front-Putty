@@ -121,7 +121,7 @@ export class CampanyaTierComponent {
 
   transformTitle(description:string):string{
     const myDate=String(description);
-    return myDate.substring(0,55);
+    return myDate.substring(0,280);
   }
 
   loadCharacters(currentTier:string, myChars:Character[]): void {

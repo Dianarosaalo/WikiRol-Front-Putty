@@ -117,7 +117,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
 
   transformTitle(description:string):string{
     const myDate=String(description);
-    return myDate.substring(0,55);
+    return myDate.substring(0,280);
   }
 
   onTabClick(tab:string)
