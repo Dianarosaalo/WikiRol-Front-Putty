@@ -471,6 +471,13 @@ export class NewCharacterComponent implements OnInit {
     }
   }
 
+  // manejador de versiones
+  deleteVersion()
+  {
+    delete this.newCharacter.version;
+  }
+  //
+
   tiposRasgo=[
     {value:'Accion',label:"Acción"},
     {value:'Accion Adicional',label:"Acción Adicional"},

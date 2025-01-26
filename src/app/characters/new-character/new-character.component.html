@@ -296,6 +296,19 @@
     </select>
   </div>
 
+  <div *ngIf="newCharacter.version">
+    <br>
+      <div class="containermenu">
+        <h1>Manejador de Versiones</h1>
+        <div class="trait-list">
+          <h2>Personaje al que versiona</h2>
+              <span class="trait-title">Personaje con ID: {{ newCharacter.version }}</span>
+              <p (click)="deleteVersion()" class="btn btn-danger">Eliminar</p>
+        </div>
+      </div>
+    <br>
+  </div>
+
   <div class="mb-3" *ngIf="newCharacter.version!==''">
     Privacidad de la versión del personaje <br>
     <select class="form-control" [(ngModel)]="newCharacter.hiddenInTierList" [ngModelOptions]="{standalone:true}">
