@@ -189,13 +189,14 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       this.characters = this.characters.filter((c)=>!c.version)
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
 
+      this.characters.forEach((c)=>this.whichTier(c));
+
       if (this.itsYggdrassil){
         this.deidades = this.characters.filter((c)=>c.deidad);      //son deidades
         this.characters = this.characters.filter((c)=>!c.deidad);
         this.groupDeidadesByType();
       }
 
-      this.characters.forEach((c)=>this.whichTier(c));
       console.log('Characters loaded:', characters.length);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
       this.pageNumber++;
