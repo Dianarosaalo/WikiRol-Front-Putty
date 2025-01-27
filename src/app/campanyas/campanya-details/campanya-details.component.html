@@ -165,7 +165,7 @@
 
 <div *ngIf="activeTab === 'Deidades'">
   <h1 style="text-align: center;">Deidades ({{ deidades.length }})</h1>
-  <div *ngIf="design === 'old'" id="placesContainer" class="mb-1 mt-1 adriweboMargin">
+  <div id="placesContainer" class="mb-1 mt-1" [ngClass]="design === 'new' ? 'normalMargin' : 'adriweboMargin'">
     <ng-container *ngFor="let group of groupedDeidades">
       <div class="group-container">
         <h3 class="big">{{ group.deidad }}</h3>
