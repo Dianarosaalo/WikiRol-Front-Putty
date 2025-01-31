@@ -7,7 +7,7 @@
 </ul>
 <h2>{{character.nombre}}</h2>
 
-<div *ngIf="hasVersions" class="character-versions-container">
+<div *ngIf="hasVersions && versions.length>1" class="character-versions-container">
   <p *ngFor="let v of versions" class="character-version-item" (click)="changeCharacterVersion(v)">
     {{v.nombre}}
   </p>
