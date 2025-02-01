@@ -87,3 +87,11 @@ button.volverAtras{
 .designs{
   cursor:pointer;
 }
+
+.dropdown-menu {
+  display: block;
+  position: absolute;
+}
+.dropdown-menu.show {
+  display: block;
+}

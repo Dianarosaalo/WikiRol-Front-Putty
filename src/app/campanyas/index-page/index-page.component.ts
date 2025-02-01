@@ -175,4 +175,50 @@ export class IndexPageComponent implements OnInit {
   {
     window.location.reload();
   }
+
+  //campaigns
+
+  campaigns = [
+    {value:'Egathea',label:"Egathea"},
+      {value:'Caminos de Sangre',label:"Caminos de Sangre"},
+      {value:'Aryma',label:"Aryma"},
+      {value:'Yggdrassil',label:"Yggdrassil"},
+
+      {value:'Djuna',label:"Djuna & Co"},
+      {value:'Mario',label:"Cruzados Mario"},
+      {value:'Reinos Olvidados',label:"Reinos Olvidados"},
+      {value:'Miscelanea',label:"Miscelanea"},
+      {value:'Guerreros de la Luz',label:"Guerreros de la Luz"},
+      {value:'Guardianes del Cosmos',label:"Guardianes Cosmos"},
+      {value:'Pruebas',label:"Guerreros Oscuros"},
+      {value: 'Historias Yggdrassil', label: 'Historias Yggdrassil'}
+  ];
+
+    selectedCampaigns: string[] = this.campaigns.map(campaign => campaign.value);
+
+    onCampaignChange(event: any, value: string): void {
+      if (event.target.checked) {
+        if (!this.selectedCampaigns.includes(value)) {
+          this.selectedCampaigns = [...this.selectedCampaigns, value]; // create a new reference
+        }
+      } else {
+        this.selectedCampaigns = this.selectedCampaigns.filter(c => c !== value);
+      }
+    }
+
+    isDropdownOpen = false;
+
+    toggleDropdown(): void {
+      this.isDropdownOpen = !this.isDropdownOpen;
+    }
+
+    //versions
+
+    selectedVersion = "T"
+
+    versionOptions = [
+      {value:'T',label:"Todos"},
+      {value:'O',label:"Solo Originales"},
+      {value:'V',label:"Solo Versiones"},
+    ]
 }

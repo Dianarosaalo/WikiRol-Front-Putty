@@ -29,6 +29,40 @@
     </li>
   </ul>
 
+  <ul class="nav nav-pills col-auto ms-3 ">
+    <li class="nav-item btn">
+      <select class="form-control btn btn-success" [(ngModel)]="selectedVersion" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of versionOptions" value={{option.value}}>Versiones: {{option.label}}</option>
+      </select>
+    </li>
+  </ul>
+
+  <ul class="nav nav-pills col-auto ms-3">
+    <li class="nav-item btn dropdown" (click)="toggleDropdown()">
+      <button
+        class="btn btn-danger dropdown-toggle"
+        type="button">
+        Campañas:
+      </button>
+      <ul class="dropdown-menu p-3" *ngIf="isDropdownOpen" style="width: 200px;">
+        <li *ngFor="let option of campaigns">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [checked]="selectedCampaigns.includes(option.value)"
+              (change)="onCampaignChange($event, option.value)"
+              (click)="$event.stopPropagation()"
+              id="checkbox-{{option.value}}">
+            <label class="form-check-label" for="checkbox-{{option.value}}">
+              {{ option.label }}
+            </label>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
   <ul class="nav nav-pills col-auto ms-3">
     <li class="nav-item btn">
       <select class="form-control" [(ngModel)]="faction" [ngModelOptions]="{standalone:true}">
@@ -51,7 +85,7 @@
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 adriweboMargin"
 >
-  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order">
+  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order:selectedCampaigns:selectedVersion">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -94,7 +128,7 @@
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
 >
-  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order">
+  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order:selectedCampaigns:selectedVersion">
     <div class="card h-100 shadow">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />

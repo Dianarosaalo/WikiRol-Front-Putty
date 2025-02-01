@@ -12,7 +12,8 @@ export class CharacterFilterPipe implements PipeTransform {
     search: string,
     faction: string,
     order: string,
-    selectedCampaigns?: string[]
+    selectedCampaigns?: string[],
+    selectedVersion?:string,
   ): Character[] {
     // First, filter by faction if provided
     const filteredByFaction = faction
