@@ -476,7 +476,7 @@ export class NewCharacterComponent implements OnInit {
   // manejador de versiones
   deleteVersion()
   {
-    delete this.newCharacter.version;
+    this.newCharacter.version=null
   }
   //
 

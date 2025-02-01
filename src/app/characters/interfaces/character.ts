@@ -43,7 +43,7 @@ export interface Character {
   investigacion:number,
   experiencia:number,
   iniciativa:number,
-  version?: string,
+  version?: string | null,
   hiddenInTierList: boolean
 }
 

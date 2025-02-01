@@ -155,19 +155,27 @@ export class IndexPageComponent implements OnInit {
     this.characters=[];
     this.buttonShow=false;
 
-    this.http.get<CharactersResponse>('personajes/busqueda', {
-      params: {
-        faccion: this.faction,
-        nombre: this.search
-      }
-    }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
-      this.characters= characters;
-      this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
-      this.cdr.detectChanges();
-      //this.buttonShow=true;
-      this.volverButtonShow=true;
-      console.log(this.volverButtonShow);
-      console.log('Characters loaded:', characters.length)});
+    if (this.search=="" && this.faction=="")
+    {
+      console.log("No es una búsqueda correcta")
+    }
+    else{
+      this.http.get<CharactersResponse>('personajes/busqueda', {
+        params: {
+          faccion: this.faction,
+          nombre: this.search
+        }
+      }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
+        this.characters= characters;
+        this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
+        this.cdr.detectChanges();
+        //this.buttonShow=true;
+        this.volverButtonShow=true;
+        console.log(this.volverButtonShow);
+        console.log('Characters loaded:', characters.length)});
+    }
+
+
 
   }
 

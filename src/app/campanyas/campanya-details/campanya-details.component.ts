@@ -285,20 +285,25 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     this.characters=[];
     this.buttonShow=false;
 
-    this.http.get<CharactersResponse>('personajes/busqueda', {
-      params: {
-        faccion: this.faction,
-        nombre: this.search
+    if (this.search=="" && this.faction=="")
+      {
+        console.log("No es una búsqueda correcta")
       }
-    }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
-      this.characters= characters;
-      this.characters = this.characters.filter((c)=>!c.version)
-      this.characters = (this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user"))))) )
-      .filter((c)=>c.campanya === this.id || c.campanyasSecundarias?.includes(this.id));
-      this.cdr.detectChanges();
-      this.volverButtonShow=true;
-      console.log('Characters loaded:', characters.length)});
-
+    else{
+      this.http.get<CharactersResponse>('personajes/busqueda', {
+        params: {
+          faccion: this.faction,
+          nombre: this.search
+        }
+      }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
+        this.characters= characters;
+        this.characters = this.characters.filter((c)=>!c.version)
+        this.characters = (this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user"))))) )
+        .filter((c)=>c.campanya === this.id || c.campanyasSecundarias?.includes(this.id));
+        this.cdr.detectChanges();
+        this.volverButtonShow=true;
+        console.log('Characters loaded:', characters.length)});
+    }
   }
 
   cargarDesdeCero()
