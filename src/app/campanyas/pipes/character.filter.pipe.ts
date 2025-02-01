@@ -13,7 +13,7 @@ export class CharacterFilterPipe implements PipeTransform {
     faction: string,
     order: string,
     selectedCampaigns?: string[],
-    selectedVersion?:string,
+    selectedVersion?: string,
   ): Character[] {
     // First, filter by faction if provided
     const filteredByFaction = faction
@@ -31,12 +31,27 @@ export class CharacterFilterPipe implements PipeTransform {
         )
       : filteredByFaction;
 
+    // Filter by selectedVersion if provided
+    let filteredByVersion: Character[] = [];
+    switch (selectedVersion) {
+      case 'O': // Filter characters without a version
+        filteredByVersion = filteredByCampaigns.filter((c) => !c.version);
+        break;
+      case 'V': // Filter characters with a version
+        filteredByVersion = filteredByCampaigns.filter((c) => c.version);
+        break;
+      case 'T': // Return all characters without additional filtering
+      default:
+        filteredByVersion = filteredByCampaigns;
+        break;
+    }
+
     // Now, filter by search term if provided
     return search
-      ? filteredByCampaigns.filter((c) =>
+      ? filteredByVersion.filter((c) =>
           c.nombre.toLocaleLowerCase().includes(search.toLocaleLowerCase())
         )
-      : this.OrderBy(order, filteredByCampaigns);
+      : this.OrderBy(order, filteredByVersion);
   }
 
   OrderBy(order:string, characters:Character[]){
