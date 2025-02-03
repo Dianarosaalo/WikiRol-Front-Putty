@@ -95,3 +95,8 @@ button.volverAtras{
 .dropdown-menu.show {
   display: block;
 }
+
+.btnGranate{
+  background-color: #bb1313 !important; /* Garnet color */
+  color: white !important; /* Ensure text remains readable */
+}

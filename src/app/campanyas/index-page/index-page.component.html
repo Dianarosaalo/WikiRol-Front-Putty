@@ -31,9 +31,34 @@
 
   <ul class="nav nav-pills col-auto ms-3 ">
     <li class="nav-item btn">
-      <select class="form-control btn btn-success" [(ngModel)]="selectedVersion" [ngModelOptions]="{standalone:true}">
+      <select class="dropdown-toggle btn btn-success" [(ngModel)]="selectedVersion" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of versionOptions" value={{option.value}}>Versiones: {{option.label}}</option>
       </select>
+    </li>
+  </ul>
+
+  <ul class="nav nav-pills col-auto ms-3">
+    <li class="nav-item btn">
+      <button class="btn btnGranate dropdown-toggle" type="button" (click)="showFactionSelect = !showFactionSelect">
+        Facciones:
+      </button>
+      <div *ngIf="showFactionSelect" class="dropdown-menu show p-2">
+        <input class="form-control mb-2" type="text" placeholder="Buscar Facción" [(ngModel)]="factionSearch">
+        <div class="dropdown-divider"></div>
+        <div class="btn-group w-100 mb-2">
+          <button class="btn btn-outline-secondary" [class.active]="!alphabetical" (click)="alphabetical = false">
+            Orden: Ninguno
+          </button>
+          <button class="btn btn-outline-secondary" [class.active]="alphabetical" (click)="alphabetical = true">
+            Orden: Alfabético
+          </button>
+        </div>
+        <select class="form-control w-100" [(ngModel)]="faction" [ngModelOptions]="{standalone:true}">
+          <option *ngFor="let option of factions | factionsFilter:factionSearch:alphabetical" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
     </li>
   </ul>
 
@@ -60,14 +85,6 @@
           </div>
         </li>
       </ul>
-    </li>
-  </ul>
-
-  <ul class="nav nav-pills col-auto ms-3">
-    <li class="nav-item btn">
-      <select class="form-control" [(ngModel)]="faction" [ngModelOptions]="{standalone:true}">
-        <option *ngFor="let option of factions" value={{option.value}}>Facción: {{option.label}}</option>
-      </select>
     </li>
   </ul>
 

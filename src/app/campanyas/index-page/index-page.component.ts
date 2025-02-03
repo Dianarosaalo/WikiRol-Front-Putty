@@ -6,6 +6,7 @@ import { Router,RouterLink } from '@angular/router';
 import { Character } from 'src/app/characters/interfaces/character';
 //import { CharacterCardComponent } from 'src/app/characters/character-card/character-card.component';
 import { CharacterFilterPipe } from '../pipes/character.filter.pipe';
+import { FactionsFilterPipe } from '../pipes/faction.filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { CharactersResponse } from 'src/app/characters/interfaces/characterResponse';
 import { map } from 'rxjs';
@@ -18,7 +19,7 @@ import { Faction } from 'src/app/factions/interfaces/faction';
 @Component({
   selector: 'fs-index-page',
   standalone: true,
-  imports: [CommonModule,RouterLink,CharacterFilterPipe,FormsModule], //el router link una vez implemente lo que es la card no me será necesario // cuidadín con las responses
+  imports: [CommonModule,RouterLink,CharacterFilterPipe,FormsModule,FactionsFilterPipe], //el router link una vez implemente lo que es la card no me será necesario // cuidadín con las responses
   templateUrl: './index-page.component.html',
   styleUrls: ['./index-page.component.css']
 })
@@ -230,4 +231,9 @@ export class IndexPageComponent implements OnInit {
       {value:'O',label:"Solo Originales"},
       {value:'V',label:"Solo Versiones"},
     ]
+
+    //
+    factionSearch="";
+    alphabetical=false;
+    showFactionSelect=false;
 }
