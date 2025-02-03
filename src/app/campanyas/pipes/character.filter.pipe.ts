@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Pipe, PipeTransform } from "@angular/core";
-import { Character, Class } from "src/app/characters/interfaces/character";
+import { Character} from "src/app/characters/interfaces/character";
 
 @Pipe({
   name: 'characterFilter',
