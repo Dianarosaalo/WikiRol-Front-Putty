@@ -3,7 +3,8 @@
   <li (click)="onTabClick('Stats')" class="tab-link">Stats</li>
   <li (click)="onTabClick('General')" class="tab-link">General</li>
   <li (click)="onTabClick('Lore')" class="tab-link">Lore</li>
-  <li (click)="onTabClick('Media')" class="tab-link">Media</li>
+  <li (click)="onTabClick('Media')" class="tab-link">Galería</li>
+  <li (click)="onTabClick('Musica')" class="tab-link">Música</li>
 </ul>
 <h2>{{character.nombre}}</h2>
 
@@ -22,6 +23,10 @@
 
   <br>
   <div class="monster-sheet">
+
+    <div *ngIf="counts(character.galeria) && activeTab==='Media'">
+      <h3 style="text-align: center; justify-content: center;">Galería</h3>
+    </div>
 
     <div *ngIf="activeTab ==='General'">
     <p class="intergalactico" *ngIf="character.intergalactico"><span>Intergalático</span></p>
@@ -454,7 +459,7 @@
       </div>
     </div>
 
-    <div *ngIf="activeTab ==='Media'">
+    <div *ngIf="activeTab ==='Musica'">
       <div *ngIf="counts(character.canciones)">
         <h3 >Temas de personaje</h3>
         <br>
@@ -467,16 +472,15 @@
           </div>
         </div>
 
-        <div *ngIf="counts(character.galeria)">
 
-          <h3>Gallery</h3>
-        </div>
     </div>
 
 </div>
 
+
 <div *ngIf="activeTab ==='Media'">
-  <div *ngIf="counts(character.galeria)" class="container-fluid mb-4 mt-4 row row-cols-4 row-cols-md-4 row-cols-xl-4 g-4">
+
+  <div *ngIf="counts(character.galeria)" class="container-fluid mb-4 mt-4 row row-cols-4 row-cols-md-4 row-cols-xl-4 g-4 monster-sheet">
 
     <img class="card-img-top" *ngFor="let foto of character.galeria" src="{{ foto }}" />
   </div>
@@ -499,6 +503,6 @@
       &nbsp;
     <button class="btn btn-primary" (click)="goBack()">Atrás</button>
       &nbsp;
-    <button class="btn btn-danger deleteButton" *ngIf="me" (click)="deleteCharacter()">Delete</button>
+    <button class="btn btn-danger deleteButton" *ngIf="me" (click)="deleteCharacter()">Eliminar</button>
   </div>
 </div>
