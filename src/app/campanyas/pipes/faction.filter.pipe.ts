@@ -13,7 +13,7 @@ export class FactionsFilterPipe implements PipeTransform {
   transform(
     factions: Faction[],
     search: string,
-    alphabeticalSort: boolean
+    alphabeticalSort?: boolean
   ): Faction[] {
     // Filter by search term
     let filteredFactions = factions.filter(faction =>

@@ -13,11 +13,12 @@ import { FactionsResponse } from 'src/app/factions/interfaces/factionResponse';
 import { Faction } from 'src/app/factions/interfaces/faction';
 import { map } from 'rxjs';
 import { CharactersResponse } from '../interfaces/characterResponse';
+import { FactionsFilterPipe } from 'src/app/campanyas/pipes/faction.filter.pipe';
 
 @Component({
   selector: 'fs-new-character',
   standalone: true,
-  imports: [CommonModule, FormsModule,HttpClientModule],
+  imports: [CommonModule, FormsModule,HttpClientModule, FactionsFilterPipe],
   templateUrl: './new-character.component.html',
   styleUrls: ['./new-character.component.css']
 })
@@ -523,5 +524,15 @@ export class NewCharacterComponent implements OnInit {
       console.log('Characters loaded:', characters.length)});
 
   }
+
+  //busqueda de facciones
+    factionSearch="";
+    alphabetical=false;
+
+    updateSearch(event: Event) {
+      this.factionSearch = (event.target as HTMLInputElement).value;
+      this.cdr.detectChanges(); // Force update
+    }
+
 }
 

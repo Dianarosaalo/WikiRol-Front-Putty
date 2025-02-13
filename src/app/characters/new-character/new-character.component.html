@@ -798,8 +798,10 @@
 
     <div *ngIf="showNewFaction" class="new-trait-form">
       <h2>Añadir Facción</h2>
+      <input class="form-control mb-2" type="text" placeholder="Buscar Facción"
+      [value]="factionSearch" (input)="updateSearch($event)">
       <select class="form-control" [(ngModel)]="currentFaction" [ngModelOptions]="{standalone:true}">
-        <option *ngFor="let option of factions" value={{option.value}}>{{option.label}}</option>
+        <option *ngFor="let option of factions | factionsFilter:factionSearch:alphabetical" value={{option.value}}>{{option.label}}</option>
       </select>
       <p (click)="addFaction()" class="btn btn-danger">Añadir Facción</p>
     </div>
