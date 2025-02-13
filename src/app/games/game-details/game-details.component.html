@@ -1,7 +1,7 @@
 <div>
   <h1>Partida nº {{partida.num}}.-{{partida.titulo}}</h1>
   <p>{{partida.resumen}}</p>
-  <p *ngIf="partida.fechaJugada!==null" style="text-align: right;">{{dateOfTheGame}}</p>
+  <p *ngIf="partida.fechaJugada!==null" style="text-align: right;">{{dateOfTheGame | date:'dd-MM-yyyy'}}</p>
 </div>
 
 <div class="mt-4 mb-4">
