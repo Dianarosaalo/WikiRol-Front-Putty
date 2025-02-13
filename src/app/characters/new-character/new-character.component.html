@@ -1,12 +1,12 @@
 <ul class="tabs-container">
-  <li (click)="onTabClick('Principal')" class="tab-link">Principal</li>
-  <li (click)="onTabClick('Lore')" class="tab-link">Lore</li>
-  <li (click)="onTabClick('Campanya')" class="tab-link">Campaña</li>
-  <li (click)="onTabClick('Versiones')" class="tab-link">Versiones</li>
-  <li (click)="onTabClick('Privacidad')" class="tab-link">Privacidad</li>
-  <li (click)="onTabClick('Estadisticas')" class="tab-link">Estadísticas</li>
-  <li (click)="onTabClick('Rasgos')" class="tab-link">Rasgos</li>
-  <li (click)="onTabClick('Multimedia')" class="tab-link">Multimedia</li>
+  <li (click)="onTabClick('Principal')" class="tab-link" [class.active]="activeTab === 'Principal'">Principal</li>
+  <li (click)="onTabClick('Lore')" class="tab-link" [class.active]="activeTab === 'Lore'">Lore</li>
+  <li (click)="onTabClick('Campanya')" class="tab-link" [class.active]="activeTab === 'Campanya'">Campaña</li>
+  <li (click)="onTabClick('Versiones')" class="tab-link" [class.active]="activeTab === 'Versiones'">Versiones</li>
+  <li (click)="onTabClick('Privacidad')" class="tab-link" [class.active]="activeTab === 'Privacidad'">Privacidad</li>
+  <li (click)="onTabClick('Estadisticas')" class="tab-link" [class.active]="activeTab === 'Estadisticas'">Estadísticas</li>
+  <li (click)="onTabClick('Rasgos')" class="tab-link" [class.active]="activeTab === 'Rasgos'">Rasgos</li>
+  <li (click)="onTabClick('Multimedia')" class="tab-link" [class.active]="activeTab === 'Multimedia'">Multimedia</li>
 </ul>
 
 <div class="container">
