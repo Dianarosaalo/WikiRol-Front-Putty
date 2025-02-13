@@ -534,5 +534,15 @@ export class NewCharacterComponent implements OnInit {
       this.cdr.detectChanges(); // Force update
     }
 
+
+   //tabs
+
+    activeTab="Principal";
+
+    onTabClick(tab:string)
+  {
+    this.activeTab=tab;
+  }
+
 }
 

@@ -1,345 +1,397 @@
+<ul class="tabs-container">
+  <li (click)="onTabClick('Principal')" class="tab-link">Principal</li>
+  <li (click)="onTabClick('Lore')" class="tab-link">Lore</li>
+  <li (click)="onTabClick('Campanya')" class="tab-link">Campaña</li>
+  <li (click)="onTabClick('Versiones')" class="tab-link">Versiones</li>
+  <li (click)="onTabClick('Privacidad')" class="tab-link">Privacidad</li>
+  <li (click)="onTabClick('Estadisticas')" class="tab-link">Estadísticas</li>
+  <li (click)="onTabClick('Rasgos')" class="tab-link">Rasgos</li>
+  <li (click)="onTabClick('Multimedia')" class="tab-link">Multimedia</li>
+</ul>
+
 <div class="container">
 <form class="mt-4" (ngSubmit)="addCharacter()" #characterForm="ngForm">
 
-  <h3>DATOS PRINCIPALES</h3>
+  <div *ngIf="activeTab ==='Principal'">
+    <h3>DATOS PRINCIPALES</h3>
 
-  <div class="mb-3">
-    <label for="name">Nombre</label>
-    <input
-      type="text"
-      class="form-control"
-      name="nombre"
-      id="nombre"
-      [(ngModel)]="newCharacter.nombre"
-      placeholder="Introduce el nombre del personaje"
-      required
-      #nombreModel="ngModel"
-      [ngClass]="validClasses(nombreModel, 'is-valid', 'is-invalid')"
+    <div class="mb-3">
+      <label for="name">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        name="nombre"
+        id="nombre"
+        [(ngModel)]="newCharacter.nombre"
+        placeholder="Introduce el nombre del personaje"
+        required
+        #nombreModel="ngModel"
+        [ngClass]="validClasses(nombreModel, 'is-valid', 'is-invalid')"
+      />
+      <div class="invalid-feedback" *ngIf="nombreModel.errors?.['required']">
+        Introduce un nombre correcto
+      </div>
+      <div class="invalid-feedback" *ngIf="nombreModel.errors?.['pattern']">
+        Introduce un nombre correcto.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="titulo">Títulos</label>
+      <input
+        type="text"
+        class="form-control"
+        name="titulo"
+        id="titulo"
+        [(ngModel)]="newCharacter.titulo"
+        placeholder="Títulos del personaje"
+        #tituloModel="ngModel"
+        [ngClass]="validClasses(tituloModel, 'is-valid', 'is-invalid')"
+      />
+      <div class="invalid-feedback">Al menos un título es requerido</div>
+    </div>
+
+    <div class="mb-3">
+      Campaña <br>
+      <select class="form-control" [(ngModel)]="newCharacter.campanya" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      Tier de Poder <br>
+      <select class="form-control" [(ngModel)]="newCharacter.tier" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of tiers" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="fotoPerfil">Foto de Perfil</label>
+      <input
+        type="file"
+        class="form-control"
+        id="fotoPerfil"
+        name="fotoPerfil"
+        #fileImage
+        (change)="changeImage(fileImage)"
+        ngModel
+        required
+        #imageModel="ngModel"
+        [ngClass]="validClasses(imageModel, 'is-valid', 'is-invalid')"
+      />
+      <div class="invalid-feedback">Una imagen es requerida</div>
+    </div>
+    <img
+      [src]="newCharacter.fotoPerfil"
+      [ngClass]="{ 'd-none': !newCharacter.fotoPerfil }"
+      class="img-thumbnail mb-3"
     />
-    <div class="invalid-feedback" *ngIf="nombreModel.errors?.['required']">
-      Introduce un nombre correcto
+
+    <div class="mb-3">
+      Jugador <br>
+      <select class="form-control" [(ngModel)]="newCharacter.creator" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
+      </select>
     </div>
-    <div class="invalid-feedback" *ngIf="nombreModel.errors?.['pattern']">
-      Introduce un nombre correcto.
+
+  </div>
+
+  <div *ngIf="activeTab ==='Lore'">
+    <h3>Lore</h3>
+
+    <br>
+
+    <div class="mb-3">
+      <label for="descripcion">Descripcion</label>
+      <textarea
+        class="form-control"
+        id="descripcion"
+        name="descripcion"
+        rows="3"
+        [(ngModel)]="newCharacter.descripcion"
+        placeholder="Descripción"
+        #descModel="ngModel"
+        [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"
+      ></textarea>
+      <div class="invalid-feedback">La descripción es requerida.</div>
     </div>
-  </div>
 
-  <div class="mb-3">
-    <label for="titulo">Títulos</label>
-    <input
-      type="text"
-      class="form-control"
-      name="titulo"
-      id="titulo"
-      [(ngModel)]="newCharacter.titulo"
-      placeholder="Títulos del personaje"
-      #tituloModel="ngModel"
-      [ngClass]="validClasses(tituloModel, 'is-valid', 'is-invalid')"
-    />
-    <div class="invalid-feedback">Al menos un título es requerido</div>
-  </div>
-
-  <div class="mb-3">
-    Campaña <br>
-    <select class="form-control" [(ngModel)]="newCharacter.campanya" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    Tier de Poder <br>
-    <select class="form-control" [(ngModel)]="newCharacter.tier" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of tiers" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    <label for="fotoPerfil">Foto de Perfil</label>
-    <input
-      type="file"
-      class="form-control"
-      id="fotoPerfil"
-      name="fotoPerfil"
-      #fileImage
-      (change)="changeImage(fileImage)"
-      ngModel
-      required
-      #imageModel="ngModel"
-      [ngClass]="validClasses(imageModel, 'is-valid', 'is-invalid')"
-    />
-    <div class="invalid-feedback">Una imagen es requerida</div>
-  </div>
-  <img
-    [src]="newCharacter.fotoPerfil"
-    [ngClass]="{ 'd-none': !newCharacter.fotoPerfil }"
-    class="img-thumbnail mb-3"
-  />
-
-  <div class="mb-3">
-    Jugador <br>
-    <select class="form-control" [(ngModel)]="newCharacter.creator" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
-    </select>
-  </div>
-
-  <h3>Lore</h3>
-
-  <br>
-
-  <div class="mb-3">
-    <label for="descripcion">Descripcion</label>
-    <textarea
-      class="form-control"
-      id="descripcion"
-      name="descripcion"
-      rows="3"
-      [(ngModel)]="newCharacter.descripcion"
-      placeholder="Descripción"
-      #descModel="ngModel"
-      [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"
-    ></textarea>
-    <div class="invalid-feedback">La descripción es requerida.</div>
-  </div>
-
-  <div class="mb-3">
-    <label for="lore">Lore</label>
-    <textarea
-      class="form-control"
-      id="lore"
-      name="lore"
-      rows="5"
-      [(ngModel)]="newCharacter.lore"
-      placeholder="Introduce el Lore del personaje"
-      #loreModel="ngModel"
-      [ngClass]="validClasses(loreModel, 'is-valid', 'is-invalid')"
-    ></textarea>
-    <div class="invalid-feedback">Introduce el lore del personaje.</div>
-  </div>
-
-  <div class="mb-3">
-    <label for="edad">Edad</label>
-    <input
-      type="number"
-      class="form-control"
-      id="edad"
-      name="edad"
-      min:0
-      [(ngModel)]="newCharacter.edad"
-      placeholder="Edad del personaje (introduce 0 si es desconocida)"
-      #edadModel="ngModel"
-      [ngClass]="validClasses(edadModel, 'is-valid', 'is-invalid')"
-    />
-    <div class="invalid-feedback" *ngIf="edadModel.errors?.['required']">
-      Edad es requerida
+    <div class="mb-3">
+      <label for="lore">Lore</label>
+      <textarea
+        class="form-control"
+        id="lore"
+        name="lore"
+        rows="5"
+        [(ngModel)]="newCharacter.lore"
+        placeholder="Introduce el Lore del personaje"
+        #loreModel="ngModel"
+        [ngClass]="validClasses(loreModel, 'is-valid', 'is-invalid')"
+        rows="8" cols="50"></textarea>
+      <div class="invalid-feedback">Introduce el lore del personaje.</div>
     </div>
-    <div class="invalid-feedback" *ngIf="edadModel.errors?.['pattern']">
-      Edad es requerida
+
+    <div class="mb-3">
+      <label for="edad">Edad</label>
+      <input
+        type="number"
+        class="form-control"
+        id="edad"
+        name="edad"
+        min:0
+        [(ngModel)]="newCharacter.edad"
+        placeholder="Edad del personaje (introduce 0 si es desconocida)"
+        #edadModel="ngModel"
+        [ngClass]="validClasses(edadModel, 'is-valid', 'is-invalid')"
+      />
+      <div class="invalid-feedback" *ngIf="edadModel.errors?.['required']">
+        Edad es requerida
+      </div>
+      <div class="invalid-feedback" *ngIf="edadModel.errors?.['pattern']">
+        Edad es requerida
+      </div>
     </div>
-  </div>
 
-  <div class="mb-3">
-    <label for="partidaAparicion">Partida de aparición</label>
-    <input
-      type="number"
-      class="form-control"
-      id="partidaAparicion"
-      name="partidaAparicion"
-      min:0
-      [(ngModel)]="newCharacter.partidaAparicion"
-      placeholder="Partida en la que el personaje apareció"
-      #partidaModel="ngModel"
-      [ngClass]="validClasses(partidaModel, 'is-valid', 'is-invalid')"
-    />
-    <div class="invalid-feedback" *ngIf="partidaModel.errors?.['required']">
-      Niveles de clase son requeridos
+    <div class="mb-3">
+      <label for="partidaAparicion">Partida de aparición</label>
+      <input
+        type="number"
+        class="form-control"
+        id="partidaAparicion"
+        name="partidaAparicion"
+        min:0
+        [(ngModel)]="newCharacter.partidaAparicion"
+        placeholder="Partida en la que el personaje apareció"
+        #partidaModel="ngModel"
+        [ngClass]="validClasses(partidaModel, 'is-valid', 'is-invalid')"
+      />
+      <div class="invalid-feedback" *ngIf="partidaModel.errors?.['required']">
+        Niveles de clase son requeridos
+      </div>
+      <div class="invalid-feedback" *ngIf="partidaModel.errors?.['pattern']">
+        Niveles de clase son requeridos
+      </div>
     </div>
-    <div class="invalid-feedback" *ngIf="partidaModel.errors?.['pattern']">
-      Niveles de clase son requeridos
+
+    <div class="mb-3">
+      <label for="sab">Altura</label>
+      <input
+        type="number"
+        class="form-control"
+        id="altura"
+        name="altura"
+        min:0
+        [(ngModel)]="newCharacter.altura"
+        placeholder="Altura del personaje en centímetros"
+        required
+        #altModel="ngModel"
+        [ngClass]="validClasses(altModel, 'is-valid', 'is-invalid')"
+      />
+      <div class="invalid-feedback" *ngIf="altModel.errors?.['required']">
+        Altura del personaje
+      </div>
     </div>
-  </div>
 
-  <div class="mb-3">
-    <label for="sab">Altura</label>
-    <input
-      type="number"
-      class="form-control"
-      id="altura"
-      name="altura"
-      min:0
-      [(ngModel)]="newCharacter.altura"
-      placeholder="Altura del personaje en centímetros"
-      required
-      #altModel="ngModel"
-      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
-    />
-    <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
-      Altura del personaje
+    <div class="mb-3">
+      <label for="peso">Peso</label>
+      <input
+        type="number"
+        class="form-control"
+        id="peso"
+        name="peso"
+        min:0
+        [(ngModel)]="newCharacter.peso"
+        placeholder="Peso del personaje en kilogramos"
+        required
+        #pesModel="ngModel"
+        [ngClass]="validClasses(pesModel, 'is-valid', 'is-invalid')"
+      />
+      <div class="invalid-feedback" *ngIf="pesModel.errors?.['required']">
+        Peso del personaje
+      </div>
     </div>
-  </div>
 
-  <div class="mb-3">
-    <label for="peso">Peso</label>
-    <input
-      type="number"
-      class="form-control"
-      id="peso"
-      name="peso"
-      min:0
-      [(ngModel)]="newCharacter.peso"
-      placeholder="Peso del personaje en kilogramos"
-      required
-      #pesModel="ngModel"
-      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
-    />
-    <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
-      Peso del personaje
+    <div class="mb-3">
+      El personaje está muerto? <br>
+      <select class="form-control" [(ngModel)]="newCharacter.muerto" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of dead" value={{option.value}}>{{option.label}}</option>
+      </select>
     </div>
-  </div>
 
-  <div class="mb-3">
-    El personaje está muerto? <br>
-    <select class="form-control" [(ngModel)]="newCharacter.muerto" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of dead" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <h3>Opcional</h3>
-  <br>
-
-  <div class="mb-3">
-    Intergaláctico <strong>Opcional</strong><br>
-    <select class="form-control" [(ngModel)]="newCharacter.intergalactico" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of intergalactic" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <br>
+    <h3>Facciones</h3>
+    <br>
     <div class="containermenu">
-      <h1>Manejador de Campañas</h1>
-      <p (click)="showMyNewCampaign()" class="btn btn-danger">Añadir campaña adicional</p>
+      <h1>Manejador de Facciones</h1>
+      <p (click)="showNewFactionForm()" class="btn btn-danger">Añadir Facción</p>
 
-      <div *ngIf="showNewCampaign" class="new-trait-form">
-        <h2>Añadir campaña adicional</h2>
-        <select class="form-control" [(ngModel)]="newCampaign" [ngModelOptions]="{standalone:true}">
-          <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+      <div *ngIf="showNewFaction" class="new-trait-form">
+        <h2>Añadir Facción</h2>
+        <input class="form-control mb-2" type="text" placeholder="Buscar Facción"
+        [value]="factionSearch" (input)="updateSearch($event)">
+        <select class="form-control" [(ngModel)]="currentFaction" [ngModelOptions]="{standalone:true}">
+          <option *ngFor="let option of factions | factionsFilter:factionSearch:alphabetical" value={{option.value}}>{{option.label}}</option>
         </select>
-        <p (click)="addCampaign()" class="btn btn-danger">Añadir Campaña Adicional</p>
+        <p (click)="addFaction()" class="btn btn-danger">Añadir Facción</p>
       </div>
 
       <div class="trait-list">
-        <h2>Campañas Secundarias</h2>
+        <h2>Facciones</h2>
         <ul>
-          <li *ngFor="let campaign of newCharacter.campanyasSecundarias">
-            <span class="trait-title">{{ transformString(campaign) }}</span>
-            <p (click)="deleteCampaign(campaign)" class="btn btn-danger">Eliminar</p>
+          <li *ngFor="let f of newCharacter.facciones">
+            <span class="trait-title">{{ f }}</span>
+            <p (click)="deleteFaction(f)" class="btn btn-danger">Eliminar</p>
           </li>
         </ul>
       </div>
     </div>
-  <br>
-
-  <!--<div class="mb-3">
-    Campañas en las que tambien Influye <strong>Opcional</strong><br>
-    <select class="form-control" [(ngModel)]="campanyaExtra" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <a class="btn btn-danger" (click)="addCampanya()">Añadir Campaña Secundaria</a>-->
-
-  <div class="mb-3">
-    Tipo de Juego (esto no sirve para nada aún) <br>
-    <select class="form-control" [(ngModel)]="newCharacter.tipoJuego" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of typeOfGame" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    <label for="titulo">Deidad</label>
-    <input
-      type="text"
-      class="form-control"
-      name="deidad"
-      id="deidad"
-      [(ngModel)]="newCharacter.deidad"
-      placeholder="En caso de serlo, de dónde es esta deidad?"
-      #tituloModel="ngModel"
-    />
-  </div>
-
-  <h3>Versiones</h3>
-
-  <div class="mb-3">
-    <label for="titulo">Busca a tu personaje a versionar:</label>
-    <input
-      class="form-control"
-      type="text"
-      name="search"
-      placeholder="Busca a tu version de personaje aquí, la búsqueda saldrá abajo"
-      aria-label="searchChar"
-      [(ngModel)]="searchChar"
-    />
     <br>
-    <ul class="nav nav-pills col-auto ms-3 designs justify-content-center">
-      <li class="nav-item">
-          <p (click)="queryBuscar()" class="blue btn btn-danger custom-button">Buscar!</p>
-      </li>
-  </ul>
 
   </div>
 
+  <div *ngIf="activeTab ==='Campanya'">
+    <h3>Campañas</h3>
+    <br>
 
-  <div class="mb-3">
-    Resultados de la Búsqueda <strong> Clica en el Formulario</strong><br>
-    <select class="form-control" [(ngModel)]="newCharacter.version" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let char of characters" value={{char._id}}>{{char.nombre}}</option>
-    </select>
-  </div>
+    <!--<div class="mb-3">
+      Intergaláctico <strong>Opcional</strong><br>
+      <select class="form-control" [(ngModel)]="newCharacter.intergalactico" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of intergalactic" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>-->
 
-  <div *ngIf="newCharacter.version">
     <br>
       <div class="containermenu">
-        <h1>Manejador de Versiones</h1>
+        <h1>Manejador de Campañas</h1>
+        <p (click)="showMyNewCampaign()" class="btn btn-danger">Añadir campaña adicional</p>
+
+        <div *ngIf="showNewCampaign" class="new-trait-form">
+          <h2>Añadir campaña adicional</h2>
+          <select class="form-control" [(ngModel)]="newCampaign" [ngModelOptions]="{standalone:true}">
+            <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+          </select>
+          <p (click)="addCampaign()" class="btn btn-danger">Añadir Campaña Adicional</p>
+        </div>
+
         <div class="trait-list">
-          <h2>Personaje al que versiona</h2>
-              <span class="trait-title">Personaje con ID: {{ newCharacter.version }}</span>
-              <p (click)="deleteVersion()" class="btn btn-danger">Eliminar</p>
+          <h2>Campañas Secundarias</h2>
+          <ul>
+            <li *ngFor="let campaign of newCharacter.campanyasSecundarias">
+              <span class="trait-title">{{ transformString(campaign) }}</span>
+              <p (click)="deleteCampaign(campaign)" class="btn btn-danger">Eliminar</p>
+            </li>
+          </ul>
         </div>
       </div>
     <br>
+
+    <!--<div class="mb-3">
+      Campañas en las que tambien Influye <strong>Opcional</strong><br>
+      <select class="form-control" [(ngModel)]="campanyaExtra" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
+    <a class="btn btn-danger" (click)="addCampanya()">Añadir Campaña Secundaria</a>-->
+
+    <div class="mb-3">
+      Tipo de Juego (esto no sirve para nada aún) <br>
+      <select class="form-control" [(ngModel)]="newCharacter.tipoJuego" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of typeOfGame" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="titulo">Es tu personaje una Deidad?</label>
+      <input
+        type="text"
+        class="form-control"
+        name="deidad"
+        id="deidad"
+        [(ngModel)]="newCharacter.deidad"
+        placeholder="En caso de serlo, introduce la palabra que le defina o país al que pertenezca"
+        #tituloModel="ngModel"
+      />
+    </div>
   </div>
 
-  <div class="mb-3" *ngIf="newCharacter.version!==''">
-    Privacidad de la versión del personaje <br>
-    <select class="form-control" [(ngModel)]="newCharacter.hiddenInTierList" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of isInTierList" value={{option.value}}>{{option.label}}</option>
-    </select>
+  <div *ngIf="activeTab ==='Versiones'">
+    <h3>Versiones</h3>
+
+    <div class="mb-3">
+      <label for="titulo">Busca a tu personaje a versionar:</label>
+      <input
+        class="form-control"
+        type="text"
+        name="search"
+        placeholder="Busca a tu version de personaje aquí, la búsqueda saldrá abajo"
+        aria-label="searchChar"
+        [(ngModel)]="searchChar"
+      />
+      <br>
+      <ul class="nav nav-pills col-auto ms-3 designs justify-content-center">
+        <li class="nav-item">
+            <p (click)="queryBuscar()" class="blue btn btn-danger custom-button">Buscar!</p>
+        </li>
+    </ul>
+
+    </div>
+
+
+    <div class="mb-3">
+      Resultados de la Búsqueda <strong> Clica en el Formulario</strong><br>
+      <select class="form-control" [(ngModel)]="newCharacter.version" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let char of characters" value={{char._id}}>{{char.nombre}}</option>
+      </select>
+    </div>
+
+    <div *ngIf="newCharacter.version">
+      <br>
+        <div class="containermenu">
+          <h1>Manejador de Versiones</h1>
+          <div class="trait-list">
+            <h2>Personaje al que versiona</h2>
+                <span class="trait-title">Personaje con ID: {{ newCharacter.version }}</span>
+                <p (click)="deleteVersion()" class="btn btn-danger">Eliminar</p>
+          </div>
+        </div>
+      <br>
+    </div>
+
+    <div class="mb-3" *ngIf="newCharacter.version!==''">
+      Privacidad de la versión del personaje <br>
+      <select class="form-control" [(ngModel)]="newCharacter.hiddenInTierList" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of isInTierList" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
   </div>
 
-  <h3>Privacidad</h3>
 
-  <div class="mb-3">
-    Privacidad del Personaje<strong> Máster NPCs</strong> <br>
-    <select class="form-control" [(ngModel)]="newCharacter.private" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
-    </select>
+  <div *ngIf="activeTab ==='Privacidad'">
+    <h3>Privacidad</h3>
+
+    <div class="mb-3">
+      Privacidad del Personaje<strong> Máster NPCs</strong> <br>
+      <select class="form-control" [(ngModel)]="newCharacter.private" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      Rasgos Ocultos<strong> Máster NPCs</strong> <br>
+      <select class="form-control" [(ngModel)]="newCharacter.privateStats" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      Permisos de Lectura para otro Jugador  <strong> Solo para PJs ocultos</strong><br>
+      <select class="form-control" [(ngModel)]="newCharacter.reader" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
+      </select>
+    </div>
   </div>
 
-  <div class="mb-3">
-    Rasgos Ocultos<strong> Máster NPCs</strong> <br>
-    <select class="form-control" [(ngModel)]="newCharacter.privateStats" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    Permisos de Lectura para otro Jugador  <strong> Solo para PJs ocultos</strong><br>
-    <select class="form-control" [(ngModel)]="newCharacter.reader" [ngModelOptions]="{standalone:true}">
-      <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
-    </select>
-  </div>
-
-
+  <div *ngIf="activeTab ==='Estadisticas'">
   <h3>Estadísticas</h3>
 
   <div class="mb-3">
@@ -720,35 +772,73 @@
       Salvación de Carisma del Personaje
     </div>
   </div>
+</div>
 
-  <h3>Datos Complejos</h3>
-  <br>
 
-  <br>
+  <div *ngIf="activeTab ==='Rasgos'">
+    <h3>Niveles & Rasgos</h3>
+    <br>
+
+    <br>
+      <div class="containermenu">
+        <h1>Manejador de Niveles de Clase</h1>
+        <p (click)="showNewClassForm()" class="btn btn-danger">Añadir Niveles</p>
+
+        <div *ngIf="showNewClass" class="new-trait-form">
+          <h2>Añadir Niveles</h2>
+          <input [(ngModel)]="newClass.level" name="level" placeholder="Nivel" type="number"/>
+          <textarea [(ngModel)]="newClass.class" name="class" placeholder="Nombre de Clase"></textarea>
+          <p (click)="addClass()" class="btn btn-danger">Añadir Clase</p>
+        </div>
+
+        <div class="trait-list">
+          <h2>Niveles de Clase</h2>
+          <ul>
+            <li *ngFor="let class of newCharacter.clases">
+              <span class="trait-title">{{ transformString(class.class) }}</span>
+              <span class="trait-text">{{ class.level }}</span>
+              <p (click)="editClass(class)" class="btn btn-danger">Editar</p>
+              <p (click)="deleteClass(class)" class="btn btn-danger">Eliminar</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <br>
+
+    <br>
     <div class="containermenu">
-      <h1>Manejador de Niveles de Clase</h1>
-      <p (click)="showNewClassForm()" class="btn btn-danger">Añadir Niveles</p>
+      <h1>Manejador de Rasgos</h1>
+      <p (click)="showNewTraitForm()" class="btn btn-danger">Añadir nuevo Rasgo</p>
 
-      <div *ngIf="showNewClass" class="new-trait-form">
-        <h2>Añadir Niveles</h2>
-        <input [(ngModel)]="newClass.level" name="level" placeholder="Nivel" type="number"/>
-        <textarea [(ngModel)]="newClass.class" name="class" placeholder="Nombre de Clase"></textarea>
-        <p (click)="addClass()" class="btn btn-danger">Añadir Clase</p>
+      <div *ngIf="showNewTrait" class="new-trait-form">
+        <h2>Añadir nuevo Rasgo</h2>
+        <input [(ngModel)]="newTrait.title" name="title" placeholder="Título" />
+        <textarea [(ngModel)]="newTrait.text" name="text" placeholder="Descripción del Rasgo" rows="8" cols="50"></textarea>
+        <select class="form-control" [(ngModel)]="newTrait.type" name="type" [ngModelOptions]="{standalone:true}">
+          <option *ngFor="let option of tiposRasgo" value={{option.value}}>{{option.label}}</option>
+        </select>
+        <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newTrait.isPrivate" name="isPrivate" id="privacy" /></label>
+        <p *ngIf="!editing" (click)="addTrait()" class="btn btn-danger">Añadir Rasgo</p>
+        <p *ngIf="editing" (click)="editCurrentTrait()" class="btn btn-danger">Editar Rasgo</p>
       </div>
 
       <div class="trait-list">
-        <h2>Niveles de Clase</h2>
+        <h2>Rasgos</h2>
         <ul>
-          <li *ngFor="let class of newCharacter.clases">
-            <span class="trait-title">{{ transformString(class.class) }}</span>
-            <span class="trait-text">{{ class.level }}</span>
-            <p (click)="editClass(class)" class="btn btn-danger">Editar</p>
-            <p (click)="deleteClass(class)" class="btn btn-danger">Eliminar</p>
+          <li *ngFor="let trait of newCharacter.rasgos">
+            <span class="trait-title">{{ transformString(trait.title) }}</span>
+            <span class="trait-text">{{ transformString(trait.info) }}</span>
+            <span class="trait-text">{{trait.type}}</span>
+            <span class="trait-privacy">Privado: {{ trait.privacy }}</span>
+            <p (click)="editTrait(trait)" class="btn btn-danger">Editar</p>
+            <p (click)="deleteTrait(trait)" class="btn btn-danger">Eliminar</p>
           </li>
         </ul>
       </div>
     </div>
   <br>
+
+  </div>
 
 
   <!--<div class="mb-3">
@@ -791,136 +881,82 @@
   <a class="btn btn-danger" (click)="addSingularidad()">Añadir Singularidad</a>
   <br>-->
 
-  <br>
-  <div class="containermenu">
-    <h1>Manejador de Facciones</h1>
-    <p (click)="showNewFactionForm()" class="btn btn-danger">Añadir Facción</p>
-
-    <div *ngIf="showNewFaction" class="new-trait-form">
-      <h2>Añadir Facción</h2>
-      <input class="form-control mb-2" type="text" placeholder="Buscar Facción"
-      [value]="factionSearch" (input)="updateSearch($event)">
-      <select class="form-control" [(ngModel)]="currentFaction" [ngModelOptions]="{standalone:true}">
-        <option *ngFor="let option of factions | factionsFilter:factionSearch:alphabetical" value={{option.value}}>{{option.label}}</option>
-      </select>
-      <p (click)="addFaction()" class="btn btn-danger">Añadir Facción</p>
-    </div>
-
-    <div class="trait-list">
-      <h2>Facciones</h2>
-      <ul>
-        <li *ngFor="let f of newCharacter.facciones">
-          <span class="trait-title">{{ f }}</span>
-          <p (click)="deleteFaction(f)" class="btn btn-danger">Eliminar</p>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <br>
 
   <!--aqui va el nuevo-->
 
-  <br>
-  <div class="containermenu">
-    <h1>Manejador de Imágenes de la Galería</h1>
-    <p (click)="showNewImageForm()" class="btn btn-danger">Añadir Imagen de Galería</p>
-
-    <div *ngIf="showNewImage" class="new-trait-form">
-      <h2>Añadir Imagen de Galería</h2>
-      <input
-      type="file"
-      class="form-control"
-      id="galeria"
-      name="galeria"
-      #fileImage2
-      (change)="addImage(fileImage2)"
-      ngModel
-
-      #galeriaImage1="ngModel"
-      [ngClass]="validClasses(galeriaImage1, 'is-valid', 'is-invalid')"
-    />
-      <p (click)="addImagenGaleria()" class="btn btn-danger">Añadir Imagen a la Galería</p>
-    </div>
-
-    <div class="trait-list">
-      <h2>Imagenes en galería</h2>
-      <ul>
-        <li *ngFor="let i of newCharacter.galeria">
-          <img
-            [src]="i"
-            [ngClass]="{ 'd-none': !newCharacter.galeria }"
-            class="img-thumbnail mb-3"
-          style="width:10%;height:10%;"/>
-          <p (click)="deleteImagen(i)" class="btn btn-danger">Eliminar</p>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <br>
-
-  <!--aqui va el nuevo-->
-
-
-  <br>
+  <div *ngIf="activeTab ==='Multimedia'">
+    <h3>Multimedia</h3>
+    <br>
     <div class="containermenu">
-      <h1>Manejador de Rasgos</h1>
-      <p (click)="showNewTraitForm()" class="btn btn-danger">Añadir nuevo Rasgo</p>
+      <h1>Manejador de Imágenes de la Galería</h1>
+      <p (click)="showNewImageForm()" class="btn btn-danger">Añadir Imagen de Galería</p>
 
-      <div *ngIf="showNewTrait" class="new-trait-form">
-        <h2>Añadir nuevo Rasgo</h2>
-        <input [(ngModel)]="newTrait.title" name="title" placeholder="Título" />
-        <textarea [(ngModel)]="newTrait.text" name="text" placeholder="Descripción del Rasgo"></textarea>
-        <select class="form-control" [(ngModel)]="newTrait.type" name="type" [ngModelOptions]="{standalone:true}">
-          <option *ngFor="let option of tiposRasgo" value={{option.value}}>{{option.label}}</option>
-        </select>
-        <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newTrait.isPrivate" name="isPrivate" id="privacy" /></label>
-        <p *ngIf="!editing" (click)="addTrait()" class="btn btn-danger">Añadir Rasgo</p>
-        <p *ngIf="editing" (click)="editCurrentTrait()" class="btn btn-danger">Editar Rasgo</p>
+      <div *ngIf="showNewImage" class="new-trait-form">
+        <h2>Añadir Imagen de Galería</h2>
+        <input
+        type="file"
+        class="form-control"
+        id="galeria"
+        name="galeria"
+        #fileImage2
+        (change)="addImage(fileImage2)"
+        ngModel
+
+        #galeriaImage1="ngModel"
+        [ngClass]="validClasses(galeriaImage1, 'is-valid', 'is-invalid')"
+      />
+        <p (click)="addImagenGaleria()" class="btn btn-danger">Añadir Imagen a la Galería</p>
       </div>
 
       <div class="trait-list">
-        <h2>Rasgos</h2>
+        <h2>Imagenes en galería</h2>
         <ul>
-          <li *ngFor="let trait of newCharacter.rasgos">
-            <span class="trait-title">{{ transformString(trait.title) }}</span>
-            <span class="trait-text">{{ transformString(trait.info) }}</span>
-            <span class="trait-text">{{trait.type}}</span>
-            <span class="trait-privacy">Privado: {{ trait.privacy }}</span>
-            <p (click)="editTrait(trait)" class="btn btn-danger">Editar</p>
-            <p (click)="deleteTrait(trait)" class="btn btn-danger">Eliminar</p>
+          <li *ngFor="let i of newCharacter.galeria">
+            <img
+              [src]="i"
+              [ngClass]="{ 'd-none': !newCharacter.galeria }"
+              class="img-thumbnail mb-3"
+            style="width:10%;height:10%;"/>
+            <p (click)="deleteImagen(i)" class="btn btn-danger">Eliminar</p>
           </li>
         </ul>
       </div>
     </div>
-  <br>
+    <br>
 
-  <br>
-    <div class="containermenu">
-      <h1>Manejador de Temas de Personaje</h1>
-      <p (click)="showNewSongForm()" class="btn btn-danger">Añadir nuevo tema de personaje</p>
+    <!--aqui va el nuevo-->
 
-      <div *ngIf="showNewSong" class="new-trait-form">
-        <h2>Añadir nuevo Tema de Personaje</h2>
-        <input [(ngModel)]="newSong.title" name="title" placeholder="Título" />
-        <textarea [(ngModel)]="newSong.link" name="text" placeholder="Link de la canción"></textarea>
-        <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newSong.isPrivate" name="isPrivate" id="privacy" /></label>
-        <p (click)="addSong()" class="btn btn-danger">Añadir Tema</p>
+
+
+
+    <br>
+      <div class="containermenu">
+        <h1>Manejador de Temas de Personaje</h1>
+        <p (click)="showNewSongForm()" class="btn btn-danger">Añadir nuevo tema de personaje</p>
+
+        <div *ngIf="showNewSong" class="new-trait-form">
+          <h2>Añadir nuevo Tema de Personaje</h2>
+          <input [(ngModel)]="newSong.title" name="title" placeholder="Título" />
+          <textarea [(ngModel)]="newSong.link" name="text" placeholder="Link de la canción"></textarea>
+          <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newSong.isPrivate" name="isPrivate" id="privacy" /></label>
+          <p (click)="addSong()" class="btn btn-danger">Añadir Tema</p>
+        </div>
+
+        <div class="trait-list">
+          <h2>Temas de Personaje</h2>
+          <ul>
+            <li *ngFor="let song of newCharacter.canciones">
+              <span class="trait-title">{{ transformString(song.title) }}</span>
+              <span class="trait-text">{{ transformString(song.link) }}</span>
+              <span class="trait-privacy">Privado: {{ song.privacy }}</span>
+              <p (click)="editSong(song)" class="btn btn-danger">Editar</p>
+              <p (click)="deleteSong(song)" class="btn btn-danger">Eliminar</p>
+            </li>
+          </ul>
+        </div>
       </div>
-
-      <div class="trait-list">
-        <h2>Temas de Personaje</h2>
-        <ul>
-          <li *ngFor="let song of newCharacter.canciones">
-            <span class="trait-title">{{ transformString(song.title) }}</span>
-            <span class="trait-text">{{ transformString(song.link) }}</span>
-            <span class="trait-privacy">Privado: {{ song.privacy }}</span>
-            <p (click)="editSong(song)" class="btn btn-danger">Editar</p>
-            <p (click)="deleteSong(song)" class="btn btn-danger">Eliminar</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  <br>
+    <br>
+  </div>
 
   <!--Edit button y Post button-->
   <br>
