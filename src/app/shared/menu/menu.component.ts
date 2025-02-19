@@ -44,7 +44,7 @@ export class MenuComponent {
     {
       setTimeout(() => {
         this.isDropDownOpen=false;
-      },3050);
+      },7050);
     }
   }
 
@@ -59,7 +59,7 @@ export class MenuComponent {
     {
       setTimeout(() => {
         this.isDropDownOpen2=false;
-      },3050);
+      },7050);
     }
   }
 
@@ -72,9 +72,12 @@ export class MenuComponent {
 
     if(this.isDropDownOpen5)
     {
+      this.isOpenA = false;
+      this.isOpenB = false;
+
       setTimeout(() => {
         this.isDropDownOpen5=false;
-      },3050);
+      },100050);
     }
   }
 
@@ -89,7 +92,7 @@ export class MenuComponent {
     {
       setTimeout(() => {
         this.isDropDownOpen3=false;
-      },3050);
+      },7050);
     }
   }
 
@@ -104,7 +107,7 @@ export class MenuComponent {
     {
       setTimeout(() => {
         this.isDropDownOpen4=false;
-      },3050);
+      },7050);
     }
   }
 
@@ -120,8 +123,22 @@ export class MenuComponent {
     {
       setTimeout(() => {
         this.isDropDownOpenSmall=false;
-      },3050);
+      },7050);
     }
+  }
+
+
+  isOpenA = false;
+  isOpenB = false;
+
+  toggleA() {
+    this.isOpenA = !this.isOpenA;
+    this.isOpenB = false;
+  }
+
+  toggleB() {
+    this.isOpenB = !this.isOpenB;
+    this.isOpenA = false;
   }
 
 }

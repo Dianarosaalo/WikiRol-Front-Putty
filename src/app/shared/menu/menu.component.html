@@ -47,29 +47,42 @@
     </div>
 
     <div class="navbar-nav mr-auto mr-lg-0">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" (click)="toggleDropdown5()" aria-expanded="false">
-              Aventuras
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpen5}" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Djuna']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Djuna Adventures</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Mario']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Cruzados Mario</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Reinos Olvidados']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Reinos Olvidados</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Miscelanea']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Miscelánea & Etc</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guerreros de la Luz']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Guerreros de la Luz</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guardianes del Cosmos']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Guardianes Cosmos</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Pruebas']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Guerreros Oscuridad</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Historias Yggdrassil']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Historias de Yggdrassil</a></li>
-            </ul>
-          </li>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" (click)="toggleDropdown5()" aria-expanded="false">
+          Aventuras
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpen5}" aria-labelledby="navbarDarkDropdownMenuLink">
+          <!-- A & B Buttons -->
+          <div class="d-flex justify-content-between p-2 dropdown-container">
+            <button class="dropdown-toggle-custom" (click)="toggleB()">De Campañas</button>
+            <button class="dropdown-toggle-custom" (click)="toggleA()">Standalone</button>
+          </div>
+
+          <!-- A's Dropdown Items -->
+          <div *ngIf="isOpenA">
+            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Djuna']">Djuna Adventures</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Mario']">Cruzados Mario</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Reinos Olvidados']">Reinos Olvidados</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Miscelanea']">Miscelánea & Etc</a></li>
+          </div>
+
+          <!-- B's Dropdown Items -->
+          <div *ngIf="isOpenB">
+            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guerreros de la Luz']">Guerreros de la Luz</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guardianes del Cosmos']">Guardianes Cosmos</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Pruebas']">Guerreros Oscuridad</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Historias Yggdrassil']">Historias de Yggdrassil</a></li>
+          </div>
         </ul>
-      </div>
-    </div>
+      </li>
+    </ul>
+  </div>
+</div>
 
     <div class="navbar-nav mr-auto mr-lg-0">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">

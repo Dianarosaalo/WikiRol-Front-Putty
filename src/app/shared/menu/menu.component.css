@@ -36,3 +36,46 @@ nav{
   top: 0;z-index: 9999;
   width: 100%;
 }
+
+.dropdown-toggle-custom {
+  display: inline-block;
+  padding: 6px 12px; /* Slightly smaller padding */
+  font-size: 14px; /* Reduced font size */
+  font-weight: 500;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  min-width: 100px; /* Adjust button width if needed */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* Hover & active effect */
+.dropdown-toggle-custom:hover,
+.dropdown-toggle-custom:focus {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Style for the list */
+.dropdown-menu {
+  background: rgba(30, 30, 30, 0.95);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+/* Style for list items */
+.dropdown-item {
+  color: #ffffff;
+  padding: 6px 12px;
+  transition: background 0.3s ease;
+  border-radius: 4px;
+}
+
+/* Hover effect for items */
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
