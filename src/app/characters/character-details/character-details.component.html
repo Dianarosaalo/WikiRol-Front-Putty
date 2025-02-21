@@ -134,7 +134,7 @@
       <p><strong>CA:</strong> {{character.ca}}</p>
       <p><strong>Movimiento:</strong> {{character.movimiento}}ft | {{movementRound(character.movimiento / 3.3)}}m | {{movementRound(character.movimiento / 19.8)}}m/s</p>
       <p><strong>Competencia:</strong> +{{character.competencia}}</p>
-      <p><strong>Iniciativa:</strong> +{{character.iniciativa}} | <strong>Percepción P:</strong> +{{character.percepcion}} | <strong>Investigación P:</strong> +{{character.investigacion}} | <strong> Experiencia:</strong> {{character.experiencia}}</p>
+      <p><strong>Iniciativa:</strong> +{{character.iniciativa}} | <strong>Percepción P:</strong> +{{character.percepcion}} | <strong>Investigación P:</strong> +{{character.investigacion}} | <strong> Experiencia:</strong> {{formatNumberWithPeriods(character.experiencia)}}</p>
 
     <hr>
     <div class="monster-abilities">

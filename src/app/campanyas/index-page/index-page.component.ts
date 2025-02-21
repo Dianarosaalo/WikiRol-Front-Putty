@@ -236,4 +236,35 @@ export class IndexPageComponent implements OnInit {
     factionSearch="";
     alphabetical=false;
     showFactionSelect=false;
+
+    // get number of total characters:
+
+    get filteredCharacters(): Character[] {
+      return this.characters
+        .filter(c => {
+          // Filter by version
+          if (this.selectedVersion === 'O' && c.version) return false;
+          if (this.selectedVersion === 'V' && !c.version) return false;
+          return true;
+        })
+        .filter(c => {
+          // Filter by search query
+          return this.search.trim() === "" || c.nombre.toLowerCase().includes(this.search.toLowerCase());
+        })
+        .filter(c => {
+          // Filter by selected campaigns (check both primary and secondary campaign array)
+          return (
+            this.selectedCampaigns.length === 0 ||
+            this.selectedCampaigns.includes(c.campanya) ||
+            (c.campanyasSecundarias?.some(secCamp => this.selectedCampaigns.includes(secCamp)) ?? false)
+          );
+        })
+        .filter(c => {
+          // Filter by faction selection (check if selected faction exists in the array)
+          return (
+            this.factionSearch.trim() === "" ||
+            c.facciones?.some(faction => faction.toLowerCase() === this.factionSearch.toLowerCase())
+          );
+        });
+    }
 }
