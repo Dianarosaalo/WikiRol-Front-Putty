@@ -1,1 +1,91 @@
-<p>scenarios-add works!</p>
+<div class="container">
+  <form class="mt-4" (ngSubmit)="addScenario()" #scenarioForm="ngForm">
+
+
+    <div class="mb-3">
+      <label for="nombre">Nombre del escenario</label>
+      <input
+        type="text"
+        class="form-control"
+        name="nombre"
+        id="nombre"
+        [(ngModel)]="newScenario.nombre"
+        placeholder="Introduce el nombre del escenario!"
+        required
+        #escenarioModel="ngModel"
+        [ngClass]="validClasses(escenarioModel, 'is-valid', 'is-invalid')"
+      />
+      <div class="invalid-feedback" *ngIf="escenarioModel.errors?.['required']">
+        Introduce un nombre correcto
+      </div>
+      <div class="invalid-feedback" *ngIf="escenarioModel.errors?.['pattern']">
+        Introduce un nombre correcto.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcion">Descripción del escenario</label>
+      <textarea
+        class="form-control"
+        id="descripcion"
+        name="descripcion"
+        rows="5"
+        [(ngModel)]="newScenario.descripcion"
+        placeholder="Introduce la descripción del escenario"
+        required
+        #descripcionModel="ngModel"
+        [ngClass]="validClasses(descripcionModel, 'is-valid', 'is-invalid')"
+      ></textarea>
+      <div class="invalid-feedback">Introduce la descripción del escenario.</div>
+    </div>
+
+    <div class="containermenu">
+      <h1>Manejador de Imágenes del Escenario</h1>
+      <p (click)="showNewImageForm()" class="btn btn-danger">Añadir Imagen al Escenario</p>
+
+      <div *ngIf="showNewImage" class="new-trait-form">
+        <h2>Añadir Imagen al Escenario</h2>
+        <input
+        type="file"
+        class="form-control"
+        id="galeria"
+        name="galeria"
+        #fileImage2
+        (change)="addImage(fileImage2)"
+        ngModel
+
+        #galeriaImage1="ngModel"
+        [ngClass]="validClasses(galeriaImage1, 'is-valid', 'is-invalid')"
+      />
+        <p (click)="addImagenGaleria()" class="btn btn-danger">Añadir Imagen al Escenario</p>
+      </div>
+
+      <div class="trait-list">
+        <h2>Imagenes del Escenario</h2>
+        <ul>
+          <li *ngFor="let i of newScenario.galeria">
+            <img
+              [src]="i"
+              [ngClass]="{ 'd-none': !newScenario.galeria }"
+              class="img-thumbnail mb-3"
+            style="width:10%;height:10%;"/>
+            <p (click)="deleteImagen(i)" class="btn btn-danger">Eliminar</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <br>
+
+
+
+    <div>
+      <button type="submit" class="btn btn-primary" *ngIf="!edit"[disabled]="scenarioForm.invalid">Crear</button>
+      <button *ngIf="edit"
+        type="submit"
+        class="btn btn-primary"
+        >
+        Editar
+      </button>
+    </div>
+  </form>
+  </div>

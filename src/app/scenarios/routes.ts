@@ -19,4 +19,13 @@ export const SCENARIO_ROUTES: Routes = [
       canActivate: [AuthGuard]
   },
 
+  {
+      path: ':id/edit',
+      loadComponent: () =>
+        import('./scenarios-add/scenarios-add.component').then(
+          (m) => m.ScenariosAddComponent
+        ),
+        canActivate: [AuthGuard],
+    },
+
 ]
