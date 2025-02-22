@@ -214,8 +214,15 @@ export class CharacterDetailsComponent implements OnInit{
   }
 
   // formatting XP so its legible
-  formatNumberWithPeriods(number: number): string {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  formatNumberWithPeriods(myNumber: number): string {
+    if (myNumber)
+    {
+      return myNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    else{
+      return "0";
+    }
+
   }
 
 
