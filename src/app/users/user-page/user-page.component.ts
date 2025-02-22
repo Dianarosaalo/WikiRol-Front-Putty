@@ -50,6 +50,8 @@ export class UserPageComponent implements OnInit{
     private cdr: ChangeDetectorRef
   ) {}
 
+  currentColor=localStorage.getItem('color');
+
   ngOnInit(): void {
     //const id=(this.route.snapshot.paramMap.get('id'));
     //const currentUrl = this.location.path();
@@ -221,4 +223,30 @@ export class UserPageComponent implements OnInit{
       this.buttonShow=true;
     });
   }
+
+  cambiarColorWeb()
+  {
+    if (this.currentColor==='light')
+    {
+      localStorage.setItem("color","dark");
+      this.currentColor="dark";
+    }
+
+    else
+    {
+      localStorage.setItem("color","light");
+      this.currentColor="light";
+    }
+
+    this.applyTheme();
+  }
+
+  applyTheme() {
+    if (this.currentColor === 'dark') {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
+  }
+
 }

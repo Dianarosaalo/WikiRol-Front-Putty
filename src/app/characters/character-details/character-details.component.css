@@ -18,6 +18,16 @@ img{
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
+.monster-sheet-red
+{
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f3dfb4;
+  border: 2px solid rgb(255, 0, 0) !important; /* Force the white border to apply */
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
 .monster-name {
   font-size: 36px;
   margin-top: 0;
@@ -284,6 +294,20 @@ hr{
   transition: all 0.3s ease; /* Smooth transition effect */
 }
 
+.character-version-item-red{
+  background-color: #f3dfb4; /* Soft pink background */
+  color: #333; /* Dark text color for contrast */
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 15px; /* Rounded edges for a soft look */
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: all 0.3s ease; /* Smooth transition effect */
+  border: 2px solid rgb(255, 0, 0) !important; /* Force the white border to apply */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
 /* Hover effect for a playful pop */
 .character-version-item:hover {
   background-color: #f3dfb4; /* Slightly darker pink */
@@ -295,4 +319,12 @@ hr{
 .character-version-item:active {
   transform: scale(0.98); /* Slight press-down effect */
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/*.monster-sheet{
+  border: 1px white;
+}*/
+
+* {
+  box-sizing: border-box; /* Include padding and border in element's total width/height */
 }

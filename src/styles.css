@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-/*html,body{
+.dark-theme {
   background-color: #131617;
-}*/
+  transition: background-color 0.3s ease-in-out;
+}

@@ -5,11 +5,20 @@
   <div class="col-9">
     <h3>{{ user.name }}</h3>
     <p *ngIf="me">
-      <a class="btn btn-danger" [routerLink]="['/users', 'edit']">Edit profile</a>
+      <a class="btn btn-danger" [routerLink]="['/users', 'edit']">Editar Perfil</a>
     </p>
+    <div *ngIf="me && currentColor==='light'">
+      <p class="btn btn-dark" (click)="cambiarColorWeb()">Modo Oscuro</p>
+    </div>
+    <div *ngIf="me && currentColor==='dark'">
+      <p class="btn btn-light" (click)="cambiarColorWeb()">Modo Claro</p>
+    </div>
     <h5>Número de personajes creados: {{characters.length}}</h5>
-    <canvas *ngIf="!me"#myChartCanvas class="OtroPerfil"></canvas><!--canvas-->
-    <canvas *ngIf="me" #myChartCanvas class="MiPerfil"></canvas><!--canvas-->
+    <div>
+      <br><br><br>
+      <canvas *ngIf="!me"#myChartCanvas class="OtroPerfil"></canvas><!--canvas-->
+      <canvas *ngIf="me" #myChartCanvas class="MiPerfil"></canvas><!--canvas-->
+    </div>
   </div>
 </div>
 

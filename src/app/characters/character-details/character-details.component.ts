@@ -25,6 +25,7 @@ export class CharacterDetailsComponent implements OnInit{
   activeTab="Stats";
   reader=false
   hidden=true
+  currentColor: string = localStorage.getItem('color') || 'light';
 
   versions!:Character[];
   hasVersions=false;

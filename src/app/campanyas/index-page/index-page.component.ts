@@ -175,6 +175,7 @@ export class IndexPageComponent implements OnInit {
         this.volverButtonShow=true;
         console.log(this.volverButtonShow);
         console.log('Characters loaded:', characters.length)});
+        this.factionSearch=""; //to avoid weird bugs
     }
 
 

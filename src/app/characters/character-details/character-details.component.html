@@ -9,7 +9,7 @@
 <h2>{{character.nombre}}</h2>
 
 <div *ngIf="hasVersions && versions.length>1" class="character-versions-container">
-  <p *ngFor="let v of versions" class="character-version-item" (click)="changeCharacterVersion(v)">
+  <p *ngFor="let v of versions" (click)="changeCharacterVersion(v)" [ngClass]="currentColor === 'light' ? 'character-version-item' : 'character-version-item-red'">
     {{v.nombre}}
   </p>
 </div>
@@ -22,7 +22,7 @@
   </div>
 
   <br>
-  <div class="monster-sheet">
+  <div [ngClass]="currentColor === 'light' ? 'monster-sheet' : 'monster-sheet-red'">
 
     <div *ngIf="counts(character.galeria) && activeTab==='Media'">
       <h3 style="text-align: center; justify-content: center;">Galería</h3>
@@ -422,7 +422,7 @@
               <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Reliquia'))">-<strong style="color:rgb(255, 255, 0);text-shadow: 2px 2px 4px black;">{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
             <br>
-          <hr>
+
         </div>
 
       </div>
@@ -480,7 +480,7 @@
 
 <div *ngIf="activeTab ==='Media'">
 
-  <div *ngIf="counts(character.galeria)" class="container-fluid mb-4 mt-4 row row-cols-4 row-cols-md-4 row-cols-xl-4 g-4 monster-sheet">
+  <div *ngIf="counts(character.galeria)" class="container-fluid mb-4 mt-4 row row-cols-4 row-cols-md-4 row-cols-xl-4 g-4" [ngClass]="currentColor === 'light' ? 'monster-sheet' : 'monster-sheet-red'">
 
     <img class="card-img-top" *ngFor="let foto of character.galeria" src="{{ foto }}" />
   </div>
