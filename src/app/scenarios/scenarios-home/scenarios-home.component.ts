@@ -14,31 +14,49 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./scenarios-home.component.css']
 })
 export class ScenariosHomeComponent implements OnInit {
+  scenarios!: Scenario[];
+  search = "";
+  currentColor = localStorage.getItem('color');
+  me = JSON.parse(localStorage.getItem("user")!);
 
-  scenarios!:Scenario[]
-  search="";
-  currentColor=localStorage.getItem('color');
-  currentImageIndex = 0;
-  me=JSON.parse(localStorage.getItem("user")!);
-  imageIndexes: { [key: string]: number } = {}; // Track current image per scenario;
+  imageIndexes: { [key: string]: number } = {};
 
-  constructor(
-  private readonly scenarioService:ScenarioService,
-  ){}
+  constructor(private readonly scenarioService: ScenarioService) {}
 
   ngOnInit(): void {
     this.scenarioService.getAll().subscribe({
-      next: (escenarios) => this.scenarios=escenarios,
-      error: (error) => console.log("Ha habido un error" + error + this.scenarios)
-    })
+      next: (escenarios) => {
+        this.scenarios = escenarios;
+
+        // Ensure each scenario has a starting index of 0
+        this.scenarios.forEach(scenario => {
+          if (scenario._id && scenario.galeria.length > 0) {
+            this.imageIndexes[scenario._id as string] = 0; // ✅ Type assertion
+          }
+        });
+
+        console.log("Loaded scenarios:", this.scenarios);
+        console.log("Initialized image indexes:", this.imageIndexes);
+      },
+      error: (error) => console.log("Ha habido un error: " + error)
+    });
   }
 
-  nextImage(scenarioId: string, galleryLength: number) {
-    this.imageIndexes[scenarioId] = (this.imageIndexes[scenarioId] + 1) % galleryLength;
+  nextImage(scenarioId: string | undefined, galleryLength: number) {
+    if (!scenarioId || galleryLength === 0) return;
+    this.imageIndexes[scenarioId as string] = (this.imageIndexes[scenarioId] + 1) % galleryLength; // ✅ Type assertion
   }
 
-  prevImage(scenarioId: string, galleryLength: number) {
-    this.imageIndexes[scenarioId] = (this.imageIndexes[scenarioId] - 1 + galleryLength) % galleryLength;
+  prevImage(scenarioId: string | undefined, galleryLength: number) {
+    if (!scenarioId || galleryLength === 0) return;
+    this.imageIndexes[scenarioId as string] = (this.imageIndexes[scenarioId] - 1 + galleryLength) % galleryLength; // ✅ Type assertion
+  }
+
+  getImageSrc(scenario: Scenario): string {
+    const index = this.imageIndexes[scenario._id!] ?? 0;
+    return scenario.galeria[index];
   }
 
 }
+
+

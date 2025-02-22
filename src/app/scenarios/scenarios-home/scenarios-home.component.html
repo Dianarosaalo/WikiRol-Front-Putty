@@ -17,17 +17,23 @@
   <div class="col" *ngFor="let scenario of scenarios | scenarioFilter:search">
     <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
 
-        <img class="card-img-top" src="{{ scenario.galeria[0] }}" />
-        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
-          <h4 class="card-title" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ scenario.nombre }}</h4>
-          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ (scenario.descripcion) }}</p>
-            <div class="card-text">
+      <div class="image-container">
+        <button *ngIf="scenario.galeria.length > 1" class="carousel-btn left" (click)="prevImage(scenario._id, scenario.galeria.length)">&#10094;</button>
 
-            </div>
-            <button type="button" class="btn btn-danger" *ngIf="me===scenario.creator" [routerLink]="['/scenarios', scenario._id, 'edit']">Editar</button>&nbsp;
-            <!--<span class="badge ms-2 bg-success">Open_Text</span>  Replace 'Open_Text' with the actual open text
-            <span class="badge ms-2 bg-danger">Close_Text</span> Replace 'Close_Text' with the actual close text -->
-        </div>
+        <img class="card-img-top"
+          [src]="getImageSrc(scenario)"
+        />
+
+        <button *ngIf="scenario.galeria.length > 1" class="carousel-btn right" (click)="nextImage(scenario._id, scenario.galeria.length)">&#10095;</button>
+      </div>
+
+      <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+        <h4 class="card-title" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ scenario.nombre }}</h4>
+        <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ scenario.descripcion }}</p>
+        <button type="button" class="btn btn-danger" *ngIf="me===scenario.creator" [routerLink]="['/scenarios', scenario._id, 'edit']">
+          Editar
+        </button>
+      </div>
     </div>
   </div>
 </div>
