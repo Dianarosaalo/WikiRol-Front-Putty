@@ -79,3 +79,8 @@ nav{
 .dropdown-item:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/*dark mode*/
+.darkNav{
+  background-color: #141414 !important;
+}

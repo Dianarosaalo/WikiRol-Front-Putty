@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark big-nav">
+<nav class="navbar navbar-expand navbar-dark bg-dark big-nav" [ngClass]="currentColor === 'dark' ? 'darkNav' : ''">
   <div class="container-fluid big-nav">
     <a class="navbar-brand" [routerLink]="['/campaigns', 'home']"><img src="../../../favicon.ico" style="width: 10%;"> Wiki Rolera</a>
 

@@ -18,6 +18,7 @@ export class MenuComponent {
   isDropDownOpen5=false;
   isDropDownOpenSmall=false;
   isLogged=false;
+  currentColor=localStorage.getItem('color') || 'light'
 
   ngOnInit(): void {
     if (localStorage.getItem('user'))

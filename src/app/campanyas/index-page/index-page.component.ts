@@ -34,6 +34,7 @@ export class IndexPageComponent implements OnInit {
   pageSize = 18;        //
   buttonShow=false;
   volverButtonShow=false;
+  currentColor = localStorage.getItem('color') || 'light'
 
   factions=[
     {value:"", label:"Todos"}];

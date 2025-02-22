@@ -315,8 +315,19 @@ hr{
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+.character-version-item-red:hover {
+  background-color: #f3dfb4; /* Slightly darker pink */
+  transform: scale(1.05); /* Grow slightly on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
 /* Optional: active effect for a button-like feel */
 .character-version-item:active {
+  transform: scale(0.98); /* Slight press-down effect */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.character-version-item-red:active {
   transform: scale(0.98); /* Slight press-down effect */
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
