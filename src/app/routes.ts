@@ -32,6 +32,11 @@ export const APP_ROUTES: Routes = [
       import('./factions/routes').then((m) => m.FACTION_ROUTES),
   },
   {
+    path: 'scenarios',
+    loadChildren: () =>
+      import('./scenarios/routes').then((m) => m.SCENARIO_ROUTES),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/auth/login',

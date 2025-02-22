@@ -16,6 +16,7 @@ export class MenuComponent {
   isDropDownOpen3=false;
   isDropDownOpen4=false;
   isDropDownOpen5=false;
+  isDropDownOpen6=false;
   isDropDownOpenSmall=false;
   isLogged=false;
   currentColor=localStorage.getItem('color') || 'light'
@@ -40,6 +41,7 @@ export class MenuComponent {
     this.isDropDownOpen3=false;
     this.isDropDownOpen4=false;
     this.isDropDownOpen5=false;
+    this.isDropDownOpen6=false;
 
     if(this.isDropDownOpen)
     {
@@ -55,6 +57,7 @@ export class MenuComponent {
     this.isDropDownOpen3=false;
     this.isDropDownOpen4=false;
     this.isDropDownOpen5=false;
+    this.isDropDownOpen6=false;
 
     if(this.isDropDownOpen2)
     {
@@ -70,6 +73,7 @@ export class MenuComponent {
     this.isDropDownOpen3=false;
     this.isDropDownOpen4=false;
     this.isDropDownOpen2=false;
+    this.isDropDownOpen6=false;
 
     if(this.isDropDownOpen5)
     {
@@ -82,12 +86,32 @@ export class MenuComponent {
     }
   }
 
+  toggleDropdown6() {
+    this.isDropDownOpen6 = !this.isDropDownOpen6;
+    this.isDropDownOpen=false;
+    this.isDropDownOpen3=false;
+    this.isDropDownOpen4=false;
+    this.isDropDownOpen2=false;
+    this.isDropDownOpen5=false;
+
+    if(this.isDropDownOpen6)
+    {
+      this.isOpenA = false;
+      this.isOpenB = false;
+
+      setTimeout(() => {
+        this.isDropDownOpen6=false;
+      },100050);
+    }
+  }
+
   toggleDropdown3() {
     this.isDropDownOpen3 = !this.isDropDownOpen3;
     this.isDropDownOpen=false;
     this.isDropDownOpen2=false;
     this.isDropDownOpen4=false;
     this.isDropDownOpen5=false;
+    this.isDropDownOpen6=false;
 
     if(this.isDropDownOpen3)
     {
@@ -103,6 +127,7 @@ export class MenuComponent {
     this.isDropDownOpen2=false;
     this.isDropDownOpen3=false;
     this.isDropDownOpen5=false;
+    this.isDropDownOpen6=false;
 
     if(this.isDropDownOpen4)
     {
@@ -119,6 +144,7 @@ export class MenuComponent {
     this.isDropDownOpen3=false;
     this.isDropDownOpen5=false;
     this.isDropDownOpen4=false;
+    this.isDropDownOpen6=false;
 
     if(this.isDropDownOpenSmall)
     {
