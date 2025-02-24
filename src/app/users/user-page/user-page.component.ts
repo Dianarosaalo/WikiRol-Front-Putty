@@ -50,7 +50,7 @@ export class UserPageComponent implements OnInit{
     private cdr: ChangeDetectorRef
   ) {}
 
-  currentColor=localStorage.getItem('color');
+  currentColor=localStorage.getItem('color') || 'light';
 
   ngOnInit(): void {
     //const id=(this.route.snapshot.paramMap.get('id'));
