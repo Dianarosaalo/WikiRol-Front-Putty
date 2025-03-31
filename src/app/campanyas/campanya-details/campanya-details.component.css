@@ -202,6 +202,12 @@ div.tierList h3, .big{
 
 /* */
 
+.darkButtonGreen
+{
+  background-color: #1d1c1c;
+  color: rgb(122, 202, 2)
+}
+
 .darkSearchBar{
   background-color: #131617;
   color:rgb(78, 78, 78);
@@ -259,4 +265,14 @@ a.darkName {
 
 .darkFooter{
   border-top: rgb(46, 46, 46) 1.5px solid !important;
+}
+
+.whiteColorForH2{
+  color:white;
+}
+
+.darkTabs{
+  background-color: #1b1b1b;
+  color:white;
+  border-right: 1px solid #646464; /* Add a border between tabs */
 }

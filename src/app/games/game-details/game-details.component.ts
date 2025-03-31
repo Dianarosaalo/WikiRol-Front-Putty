@@ -27,6 +27,8 @@ export class GameDetailsComponent implements OnInit{
   pageSize = 18;        //
   buttonShow=false;
 
+  currentColor = localStorage.getItem('color') || 'light'
+
   characters!:Character[]; // show chars of the current game
 
   constructor(

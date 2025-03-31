@@ -1,35 +1,41 @@
 <ul class="tabs-container">
-  <li (click)="onTabClick('Personajes')" class="tab-link">Personajes</li>
-  <li *ngIf="itsYggdrassil" (click)="onTabClick('Bestiario')" class="tab-link">Bestiario</li>
-  <li *ngIf="itsYggdrassil" (click)="onTabClick('Deidades')" class="tab-link">Deidades</li>
-  <li (click)="onTabClick('Partidas')" class="tab-link">Partidas</li>
-  <li (click)="onTabClick('Tierlist')" class="tab-link">Tier List</li>
+  <li (click)="onTabClick('Personajes')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Personajes</li>
+  <li *ngIf="itsYggdrassil" (click)="onTabClick('Bestiario')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Bestiario</li>
+  <li *ngIf="itsYggdrassil" (click)="onTabClick('Deidades')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Deidades</li>
+  <li (click)="onTabClick('Partidas')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Partidas</li>
+  <li (click)="onTabClick('Tierlist')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Tier List</li>
 </ul>
 
 <div id="partidas" *ngIf="activeTab ==='Partidas'">
-  <h1 style="text-align: center;">Partidas Jugadas ({{partidas.length}})</h1>
+  <h1 style="text-align: center;" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Partidas Jugadas ({{partidas.length}})</h1>
 
   <form class="container-fluid col">
     <input
       class="form-control"
       type="text"
       name="search2"
-      placeholder="Search"
+      placeholder="Busca partidas aquí!"
       aria-label="Search"
       [(ngModel)]="searchGame"
+      [ngClass]="currentColor === 'dark' ? 'darkSearchBar' : ''"
     />
   </form><br>
 
-    <li *ngFor="let partida of partidas | gameFilter:searchGame"><a [routerLink]="['/games', partida._id]">{{partida.num}}.- {{partida.titulo}}</a></li>
+  <li *ngFor="let partida of partidas | gameFilter:searchGame">
+    <a [routerLink]="['/games', partida._id]"
+       [ngStyle]="currentColor === 'dark' ? {'color': 'white'} : {}">
+      {{partida.num}}.- {{partida.titulo}}
+    </a>
+  </li>
 </div>
 
 <div *ngIf="activeTab ==='Personajes'">
-  <h2 style="text-align: center;">Personajes ({{characters.length}})</h2>
-<nav class="navbar navbar-light bg-light justify-content-between mt-3 row">
+  <h2 style="text-align: center;" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Personajes ({{characters.length}})</h2>
+<nav class="navbar navbar-light bg-light justify-content-between mt-3 row" [ngClass]="currentColor === 'dark' ? 'navbar-dark-theme' : ''">
 
   <ul class="nav nav-pills col-auto ms-3 designs">
     <li class="nav-item">
-      <p (click)="queryBuscar()" class="blue btn btn-success">Filtrar!</p>
+      <p (click)="queryBuscar()" class="blue btn btn-success" [ngClass]="currentColor === 'dark' ? 'darkButtonGreen' : ''">Filtrar!</p>
     </li>
   </ul>
 
@@ -41,24 +47,25 @@
       placeholder="Busca personajes aquí!"
       aria-label="Search"
       [(ngModel)]="search"
+      [ngClass]="currentColor === 'dark' ? 'darkSearchBar' : ''"
     />
   </form>
 
   <ul class="nav nav-pills col-auto ms-3 designs">
     <li class="nav-item">
-      <p (click)="changeDesign('old')" class="red btn btn-primary">Webo Design</p>
+      <p (click)="changeDesign('old')" class="red btn btn-primary" [ngClass]="currentColor === 'dark' ? 'darkButtons' : ''">Webo Design</p>
     </li>
   </ul>
 
   <ul class="nav nav-pills col-auto ms-3 designs">
     <li class="nav-item">
-      <p (click)="changeDesign('new')" class="green btn btn-danger">Old Design</p>
+      <p (click)="changeDesign('new')" class="green btn btn-danger" [ngClass]="currentColor === 'dark' ? 'darkButtons' : ''">Old Design</p>
     </li>
   </ul>
 
   <ul class="nav nav-pills col-auto ms-3">
     <li class="nav-item btn">
-      <select class="form-control" [(ngModel)]="faction" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="faction" [ngModelOptions]="{standalone:true}" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
         <option *ngFor="let option of factions" value={{option.value}}>Facción: {{option.label}}</option>
       </select>
     </li>
@@ -66,7 +73,7 @@
 
   <ul class="nav nav-pills col-auto ms-3">
     <li class="nav-item">
-      <select class="form-control" [(ngModel)]="order" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="order" [ngModelOptions]="{standalone:true}" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
         <option *ngFor="let option of typeOfOrders" value={{option.value}}>Orden: {{option.label}}</option>
       </select>
     </li>
@@ -206,7 +213,7 @@
 </div>
 
 <div *ngIf="activeTab ==='Tierlist'" class="tierList">
-  <h1 style="text-align: center;">Tier List</h1>
+  <h1 style="text-align: center;" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Tier List</h1>
   <h3 *ngIf="DeusChars.length > 0">DEUS EX MACHINA</h3>
 
   <div
@@ -214,13 +221,13 @@
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of DeusChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -238,7 +245,7 @@
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -253,13 +260,13 @@
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of SupremeChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -277,7 +284,7 @@
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -285,26 +292,26 @@
     </div>
   </div>
 
-  <h3 *ngIf="SemiSupremeChars.length > 0">SEMI-SUPREMOS</h3>
+  <h3 *ngIf="SemiSupremeChars.length > 0">EXTREMOS</h3>
 
   <div
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of SemiSupremeChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
             <div class="card-text">
                 <small class="text-muted">
-                    <strong>Tier List: </strong>{{ character.tier }}
+                    <strong>Tier List: </strong> 0.33.- Extremo
                 </small>
             </div>
             <small class="text-muted">
@@ -316,7 +323,7 @@
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -331,13 +338,13 @@
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of SSSSSChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -355,7 +362,7 @@
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -370,13 +377,13 @@ id="placesContainer"
 class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
 >
 <div class="col" *ngFor="let character of SSSSChars">
-  <div class="card h-100 shadow">
+  <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
     <a [routerLink]="['/characters', character._id]">
       <img class="card-img-top" src="{{ character.fotoPerfil }}" />
     </a>
-      <div class="card-body">
-        <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-        <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+      <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+        <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+        <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
           <div class="card-text">
           </div>
           <div class="card-text">
@@ -393,7 +400,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             </small>
             <br>
           </div>
-          <div class="card-footer">
+          <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
             <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
           </div>
       </div>
@@ -408,13 +415,13 @@ id="placesContainer"
 class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
 >
 <div class="col" *ngFor="let character of SSSChars">
-  <div class="card h-100 shadow">
+  <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
     <a [routerLink]="['/characters', character._id]">
       <img class="card-img-top" src="{{ character.fotoPerfil }}" />
     </a>
-      <div class="card-body">
-        <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-        <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+      <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+        <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+        <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
           <div class="card-text">
 
           </div>
@@ -432,7 +439,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
             </small>
             <br>
           </div>
-          <div class="card-footer">
+          <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
             <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
           </div>
       </div>
@@ -447,13 +454,13 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of SSChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -471,7 +478,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -486,13 +493,13 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of SChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -510,7 +517,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -525,13 +532,13 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of AChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -549,7 +556,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -564,13 +571,13 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of BChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -588,7 +595,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -603,13 +610,13 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of CChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -627,7 +634,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -642,13 +649,13 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of DChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -666,7 +673,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -681,13 +688,13 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of EChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -705,7 +712,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -720,13 +727,13 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of FChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -744,7 +751,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -759,13 +766,13 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of NoPeleadoresChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -783,7 +790,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -798,13 +805,13 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of UnknownChars">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
             </div>
             <div class="card-text">
@@ -821,7 +828,7 @@ class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>

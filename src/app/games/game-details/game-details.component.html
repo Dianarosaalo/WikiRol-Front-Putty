@@ -1,7 +1,7 @@
 <div>
-  <h1>Partida nº {{partida.num}}.-{{partida.titulo}}</h1>
-  <p *ngIf="partida.fechaJugada!==null" style="text-align: right;">{{dateOfTheGame | date:'dd-MM-yyyy'}}</p>
-  <p style="white-space: pre-line;">{{partida.resumen}}</p>
+  <h1 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Partida nº {{partida.num}}.-{{partida.titulo}}</h1>
+  <p *ngIf="partida.fechaJugada!==null" style="text-align: right;" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">{{dateOfTheGame | date:'dd-MM-yyyy'}}</p>
+  <p style="white-space: pre-line;" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">{{partida.resumen}}</p>
 </div>
 
 <div class="mt-4 mb-4">
@@ -15,13 +15,13 @@
   >
 
   <div class="col" *ngFor="let character of characters">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ (character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ (character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -42,7 +42,7 @@
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ (character.descripcion) }}</small>
             </div>
         </div>

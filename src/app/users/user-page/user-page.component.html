@@ -13,7 +13,7 @@
     <div *ngIf="me && currentColor==='dark'">
       <p class="btn btn-light" (click)="cambiarColorWeb()">Modo Claro</p>
     </div>
-    <h5>Número de personajes creados: {{characters.length}}</h5>
+    <h5 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Número de personajes creados: {{characters.length}}</h5>
     <div>
       <br><br><br>
       <canvas *ngIf="!me"#myChartCanvas class="OtroPerfil"></canvas><!--canvas-->
@@ -22,20 +22,20 @@
   </div>
 </div>
 
-<h2>Personajes del Jugador</h2>
+<h2 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Personajes del Jugador</h2>
 
 <div
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
   >
   <div class="col" *ngFor="let character of characters">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ character.titulo }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.titulo }}</p>
             <div class="card-text">
             </div>
             <div class="card-text">
@@ -52,7 +52,7 @@
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ character.descripcion }}</small>
             </div>
         </div>
