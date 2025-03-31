@@ -87,7 +87,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       this.order="partidaAparicion";
       setTimeout(() => {
         this.onScroll();
-      }, 1500);
+      }, 3500);
     }
     else
       this.itsYggdrassil=false;
