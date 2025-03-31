@@ -17,7 +17,7 @@
       placeholder="Busca partidas aquí!"
       aria-label="Search"
       [(ngModel)]="searchGame"
-      [ngClass]="currentColor === 'dark' ? 'darkSearchBar' : ''"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
   </form><br>
 
@@ -47,7 +47,7 @@
       placeholder="Busca personajes aquí!"
       aria-label="Search"
       [(ngModel)]="search"
-      [ngClass]="currentColor === 'dark' ? 'darkSearchBar' : ''"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect': ''"
     />
   </form>
 
@@ -171,20 +171,20 @@
 </div>
 
 <div *ngIf="activeTab === 'Deidades'">
-  <h1 style="text-align: center;">Deidades ({{ deidades.length }})</h1>
+  <h1 style="text-align: center;" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Deidades ({{ deidades.length }})</h1>
   <div id="placesContainer" class="mb-1 mt-1" [ngClass]="design === 'new' ? 'normalMargin' : 'adriweboMargin'">
     <ng-container *ngFor="let group of groupedDeidades">
       <div class="group-container">
         <h3 class="big">{{ group.deidad }}</h3>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3">
           <div class="col" *ngFor="let character of group.deidades">
-            <div class="card h-100 shadow">
+            <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
               <a [routerLink]="['/characters', character._id]">
                 <img class="card-img-top" src="{{ character.fotoPerfil }}" />
               </a>
-              <div class="card-body">
-                <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-                <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+              <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+                <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+                <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
                 <div class="card-text">
                   <small class="text-muted">
                     <strong>Tier List: </strong>{{ character.tier }}
@@ -199,7 +199,7 @@
                   </small>
                   <br>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
                   <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
                 </div>
               </div>
