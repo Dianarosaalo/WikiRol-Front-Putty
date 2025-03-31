@@ -220,24 +220,24 @@
 
     <h3>Facciones</h3>
     <br>
-    <div class="containermenu">
-      <h1>Manejador de Facciones</h1>
+    <div class="containermenu" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+      <h1 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Manejador de Facciones</h1>
       <p (click)="showNewFactionForm()" class="btn btn-danger">Añadir Facción</p>
 
-      <div *ngIf="showNewFaction" class="new-trait-form">
+      <div *ngIf="showNewFaction" class="new-trait-form" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
         <h2>Añadir Facción</h2>
-        <input class="form-control mb-2" type="text" placeholder="Buscar Facción"
+        <input class="form-control mb-2" type="text" placeholder="Buscar Facción" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
         [value]="factionSearch" (input)="updateSearch($event)">
-        <select class="form-control" [(ngModel)]="currentFaction" [ngModelOptions]="{standalone:true}">
+        <select class="form-control" [(ngModel)]="currentFaction" [ngModelOptions]="{standalone:true}" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
           <option *ngFor="let option of factions | factionsFilter:factionSearch:alphabetical" value={{option.value}}>{{option.label}}</option>
         </select>
         <p (click)="addFaction()" class="btn btn-danger">Añadir Facción</p>
       </div>
 
-      <div class="trait-list">
-        <h2>Facciones</h2>
+      <div class="trait-list" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+        <h2 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Facciones</h2>
         <ul>
-          <li *ngFor="let f of newCharacter.facciones">
+          <li *ngFor="let f of newCharacter.facciones" [ngClass]="currentColor === 'dark' ? 'darkListHandler' : ''">
             <span class="trait-title">{{ f }}</span>
             <p (click)="deleteFaction(f)" class="btn btn-danger">Eliminar</p>
           </li>
@@ -260,22 +260,22 @@
     </div>-->
 
     <br>
-      <div class="containermenu">
-        <h1>Manejador de Campañas</h1>
+      <div class="containermenu" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+        <h1 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Manejador de Campañas</h1>
         <p (click)="showMyNewCampaign()" class="btn btn-danger">Añadir campaña adicional</p>
 
-        <div *ngIf="showNewCampaign" class="new-trait-form">
+        <div *ngIf="showNewCampaign" class="new-trait-form" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
           <h2>Añadir campaña adicional</h2>
-          <select class="form-control" [(ngModel)]="newCampaign" [ngModelOptions]="{standalone:true}">
+          <select class="form-control" [(ngModel)]="newCampaign" [ngModelOptions]="{standalone:true}" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
             <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
           </select>
           <p (click)="addCampaign()" class="btn btn-danger">Añadir Campaña Adicional</p>
         </div>
 
-        <div class="trait-list">
+        <div class="trait-list" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
           <h2>Campañas Secundarias</h2>
           <ul>
-            <li *ngFor="let campaign of newCharacter.campanyasSecundarias">
+            <li *ngFor="let campaign of newCharacter.campanyasSecundarias" [ngClass]="currentColor === 'dark' ? 'darkListHandler' : ''">
               <span class="trait-title">{{ transformString(campaign) }}</span>
               <p (click)="deleteCampaign(campaign)" class="btn btn-danger">Eliminar</p>
             </li>
@@ -782,21 +782,21 @@
     <br>
 
     <br>
-      <div class="containermenu">
-        <h1>Manejador de Niveles de Clase</h1>
+      <div class="containermenu" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+        <h1 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Manejador de Niveles de Clase</h1>
         <p (click)="showNewClassForm()" class="btn btn-danger">Añadir Niveles</p>
 
-        <div *ngIf="showNewClass" class="new-trait-form">
-          <h2>Añadir Niveles</h2>
-          <input [(ngModel)]="newClass.level" name="level" placeholder="Nivel" type="number"/>
-          <textarea [(ngModel)]="newClass.class" name="class" placeholder="Nombre de Clase"></textarea>
+        <div *ngIf="showNewClass" class="new-trait-form" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+          <h2 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Añadir Niveles</h2>
+          <input [(ngModel)]="newClass.level" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" name="level" placeholder="Nivel" type="number"/>
+          <textarea [(ngModel)]="newClass.class" name="class" placeholder="Nombre de Clase" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"></textarea>
           <p (click)="addClass()" class="btn btn-danger">Añadir Clase</p>
         </div>
 
-        <div class="trait-list">
-          <h2>Niveles de Clase</h2>
+        <div class="trait-list" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+          <h2 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Niveles de Clase</h2>
           <ul>
-            <li *ngFor="let class of newCharacter.clases">
+            <li *ngFor="let class of newCharacter.clases" [ngClass]="currentColor === 'dark' ? 'darkListHandler' : ''">
               <span class="trait-title">{{ transformString(class.class) }}</span>
               <span class="trait-text">{{ class.level }}</span>
               <p (click)="editClass(class)" class="btn btn-danger">Editar</p>
@@ -808,15 +808,15 @@
     <br>
 
     <br>
-    <div class="containermenu">
-      <h1>Manejador de Rasgos</h1>
+    <div class="containermenu" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+      <h1 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Manejador de Rasgos</h1>
       <p (click)="showNewTraitForm()" class="btn btn-danger">Añadir nuevo Rasgo</p>
 
-      <div *ngIf="showNewTrait" class="new-trait-form">
+      <div *ngIf="showNewTrait" class="new-trait-form" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
         <h2>Añadir nuevo Rasgo</h2>
-        <input [(ngModel)]="newTrait.title" name="title" placeholder="Título" />
-        <textarea [(ngModel)]="newTrait.text" name="text" placeholder="Descripción del Rasgo" rows="8" cols="50"></textarea>
-        <select class="form-control" [(ngModel)]="newTrait.type" name="type" [ngModelOptions]="{standalone:true}">
+        <input [(ngModel)]="newTrait.title" name="title" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" placeholder="Título" />
+        <textarea [(ngModel)]="newTrait.text" name="text" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" placeholder="Descripción del Rasgo" rows="8" cols="50"></textarea>
+        <select class="form-control" [(ngModel)]="newTrait.type" name="type" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
           <option *ngFor="let option of tiposRasgo" value={{option.value}}>{{option.label}}</option>
         </select>
         <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newTrait.isPrivate" name="isPrivate" id="privacy" /></label>
@@ -824,10 +824,10 @@
         <p *ngIf="editing" (click)="editCurrentTrait()" class="btn btn-danger">Editar Rasgo</p>
       </div>
 
-      <div class="trait-list">
+      <div class="trait-list" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
         <h2>Rasgos</h2>
         <ul>
-          <li *ngFor="let trait of newCharacter.rasgos">
+          <li *ngFor="let trait of newCharacter.rasgos" [ngClass]="currentColor === 'dark' ? 'darkListHandler': ''">
             <span class="trait-title">{{ transformString(trait.title) }}</span>
             <span class="trait-text">{{ transformString(trait.info) }}</span>
             <span class="trait-text">{{trait.type}}</span>
@@ -889,11 +889,11 @@
   <div *ngIf="activeTab ==='Multimedia'">
     <h3>Multimedia</h3>
     <br>
-    <div class="containermenu">
-      <h1>Manejador de Imágenes de la Galería</h1>
+    <div class="containermenu" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+      <h1 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Manejador de Imágenes de la Galería</h1>
       <p (click)="showNewImageForm()" class="btn btn-danger">Añadir Imagen de Galería</p>
 
-      <div *ngIf="showNewImage" class="new-trait-form">
+      <div *ngIf="showNewImage" class="new-trait-form" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
         <h2>Añadir Imagen de Galería</h2>
         <input
         type="file"
@@ -905,15 +905,15 @@
         ngModel
 
         #galeriaImage1="ngModel"
-        [ngClass]="validClasses(galeriaImage1, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
         <p (click)="addImagenGaleria()" class="btn btn-danger">Añadir Imagen a la Galería</p>
       </div>
 
-      <div class="trait-list">
+      <div class="trait-list" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
         <h2>Imagenes en galería</h2>
         <ul>
-          <li *ngFor="let i of newCharacter.galeria">
+          <li *ngFor="let i of newCharacter.galeria" [ngClass]="currentColor === 'dark' ? 'darkListHandler': ''">
             <img
               [src]="i"
               [ngClass]="{ 'd-none': !newCharacter.galeria }"
@@ -932,22 +932,22 @@
 
 
     <br>
-      <div class="containermenu">
-        <h1>Manejador de Temas de Personaje</h1>
+      <div class="containermenu" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+        <h1 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Manejador de Temas de Personaje</h1>
         <p (click)="showNewSongForm()" class="btn btn-danger">Añadir nuevo tema de personaje</p>
 
-        <div *ngIf="showNewSong" class="new-trait-form">
+        <div *ngIf="showNewSong" class="new-trait-form" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
           <h2>Añadir nuevo Tema de Personaje</h2>
-          <input [(ngModel)]="newSong.title" name="title" placeholder="Título" />
-          <textarea [(ngModel)]="newSong.link" name="text" placeholder="Link de la canción"></textarea>
+          <input [(ngModel)]="newSong.title" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" name="title" placeholder="Título" />
+          <textarea [(ngModel)]="newSong.link" name="text" placeholder="Link de la canción" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"></textarea>
           <label for="privacy">Privado: <input type="checkbox" [(ngModel)]="newSong.isPrivate" name="isPrivate" id="privacy" /></label>
           <p (click)="addSong()" class="btn btn-danger">Añadir Tema</p>
         </div>
 
-        <div class="trait-list">
+        <div class="trait-list" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
           <h2>Temas de Personaje</h2>
           <ul>
-            <li *ngFor="let song of newCharacter.canciones">
+            <li *ngFor="let song of newCharacter.canciones" [ngClass]="currentColor === 'dark' ? 'darkListHandler': ''">
               <span class="trait-title">{{ transformString(song.title) }}</span>
               <span class="trait-text">{{ transformString(song.link) }}</span>
               <span class="trait-privacy">Privado: {{ song.privacy }}</span>

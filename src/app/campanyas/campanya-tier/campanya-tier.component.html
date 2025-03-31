@@ -19,7 +19,7 @@
         type="button">
         Campañas:
       </button>
-      <ul class="dropdown-menu p-3" *ngIf="isDropdownOpen" style="width: 200px;">
+      <ul class="dropdown-menu p-3" *ngIf="isDropdownOpen" [ngClass]="currentColor === 'dark' ? 'darkSearchBar2' : ''" style="width: 200px;">
         <li *ngFor="let option of campaigns">
           <div class="form-check">
             <input

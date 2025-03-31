@@ -16,7 +16,7 @@
       placeholder="Busca personajes aquí!"
       aria-label="Search"
       [(ngModel)]="search"
-      [ngClass]="currentColor === 'dark' ? 'darkSearchBar' : ''"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
   </form>
 
@@ -45,8 +45,8 @@
       <button class="btn btnGranate dropdown-toggle" type="button" (click)="showFactionSelect = !showFactionSelect">
         Facciones:
       </button>
-      <div *ngIf="showFactionSelect" class="dropdown-menu show p-2">
-        <input class="form-control mb-2" type="text" placeholder="Buscar Facción" [(ngModel)]="factionSearch">
+      <div *ngIf="showFactionSelect" class="dropdown-menu show p-2" [ngClass]="currentColor === 'dark' ? 'darkSearchBar' : ''">
+        <input class="form-control mb-2" type="text" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"   placeholder="Buscar Facción" [(ngModel)]="factionSearch">
         <div class="dropdown-divider"></div>
         <div class="btn-group w-100 mb-2">
           <button class="btn btn-outline-secondary" [class.active]="!alphabetical" (click)="alphabetical = false">
@@ -56,7 +56,7 @@
             Orden: Alfabético
           </button>
         </div>
-        <select class="form-control w-100" [(ngModel)]="faction" [ngModelOptions]="{standalone:true}">
+        <select class="form-control w-100" [(ngModel)]="faction" [ngModelOptions]="{standalone:true}" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
           <option *ngFor="let option of factions | factionsFilter:factionSearch:alphabetical" [value]="option.value">
             {{ option.label }}
           </option>
@@ -72,7 +72,7 @@
         type="button">
         Campañas:
       </button>
-      <ul class="dropdown-menu p-3" *ngIf="isDropdownOpen" style="width: 200px;">
+      <ul class="dropdown-menu p-3" *ngIf="isDropdownOpen" style="width: 200px;" [ngClass]="currentColor === 'dark' ? 'darkSearchBar2' : ''">
         <li *ngFor="let option of campaigns">
           <div class="form-check">
             <input

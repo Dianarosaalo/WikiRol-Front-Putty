@@ -39,11 +39,11 @@
       <div class="invalid-feedback">Introduce la descripción del escenario.</div>
     </div>
 
-    <div class="containermenu">
-      <h1>Manejador de Imágenes del Escenario</h1>
+    <div class="containermenu" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+      <h1 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Manejador de Imágenes del Escenario</h1>
       <p (click)="showNewImageForm()" class="btn btn-danger">Añadir Imagen al Escenario</p>
 
-      <div *ngIf="showNewImage" class="new-trait-form">
+      <div *ngIf="showNewImage" class="new-trait-form" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
         <h2>Añadir Imagen al Escenario</h2>
         <input
         type="file"
@@ -53,15 +53,14 @@
         #fileImage2
         (change)="addImage(fileImage2)"
         ngModel
-
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
         #galeriaImage1="ngModel"
-        [ngClass]="validClasses(galeriaImage1, 'is-valid', 'is-invalid')"
       />
         <p (click)="addImagenGaleria()" class="btn btn-danger">Añadir Imagen al Escenario</p>
       </div>
 
-      <div class="trait-list">
-        <h2>Imagenes del Escenario</h2>
+      <div class="trait-list" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+        <h2 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Imagenes del Escenario</h2>
         <ul>
           <li *ngFor="let i of newScenario.galeria">
             <img

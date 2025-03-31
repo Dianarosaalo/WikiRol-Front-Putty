@@ -65,18 +65,18 @@ textarea {
 /*dark mode*/
 
 .darkSearchBar{
-  background-color: #131617;
-  color:rgb(78, 78, 78);
-  border-color: rgb(78, 78, 78);
+  background-color: #131617 !important;
+  color:rgb(78, 78, 78) !important;
+  border-color: rgb(78, 78, 78) !important;
 
 }
 
 .darkSelect{
-  background-color: #131617;
-  border-color: rgb(78, 78, 78);
-  color:white;
+  background-color: #131617 !important;
+  border-color: rgb(78, 78, 78) !important;
+  color:white !important;
 }
 
 .whiteColorForH2{
-  color:white;
+  color:white !important;
 }

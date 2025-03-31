@@ -152,11 +152,20 @@ textarea {
 }
 
 .darkSelect{
-  background-color: #131617;
-  border-color: rgb(78, 78, 78);
-  color:white;
+  background-color: #131617 !important;
+  border-color: rgb(78, 78, 78) !important;
+  color:white !important;
 }
 
 .whiteColorForH2{
-  color:white;
+  color:white !important;
+}
+
+.darkListHandler{
+  list-style: none;
+  padding: 10px 0;
+  border-bottom: 1px solid #272727 !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
