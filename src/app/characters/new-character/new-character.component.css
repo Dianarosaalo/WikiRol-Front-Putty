@@ -141,3 +141,22 @@ textarea {
   border-bottom: 3px solid #ff0000; /* Add a bottom border to indicate selection */
   transform: scale(1.05); /* Slightly enlarge the selected tab */
 }
+
+/*dark mode*/
+
+.darkSearchBar{
+  background-color: #131617;
+  color:rgb(78, 78, 78);
+  border-color: rgb(78, 78, 78);
+
+}
+
+.darkSelect{
+  background-color: #131617;
+  border-color: rgb(78, 78, 78);
+  color:white;
+}
+
+.whiteColorForH2{
+  color:white;
+}

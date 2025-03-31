@@ -16,7 +16,7 @@
     <h3>DATOS PRINCIPALES</h3>
 
     <div class="mb-3">
-      <label for="name">Nombre</label>
+      <label for="name" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Nombre</label>
       <input
         type="text"
         class="form-control"
@@ -26,8 +26,8 @@
         placeholder="Introduce el nombre del personaje"
         required
         #nombreModel="ngModel"
-        [ngClass]="validClasses(nombreModel, 'is-valid', 'is-invalid')"
-      />
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
+      /> <!--[ngClass]="validClasses(nombreModel, 'is-valid', 'is-invalid')"-->
       <div class="invalid-feedback" *ngIf="nombreModel.errors?.['required']">
         Introduce un nombre correcto
       </div>
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       <label for="titulo">Títulos</label>
       <input
         type="text"
@@ -46,26 +46,26 @@
         [(ngModel)]="newCharacter.titulo"
         placeholder="Títulos del personaje"
         #tituloModel="ngModel"
-        [ngClass]="validClasses(tituloModel, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
       <div class="invalid-feedback">Al menos un título es requerido</div>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       Campaña <br>
-      <select class="form-control" [(ngModel)]="newCharacter.campanya" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="newCharacter.campanya" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
       </select>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       Tier de Poder <br>
-      <select class="form-control" [(ngModel)]="newCharacter.tier" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="newCharacter.tier" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of tiers" value={{option.value}}>{{option.label}}</option>
       </select>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       <label for="fotoPerfil">Foto de Perfil</label>
       <input
         type="file"
@@ -77,7 +77,7 @@
         ngModel
         required
         #imageModel="ngModel"
-        [ngClass]="validClasses(imageModel, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
       <div class="invalid-feedback">Una imagen es requerida</div>
     </div>
@@ -87,9 +87,9 @@
       class="img-thumbnail mb-3"
     />
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       Jugador <br>
-      <select class="form-control" [(ngModel)]="newCharacter.creator" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="newCharacter.creator" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
       </select>
     </div>
@@ -102,7 +102,7 @@
     <br>
 
     <div class="mb-3">
-      <label for="descripcion">Descripcion</label>
+      <label for="descripcion" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Descripcion</label>
       <textarea
         class="form-control"
         id="descripcion"
@@ -111,13 +111,13 @@
         [(ngModel)]="newCharacter.descripcion"
         placeholder="Descripción"
         #descModel="ngModel"
-        [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       ></textarea>
       <div class="invalid-feedback">La descripción es requerida.</div>
     </div>
 
     <div class="mb-3">
-      <label for="lore">Lore</label>
+      <label for="lore" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Lore</label>
       <textarea
         class="form-control"
         id="lore"
@@ -126,13 +126,13 @@
         [(ngModel)]="newCharacter.lore"
         placeholder="Introduce el Lore del personaje"
         #loreModel="ngModel"
-        [ngClass]="validClasses(loreModel, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
         rows="8" cols="50"></textarea>
       <div class="invalid-feedback">Introduce el lore del personaje.</div>
     </div>
 
     <div class="mb-3">
-      <label for="edad">Edad</label>
+      <label for="edad" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Edad</label>
       <input
         type="number"
         class="form-control"
@@ -142,7 +142,7 @@
         [(ngModel)]="newCharacter.edad"
         placeholder="Edad del personaje (introduce 0 si es desconocida)"
         #edadModel="ngModel"
-        [ngClass]="validClasses(edadModel, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
       <div class="invalid-feedback" *ngIf="edadModel.errors?.['required']">
         Edad es requerida
@@ -153,7 +153,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="partidaAparicion">Partida de aparición</label>
+      <label for="partidaAparicion" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Partida de aparición</label>
       <input
         type="number"
         class="form-control"
@@ -163,7 +163,7 @@
         [(ngModel)]="newCharacter.partidaAparicion"
         placeholder="Partida en la que el personaje apareció"
         #partidaModel="ngModel"
-        [ngClass]="validClasses(partidaModel, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
       <div class="invalid-feedback" *ngIf="partidaModel.errors?.['required']">
         Niveles de clase son requeridos
@@ -174,7 +174,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="sab">Altura</label>
+      <label for="sab" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Altura</label>
       <input
         type="number"
         class="form-control"
@@ -185,7 +185,7 @@
         placeholder="Altura del personaje en centímetros"
         required
         #altModel="ngModel"
-        [ngClass]="validClasses(altModel, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
       <div class="invalid-feedback" *ngIf="altModel.errors?.['required']">
         Altura del personaje
@@ -193,7 +193,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="peso">Peso</label>
+      <label for="peso" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Peso</label>
       <input
         type="number"
         class="form-control"
@@ -204,16 +204,16 @@
         placeholder="Peso del personaje en kilogramos"
         required
         #pesModel="ngModel"
-        [ngClass]="validClasses(pesModel, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
       <div class="invalid-feedback" *ngIf="pesModel.errors?.['required']">
         Peso del personaje
       </div>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       El personaje está muerto? <br>
-      <select class="form-control" [(ngModel)]="newCharacter.muerto" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="newCharacter.muerto" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of dead" value={{option.value}}>{{option.label}}</option>
       </select>
     </div>
@@ -293,15 +293,15 @@
 
     <a class="btn btn-danger" (click)="addCampanya()">Añadir Campaña Secundaria</a>-->
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       Tipo de Juego (esto no sirve para nada aún) <br>
-      <select class="form-control" [(ngModel)]="newCharacter.tipoJuego" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="newCharacter.tipoJuego" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of typeOfGame" value={{option.value}}>{{option.label}}</option>
       </select>
     </div>
 
     <div class="mb-3">
-      <label for="titulo">Es tu personaje una Deidad?</label>
+      <label for="titulo" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Es tu personaje una Deidad?</label>
       <input
         type="text"
         class="form-control"
@@ -310,6 +310,7 @@
         [(ngModel)]="newCharacter.deidad"
         placeholder="En caso de serlo, introduce la palabra que le defina o país al que pertenezca"
         #tituloModel="ngModel"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
     </div>
   </div>
@@ -318,7 +319,7 @@
     <h3>Versiones</h3>
 
     <div class="mb-3">
-      <label for="titulo">Busca a tu personaje a versionar:</label>
+      <label for="titulo" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Busca a tu personaje a versionar:</label>
       <input
         class="form-control"
         type="text"
@@ -326,6 +327,7 @@
         placeholder="Busca a tu version de personaje aquí, la búsqueda saldrá abajo"
         aria-label="searchChar"
         [(ngModel)]="searchChar"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
       <br>
       <ul class="nav nav-pills col-auto ms-3 designs justify-content-center">
@@ -337,9 +339,9 @@
     </div>
 
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       Resultados de la Búsqueda <strong> Clica en el Formulario</strong><br>
-      <select class="form-control" [(ngModel)]="newCharacter.version" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="newCharacter.version" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let char of characters" value={{char._id}}>{{char.nombre}}</option>
       </select>
     </div>
@@ -357,9 +359,9 @@
       <br>
     </div>
 
-    <div class="mb-3" *ngIf="newCharacter.version!==''">
+    <div class="mb-3" *ngIf="newCharacter.version!==''" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       Privacidad de la versión del personaje <br>
-      <select class="form-control" [(ngModel)]="newCharacter.hiddenInTierList" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="newCharacter.hiddenInTierList" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of isInTierList" value={{option.value}}>{{option.label}}</option>
       </select>
     </div>
@@ -369,23 +371,23 @@
   <div *ngIf="activeTab ==='Privacidad'">
     <h3>Privacidad</h3>
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       Privacidad del Personaje<strong> Máster NPCs</strong> <br>
-      <select class="form-control" [(ngModel)]="newCharacter.private" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="newCharacter.private" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
       </select>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       Rasgos Ocultos<strong> Máster NPCs</strong> <br>
-      <select class="form-control" [(ngModel)]="newCharacter.privateStats" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="newCharacter.privateStats" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
       </select>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       Permisos de Lectura para otro Jugador  <strong> Solo para PJs ocultos</strong><br>
-      <select class="form-control" [(ngModel)]="newCharacter.reader" [ngModelOptions]="{standalone:true}">
+      <select class="form-control" [(ngModel)]="newCharacter.reader" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let user of users" value={{user._id}}>{{user.name}}</option>
       </select>
     </div>
@@ -395,7 +397,7 @@
   <h3>Estadísticas</h3>
 
   <div class="mb-3">
-    <label for="pv">Puntos de Vida</label>
+    <label for="pv" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Puntos de Vida</label>
     <input
       type="number"
       class="form-control"
@@ -405,14 +407,14 @@
       [(ngModel)]="newCharacter.pv"
       placeholder="Puntos de Golpe"
       #pvModel="ngModel"
-      [ngClass]="validClasses(pvModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="pvModel.errors?.['required']">
       Puntos de golpe del personaje
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
     <label for="ca">Armadura</label>
     <input
       type="number"
@@ -423,7 +425,7 @@
       [(ngModel)]="newCharacter.ca"
       placeholder="CA"
       #caModel="ngModel"
-      [ngClass]="validClasses(caModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="caModel.errors?.['required']">
       Armadura del personaje
@@ -433,8 +435,8 @@
     </div>
   </div>
 
-  <div class="mb-3">
-    <label for="fue">Fuerza</label>
+  <div class="mb-3" >
+    <label for="fue" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Fuerza</label>
     <input
       type="number"
       class="form-control"
@@ -445,7 +447,7 @@
       placeholder="Puntos de fuerza"
       required
       #fueModel="ngModel"
-      [ngClass]="validClasses(fueModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="fueModel.errors?.['required']">
       Fuerza del personaje
@@ -453,7 +455,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="des">Destreza</label>
+    <label for="des" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Destreza</label>
     <input
       type="number"
       class="form-control"
@@ -464,7 +466,7 @@
       placeholder="Puntos de destreza"
       required
       #desModel="ngModel"
-      [ngClass]="validClasses(desModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="desModel.errors?.['required']">
       Destreza del personaje
@@ -472,7 +474,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="con">Constitución</label>
+    <label for="con" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Constitución</label>
     <input
       type="number"
       class="form-control"
@@ -483,7 +485,7 @@
       placeholder="Puntos de constitución"
       required
       #conModel="ngModel"
-      [ngClass]="validClasses(conModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="conModel.errors?.['required']">
       Constitución del personaje
@@ -491,7 +493,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="int">Inteligencia</label>
+    <label for="int" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Inteligencia</label>
     <input
       type="number"
       class="form-control"
@@ -502,14 +504,14 @@
       placeholder="Puntos de inteligencia"
       required
       #intModel="ngModel"
-      [ngClass]="validClasses(conModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="intModel.errors?.['required']">
       Inteligencia del personaje
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
     <label for="sab">Sabiduría</label>
     <input
       type="number"
@@ -521,14 +523,14 @@
       placeholder="Puntos de sabiduría"
       required
       #sabModel="ngModel"
-      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
       sabiduría del personaje
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
     <label for="car">Carisma</label>
     <input
       type="number"
@@ -540,14 +542,14 @@
       placeholder="Puntos de carisma"
       required
       #carModel="ngModel"
-      [ngClass]="validClasses(carModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="carModel.errors?.['required']">
       Carisma del personaje
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
     <label for="car">Pies de Movimiento</label>
     <input
       type="number"
@@ -559,7 +561,7 @@
       placeholder="Pies de movimiento"
       required
       #movModel="ngModel"
-      [ngClass]="validClasses(movModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="movModel.errors?.['required']">
       Pies de Movimiento
@@ -567,7 +569,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="competencia">Competencia</label>
+    <label for="competencia" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Competencia</label>
     <input
       type="number"
       class="form-control"
@@ -578,7 +580,7 @@
       placeholder="Competencia del personaje"
       required
       #compModel="ngModel"
-      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
       Competencia del personaje
@@ -588,7 +590,7 @@
   <h3>Datos Extra</h3>
 
   <div class="mb-3">
-    <label for="iniciativa">Iniciativa</label>
+    <label for="iniciativa" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Iniciativa</label>
     <input
       type="number"
       class="form-control"
@@ -599,14 +601,14 @@
       placeholder="iniciativa del personaje"
       required
       #iniModel="ngModel"
-      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
       Iniciativa del personaje
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
     <label for="percepcion">Percepción Pasiva</label>
     <input
       type="number"
@@ -618,14 +620,14 @@
       placeholder="percepcion del personaje"
       required
       #perModel="ngModel"
-      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
       Percepcion del personaje
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
     <label for="investigacion">Investigación Pasiva</label>
     <input
       type="number"
@@ -637,14 +639,14 @@
       placeholder="investigacion del personaje"
       required
       #invModel="ngModel"
-      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
       investigacion del personaje
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
     <label for="experiencia">Experiencia</label>
     <input
       type="number"
@@ -656,7 +658,7 @@
       placeholder="experiencia del personaje"
       required
       #expModel="ngModel"
-      [ngClass]="validClasses(sabModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="sabModel.errors?.['required']">
       Experiencia del personaje
@@ -666,7 +668,7 @@
   <h3>Tiradas de Salvación</h3>
 
   <div class="mb-3">
-    <label for="sf">Salvación de Fuerza</label>
+    <label for="sf" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Fuerza</label>
     <input
       type="number"
       class="form-control"
@@ -676,7 +678,7 @@
       [(ngModel)]="newCharacter.salvaciones[0]"
       placeholder="Salvación de Fuerza"
       #sfModel="ngModel"
-      [ngClass]="validClasses(sfModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="sfModel.errors?.['required']">
       Salvación de Fuerza del Personaje
@@ -684,7 +686,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="sd">Salvación de Destreza</label>
+    <label for="sd" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Destreza</label>
     <input
       type="number"
       class="form-control"
@@ -694,7 +696,7 @@
       [(ngModel)]="newCharacter.salvaciones[1]"
       placeholder="Salvación de Destreza"
       #sdModel="ngModel"
-      [ngClass]="validClasses(sdModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="sdModel.errors?.['required']">
       Salvación de Destreza del Personaje
@@ -702,7 +704,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="sco">Salvación de Constitución</label>
+    <label for="sco" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Constitución</label>
     <input
       type="number"
       class="form-control"
@@ -712,7 +714,7 @@
       [(ngModel)]="newCharacter.salvaciones[2]"
       placeholder="Salvación de Constitución"
       #scoModel="ngModel"
-      [ngClass]="validClasses(scoModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="scoModel.errors?.['required']">
       Salvación de Constitución del Personaje
@@ -720,7 +722,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="si">Salvación de Inteligencia</label>
+    <label for="si" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Inteligencia</label>
     <input
       type="number"
       class="form-control"
@@ -730,7 +732,7 @@
       [(ngModel)]="newCharacter.salvaciones[3]"
       placeholder="Salvación de Inteligencia"
       #siModel="ngModel"
-      [ngClass]="validClasses(siModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="siModel.errors?.['required']">
       Salvación de Inteligencia del Personaje
@@ -738,7 +740,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="ss">Salvación de Sabiduría</label>
+    <label for="ss" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Sabiduría</label>
     <input
       type="number"
       class="form-control"
@@ -748,7 +750,7 @@
       [(ngModel)]="newCharacter.salvaciones[4]"
       placeholder="Salvación de Sabiduría"
       #ssModel="ngModel"
-      [ngClass]="validClasses(ssModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="ssModel.errors?.['required']">
       Salvación de Sabiduría del Personaje
@@ -756,7 +758,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="sc">Salvación de Carisma</label>
+    <label for="sc" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Carisma</label>
     <input
       type="number"
       class="form-control"
@@ -766,7 +768,7 @@
       [(ngModel)]="newCharacter.salvaciones[5]"
       placeholder="Salvación de Carisma"
       #scModel="ngModel"
-      [ngClass]="validClasses(scModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="scModel.errors?.['required']">
       Salvación de Carisma del Personaje
@@ -965,14 +967,14 @@
   <div>
     <button *ngIf="!edit"
       type="submit"
-      class="btn btn-primary"
+      class="btn btn-danger"
       [disabled]="characterForm.invalid">
       Crear
     </button>
 
     <button *ngIf="edit"
       type="submit"
-      class="btn btn-primary"
+      class="btn btn-danger"
       >
       Editar
     </button>

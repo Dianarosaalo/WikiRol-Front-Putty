@@ -20,6 +20,8 @@ export class NewFactionComponent {
   saved = false;
   edit = false;
 
+  currentColor = localStorage.getItem('color') || 'light'
+
   constructor(
     private readonly factionService:FactionService,
     private readonly router: Router,

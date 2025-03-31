@@ -41,6 +41,8 @@ export class NewCharacterComponent implements OnInit {
   characters!:Character[];
   searchChar= '';
 
+  currentColor = localStorage.getItem('color') || 'light'
+
   factions!:{ value: string; label: string; }[];
 
   constructor(

@@ -1,0 +1,16 @@
+.darkSearchBar{
+  background-color: #131617;
+  color:rgb(78, 78, 78);
+  border-color: rgb(78, 78, 78);
+
+}
+
+.darkSelect{
+  background-color: #131617;
+  border-color: rgb(78, 78, 78);
+  color:white;
+}
+
+.whiteColorForH2{
+  color:white;
+}

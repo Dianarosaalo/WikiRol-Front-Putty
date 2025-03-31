@@ -21,6 +21,8 @@ export class ScenariosAddComponent implements OnInit{
   edit = false;
   imagenGaleria!:string
 
+  currentColor = localStorage.getItem('color') || 'light'
+
   constructor(
     private readonly scenarioService:ScenarioService,
     private readonly router: Router,

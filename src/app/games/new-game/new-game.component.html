@@ -2,7 +2,7 @@
 <form class="mt-4" (ngSubmit)="addGame()" #gameForm="ngForm">
 
   <div class="mb-3">
-    <label for="car">Nº de Partida</label>
+    <label for="car" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Nº de Partida</label>
     <input
       type="number"
       class="form-control"
@@ -13,7 +13,7 @@
       placeholder="Número de la partida"
       required
       #numModel="ngModel"
-      [ngClass]="validClasses(numModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="numModel.errors?.['required']">
       Introduce un número adecuado
@@ -24,7 +24,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="name">Título de la Partida</label>
+    <label for="name" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Título de la Partida</label>
     <input
       type="text"
       class="form-control"
@@ -34,7 +34,7 @@
       placeholder="Introduce el titulo de la partida!"
       required
       #tituloModel="ngModel"
-      [ngClass]="validClasses(tituloModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="tituloModel.errors?.['required']">
       Introduce un título correcto
@@ -45,7 +45,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="lore">Resumen de la partida</label>
+    <label for="lore" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Resumen de la partida</label>
     <textarea
       class="form-control"
       id="lore"
@@ -55,19 +55,19 @@
       placeholder="Introduce el resumen de la partida"
       required
       #resumenModel="ngModel"
-      [ngClass]="validClasses(resumenModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     ></textarea>
     <div class="invalid-feedback">Introduce el resumen de la partida.</div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
     Campaña <br>
-    <select class="form-control" [(ngModel)]="newGame.campanya" [ngModelOptions]="{standalone:true}">
+    <select class="form-control" [(ngModel)]="newGame.campanya" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
       <option *ngFor="let option of campaigns" value={{option.value}}>{{option.label}}</option>
     </select>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
     <label for="name">Fecha de la partida</label>
     <input
       type="date"
@@ -77,7 +77,7 @@
       [(ngModel)]="newGame.fechaJugada"
       required
       #fechaModel="ngModel"
-      [ngClass]="validClasses(fechaModel, 'is-valid', 'is-invalid')"
+      [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
     <div class="invalid-feedback" *ngIf="fechaModel.errors?.['required']">
       Introduce una fecha
@@ -85,10 +85,10 @@
   </div>
 
   <div>
-    <button type="submit" class="btn btn-primary" *ngIf="!edit"[disabled]="gameForm.invalid">Crear</button>
+    <button type="submit" class="btn btn-danger" *ngIf="!edit"[disabled]="gameForm.invalid">Crear</button>
     <button *ngIf="edit"
       type="submit"
-      class="btn btn-primary"
+      class="btn btn-danger"
       >
       Editar
     </button>

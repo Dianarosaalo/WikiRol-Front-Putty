@@ -20,6 +20,8 @@ export class NewGameComponent implements OnInit{
   saved = false;
   edit = false;
 
+  currentColor = localStorage.getItem('color') || 'light'
+
   constructor(
     private readonly gameService:GameService,
     private readonly router: Router,

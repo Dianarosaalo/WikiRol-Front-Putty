@@ -3,7 +3,7 @@
 
 
     <div class="mb-3">
-      <label for="nombre">Nombre del escenario</label>
+      <label for="nombre" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Nombre del escenario</label>
       <input
         type="text"
         class="form-control"
@@ -13,7 +13,7 @@
         placeholder="Introduce el nombre del escenario!"
         required
         #escenarioModel="ngModel"
-        [ngClass]="validClasses(escenarioModel, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
       <div class="invalid-feedback" *ngIf="escenarioModel.errors?.['required']">
         Introduce un nombre correcto
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       <label for="descripcion">Descripción del escenario</label>
       <textarea
         class="form-control"
@@ -34,7 +34,7 @@
         placeholder="Introduce la descripción del escenario"
         required
         #descripcionModel="ngModel"
-        [ngClass]="validClasses(descripcionModel, 'is-valid', 'is-invalid')"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       ></textarea>
       <div class="invalid-feedback">Introduce la descripción del escenario.</div>
     </div>
@@ -79,10 +79,10 @@
 
 
     <div>
-      <button type="submit" class="btn btn-primary" *ngIf="!edit"[disabled]="scenarioForm.invalid">Crear</button>
+      <button type="submit" class="btn btn-danger" *ngIf="!edit"[disabled]="scenarioForm.invalid">Crear</button>
       <button *ngIf="edit"
         type="submit"
-        class="btn btn-primary"
+        class="btn btn-danger"
         >
         Editar
       </button>
