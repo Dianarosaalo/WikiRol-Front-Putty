@@ -79,13 +79,13 @@
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 adriweboMargin"
 >
   <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -106,7 +106,7 @@
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>
@@ -123,13 +123,13 @@
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
 >
   <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order">
-    <div class="card h-100 shadow">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
       </a>
-        <div class="card-body">
-          <h4 class="card-title"><a [routerLink]="['/characters', character._id]">{{ character.nombre }}</a></h4>
-          <p class="card-text">{{ transformTitle(character.titulo) }}</p>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
             <div class="card-text">
 
             </div>
@@ -149,7 +149,7 @@
               </small>
               <br>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
               <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
             </div>
         </div>

@@ -27,6 +27,8 @@ export class CampanyaTierComponent {
   faction=`""`;
   order=""
 
+  currentColor = localStorage.getItem('color') || 'light'
+
   factions=[
     {value:"", label:"Todos"}];
 

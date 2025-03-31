@@ -199,3 +199,64 @@ div.tierList h3, .big{
   width: 100%;
   height: auto;
 }
+
+/* */
+
+.darkSearchBar{
+  background-color: #131617;
+  color:rgb(78, 78, 78);
+  border-color: rgb(78, 78, 78);
+
+}
+
+.navbar-dark-theme {
+  background-color: #131617 !important;
+}
+
+.darkSelect{
+  background-color: #131617;
+  border-color: rgb(78, 78, 78);
+  color:white;
+}
+
+.darkButtons{
+  background-color: #1d1c1c;
+}
+
+.darkSearchBar{
+  background-color: #131617;
+  color:rgb(78, 78, 78);
+  border-color: rgb(78, 78, 78);
+
+}
+
+.darkBody{
+  background-color: #131617;
+}
+
+.darkBorders{
+  border: 1px solid #323232; /* Set the border to grey when darkBorders is triggered */
+  border-radius: 0.25rem; /* Optional, adds rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Light shadow effect */
+  --bs-card-bg: #323232; /* Set dark background for the card */
+}
+
+.darkName{
+  color:rgb(184, 184, 184) !important;
+}
+
+a.darkName {
+  color: rgb(184, 184, 184) !important;
+}
+
+.card .card-body a.darkName {
+  color: rgb(184, 184, 184) !important;
+}
+
+  * {
+    box-sizing: border-box; /* Include padding and border in element's total width/height */
+  }
+
+.darkFooter{
+  border-top: rgb(46, 46, 46) 1.5px solid !important;
+}

@@ -38,6 +38,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   pageSize = 18;        //
   buttonShow=false;
   volverButtonShow=false;
+   currentColor = localStorage.getItem('color') || 'light'
 
   factions=[
     {value:"", label:"Todos"}];
