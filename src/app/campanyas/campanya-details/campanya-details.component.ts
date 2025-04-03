@@ -10,7 +10,7 @@ import { GameFilterPipe } from '../pipes/game.filter.pipe';
 import { Game } from 'src/app/games/interfaces/game';
 import { GameService } from 'src/app/games/services/game.service';
 import { HttpClient } from '@angular/common/http';
-import { CharactersResponse,DeidadGroup } from 'src/app/characters/interfaces/characterResponse';
+import { CharactersResponse,DeidadGroup, BestiaGroup } from 'src/app/characters/interfaces/characterResponse';
 import { map } from 'rxjs';
 import { FactionsResponse } from 'src/app/factions/interfaces/factionResponse';
 import { Faction } from 'src/app/factions/interfaces/faction';
@@ -26,6 +26,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
 
   characters!:Character[];
   deidades!:Character[];
+  bestias!:Character[];
   id!:string;
   search="";
   searchGame="";
@@ -64,6 +65,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   ];
 
   itsYggdrassil=true
+  itsEgathea=true
 
   constructor(
     private readonly characterService:CharacterService,
@@ -81,6 +83,14 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       }
     });
     this.id=String((this.route.snapshot.paramMap.get('id'))) ;
+
+    if (String(this.id)==="Egathea")
+    {
+      this.itsEgathea=true;
+    }
+    else{
+      this.itsEgathea=false;
+    }
 
     if (String(this.id)==="Yggdrassil")
     {
@@ -160,6 +170,14 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
         this.groupDeidadesByType();
       }
 
+      if (this.itsYggdrassil || this.itsEgathea)
+      {
+        const newBestias = this.characters.filter((c) => c.bestiario);
+        this.characters = this.characters.filter((c) => !c.bestiario);
+        this.bestias = this.bestias.concat(newBestias);
+        this.groupBestiasByType();
+      }
+
       characters.forEach((c)=>this.whichTier(c));
       console.log('Characters loaded:', characters.length);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
@@ -200,6 +218,13 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
         this.deidades = this.characters.filter((c)=>c.deidad);      //son deidades
         this.characters = this.characters.filter((c)=>!c.deidad);
         this.groupDeidadesByType();
+      }
+
+      if (this.itsYggdrassil || this.itsEgathea)
+      {
+        this.bestias = this.characters.filter((c)=>c.bestiario);      //son deidades
+        this.characters = this.characters.filter((c) => !c.bestiario);
+        this.groupBestiasByType();
       }
 
       console.log('Characters loaded:', characters.length);
@@ -319,6 +344,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   //gestion de deidades
 
   groupedDeidades: DeidadGroup[] = [];
+  groupedBestias: BestiaGroup[] = [];
 
   groupDeidadesByType(): void{
     const deidadMap = new Map<string, Character[]>();
@@ -333,6 +359,23 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     });
 
     this.groupedDeidades = Array.from(deidadMap, ([deidad, deidades]) => ({ deidad, deidades }));
+  }
+
+  groupBestiasByType(): void {
+    const bestiaMap = new Map<string, Character[]>();
+
+    this.bestias.forEach((bestia) => {
+      const bestiaName = bestia.bestiario;
+      if (!bestiaMap.has(bestiaName)) {
+        bestiaMap.set(bestiaName, []);
+      }
+      bestiaMap.get(bestiaName)!.push(bestia);
+    });
+
+    this.groupedBestias = Array.from(bestiaMap, ([bestia, bestias]) => ({
+      bestia,
+      bestias
+    }));
   }
 
 }

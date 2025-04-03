@@ -17,3 +17,7 @@ export interface DeidadGroup {
   deidades: Character[]; // Characters belonging to this group
 }
 
+export interface BestiaGroup {
+  bestia: string; // Name of the group
+  bestias: Character[]; // Characters belonging to this group
+}

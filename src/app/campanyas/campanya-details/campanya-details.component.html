@@ -1,6 +1,6 @@
 <ul class="tabs-container">
   <li (click)="onTabClick('Personajes')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Personajes</li>
-  <li *ngIf="itsYggdrassil" (click)="onTabClick('Bestiario')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Bestiario</li>
+  <li *ngIf="itsYggdrassil || itsEgathea" (click)="onTabClick('Bestiario')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Bestiario</li>
   <li *ngIf="itsYggdrassil" (click)="onTabClick('Deidades')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Deidades</li>
   <li (click)="onTabClick('Partidas')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Partidas</li>
   <li (click)="onTabClick('Tierlist')" class="tab-link" [ngClass]="currentColor === 'dark' ? 'darkTabs' : ''">Tier List</li>
@@ -178,6 +178,48 @@
         <h3 class="big">{{ group.deidad }}</h3>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3">
           <div class="col" *ngFor="let character of group.deidades">
+            <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
+              <a [routerLink]="['/characters', character._id]">
+                <img class="card-img-top" src="{{ character.fotoPerfil }}" />
+              </a>
+              <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+                <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+                <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
+                <div class="card-text">
+                  <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                  </small>
+                </div>
+                <small class="text-muted">
+                  <strong>Campaña: </strong>{{ character.campanya }}
+                </small>
+                <div *ngIf="character.muerto">
+                  <small class="text-muted">
+                    <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+                  </small>
+                  <br>
+                </div>
+                <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
+                  <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <button (click)="onScroll()" class="cargarMas" *ngIf="buttonShow === true">Cargar Más</button>
+</div>
+
+<div *ngIf="activeTab === 'Bestiario'">
+  <h1 style="text-align: center;" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Bestiario ({{ bestias.length }})</h1>
+  <div id="placesContainer" class="mb-1 mt-1" [ngClass]="design === 'new' ? 'normalMargin' : 'adriweboMargin'">
+    <ng-container *ngFor="let group of groupedBestias">
+      <div class="group-container">
+        <h3 class="big">{{ group.bestia }}</h3>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3">
+          <div class="col" *ngFor="let character of group.bestias">
             <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
               <a [routerLink]="['/characters', character._id]">
                 <img class="card-img-top" src="{{ character.fotoPerfil }}" />
