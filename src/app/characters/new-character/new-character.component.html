@@ -313,6 +313,21 @@
         [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
       />
     </div>
+
+    <div class="mb-3">
+      <label for="bestiario" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Es tu personaje una criatura de bestiario?</label>
+      <input
+        type="text"
+        class="form-control"
+        name="bestiario"
+        id="bestiario"
+        [(ngModel)]="newCharacter.bestiario"
+        placeholder="En caso de serlo, introduce la palabra que le defina, su raza o país al que pertenezca"
+        #tituloModel="ngModel"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
+      />
+    </div>
+
   </div>
 
   <div *ngIf="activeTab ==='Versiones'">
