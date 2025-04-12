@@ -44,7 +44,8 @@ export interface Character {
   experiencia:number,
   iniciativa:number,
   version?: string | null,
-  hiddenInTierList: boolean
+  hiddenInTierList: boolean,
+  bestiario: string,
 }
 
 export interface Trait{

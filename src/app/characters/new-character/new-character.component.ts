@@ -127,7 +127,8 @@ export class NewCharacterComponent implements OnInit {
       investigacion:0,
       experiencia:0,
       iniciativa:0,
-      hiddenInTierList: false
+      hiddenInTierList: false,
+      bestiario:''
     }
   }
 
@@ -257,7 +258,9 @@ export class NewCharacterComponent implements OnInit {
   {value:"9.99.- No Existe Aún", label: "No Existe"}
   ];
 
-  typeOfGame=[{value:"DnD",label:"DnD"}];
+  typeOfGame=[{value:"DnD",label:"DnD"},
+    {value:"Pathfinder",label:"Pathfinder"}
+  ];
 
   transformString(description:string):string{
     const myDate=String(description);
