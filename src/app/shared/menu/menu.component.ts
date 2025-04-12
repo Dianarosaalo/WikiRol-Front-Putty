@@ -77,8 +77,8 @@ export class MenuComponent {
 
     if(this.isDropDownOpen5)
     {
-      this.isOpenA = false;
-      this.isOpenB = false;
+      this.showA = false;
+      this.showB = false;
 
       setTimeout(() => {
         this.isDropDownOpen5=false;
@@ -96,8 +96,8 @@ export class MenuComponent {
 
     if(this.isDropDownOpen6)
     {
-      this.isOpenA = false;
-      this.isOpenB = false;
+      this.showA = false;
+      this.showB = false;
 
       setTimeout(() => {
         this.isDropDownOpen6=false;
@@ -155,17 +155,34 @@ export class MenuComponent {
   }
 
 
-  isOpenA = false;
-  isOpenB = false;
+  showMainDropdown = false;
+showA = false;
+showB = false;
+showC = false;
 
-  toggleA() {
-    this.isOpenA = !this.isOpenA;
-    this.isOpenB = false;
-  }
+toggleMainDropdown() {
+  this.showMainDropdown = !this.showMainDropdown;
+  this.showA = false;
+  this.showB = false;
+  this.showC = false;
+}
 
-  toggleB() {
-    this.isOpenB = !this.isOpenB;
-    this.isOpenA = false;
-  }
+toggleA() {
+  this.showA = !this.showA;
+  this.showB = false;
+  this.showC = false;
+}
+
+toggleB() {
+  this.showB = !this.showB;
+  this.showA = false;
+  this.showC = false;
+}
+
+toggleC() {
+  this.showC = !this.showC;
+  this.showA = false;
+  this.showB = false;
+}
 
 }

@@ -50,35 +50,59 @@
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+  <div class="collapse navbar-collapse" id="navbarNavDarkDropdown text-center">
     <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" (click)="toggleDropdown5()" aria-expanded="false">
+      <li class="nav-item dropdown position-relative">
+        <a
+          class="nav-link dropdown-toggle"
+          id="navbarDarkDropdownMenuLink"
+          role="button"
+          (click)="toggleDropdown5()"
+          aria-expanded="false"
+        >
           Aventuras
         </a>
-        <ul class="dropdown-menu dropdown-menu-dark" [ngClass]="{'show': isDropDownOpen5}" aria-labelledby="navbarDarkDropdownMenuLink">
-          <!-- A & B Buttons -->
-          <div class="d-flex justify-content-between p-2 dropdown-container">
-            <button class="dropdown-toggle-custom" (click)="toggleB()">De Campañas</button>
-            <button class="dropdown-toggle-custom" (click)="toggleA()">Standalone</button>
+
+        <!-- Submenu container centered under "Aventuras" -->
+        <div
+          class="sub-dropdown d-flex justify-content-center position-absolute"
+          *ngIf="isDropDownOpen5"
+        >
+          <!-- "De Campañas" -->
+
+          <div class="position-relative mx-2">
+            <button class="dropdown-toggle-custom" (click)="toggleA()">De Campañas</button>
+            <ul class="submenu-dropdown" *ngIf="showA">
+              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guerreros de la Luz']">Guerreros de la Luz</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guardianes del Cosmos']">Guardianes Cosmos</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Pruebas']">Guerreros Oscuridad</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Historias Yggdrassil']">Historias de Yggdrassil</a></li>
+            </ul>
           </div>
 
-          <!-- A's Dropdown Items -->
-          <div *ngIf="isOpenA">
-            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Djuna']">Djuna Adventures</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Mario']">Cruzados Mario</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Reinos Olvidados']">Reinos Olvidados</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Miscelanea']">Miscelánea & Etc</a></li>
+
+
+          <!-- "Standalone" -->
+
+          <div class="position-relative mx-2">
+            <button class="dropdown-toggle-custom" (click)="toggleB()">Standalone</button>
+            <ul class="submenu-dropdown" *ngIf="showB">
+              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Djuna']">Djuna Adventures</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Mario']">Cruzados Mario</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Reinos Olvidados']">Reinos Olvidados</a></li>
+            </ul>
           </div>
 
-          <!-- B's Dropdown Items -->
-          <div *ngIf="isOpenB">
-            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guerreros de la Luz']">Guerreros de la Luz</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guardianes del Cosmos']">Guardianes Cosmos</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Pruebas']">Guerreros Oscuridad</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Historias Yggdrassil']">Historias de Yggdrassil</a></li>
+
+          <!-- "Otros" -->
+          <div class="position-relative mx-2">
+            <button class="dropdown-toggle-custom" (click)="toggleC()">Otros</button>
+            <ul class="submenu-dropdown" *ngIf="showC">
+              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Miscelanea']">Miscelánea & Etc</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Cosmos']">Cosmos</a></li>
+            </ul>
           </div>
-        </ul>
+        </div>
       </li>
     </ul>
   </div>

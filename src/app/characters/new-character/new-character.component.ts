@@ -210,14 +210,16 @@ export class NewCharacterComponent implements OnInit {
     {value:'Aryma',label:"Aryma"},
     {value:'Yggdrassil',label:"Yggdrassil"},
 
-    {value:'Djuna',label:"(Aventura) Djuna & Co"},
-    {value:'Mario',label:"(Aventura) Cruzados Mario"},
-    {value:'Reinos Olvidados',label:"(Aventura) Reinos Olvidados"},
-    {value:'Miscelanea',label:"(Conjunto de cosas Miscelaneas)"},
-    {value:'Guerreros de la Luz',label:"(Aventura) Guerreros de la Luz"},
-    {value:'Guardianes del Cosmos',label:"(Aventura) Guardianes del Cosmos"},
-    {value:'Pruebas',label:"Pruebas DM"},
-    {value: 'Historias Yggdrassil', label: 'Historias Yggdrassil'}
+    {value:'Djuna',label:"Djuna & Co (A) "},
+    {value:'Mario',label:"(Aventura) (A)"},
+    {value:'Reinos Olvidados',label:"Reinos Olvidados (A)"},
+    {value:'Guerreros de la Luz',label:"Guerreros de la Luz (A)"},
+    {value:'Guardianes del Cosmos',label:"Guardianes del Cosmos (A)"},
+    {value:'Pruebas',label:"Guerreros de la Oscuridad (A)"},
+    {value: 'Historias Yggdrassil', label: 'Historias Yggdrassil (A)'},
+
+    {value: 'Cosmos', label: 'Cosmos'},
+    {value:'Miscelanea',label:"Conjunto de cosas Miscelaneas"},
     ];
 
   intergalactic=[

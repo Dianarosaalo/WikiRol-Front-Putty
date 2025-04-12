@@ -84,3 +84,42 @@ nav{
 .darkNav{
   background-color: #141414 !important;
 }
+
+.sub-dropdown {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #222;
+  border: 1px solid #444;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  z-index: 999;
+}
+
+.submenu-button {
+  background: none;
+  border: 1px solid #888;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.submenu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  min-width: 150px;
+  border-radius: 0.5rem;
+  z-index: 1000;
+}
+
+.submenu-dropdown li {
+  list-style: none;
+  padding: 0.3rem 0;
+}

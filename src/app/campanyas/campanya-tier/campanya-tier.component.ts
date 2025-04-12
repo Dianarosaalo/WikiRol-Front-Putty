@@ -188,7 +188,8 @@ campaigns = [
     {value:'Guerreros de la Luz',label:"Guerreros de la Luz"},
     {value:'Guardianes del Cosmos',label:"Guardianes Cosmos"},
     {value:'Pruebas',label:"Guerreros Oscuros"},
-    {value: 'Historias Yggdrassil', label: 'Historias Yggdrassil'}
+    {value: 'Historias Yggdrassil', label: 'Historias Yggdrassil'},
+    {value: 'Cosmos', label: 'Cosmos'}
 ];
 
   selectedCampaigns: string[] = this.campaigns.map(campaign => campaign.value);
