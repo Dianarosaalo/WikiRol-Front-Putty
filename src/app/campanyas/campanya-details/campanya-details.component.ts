@@ -160,7 +160,6 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       //this.characters=characters;
       //const characterNumber=this.characters.length;
       this.characters=[...this.characters, ...characters];
-      this.characters = this.characters.filter((c)=>!c.version)
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
 
       if (this.itsYggdrassil){
@@ -179,6 +178,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       }
 
       characters.forEach((c)=>this.whichTier(c));
+      this.characters = this.characters.filter((c)=>!c.version)
       console.log('Characters loaded:', characters.length);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
 
@@ -209,7 +209,6 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
 
       this.characters= characters;
-      this.characters = this.characters.filter((c)=>!c.version)
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
 
       this.characters.forEach((c)=>this.whichTier(c));
@@ -226,6 +225,8 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
         this.characters = this.characters.filter((c) => !c.bestiario);
         this.groupBestiasByType();
       }
+
+      this.characters = this.characters.filter((c)=>!c.version)
 
       console.log('Characters loaded:', characters.length);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
