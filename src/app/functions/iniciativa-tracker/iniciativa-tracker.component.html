@@ -1,1 +1,15 @@
-<p>iniciativa-tracker works!</p>
+<h2>Add Character</h2>
+<form (ngSubmit)="addCharacter()" #characterForm="ngForm">
+  <input type="text" placeholder="Nombre" [(ngModel)]="newCharacter.name" name="name" required />
+  <input type="number" placeholder="Iniciativa" [(ngModel)]="newCharacter.initiative" name="initiative" required />
+  <input type="text" placeholder="Notas" [(ngModel)]="newCharacter.notes" name="notes" />
+  <button type="submit" [disabled]="!characterForm.form.valid">Add</button>
+</form>
+
+<h2>Characters (sorted by initiative)</h2>
+<ul>
+  <li *ngFor="let char of characters">
+    <strong>{{ char.name }}</strong> – Initiative: {{ char.initiative }}<br />
+    <em>{{ char.notes }}</em>
+  </li>
+</ul>
