@@ -69,4 +69,12 @@ export class IniciativaTrackerComponent implements OnInit {
     this.editingIndex = null;
     this.newCharacter = { name: '', initiative: 0, hitPoints: 0, notes: '' };
   }
+
+  deleteCharacter(index: number) {
+    const char = this.characters[index];
+    const confirmed = window.confirm(`Estás seguro/a de quieres eliminar a "${char.name}"?`);
+    if (confirmed) {
+      this.characters.splice(index, 1);
+    }
+  }
 }
