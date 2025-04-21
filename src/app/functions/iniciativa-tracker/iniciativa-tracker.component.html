@@ -1,15 +1,21 @@
-<h2>Add Character</h2>
+<h2>Añadir a la Iniciativa</h2>
 <form (ngSubmit)="addCharacter()" #characterForm="ngForm">
   <input type="text" placeholder="Nombre" [(ngModel)]="newCharacter.name" name="name" required />
   <input type="number" placeholder="Iniciativa" [(ngModel)]="newCharacter.initiative" name="initiative" required />
   <input type="text" placeholder="Notas" [(ngModel)]="newCharacter.notes" name="notes" />
-  <button type="submit" [disabled]="!characterForm.form.valid">Add</button>
+  <button type="submit" [disabled]="!characterForm.form.valid">Añadir a la Iniciativa</button>
 </form>
 
-<h2>Characters (sorted by initiative)</h2>
+<div style="margin-bottom: 1.5rem;">
+  <button (click)="saveToLocalStorage()">💾 Guardar esta Iniciativa</button>
+  <button (click)="clearLocalStorage()" style="margin-left: 1rem;">🗑️ Eliminar esta Iniciativa</button>
+</div>
+
+<h2>Iniciativa</h2>
 <ul>
-  <li *ngFor="let char of characters">
-    <strong>{{ char.name }}</strong> – Initiative: {{ char.initiative }}<br />
+  <li *ngFor="let char of characters; let i = index">
+    <strong>#{{ i + 1 }} {{ char.name }}</strong>
+    – Iniciativa: {{ char.initiative }}<br />
     <em>{{ char.notes }}</em>
   </li>
 </ul>

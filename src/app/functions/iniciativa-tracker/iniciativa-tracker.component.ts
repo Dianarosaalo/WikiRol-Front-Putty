@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CharacterIni } from 'src/app/characters/interfaces/characterIni';
 import { FormsModule } from '@angular/forms';
@@ -10,8 +10,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './iniciativa-tracker.component.html',
   styleUrls: ['./iniciativa-tracker.component.css']
 })
-
-export class IniciativaTrackerComponent {
+export class IniciativaTrackerComponent implements OnInit {
 
   characters: CharacterIni[] = [];
 
@@ -21,17 +20,36 @@ export class IniciativaTrackerComponent {
     notes: ''
   };
 
+  localStorageKey = 'iniciativaCharacters';
+
+  ngOnInit(): void {
+    const saved = localStorage.getItem(this.localStorageKey);
+    if (saved) {
+      try {
+        const parsed: CharacterIni[] = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.every(c => typeof c.initiative === 'number')) {
+          this.characters = parsed.sort((a, b) => b.initiative - a.initiative);
+        }
+      } catch (e) {
+        console.error('Error loading characters from localStorage:', e);
+      }
+    }
+  }
+
   addCharacter() {
     if (this.newCharacter.name.trim()) {
-      // Clone and push
       this.characters.push({ ...this.newCharacter });
-
-      // Sort descending by initiative
       this.characters.sort((a, b) => b.initiative - a.initiative);
-
-      // Reset the form
       this.newCharacter = { name: '', initiative: 0, notes: '' };
     }
   }
 
+  saveToLocalStorage() {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.characters));
+  }
+
+  clearLocalStorage() {
+    localStorage.removeItem(this.localStorageKey);
+    this.characters = [];
+  }
 }
