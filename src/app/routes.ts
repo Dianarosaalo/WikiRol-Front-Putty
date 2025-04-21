@@ -37,6 +37,11 @@ export const APP_ROUTES: Routes = [
       import('./scenarios/routes').then((m) => m.SCENARIO_ROUTES),
   },
   {
+    path: 'functions',
+    loadChildren: () =>
+      import('./functions/routes').then((m) => m.FUNCTION_ROUTES),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/auth/login',

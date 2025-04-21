@@ -17,6 +17,8 @@ export class MenuComponent {
   isDropDownOpen4=false;
   isDropDownOpen5=false;
   isDropDownOpen6=false;
+  isDropDownOpen7=false;
+
   isDropDownOpenSmall=false;
   isLogged=false;
   currentColor=localStorage.getItem('color') || 'light'
@@ -42,6 +44,7 @@ export class MenuComponent {
     this.isDropDownOpen4=false;
     this.isDropDownOpen5=false;
     this.isDropDownOpen6=false;
+    this.isDropDownOpen7=false;
 
     if(this.isDropDownOpen)
     {
@@ -58,6 +61,7 @@ export class MenuComponent {
     this.isDropDownOpen4=false;
     this.isDropDownOpen5=false;
     this.isDropDownOpen6=false;
+    this.isDropDownOpen7=false;
 
     if(this.isDropDownOpen2)
     {
@@ -74,6 +78,7 @@ export class MenuComponent {
     this.isDropDownOpen4=false;
     this.isDropDownOpen2=false;
     this.isDropDownOpen6=false;
+    this.isDropDownOpen7=false;
 
     if(this.isDropDownOpen5)
     {
@@ -93,6 +98,7 @@ export class MenuComponent {
     this.isDropDownOpen4=false;
     this.isDropDownOpen2=false;
     this.isDropDownOpen5=false;
+    this.isDropDownOpen7=false;
 
     if(this.isDropDownOpen6)
     {
@@ -112,6 +118,7 @@ export class MenuComponent {
     this.isDropDownOpen4=false;
     this.isDropDownOpen5=false;
     this.isDropDownOpen6=false;
+    this.isDropDownOpen7=false;
 
     if(this.isDropDownOpen3)
     {
@@ -128,11 +135,29 @@ export class MenuComponent {
     this.isDropDownOpen3=false;
     this.isDropDownOpen5=false;
     this.isDropDownOpen6=false;
+    this.isDropDownOpen7=false;
 
     if(this.isDropDownOpen4)
     {
       setTimeout(() => {
         this.isDropDownOpen4=false;
+      },7050);
+    }
+  }
+
+  toggleDropdown7() {
+    this.isDropDownOpen7 = !this.isDropDownOpen7;
+    this.isDropDownOpen=false;
+    this.isDropDownOpen2=false;
+    this.isDropDownOpen3=false;
+    this.isDropDownOpen4=false;
+    this.isDropDownOpen5=false;
+    this.isDropDownOpen6=false;
+
+    if(this.isDropDownOpen7)
+    {
+      setTimeout(() => {
+        this.isDropDownOpen7=false;
       },7050);
     }
   }
