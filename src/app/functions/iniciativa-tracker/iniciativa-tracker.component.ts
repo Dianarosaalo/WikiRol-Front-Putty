@@ -15,6 +15,7 @@ export class IniciativaTrackerComponent implements OnInit {
 
   newCharacter: CharacterIni = {
     name: '',
+    hitPoints: 0,
     initiative: 0,
     notes: ''
   };
@@ -49,7 +50,7 @@ export class IniciativaTrackerComponent implements OnInit {
       }
 
       this.characters.sort((a, b) => b.initiative - a.initiative);
-      this.newCharacter = { name: '', initiative: 0, notes: '' };
+      this.newCharacter = { name: '', initiative: 0, hitPoints: 0, notes: '' };
     }
   }
 
@@ -66,6 +67,6 @@ export class IniciativaTrackerComponent implements OnInit {
     localStorage.removeItem(this.localStorageKey);
     this.characters = [];
     this.editingIndex = null;
-    this.newCharacter = { name: '', initiative: 0, notes: '' };
+    this.newCharacter = { name: '', initiative: 0, hitPoints: 0, notes: '' };
   }
 }

@@ -29,7 +29,7 @@ form {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"], textarea {
   padding: 0.5rem 0.8rem;
   border: 1px solid #e9bcbc;
   border-radius: 6px;
@@ -119,4 +119,14 @@ em {
 
 .edit-button:hover {
   transform: scale(1.1);
+}
+
+.custom-label {
+  color: #8a1c27; /* Cool strong red */
+  font-weight: bold;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  display: inline-block;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }

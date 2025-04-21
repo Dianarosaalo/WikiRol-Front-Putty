@@ -1,10 +1,21 @@
 <h2>Añadir a la Iniciativa</h2>
 <form (ngSubmit)="addCharacter()" #characterForm="ngForm">
-  <input type="text" placeholder="Nombre" [(ngModel)]="newCharacter.name" name="name" required />
+
+  <label for="Vida" class="custom-label">Nombre del Personaje</label>
+  <input type="text" placeholder="Escribe su nombre!" [(ngModel)]="newCharacter.name" name="name" required />
+
+  <label for="Iniciativa" class="custom-label">Iniciativa</label>
   <input type="number" placeholder="Iniciativa" [(ngModel)]="newCharacter.initiative" name="initiative" required />
-  <input type="text" placeholder="Notas" [(ngModel)]="newCharacter.notes" name="notes" />
+
+  <label for="Vida" class="custom-label">Vida</label>
+  <input type="number" placeholder="HitPoints" [(ngModel)]="newCharacter.hitPoints" name="hitPoints" />
+
+  <label for="Vida" class="custom-label">Anotaciones</label>
+  <textarea type="text" placeholder="Redacta tus notas aquí!" [(ngModel)]="newCharacter.notes" name="notes" ></textarea>
+
   <button type="submit" [disabled]="!characterForm.form.valid">
     {{ editingIndex !== null ? 'Editar' : 'Añadir a la Iniciativa' }}
+
   </button>
 </form>
 
@@ -18,8 +29,8 @@
   <li *ngFor="let char of characters; let i = index" class="character-item">
     <div class="char-left">
       <strong>#{{ i + 1 }}  {{ char.name }}</strong>
-      – Initiative: {{ char.initiative }}<br />
-      <em>{{ char.notes }}</em>
+      – Iniciativa: {{ char.initiative }} - <strong>PGs: {{char.hitPoints}}</strong> <br />
+      <p>{{ char.notes }}</p>
     </div>
     <button (click)="editCharacter(i)" title="Edit" class="edit-button">✏️</button>
   </li>
