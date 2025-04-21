@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./iniciativa-tracker.component.css']
 })
 export class IniciativaTrackerComponent implements OnInit {
-
   characters: CharacterIni[] = [];
 
   newCharacter: CharacterIni = {
@@ -19,6 +18,8 @@ export class IniciativaTrackerComponent implements OnInit {
     initiative: 0,
     notes: ''
   };
+
+  editingIndex: number | null = null; // NEW
 
   localStorageKey = 'iniciativaCharacters';
 
@@ -38,10 +39,23 @@ export class IniciativaTrackerComponent implements OnInit {
 
   addCharacter() {
     if (this.newCharacter.name.trim()) {
-      this.characters.push({ ...this.newCharacter });
+      if (this.editingIndex !== null) {
+        // ✏️ Editing an existing character
+        this.characters[this.editingIndex] = { ...this.newCharacter };
+        this.editingIndex = null;
+      } else {
+        // ➕ Adding new
+        this.characters.push({ ...this.newCharacter });
+      }
+
       this.characters.sort((a, b) => b.initiative - a.initiative);
       this.newCharacter = { name: '', initiative: 0, notes: '' };
     }
+  }
+
+  editCharacter(index: number) {
+    this.newCharacter = { ...this.characters[index] };
+    this.editingIndex = index;
   }
 
   saveToLocalStorage() {
@@ -51,5 +65,7 @@ export class IniciativaTrackerComponent implements OnInit {
   clearLocalStorage() {
     localStorage.removeItem(this.localStorageKey);
     this.characters = [];
+    this.editingIndex = null;
+    this.newCharacter = { name: '', initiative: 0, notes: '' };
   }
 }

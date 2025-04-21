@@ -3,19 +3,24 @@
   <input type="text" placeholder="Nombre" [(ngModel)]="newCharacter.name" name="name" required />
   <input type="number" placeholder="Iniciativa" [(ngModel)]="newCharacter.initiative" name="initiative" required />
   <input type="text" placeholder="Notas" [(ngModel)]="newCharacter.notes" name="notes" />
-  <button type="submit" [disabled]="!characterForm.form.valid">Añadir a la Iniciativa</button>
+  <button type="submit" [disabled]="!characterForm.form.valid">
+    {{ editingIndex !== null ? 'Editar' : 'Añadir a la Iniciativa' }}
+  </button>
 </form>
 
-<div style="margin-bottom: 1.5rem;">
+<div style="margin-bottom: 1.5rem; display: flex; justify-content: center; align-items: center; gap: 1rem;">
   <button (click)="saveToLocalStorage()">💾 Guardar esta Iniciativa</button>
   <button (click)="clearLocalStorage()" style="margin-left: 1rem;">🗑️ Eliminar esta Iniciativa</button>
 </div>
 
 <h2>Iniciativa</h2>
 <ul>
-  <li *ngFor="let char of characters; let i = index">
-    <strong>#{{ i + 1 }} {{ char.name }}</strong>
-    – Iniciativa: {{ char.initiative }}<br />
-    <em>{{ char.notes }}</em>
+  <li *ngFor="let char of characters; let i = index" class="character-item">
+    <div class="char-left">
+      <strong>#{{ i + 1 }}  {{ char.name }}</strong>
+      – Initiative: {{ char.initiative }}<br />
+      <em>{{ char.notes }}</em>
+    </div>
+    <button (click)="editCharacter(i)" title="Edit" class="edit-button">✏️</button>
   </li>
 </ul>
