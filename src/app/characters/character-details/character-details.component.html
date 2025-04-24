@@ -316,7 +316,7 @@
           <h3>Transformaciones</h3>
             <br>
             <div *ngFor="let r of character.rasgos">
-              <p *ngIf="((r.privacy === false || (r.privacy === true && me ) || (r.privacy===true && reader)) && (r.type==='Transformacion'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me ) || (r.privacy===true && reader)) && (r.type==='Transformacion'))">-<strong style="color:rgb(255, 141, 11);text-shadow: 0.5px 0.5px 1px black;">{{ r.title }}</strong>: {{ r.info }}</p>
             </div>
             <br>
           <hr>
