@@ -51,6 +51,7 @@ export class CampanyaTierComponent {
       {value:"movimiento", label:"Movimiento"},
     ];
 
+  OmniChars:Character[]=[];
   DeusChars:Character[]=[];
   SupremeChars:Character[]=[];
   SemiSupremeChars:Character[]=[];
@@ -77,6 +78,7 @@ export class CampanyaTierComponent {
   ) {}
 
   ngOnInit(): void {
+    this.loadCharacters("-0.- Omnipotente",this.OmniChars);
     this.loadCharacters("0.- Deus Ex Machina",this.DeusChars);
     this.loadCharacters("0.25.- Supremo",this.SupremeChars);
     this.loadCharacters("0.33.- Semi-Supremo",this.SemiSupremeChars);

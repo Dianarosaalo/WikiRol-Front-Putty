@@ -237,6 +237,9 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
 
   whichTier(char:Character)
   {
+    if(char.tier==="-0.- Omnipotente")
+      this.OmniChars.push(char);
+
     if(char.tier==="0.- Deus Ex Machina")
       this.DeusChars.push(char);
 
@@ -286,6 +289,7 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       this.UnknownChars.push(char);
   }
 
+  OmniChars:Character[]=[];
   DeusChars:Character[]=[];
   SupremeChars:Character[]=[];
   SemiSupremeChars:Character[]=[];

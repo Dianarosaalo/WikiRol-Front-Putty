@@ -56,7 +56,47 @@
 
 </nav>
 
-<h3>DEUS EX MACHINA</h3>
+<h3 *ngIf="(OmniChars | characterFilter:search:faction:order:selectedCampaigns).length > 0">OMNIPOTENTES</h3>
+
+  <div
+  id="placesContainer"
+  class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
+  >
+  <div class="col" *ngFor="let character of OmniChars | characterFilter:search:faction:order:selectedCampaigns ">
+    <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
+      <a [routerLink]="['/characters', character._id]">
+        <img class="card-img-top" loading="lazy" src="{{ character.fotoPerfil }}" />
+      </a>
+        <div class="card-body" [ngClass]="currentColor === 'dark' ? 'darkBody' : ''">
+          <h4 class="card-title"><a [routerLink]="['/characters', character._id]" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ character.nombre }}</a></h4>
+          <p class="card-text" [ngClass]="currentColor === 'dark' ? 'darkName' : ''">{{ transformTitle(character.titulo) }}</p>
+            <div class="card-text">
+
+            </div>
+            <div class="card-text">
+                <small class="text-muted">
+                    <strong>Tier List: </strong>{{ character.tier }}
+                </small>
+            </div>
+            <small class="text-muted">
+              <strong>Campaña: </strong>{{ character.campanya }}
+            </small>
+
+            <div *ngIf="character.muerto">
+              <small class="text-muted">
+                <strong>Estado: </strong> <span class="badge ms-2 bg-danger">Fallecido</span>
+              </small>
+              <br>
+            </div>
+            <div class="card-footer" [ngClass]="currentColor === 'dark' ? 'darkFooter' : ''">
+              <small class="text-muted">{{ transformDescription(character.descripcion) }}</small>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h3 *ngIf="(DeusChars | characterFilter:search:faction:order:selectedCampaigns).length > 0">DEUS EX MACHINA</h3>
 
   <div
   id="placesContainer"
@@ -96,7 +136,7 @@
     </div>
   </div>
 
-  <h3>SUPREMOS</h3>
+  <h3 *ngIf="(SupremeChars | characterFilter:search:faction:order:selectedCampaigns).length > 0">SUPREMOS</h3>
 
   <div
   id="placesContainer"
@@ -135,7 +175,7 @@
     </div>
   </div>
 
-  <h3>EXTREMOS</h3>
+  <h3 *ngIf="(SemiSupremeChars | characterFilter:search:faction:order:selectedCampaigns).length > 0">EXTREMOS</h3>
 
   <div
   id="placesContainer"

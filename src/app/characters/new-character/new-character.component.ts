@@ -239,7 +239,9 @@ export class NewCharacterComponent implements OnInit {
   isInTierList=[{value:true,label:"Este Personaje está oculto en la Tier List"},
     {value:false,label:"Este Personaje SÍ aparece en la Tier List"}]
 
-  tiers=[{value:"0.- Deus Ex Machina", label:"Deus Ex Machina"},
+  tiers=[
+  {value:"-0.- Omnipotente", label:"Omnipotente"},
+  {value:"0.- Deus Ex Machina", label:"Deus Ex Machina"},
   {value:"0.25.- Supremo", label:"Supremo"},
   {value:"0.33.- Semi-Supremo", label:"Extremo"},
   {value:"0.5.- SSSSS", label:"SSSSS"},
