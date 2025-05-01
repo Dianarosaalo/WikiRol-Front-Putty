@@ -70,7 +70,7 @@ export class NewCharacterComponent implements OnInit {
     if (currentUrl.split('/')[3]==="edit")
     {
       this.edit = true;
-      console.log(id);
+      //console.log(id);
       this.characterService.getById(String(id)).subscribe(
         c => {
           this.newCharacter = c
@@ -293,18 +293,18 @@ export class NewCharacterComponent implements OnInit {
       this.newCharacter.rasgos.push({ ...trait });
       this.newTrait = { title: '', text: '', isPrivate: false, type:'Pasiva' };
       this.showNewTrait = false;
-      console.log(this.newCharacter.rasgos)
+      //console.log(this.newCharacter.rasgos)
 
     }
   }
 
   editTrait(trait: any) {
-    console.log('Received trait:', trait);
+    //console.log('Received trait:', trait);
     this.newTrait.title = trait.title;
     this.newTrait.text = trait.info;
     this.newTrait.isPrivate = trait.privacy;
     this.newTrait.type = trait.type;
-    console.log('Updated newTrait:', this.newTrait);
+    //console.log('Updated newTrait:', this.newTrait);
     this.showNewTrait = true;
     this.editing=true;
 
@@ -315,7 +315,7 @@ export class NewCharacterComponent implements OnInit {
         trait.privacy === this.newTrait.isPrivate &&
         trait.type === this.newTrait.type
     );
-    console.log(this.position);
+    //console.log(this.position);
   }
 
   editing=false;
@@ -532,10 +532,11 @@ export class NewCharacterComponent implements OnInit {
       }
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
       this.characters= characters;
-      console.log(characters);
+      //console.log(characters);
       this.characters = (this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user"))))) );
       this.cdr.detectChanges();
-      console.log('Characters loaded:', characters.length)});
+      //console.log('Characters loaded:', characters.length)
+    });
 
   }
 
