@@ -235,10 +235,27 @@ export class IndexPageComponent implements OnInit {
       {value:'V',label:"Solo Versiones"},
     ]
 
+    //bestiary
+
+    selectedBestiary = "T"
+    bestiaryOptions = [
+      {value:'T',label:"Todos"},
+      {value:'P',label:"Solo Personajes"},
+      {value:'B',label:"Solo Bestiario"},
+    ]
+
+    // Exclude Marca Negra
+    SelectedMarcaNegra = "Y"
+    marcaNegraOptions = [
+      {value:'Y',label:"No Excluirla"},
+      {value:'N',label:"Sí Excluirla"},
+    ]
+
     //
     factionSearch="";
     alphabetical=false;
     showFactionSelect=false;
+    showExludingSelect=false;
 
     // get number of total characters:
 
@@ -248,6 +265,18 @@ export class IndexPageComponent implements OnInit {
           // Filter by version
           if (this.selectedVersion === 'O' && c.version) return false;
           if (this.selectedVersion === 'V' && !c.version) return false;
+          return true;
+        })
+        .filter(c => {
+          // Filter by bestiary
+          if (this.selectedBestiary === 'P' && c.bestiario) return false;
+          if (this.selectedBestiary === 'B' && !c.bestiario) return false;
+          return true;
+        })
+        .filter(c => {
+          // Filter by MarcaNegra
+          if (this.SelectedMarcaNegra === 'Y' && c.marcaNegra) return true;
+          if (this.SelectedMarcaNegra === 'N' && c.marcaNegra) return false;
           return true;
         })
         .filter(c => {

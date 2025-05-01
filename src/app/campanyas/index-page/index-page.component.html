@@ -34,9 +34,32 @@
 
   <ul class="nav nav-pills col-auto ms-3 ">
     <li class="nav-item btn">
-      <select class="dropdown-toggle btn btn-success" [(ngModel)]="selectedVersion" [ngModelOptions]="{standalone:true}">
-        <option *ngFor="let option of versionOptions" value={{option.value}}>Versiones: {{option.label}}</option>
-      </select>
+      <button class="btn btn-success dropdown-toggle" type="button" (click)="showExludingSelect = !showExludingSelect">
+        Excluir Personajes
+      </button>
+
+      <div *ngIf="showExludingSelect" class="dropdown-menu show p-2" [ngClass]="currentColor === 'dark' ? 'darkSearchBar' : ''">
+
+        <div style="margin-bottom: 10px;">
+          <select class="dropdown-toggle btn btn-success" [(ngModel)]="selectedVersion" [ngModelOptions]="{standalone:true}">
+            <option *ngFor="let option of versionOptions" value={{option.value}}>Versiones: {{option.label}}</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+          <select class="dropdown-toggle btn btn-primary" [(ngModel)]="selectedBestiary" [ngModelOptions]="{standalone:true}">
+            <option *ngFor="let option of bestiaryOptions" value={{option.value}}>Bestiario: {{option.label}}</option>
+          </select>
+        </div>
+
+        <div>
+          <select class="dropdown-toggle btn btn-danger" [(ngModel)]="SelectedMarcaNegra" [ngModelOptions]="{standalone:true}">
+            <option *ngFor="let option of marcaNegraOptions" value={{option.value}}>Marca Negra: {{option.label}}</option>
+          </select>
+        </div>
+
+      </div>
+
     </li>
   </ul>
 
@@ -105,7 +128,7 @@
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 adriweboMargin"
 >
-  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order:selectedCampaigns:selectedVersion">
+  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order:selectedCampaigns:selectedVersion:selectedBestiary:SelectedMarcaNegra">
     <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -148,7 +171,7 @@
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
 >
-  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order:selectedCampaigns:selectedVersion">
+  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order:selectedCampaigns:selectedVersion:selectedBestiary:SelectedMarcaNegra">
     <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />

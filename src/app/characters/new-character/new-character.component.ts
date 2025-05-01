@@ -239,6 +239,9 @@ export class NewCharacterComponent implements OnInit {
   isInTierList=[{value:true,label:"Este Personaje está oculto en la Tier List"},
     {value:false,label:"Este Personaje SÍ aparece en la Tier List"}]
 
+  marcaNegraOptions=[{value:true,label:"SÍ"},
+    {value:false,label:"NO"}]
+
   tiers=[
   {value:"-0.- Omnipotente", label:"Omnipotente"},
   {value:"0.- Deus Ex Machina", label:"Deus Ex Machina"},

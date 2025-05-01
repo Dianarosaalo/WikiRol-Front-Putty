@@ -15,6 +15,8 @@ export class CharacterFilterPipe implements PipeTransform {
     order: string,
     selectedCampaigns?: string[],
     selectedVersion?: string,
+    selectedBestiary?:string,
+    SelectedMarcaNegra?:string,
   ): Character[] {
     // First, filter by faction if provided
     const filteredByFaction = faction
@@ -47,12 +49,39 @@ export class CharacterFilterPipe implements PipeTransform {
         break;
     }
 
+    let filteredByBestiary: Character[] = [];
+    switch (selectedBestiary) {
+      case 'P': // Filter characters that arent bestiary
+        filteredByBestiary = filteredByVersion.filter((c) => !c.bestiario);
+        break;
+      case 'B': // Filter characters that are bestiary
+        filteredByBestiary = filteredByVersion.filter((c) => c.bestiario);
+        break;
+      case 'T': // Return all characters without additional filtering
+      default:
+        filteredByBestiary = filteredByVersion;
+        break;
+    }
+
+    let filteredByMarcaNegra: Character[] = [];
+    switch (SelectedMarcaNegra) {
+      case 'Y': // return all characters (redundant but it helps me)
+      filteredByMarcaNegra = filteredByBestiary;
+        break;
+      case 'N': // Filter characters that do not have MarcaNegra
+      filteredByMarcaNegra = filteredByBestiary.filter((c) => !c.marcaNegra===true);
+        break;
+      default:
+        filteredByMarcaNegra = filteredByBestiary;
+        break;
+    }
+
     // Now, filter by search term if provided
     return search
-      ? filteredByVersion.filter((c) =>
+      ? filteredByMarcaNegra.filter((c) =>
           c.nombre.toLocaleLowerCase().includes(search.toLocaleLowerCase())
         )
-      : this.OrderBy(order, filteredByVersion);
+      : this.OrderBy(order, filteredByMarcaNegra);
   }
 
   OrderBy(order:string, characters:Character[]){

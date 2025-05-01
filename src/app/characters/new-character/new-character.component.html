@@ -374,12 +374,24 @@
       <br>
     </div>
 
+    <h3>Detalles del Versionaje</h3>
+
+    <br>
+
     <div class="mb-3" *ngIf="newCharacter.version!==''" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
-      Privacidad de la versión del personaje <br>
+      Privacidad de la versión del personaje en la <strong>Tier List</strong><br>
       <select class="form-control" [(ngModel)]="newCharacter.hiddenInTierList" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of isInTierList" value={{option.value}}>{{option.label}}</option>
       </select>
     </div>
+
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
+      Tiene este personaje la <strong>Marca Negra</strong>?<br>
+      <select class="form-control" [(ngModel)]="newCharacter.marcaNegra" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of marcaNegraOptions" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
   </div>
 
 

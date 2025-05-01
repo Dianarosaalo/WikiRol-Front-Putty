@@ -46,6 +46,7 @@ export interface Character {
   version?: string | null,
   hiddenInTierList: boolean,
   bestiario: string,
+  marcaNegra?:boolean
 }
 
 export interface Trait{
