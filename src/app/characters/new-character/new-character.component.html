@@ -392,6 +392,41 @@
       </select>
     </div>
 
+    <h3>Clonación de Rasgos</h3>
+
+    <div class="mb-3">
+      <label for="titulo" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Busca a tu personaje a clonar</label>
+      <input
+        class="form-control"
+        type="text"
+        name="search"
+        placeholder="Busca al personaje al que le clonarás los rasgos"
+        aria-label="searchChar"
+        [(ngModel)]="searchChar"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
+      />
+      <br>
+      <ul class="nav nav-pills col-auto ms-3 designs justify-content-center">
+        <li class="nav-item">
+            <p (click)="queryBuscar()" class="blue btn btn-danger custom-button">Buscar!</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
+      Resultados de la Búsqueda <strong> Clica en el Formulario</strong><br>
+      <select class="form-control" [(ngModel)]="idClonacion" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let char of characters" value={{char._id}}>{{char.nombre}}</option>
+      </select>
+    </div>
+
+    <ul class="nav nav-pills col-auto ms-3 designs justify-content-center">
+        <li class="nav-item">
+            <p (click)="clonarRasgos()" class="blue btn btn-danger custom-button">Clonar Rasgos!</p>
+        </li>
+    </ul>
+
+
   </div>
 
 

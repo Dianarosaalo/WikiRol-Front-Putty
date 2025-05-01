@@ -558,5 +558,27 @@ export class NewCharacterComponent implements OnInit {
     this.activeTab=tab;
   }
 
+  idClonacion='';
+
+  clonarRasgos()
+  {
+    //
+    if (this.idClonacion!=='')
+    {
+      let clonatedCharacter = null;
+
+      this.characterService.getById(this.idClonacion).subscribe(
+        (c: Character) => {
+          clonatedCharacter = c
+
+          if (clonatedCharacter!.creator === JSON.parse(String(localStorage.getItem("user"))))
+            {
+              this.newCharacter.rasgos = (this.newCharacter.rasgos).concat(clonatedCharacter!.rasgos)
+            }
+        });
+    }
+  }
+
+
 }
 
