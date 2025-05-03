@@ -374,6 +374,23 @@
       <br>
     </div>
 
+    <div class="mb-3" >
+      <label for="ordenVersion" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Orden de la Version <strong> Orden con el que aparecerán las versiones</strong></label>
+      <input
+        type="number"
+        class="form-control"
+        id="ordenVersion"
+        name="ordenVersion"
+        [(ngModel)]="newCharacter.ordenVersion"
+        placeholder="Orden de la Versión del Personaje"
+        #ordVersionModel="ngModel"
+        [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
+      />
+      <div class="invalid-feedback" *ngIf="ordVersionModel.errors?.['required']">
+        Orden de Versión del Personaje
+      </div>
+    </div>
+
     <h3>Detalles del Versionaje</h3>
 
     <br>
@@ -395,7 +412,7 @@
     <h3>Clonación de Rasgos</h3>
 
     <div class="mb-3">
-      <label for="titulo" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Busca a tu personaje a clonar</label>
+      <label for="titulo" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Busca a tu personaje a clonar:</label>
       <input
         class="form-control"
         type="text"

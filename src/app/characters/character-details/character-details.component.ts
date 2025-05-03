@@ -180,18 +180,23 @@ export class CharacterDetailsComponent implements OnInit{
         .pipe(map((c) => c.personajes))
         .subscribe((characters: Character[]) => {
             this.versions = characters;
-            console.log(characters);
+            //console.log(characters);
             if (this.versions.length>0)
               {
                 this.hasVersions=true;
                 this.versions.unshift(this.character);
               }
-            console.log("Versiones: " + this.hasVersions)
+            //console.log("Versiones: " + this.hasVersions)
             this.versions = this.versions.filter((c) =>
                 !c.private ||
                 (c.private && c.creator === JSON.parse(String(localStorage.getItem("user")))) ||
                 (c.private && c.reader === JSON.parse(String(localStorage.getItem("user"))))
             );
+            this.versions.sort((a, b) => {
+              const ordenA = a.ordenVersion ?? 0;
+              const ordenB = b.ordenVersion ?? 0;
+              return ordenA - ordenB;
+            });
             this.cdr.detectChanges();
             //console.log('Characters loaded:', characters.length);
         });
