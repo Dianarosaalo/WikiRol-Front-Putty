@@ -67,6 +67,9 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
   itsYggdrassil=true
   itsEgathea=true
 
+  itsDee=true;//to check if its Diana
+  notExistingCharacters!:Character[];
+
   constructor(
     private readonly characterService:CharacterService,
     private readonly gameService:GameService,
@@ -102,6 +105,11 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
     }
     else
       this.itsYggdrassil=false;
+
+    if (JSON.parse(String(localStorage.getItem("user")))==="6536932d84b73580daa120be")
+      this.itsDee=true;
+    else
+      this.itsDee=false;
 
     this.loadCharacters();
     this.loadFactions();
@@ -180,6 +188,13 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
         this.groupBestiasByType();
       }
 
+      if (this.itsYggdrassil)
+      {
+        const noExisteCharactersBeforeFiltering = this.characters.filter(c => c.descripcion === "noExiste");
+        this.characters = this.characters.filter(c => c.descripcion !== "noExiste");
+        this.notExistingCharacters = this.notExistingCharacters.concat(noExisteCharactersBeforeFiltering);
+      }
+
       this.characters = this.characters.filter((c)=>!c.version)
       console.log('Characters loaded:', characters.length);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
@@ -226,6 +241,13 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
         this.bestias = this.characters.filter((c)=>c.bestiario);      //son deidades
         this.characters = this.characters.filter((c) => !c.bestiario);
         this.groupBestiasByType();
+      }
+
+      if (this.itsYggdrassil)
+      {
+        const noExisteCharactersBeforeFiltering = this.characters.filter(c => c.descripcion === "noExiste");
+        this.characters = this.characters.filter((c)=> c.descripcion!=="noExiste")
+        this.notExistingCharacters = noExisteCharactersBeforeFiltering;
       }
 
       this.characters = this.characters.filter((c)=>!c.version)
