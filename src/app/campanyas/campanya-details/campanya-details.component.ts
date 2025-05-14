@@ -162,6 +162,8 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       this.characters=[...this.characters, ...characters];
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
 
+      this.characters.forEach((c)=>this.whichTier(c));
+
       if (this.itsYggdrassil){
         const newDeidades = this.characters.filter((c) => c.deidad);
         this.characters = this.characters.filter((c) => !c.deidad);
@@ -177,7 +179,6 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
         this.groupBestiasByType();
       }
 
-      characters.forEach((c)=>this.whichTier(c));
       this.characters = this.characters.filter((c)=>!c.version)
       console.log('Characters loaded:', characters.length);
       //this.characters=this.characters.filter((c)=>c.campanya===this.id);
