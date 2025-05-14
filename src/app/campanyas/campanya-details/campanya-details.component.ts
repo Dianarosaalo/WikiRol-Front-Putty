@@ -162,7 +162,8 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       this.characters=[...this.characters, ...characters];
       this.characters = this.characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) );
 
-      this.characters.forEach((c)=>this.whichTier(c));
+      const charactersFiltrados = characters.filter((c)=>!c.private || (c.private && c.creator===JSON.parse(String(localStorage.getItem("user")))) || (c.private && c.reader===JSON.parse(String(localStorage.getItem("user")))) ); // filtro characters y no this characters porque si no me los repite
+      charactersFiltrados.forEach((c)=>this.whichTier(c));
 
       if (this.itsYggdrassil){
         const newDeidades = this.characters.filter((c) => c.deidad);
