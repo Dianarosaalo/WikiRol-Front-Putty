@@ -244,6 +244,13 @@ export class IndexPageComponent implements OnInit {
       {value:'B',label:"Solo Bestiario"},
     ]
 
+    selectedDead = "T"
+    deadOptions = [
+      {value:'T',label:"Todos"},
+      {value:'V',label:"Solo PJs Vivos"},
+      {value:'M',label:"Solo PJs Muertos"},
+    ]
+
     // Exclude Marca Negra
     SelectedMarcaNegra = "Y"
     marcaNegraOptions = [
@@ -277,6 +284,12 @@ export class IndexPageComponent implements OnInit {
           // Filter by MarcaNegra
           if (this.SelectedMarcaNegra === 'Y' && c.marcaNegra) return true;
           if (this.SelectedMarcaNegra === 'N' && c.marcaNegra) return false;
+          return true;
+        })
+        .filter(c => {
+          // Filter by Dead
+          if (this.selectedDead === 'V' && c.muerto) return false;
+          if (this.selectedDead === 'M' && !c.muerto) return false;
           return true;
         })
         .filter(c => {

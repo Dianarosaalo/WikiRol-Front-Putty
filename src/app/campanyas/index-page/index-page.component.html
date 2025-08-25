@@ -52,8 +52,14 @@
           </select>
         </div>
 
+        <div style="margin-bottom: 10px;">
+          <select class="dropdown-toggle btn btn-danger" [(ngModel)]="selectedDead" [ngModelOptions]="{standalone:true}">
+            <option *ngFor="let option of deadOptions" value={{option.value}}>Muertos: {{option.label}}</option>
+          </select>
+        </div>
+
         <div>
-          <select class="dropdown-toggle btn btn-danger" [(ngModel)]="SelectedMarcaNegra" [ngModelOptions]="{standalone:true}">
+          <select class="dropdown-toggle btn btn-dark" [(ngModel)]="SelectedMarcaNegra" [ngModelOptions]="{standalone:true}">
             <option *ngFor="let option of marcaNegraOptions" value={{option.value}}>Marca Negra: {{option.label}}</option>
           </select>
         </div>
@@ -128,7 +134,7 @@
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 adriweboMargin"
 >
-  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order:selectedCampaigns:selectedVersion:selectedBestiary:SelectedMarcaNegra">
+  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order:selectedCampaigns:selectedVersion:selectedBestiary:SelectedMarcaNegra:selectedDead">
     <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />
@@ -171,7 +177,7 @@
   id="placesContainer"
   class="mb-1 mt-1 row row-cols-1 row-cols-md-2 row-cols-xl-6 g-3 normalMargin"
 >
-  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order:selectedCampaigns:selectedVersion:selectedBestiary:SelectedMarcaNegra">
+  <div class="col" *ngFor="let character of characters | characterFilter:search:faction:order:selectedCampaigns:selectedVersion:selectedBestiary:SelectedMarcaNegra:selectedDead">
     <div class="card h-100 shadow" [ngClass]="currentColor === 'dark' ? 'darkBorders' : ''">
       <a [routerLink]="['/characters', character._id]">
         <img class="card-img-top" src="{{ character.fotoPerfil }}" />

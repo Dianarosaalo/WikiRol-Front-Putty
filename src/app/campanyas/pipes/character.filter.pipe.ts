@@ -16,7 +16,9 @@ export class CharacterFilterPipe implements PipeTransform {
     selectedCampaigns?: string[],
     selectedVersion?: string,
     selectedBestiary?:string,
-    SelectedMarcaNegra?:string,
+    SelectedMarcaNegra?:string, //cuidadin que este es el unico en mayuscula
+    selectedDead?:string
+
   ): Character[] {
     // First, filter by faction if provided
     const filteredByFaction = faction
@@ -76,12 +78,28 @@ export class CharacterFilterPipe implements PipeTransform {
         break;
     }
 
+    let filteredByDeath: Character[] = [];
+    switch (selectedDead) {
+      case 'T': // return all characters (redundant but it helps me)
+      filteredByDeath = filteredByMarcaNegra;
+        break;
+      case 'V': // Filter characters vivos
+      filteredByDeath = filteredByMarcaNegra.filter((c) => !c.muerto===true);
+        break;
+      case 'M': // Filter characters muertos
+      filteredByDeath = filteredByMarcaNegra.filter((c) => c.muerto===true);
+        break;
+      default:
+        filteredByDeath = filteredByMarcaNegra;
+        break;
+    }
+
     // Now, filter by search term if provided
     return search
-      ? filteredByMarcaNegra.filter((c) =>
+      ? filteredByDeath.filter((c) =>
           c.nombre.toLocaleLowerCase().includes(search.toLocaleLowerCase())
         )
-      : this.OrderBy(order, filteredByMarcaNegra);
+      : this.OrderBy(order, filteredByDeath);
   }
 
   OrderBy(order:string, characters:Character[]){
