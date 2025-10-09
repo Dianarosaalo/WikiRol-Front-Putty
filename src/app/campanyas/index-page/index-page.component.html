@@ -16,6 +16,7 @@
       placeholder="Busca personajes aquí!"
       aria-label="Search"
       [(ngModel)]="search"
+      (keyup.enter)="queryBuscar()"
       [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''"
     />
   </form>
