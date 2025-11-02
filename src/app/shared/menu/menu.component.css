@@ -123,3 +123,26 @@ nav{
   list-style: none;
   padding: 0.3rem 0;
 }
+
+.campaigns-menu {
+  display: flex;             /* coloca los li en línea */
+  flex-direction: row;       /* horizontal */
+  gap: 1rem;                 /* separación entre botones */
+  background-color: #222;
+  border: 1px solid #444;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  z-index: 999;
+}
+
+/* Asegura que los submenús (de Egathea, Aryma, Yggdrassil) se abran hacia abajo */
+.campaigns-menu li > ul.submenu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  z-index: 1001;
+}

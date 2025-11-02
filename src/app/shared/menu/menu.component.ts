@@ -184,30 +184,72 @@ export class MenuComponent {
 showA = false;
 showB = false;
 showC = false;
+showAryma=false;
+showEgathea=false;
+showYgg=false;
 
 toggleMainDropdown() {
   this.showMainDropdown = !this.showMainDropdown;
   this.showA = false;
   this.showB = false;
   this.showC = false;
+  this.showAryma=false;
+  this.showEgathea=false;
+  this.showYgg=false;
 }
 
 toggleA() {
   this.showA = !this.showA;
   this.showB = false;
   this.showC = false;
+  this.showAryma=false;
+  this.showEgathea=false;
+  this.showYgg=false;
 }
 
 toggleB() {
   this.showB = !this.showB;
   this.showA = false;
   this.showC = false;
+  this.showAryma=false;
+  this.showEgathea=false;
+  this.showYgg=false;
 }
 
 toggleC() {
   this.showC = !this.showC;
   this.showA = false;
   this.showB = false;
+  this.showAryma=false;
+  this.showEgathea=false;
+  this.showYgg=false;
+}
+
+toggleEgathea(){
+  this.showA = true;
+  this.showB = false;
+  this.showC = false;
+  this.showAryma=false;
+  this.showEgathea=true;
+  this.showYgg=false;
+}
+
+toggleAryma(){
+  this.showA = true;
+  this.showB = false;
+  this.showC = false;
+  this.showAryma=true;
+  this.showEgathea=false;
+  this.showYgg=false;
+}
+
+toggleYgg(){
+  this.showA = true;
+  this.showB = false;
+  this.showC = false;
+  this.showAryma=false;
+  this.showEgathea=false;
+  this.showYgg=true;
 }
 
 }

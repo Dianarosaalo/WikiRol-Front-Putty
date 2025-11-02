@@ -69,16 +69,37 @@
           *ngIf="isDropDownOpen5"
         >
           <!-- "De Campañas" -->
+            <div class="position-relative mx-2">
+          <button class="dropdown-toggle-custom" (click)="toggleA()">De Campañas</button>
+          <ul class="submenu-dropdown campaigns-menu" *ngIf="showA">
 
-          <div class="position-relative mx-2">
-            <button class="dropdown-toggle-custom" (click)="toggleA()">De Campañas</button>
-            <ul class="submenu-dropdown" *ngIf="showA">
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guerreros de la Luz']">Guerreros de la Luz</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guardianes del Cosmos']">Guardianes Cosmos</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Pruebas']">Guerreros Oscuridad</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Historias Yggdrassil']">Historias de Yggdrassil</a></li>
-            </ul>
-          </div>
+            <!-- Egathea -->
+            <li class="position-relative">
+              <button class="dropdown-toggle-custom" (click)="toggleEgathea()">Egathea</button>
+              <ul class="submenu-dropdown" *ngIf="showEgathea">
+                <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guardianes del Cosmos']">Guardianes del Cosmos</a></li>
+              </ul>
+            </li>
+
+            <!-- Aryma -->
+            <li class="position-relative">
+              <button class="dropdown-toggle-custom" (click)="toggleAryma()">Aryma</button>
+              <ul class="submenu-dropdown" *ngIf="showAryma">
+                <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Pruebas']">Guerreros de la Oscuridad</a></li>
+              </ul>
+            </li>
+
+            <!-- Yggdrassil -->
+            <li class="position-relative">
+              <button class="dropdown-toggle-custom" (click)="toggleYgg()">Yggdrassil</button>
+              <ul class="submenu-dropdown" *ngIf="showYgg">
+                <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Historias Yggdrassil']">Historias de Yggdrassil</a></li>
+                <li><a class="dropdown-item" [routerLink]="['/campaigns', 'Guerreros de la Luz']">Guerreros de la Luz</a></li>
+              </ul>
+            </li>
+
+          </ul>
+        </div>
 
 
 
