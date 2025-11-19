@@ -58,8 +58,8 @@
       <p><strong>Hit Points:</strong> 0</p>
       <p><strong>CA:</strong> 0</p>
       <p><strong>Movimiento:</strong> 0ft | {{movementRound(0)}}m | {{movementRound(0)}}m/s</p>
-      <p><strong>Competencia:</strong> +</p>
-      <p><strong>Iniciativa:</strong> +0 | <strong>Percepción P:</strong> 0 | <strong>Investigación P:</strong> 0 | <strong> Experiencia:</strong> 0</p>
+      <p><strong>{{ itsPathfinder ? 'BaB' : 'Competencia' }}:</strong> +</p>
+      <p><strong>Iniciativa:</strong> +0 | <strong>Percepción P:</strong> 0 | <strong *ngIf="!itsPathfinder">Investigación P: </strong> <span *ngIf="!itsPathfinder">0 | </span> <strong> Experiencia:</strong> 0</p>
 
       <hr>
     <div class="monster-abilities">
@@ -90,7 +90,7 @@
     </div>
     <hr>
 
-    <div class="monster-abilities" style="width:55%" *ngIf="character.salvaciones">
+    <div class="monster-abilities" style="width:55%" *ngIf="character.salvaciones && !itsPathfinder">
       <div class="ability">
         <p *ngIf="character.salvaciones[0]!==null">-5</p>
       </div>
@@ -108,6 +108,30 @@
       </div>
       <div class="ability">
         <p *ngIf="character.salvaciones[5]!==null">-5</p>
+      </div>
+    </div>
+
+    <div class="monster-abilities" style="width:55%" *ngIf="character.salvaciones && itsPathfinder">
+      <div class="ability">
+        <p *ngIf="character.salvaciones[1]!==null">|</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[0]!==null"><span>FOR</span>: +0</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[1]!==null">|</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[2]!==null"><span>REF</span>: +0</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[3]!==null">|</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[4]!==null"><span>VOL</span>: +0</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[5]!==null">|</p>
       </div>
     </div>
 
@@ -133,8 +157,9 @@
       <p><strong>Hit Points:</strong> {{character.pv}}</p>
       <p><strong>CA:</strong> {{character.ca}}</p>
       <p><strong>Movimiento:</strong> {{character.movimiento}}ft | {{movementRound(character.movimiento / 3.3)}}m | {{movementRound(character.movimiento / 19.8)}}m/s</p>
-      <p><strong>Competencia:</strong> +{{character.competencia}}</p>
-      <p><strong>Iniciativa:</strong> +{{character.iniciativa}} | <strong>Percepción P:</strong> {{character.percepcion}} | <strong>Investigación P:</strong> {{character.investigacion}} | <strong> Experiencia:</strong> {{formatNumberWithPeriods(character.experiencia)}}</p>
+      <p><strong>{{ itsPathfinder ? 'BaB' : 'Competencia' }}:</strong> +{{character.competencia}}</p>
+      <p><strong>Iniciativa:</strong> +{{character.iniciativa}} | <strong>Percepción P:</strong> {{character.percepcion}} | <strong *ngIf="!itsPathfinder">Investigación P: </strong>
+      <span *ngIf="!itsPathfinder">{{ character.investigacion }} | </span><strong> Experiencia:</strong> {{formatNumberWithPeriods(character.experiencia)}}</p>
 
     <hr>
     <div class="monster-abilities">
@@ -165,7 +190,7 @@
     </div>
     <hr>
 
-    <div class="monster-abilities" style="width:55%" *ngIf="character.salvaciones">
+    <div class="monster-abilities" style="width:55%" *ngIf="character.salvaciones && !itsPathfinder">
       <div class="ability">
         <p *ngIf="character.salvaciones[0]!==null">{{calcularSalvaciones(character.fue, character.salvaciones[0])}}</p>
       </div>
@@ -183,6 +208,30 @@
       </div>
       <div class="ability">
         <p *ngIf="character.salvaciones[5]!==null">{{calcularSalvaciones(character.car, character.salvaciones[5])}}</p>
+      </div>
+    </div>
+
+    <div class="monster-abilities" style="width:55%" *ngIf="character.salvaciones && itsPathfinder">
+      <div class="ability">
+        <p *ngIf="character.salvaciones[1]!==null">|</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[0]!==null"><span>FOR</span>: +{{character.salvaciones[0]}}</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[1]!==null">|</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[2]!==null"><span>REF</span>: +{{character.salvaciones[1]}}</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[3]!==null">|</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[4]!==null"><span>VOL</span>: +{{character.salvaciones[4]}}</p>
+      </div>
+      <div class="ability">
+        <p *ngIf="character.salvaciones[5]!==null">|</p>
       </div>
     </div>
 

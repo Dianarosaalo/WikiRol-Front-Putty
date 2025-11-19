@@ -294,7 +294,7 @@
     <a class="btn btn-danger" (click)="addCampanya()">Añadir Campaña Secundaria</a>-->
 
     <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
-      Tipo de Juego (esto no sirve para nada aún) <br>
+      Sistema <br>
       <select class="form-control" [(ngModel)]="newCharacter.tipoJuego" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of typeOfGame" value={{option.value}}>{{option.label}}</option>
       </select>

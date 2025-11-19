@@ -26,6 +26,7 @@ export class CharacterDetailsComponent implements OnInit{
   reader=false
   hidden=true
   currentColor: string = localStorage.getItem('color') || 'light';
+  itsPathfinder=false;
 
   versions!:Character[];
   hasVersions=false;
@@ -57,6 +58,8 @@ export class CharacterDetailsComponent implements OnInit{
           this.me=true;
         if (this.me || !this.character.privateStats===true || this.character.reader===JSON.parse(String(localStorage.getItem("user"))))
           this.hidden=false;
+        if (this.character.tipoJuego=='Pathfinder')
+          this.itsPathfinder=true;
       }
     })
   }

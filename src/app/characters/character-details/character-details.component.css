@@ -339,3 +339,12 @@ hr{
 * {
   box-sizing: border-box; /* Include padding and border in element's total width/height */
 }
+
+.monster-abilities span {
+  margin: 0;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
