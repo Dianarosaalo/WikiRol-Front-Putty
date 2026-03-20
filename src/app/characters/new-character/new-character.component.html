@@ -747,7 +747,11 @@
   <h3>Tiradas de Salvación</h3>
 
   <div class="mb-3">
-    <label for="sf" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Fuerza</label>
+    <label for="sf" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
+      {{ newCharacter.tipoJuego === 'Pathfinder'
+        ? 'Salvación de Fortitud'
+        : 'Salvación de Fuerza' }}
+    </label>
     <input
       type="number"
       class="form-control"
@@ -765,7 +769,11 @@
   </div>
 
   <div class="mb-3">
-    <label for="sd" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Destreza</label>
+    <label for="sd" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
+      {{ newCharacter.tipoJuego === 'Pathfinder'
+        ? 'Salvación de Reflejos'
+        : 'Salvación de Destreza' }}
+    </label>
     <input
       type="number"
       class="form-control"
@@ -782,7 +790,7 @@
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" *ngIf="newCharacter.tipoJuego !== 'Pathfinder'">
     <label for="sco" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Constitución</label>
     <input
       type="number"
@@ -800,7 +808,7 @@
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" *ngIf="newCharacter.tipoJuego !== 'Pathfinder'">
     <label for="si" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Inteligencia</label>
     <input
       type="number"
@@ -819,7 +827,11 @@
   </div>
 
   <div class="mb-3">
-    <label for="ss" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Sabiduría</label>
+    <label for="ss" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
+      {{ newCharacter.tipoJuego === 'Pathfinder'
+        ? 'Salvación de Voluntad'
+        : 'Salvación de Sabiduría' }}
+    </label>
     <input
       type="number"
       class="form-control"
@@ -836,7 +848,7 @@
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3" *ngIf="newCharacter.tipoJuego !== 'Pathfinder'">
     <label for="sc" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Salvación de Carisma</label>
     <input
       type="number"

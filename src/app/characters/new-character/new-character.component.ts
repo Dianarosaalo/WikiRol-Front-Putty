@@ -212,7 +212,7 @@ export class NewCharacterComponent implements OnInit {
     {value:'Yggdrassil',label:"Yggdrassil"},
 
     {value:'Djuna',label:"Djuna & Co (A) "},
-    {value:'Mario',label:"(Aventura) (A)"},
+    {value:'Mario',label:"Cruzados Mario (A)"},
     {value:'Reinos Olvidados',label:"Reinos Olvidados (A)"},
     {value:'Guerreros de la Luz',label:"Guerreros de la Luz (A)"},
     {value:'Guardianes del Cosmos',label:"Guardianes del Cosmos (A)"},
