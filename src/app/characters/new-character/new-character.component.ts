@@ -513,6 +513,7 @@ export class NewCharacterComponent implements OnInit {
     {value:'Sentidos',label:"Sentidos"},
     {value:'Hechizos',label:"Hechizos"},
     {value:'Don Divina',label:"Don Divina"},
+    {value:'Bendicion del Gran Arbol',label:"Bendición del Gran Árbol"},
     {value:'Voluntad',label:"Voluntad"},
     {value:'Esfera de Realidad',label:"Esfera de Realidad"},
     {value:'Accion Combinada',label:"Accion Combinada"},

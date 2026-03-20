@@ -442,6 +442,16 @@
           <hr>
         </div>
 
+        <div *ngIf="Check(character.rasgos,'Bendicion del Gran Arbol')">
+          <h3>Bendición del Gran Árbol</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Bendicion del Gran Arbol'))">-<strong strong style="color:rgb(252, 193, 1);text-shadow: 2px 2px 1.5px black;">{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+            <br>
+          <hr>
+        </div>
+
         <div *ngIf="Check(character.rasgos,'Genesis')">
           <h3>Génesis</h3>
             <br>
