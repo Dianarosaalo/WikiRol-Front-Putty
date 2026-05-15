@@ -170,34 +170,39 @@ textarea {
   align-items: center;
 }
 
-.trait-list ul {
-  padding: 0;
-}
+/* trait CSS */
 
-.trait-list li {
+.trait-listB li {
   display: grid;
-  grid-template-columns:
-    200px   /* título */
-    1fr      /* descripción */
-    120px    /* tipo */
-    120px    /* privacidad */
-    100px    /* editar */
-    100px;   /* eliminar */
 
-  gap: 10px;
+  grid-template-columns:
+    repeat(4, 1fr)
+    auto auto;
+
+  column-gap: 20px;
   align-items: center;
 
   list-style: none;
   margin-bottom: 10px;
 }
 
-.trait-title,
-.trait-text,
-.trait-privacy {
-  word-break: break-word;
+.trait-listB .trait-title,
+.trait-listB .trait-text,
+.trait-listB .trait-privacy {
+  text-align: left;
+  justify-self: start;
+  width: 100%;
 }
 
-.trait-list p {
+.trait-listB p.btn {
   margin: 0;
+  padding: 4px 10px;
+
+  min-width: 80px;
   text-align: center;
+
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

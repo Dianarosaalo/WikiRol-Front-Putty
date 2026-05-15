@@ -915,7 +915,7 @@
         <p *ngIf="editing" (click)="editCurrentTrait()" class="btn btn-danger">Editar Rasgo</p>
       </div>
 
-      <div class="trait-list" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
+      <div class="trait-listB" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
         <h2>Rasgos</h2>
         <ul>
           <li *ngFor="let trait of newCharacter.rasgos" [ngClass]="currentColor === 'dark' ? 'darkListHandler': ''">
