@@ -706,7 +706,7 @@
     </div>
   </div>
 
-  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
+  <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''" *ngIf="newCharacter.tipoJuego !== 'Pathfinder'">
     <label for="investigacion">Investigación Pasiva</label>
     <input
       type="number"

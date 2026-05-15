@@ -169,3 +169,35 @@ textarea {
   justify-content: space-between;
   align-items: center;
 }
+
+.trait-list ul {
+  padding: 0;
+}
+
+.trait-list li {
+  display: grid;
+  grid-template-columns:
+    200px   /* título */
+    1fr      /* descripción */
+    120px    /* tipo */
+    120px    /* privacidad */
+    100px    /* editar */
+    100px;   /* eliminar */
+
+  gap: 10px;
+  align-items: center;
+
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.trait-title,
+.trait-text,
+.trait-privacy {
+  word-break: break-word;
+}
+
+.trait-list p {
+  margin: 0;
+  text-align: center;
+}
