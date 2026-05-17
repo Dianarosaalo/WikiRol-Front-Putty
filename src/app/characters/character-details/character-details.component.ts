@@ -234,5 +234,7 @@ export class CharacterDetailsComponent implements OnInit{
 
   }
 
+  showPathfinderSkills = false;
+
 
 }

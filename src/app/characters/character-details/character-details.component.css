@@ -348,3 +348,18 @@ hr{
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+.dropdown-icon {
+  cursor: pointer;
+  user-select: none;
+  margin-left: 6px;
+}
+
+.skills-header {
+  display: flex;
+  align-items: center;
+}
+
+.skills-content {
+  margin-left: 20px;
+}

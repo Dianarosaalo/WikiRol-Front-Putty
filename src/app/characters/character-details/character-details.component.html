@@ -374,9 +374,42 @@
         <div *ngIf="Check(character.rasgos,'Competencia')">
           <h3>Competencias</h3>
             <br>
-            <div *ngFor="let r of character.rasgos">
+            <!--<div *ngFor="let r of character.rasgos">
               <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Competencia'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>-->
+
+            <div *ngFor="let r of character.rasgos">
+
+              <div *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Competencia'))">
+
+                <!-- CASO NORMAL -->
+                <p *ngIf="!(r.title === 'Habilidades' && itsPathfinder)">
+                  -<strong>{{ r.title }}</strong>: {{ r.info }}
+                </p>
+
+                <!-- CASO PATHFINDER -->
+                <div *ngIf="r.title === 'Habilidades' && itsPathfinder" class="skills-dropdown">
+
+                  <p class="skills-header">
+                    -<strong>{{ r.title }}</strong>
+                    <span
+                      class="dropdown-icon"
+                      (click)="showPathfinderSkills = !showPathfinderSkills"
+                    >
+                      {{ showPathfinderSkills ? ' ▼' : ' ▶' }}
+                    </span>
+                  </p>
+
+                  <p *ngIf="showPathfinderSkills" class="skills-content">
+                    {{ r.info }}
+                  </p>
+
+                </div>
+
+              </div>
+
             </div>
+
             <br>
           <hr>
         </div>
