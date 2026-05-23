@@ -318,6 +318,16 @@
           <hr>
         </div>
 
+        <div *ngIf="Check(character.rasgos,'Ataque de Oportunidad')">
+          <h3>Ataques de Oportunidad</h3>
+            <br>
+            <div *ngFor="let r of character.rasgos">
+              <p *ngIf="((r.privacy === false || (r.privacy === true && me) || (r.privacy===true && reader)) && (r.type==='Ataque de Oportunidad'))">-<strong>{{ r.title }}</strong>: {{ r.info }}</p>
+            </div>
+            <br>
+          <hr>
+        </div>
+
 
         <div *ngIf="Check(character.rasgos,'Pasiva')">
           <br>

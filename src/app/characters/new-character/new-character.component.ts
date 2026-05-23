@@ -74,6 +74,9 @@ export class NewCharacterComponent implements OnInit {
       this.characterService.getById(String(id)).subscribe(
         c => {
           this.newCharacter = c
+
+          if (this.newCharacter.creator!==JSON.parse(String(localStorage.getItem("user"))) )
+            this.router.navigate(['/campaigns','home']);
         });
     }
   }
@@ -503,6 +506,7 @@ export class NewCharacterComponent implements OnInit {
     {value:'Accion de Movimiento',label:"Acción de Movimiento"},
     {value:'Accion de Guarida',label:"Acción de Guarida"},
     {value:'Reaccion',label:"Reacción"},
+    {value:'Ataque de Oportunidad',label:"Ataque de Oportunidad"},
     {value:'Pasiva',label:"Pasiva"},
     {value:'Resistencia',label:"Resistencia"},
     {value:'Aura',label:"Aura"},
