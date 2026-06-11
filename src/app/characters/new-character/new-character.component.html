@@ -450,19 +450,35 @@
   <div *ngIf="activeTab ==='Privacidad'">
     <h3>Privacidad</h3>
 
-    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''" *ngIf="!itsFurry || itsFurryPublico"> <!--normal-->
       Privacidad del Personaje<strong> Máster NPCs</strong> <br>
       <select class="form-control" [(ngModel)]="newCharacter.private" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
       </select>
     </div>
 
-    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''" *ngIf="!itsFurry && !itsFurryPublico"> <!--normal-->
       Rasgos Ocultos<strong> Máster NPCs</strong> <br>
       <select class="form-control" [(ngModel)]="newCharacter.privateStats" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
         <option *ngFor="let option of privacy" value={{option.value}}>{{option.label}}</option>
       </select>
     </div>
+
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''" *ngIf="itsFurry"> <!--furry-->
+      Privacidad del Personaje<strong> Máster NPCs</strong> <br>
+      <select class="form-control" [(ngModel)]="newCharacter.private" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of privacy2" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''" *ngIf="itsFurry || itsFurryPublico"> <!--furry-->
+      Rasgos Ocultos<strong> Máster NPCs</strong> <br>
+      <select class="form-control" [(ngModel)]="newCharacter.privateStats" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''" [ngModelOptions]="{standalone:true}">
+        <option *ngFor="let option of privacy2" value={{option.value}}>{{option.label}}</option>
+      </select>
+    </div>
+
+    <!--fin de las privacidades-->
 
     <div class="mb-3" [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">
       Permisos de Lectura para otro Jugador  <strong> Solo para PJs ocultos</strong><br>
@@ -900,7 +916,7 @@
 
     <br>
     <div class="containermenu" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">
-      <h1 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Manejador de Rasgos</h1>
+      <h1 [ngClass]="currentColor === 'dark' ? 'whiteColorForH2' : ''">Manejador de Rasgos ({{newCharacter.rasgos.length}})</h1>
       <p (click)="showNewTraitForm()" class="btn btn-danger">Añadir nuevo Rasgo</p>
 
       <div *ngIf="showNewTrait" class="new-trait-form" [ngClass]="currentColor === 'dark' ? 'darkSelect' : ''">

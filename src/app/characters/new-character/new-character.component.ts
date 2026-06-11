@@ -77,6 +77,13 @@ export class NewCharacterComponent implements OnInit {
 
           if (this.newCharacter.creator!==JSON.parse(String(localStorage.getItem("user"))) )
             this.router.navigate(['/campaigns','home']);
+
+          if (((Number(this.newCharacter.partidaAparicion)===0 || this.newCharacter.partidaAparicion==='0') && this.newCharacter.partidaAparicion!==null) && (this.newCharacter.creator==='65379898fefb420049397f86' ||  this.newCharacter.creator === '653d26a62003ec64f2b69ca9' || this.newCharacter.creator === '65383c2ba7d091793bc506c3'))
+            this.itsFurry=true;
+          if ((Number(this.newCharacter.partidaAparicion)===1 && (this.newCharacter.creator==='65379898fefb420049397f86' ||  this.newCharacter.creator === '653d26a62003ec64f2b69ca9' || this.newCharacter.creator === '65383c2ba7d091793bc506c3')))
+            this.itsFurryPublico=true;
+
+          console.log("itsFurry" + this.itsFurry + "itsFurryPublico"+this.itsFurryPublico)
         });
     }
   }
@@ -585,6 +592,13 @@ export class NewCharacterComponent implements OnInit {
     }
   }
 
+  itsFurry =false;
+  itsFurryPublico=false;
+
+  privacy2 = [
+  { value: false, label: "Privado" },
+  { value: true, label: "Público" }
+  ];
 
 }
 
