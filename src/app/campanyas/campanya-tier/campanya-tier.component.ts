@@ -51,10 +51,12 @@ export class CampanyaTierComponent {
       {value:"movimiento", label:"Movimiento"},
     ];
 
+  Ben10Chars:Character[]=[];
   OmniChars:Character[]=[];
   DeusChars:Character[]=[];
   SupremeChars:Character[]=[];
   SemiSupremeChars:Character[]=[];
+  SSSSSSChars:Character[]=[];
   SSSSSChars:Character[]=[];
   SSSSChars:Character[]=[];
   SSSChars:Character[]=[];
@@ -78,10 +80,12 @@ export class CampanyaTierComponent {
   ) {}
 
   ngOnInit(): void {
+    this.loadCharacters("--0.- Ben 10",this.Ben10Chars);
     this.loadCharacters("-0.- Omnipotente",this.OmniChars);
     this.loadCharacters("0.- Deus Ex Machina",this.DeusChars);
     this.loadCharacters("0.25.- Supremo",this.SupremeChars);
     this.loadCharacters("0.33.- Semi-Supremo",this.SemiSupremeChars);
+    this.loadCharacters("0.45.- SSSSSS",this.SSSSSSChars);
     this.loadCharacters("0.5.- SSSSS",this.SSSSSChars);
     this.loadCharacters("1.- SSSS",this.SSSSChars);
     this.loadCharacters("2.- SSS",this.SSSChars);

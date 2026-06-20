@@ -253,10 +253,12 @@ export class NewCharacterComponent implements OnInit {
     {value:false,label:"NO"}]
 
   tiers=[
+  {value:"--0.- Ben 10", label:"Ben 10"},
   {value:"-0.- Omnipotente", label:"Omnipotente"},
   {value:"0.- Deus Ex Machina", label:"Deus Ex Machina"},
   {value:"0.25.- Supremo", label:"Supremo"},
   {value:"0.33.- Semi-Supremo", label:"Extremo"},
+  {value:"0.45.- SSSSSS", label:"SSSSSS"},
   {value:"0.5.- SSSSS", label:"SSSSS"},
   {value:"1.- SSSS", label:"SSSS"},
   {value:"2.- SSS", label:"SSS"},

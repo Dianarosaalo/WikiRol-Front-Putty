@@ -261,6 +261,9 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
 
   whichTier(char:Character)
   {
+    if(char.tier==="--0.- Ben 10")
+      this.Ben10Chars.push(char);
+
     if(char.tier==="-0.- Omnipotente")
       this.OmniChars.push(char);
 
@@ -272,6 +275,9 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
 
     if(char.tier==="0.33.- Semi-Supremo")
       this.SemiSupremeChars.push(char);
+
+    if(char.tier==="0.45.- SSSSSS")
+      this.SSSSSSChars.push(char);
 
     if(char.tier==="0.5.- SSSSS")
       this.SSSSSChars.push(char);
@@ -313,10 +319,12 @@ export class CampanyaDetailsComponent implements OnInit,OnDestroy{
       this.UnknownChars.push(char);
   }
 
+  Ben10Chars:Character[]=[];
   OmniChars:Character[]=[];
   DeusChars:Character[]=[];
   SupremeChars:Character[]=[];
   SemiSupremeChars:Character[]=[];
+  SSSSSSChars:Character[]=[];
   SSSSSChars:Character[]=[];
   SSSSChars:Character[]=[];
   SSSChars:Character[]=[];
