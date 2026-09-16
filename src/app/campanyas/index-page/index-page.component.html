@@ -59,9 +59,23 @@
           </select>
         </div>
 
-        <div>
+        <div style="margin-bottom: 10px;">
           <select class="dropdown-toggle btn btn-dark" [(ngModel)]="SelectedMarcaNegra" [ngModelOptions]="{standalone:true}">
             <option *ngFor="let option of marcaNegraOptions" value={{option.value}}>Marca Negra: {{option.label}}</option>
+          </select>
+        </div>
+
+        <div>
+          <select
+            class="dropdown-toggle btn btn-secondary"
+            [(ngModel)]="sortOrder"
+            [ngModelOptions]="{standalone:true}"
+            (change)="ordenChanged()">
+
+            <option *ngFor="let option of ordenOptions" [ngValue]="option.value">
+              Orden Muestra: {{option.label}}
+            </option>
+
           </select>
         </div>
 

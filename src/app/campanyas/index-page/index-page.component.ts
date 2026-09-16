@@ -35,6 +35,8 @@ export class IndexPageComponent implements OnInit {
   buttonShow=false;
   volverButtonShow=false;
   currentColor = localStorage.getItem('color') || 'light'
+  user = JSON.parse(String(localStorage.getItem("user")));
+  sortOrder = Number(localStorage.getItem('sortOrder')) || 1;
 
   factions=[
     {value:"", label:"Todos"}];
@@ -103,7 +105,9 @@ export class IndexPageComponent implements OnInit {
     this.http.get<CharactersResponse>('personajes/scroll', {
       params: {
         pageNumber: this.pageNumber.toString(),
-        pageSize: this.pageSize.toString()
+        pageSize: this.pageSize.toString(),
+        sortOrder: this.sortOrder.toString(),
+        userId: this.user
       }
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
 
@@ -134,7 +138,9 @@ export class IndexPageComponent implements OnInit {
     this.http.get<CharactersResponse>('personajes/scroll', {
       params: {
         pageNumber: this.pageNumber.toString(),
-        pageSize: this.pageSize.toString()
+        pageSize: this.pageSize.toString(),
+        sortOrder: this.sortOrder.toString(),
+        userId: this.user
       }
     }).pipe(map((c) => c.personajes)).subscribe((characters: Character[]) => {
       this.characters= characters;
@@ -265,6 +271,21 @@ export class IndexPageComponent implements OnInit {
     showExludingSelect=false;
 
     // get number of total characters:
+
+    ordenOptions = [
+      {value:1,label:"Antiguos"},
+      {value:-1,label:"Recientes"}
+    ]
+
+    ordenChanged(): void {
+      localStorage.setItem('sortOrder', this.sortOrder.toString());
+
+      // Reiniciamos la paginación
+      this.pageNumber = 1;
+      this.characters = [];
+
+      this.loadCharacters();
+    }
 
     get filteredCharacters(): Character[] {
       return this.characters
