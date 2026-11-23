@@ -170,42 +170,70 @@ export class CharacterDetailsComponent implements OnInit{
   }
 
   findOtherVersions() {
-    this.versions = [];
+  this.versions = [];
+  this.hasVersions = false;
 
-    const characterId = this.character?._id; // Safely access _id, or undefined if character is not defined
+  const characterId = this.character?.version || this.character?._id;
 
-    if (characterId) {
-        this.http.get<CharactersResponse>('http://vps-5eb41e5a.vps.ovh.net:8080/personajes/versiones', {
-            params: {
-                version: characterId
-            }
-        })
-        .pipe(map((c) => c.personajes))
-        .subscribe((characters: Character[]) => {
-            this.versions = characters;
-            //console.log(characters);
-            if (this.versions.length>0)
-              {
-                this.hasVersions=true;
-                this.versions.unshift(this.character);
-              }
-            //console.log("Versiones: " + this.hasVersions)
-            this.versions = this.versions.filter((c) =>
-                !c.private ||
-                (c.private && c.creator === JSON.parse(String(localStorage.getItem("user")))) ||
-                (c.private && c.reader === JSON.parse(String(localStorage.getItem("user"))))
-            );
-            this.versions.sort((a, b) => {
-              const ordenA = a.ordenVersion ?? 0;
-              const ordenB = b.ordenVersion ?? 0;
-              return ordenA - ordenB;
-            });
-            this.cdr.detectChanges();
-            //console.log('Characters loaded:', characters.length);
-        });
-    } else {
-        console.warn('Character ID is undefined. Cannot load other versions.');
+  if (!characterId) {
+    console.warn('Character ID is undefined.');
+    return;
+  }
+
+  this.http.get<CharactersResponse>(
+    'http://vps-5eb41e5a.vps.ovh.net:8080/personajes/versiones',
+    {
+      params: {
+        version: characterId
+      }
     }
+  )
+  .pipe(map((c) => c.personajes))
+  .subscribe((characters: Character[]) => {
+
+    // Si estamos viendo una versión, recuperamos al original
+    if (this.character.version) {
+      this.characterService.getById(String(characterId)).subscribe({
+        next: (original) => {
+          this.processVersions([original, ...characters]);
+        }
+      });
+    }
+    else {
+      // Si estamos viendo al original, ya lo tenemos
+      this.processVersions([this.character, ...characters]);
+    }
+
+  });
+  }
+
+  processVersions(characters: Character[]) {
+
+    const userId = JSON.parse(String(localStorage.getItem("user")));
+
+    // Evitamos personajes duplicados
+    this.versions = characters.filter(
+      (character, index, self) =>
+        self.findIndex(c => c._id === character._id) === index
+    );
+
+    // Aplicamos los filtros de privacidad
+    this.versions = this.versions.filter((c) =>
+      !c.private ||
+      (c.private && c.creator === userId) ||
+      (c.private && c.reader === userId)
+    );
+
+    // Ordenamos las versiones
+    this.versions.sort((a, b) => {
+      const ordenA = a.ordenVersion ?? 0;
+      const ordenB = b.ordenVersion ?? 0;
+      return ordenA - ordenB;
+    });
+
+    this.hasVersions = this.versions.length > 1;
+
+    this.cdr.detectChanges();
   }
 
   changeCharacterVersion(selectedVersion: Character) {
