@@ -202,14 +202,15 @@ export class IndexPageComponent implements OnInit {
       {value:'Aryma',label:"Aryma"},
       {value:'Yggdrassil',label:"Yggdrassil"},
 
+      {value: 'Historias Yggdrassil', label: 'Historias Yggdrassil'},
+      {value:'Guerreros de la Luz',label:"Guerreros de la Luz"},
+
       {value:'Djuna',label:"Djuna & Co"},
       {value:'Mario',label:"Cruzados Mario"},
       {value:'Reinos Olvidados',label:"Reinos Olvidados"},
       {value:'Miscelanea',label:"Miscelanea"},
-      {value:'Guerreros de la Luz',label:"Guerreros de la Luz"},
       {value:'Guardianes del Cosmos',label:"Guardianes Cosmos"},
       {value:'Pruebas',label:"Guerreros Oscuros"},
-      {value: 'Historias Yggdrassil', label: 'Historias Yggdrassil'},
       {value: 'Cosmos', label: 'Cosmos'}
   ];
 
